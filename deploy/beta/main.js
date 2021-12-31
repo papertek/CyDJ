@@ -3696,12 +3696,8 @@ if (UI_FontsBtn) {
 // Override "Emote List" button
 if (UI_EmotesBtn) {
   const emotesButton = document.getElementById('emotelistbtn');
-  emotesButton.onclick = () => {
-    toggleDiv(emotespanel);
-    if (!UI_ChannelCache && !EMOTES) {
-      showEmotes();
-    }
-  };
+  emotesButton.removeAttribute('onclick');
+  emotesButton.onclick = () => toggleDiv(emotespanel);
   socket.on('emoteList', showEmotes);
   socket.on('updateEmote', showEmotes);
   socket.on('removeEmote', showEmotes);
