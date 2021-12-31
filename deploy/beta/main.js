@@ -99,9 +99,9 @@ const UI_FontsBtn = true;
 const UI_UnicodeChars = false;
 // button displaying box with clickable chat emotes
 // [ REQUIRE: UI_FontsBtn enabled ]
-const UI_EmotesBtn = true;
+const UI_EmotesBtn = false;
 // [&] emotes panel pagination, display limited number of emotes at one time
-const UI_GroupEmotes = true;
+const UI_GroupEmotes = false;
 // button displaying modal window with chat commands help
 // [ REQUIRE: UI_EmotesBtn enabled ]
 const UI_CommandsBtn = true;
@@ -2400,7 +2400,7 @@ function showEmotes() {
     emotespanel.addClass('row');
     makeAlert('No emotes available', 'Ask channel administrator.')
         .appendTo(emotespanel);
-  } else if (!UI_GroupEmotes || len <= GroupEmotes_Number) {
+  } else if (UI_GroupEmotes != '1' || len <= GroupEmotes_Number) {
     for (const emote of CHANNEL.emotes) {
       $(`<img onclick="insertText('${emote.name} ')" />`)
           .attr({'src': emote.image, 'title': emote.name})
@@ -3693,14 +3693,18 @@ if (UI_FontsBtn) {
           .on('click', () => toggleDiv(fontspanel));
 }
 
-// Override "Emote List" button
+// adding chat emotes button
 if (UI_EmotesBtn) {
-  const emotesButton = document.getElementById('emotelistbtn');
-  emotesButton.removeAttribute('onclick');
-  emotesButton.onclick = () => toggleDiv(emotespanel);
-  socket.on('emoteList', showEmotes);
-  socket.on('updateEmote', showEmotes);
-  socket.on('removeEmote', showEmotes);
+  emotesbtn =
+      $('<button id="emotes-btn" class="btn btn-sm btn-default" title="Display emotes panel" />')
+          .html('<i class="glyphicon glyphicon-picture"></i>')
+          .appendTo(chatcontrols)
+          .on('click', () => {
+            toggleDiv(emotespanel);
+            if (UI_ChannelCache != '1' && !EMOTES) {
+              showEmotes();
+            }
+          });
 }
 
 // adding chat commands button
@@ -4621,7 +4625,7 @@ if (ALTERCHATFORMAT) {
       div.html(div.html() + html);
     }
 
-    if (UI_UserMarks && !UI_Squavatars) {
+    if (UI_UserMarks && UI_Squavatars != '1') {
       if (!!USER_BADGES[data.username]) {
         const badges = USER_BADGES[data.username]
                            .map((url) => Badge.formatToHtml(url))
@@ -5294,9 +5298,8 @@ function newPoll() {
   $('#pollwrap div.well').draggable();
 }
 const newpollbtn = document.getElementById('newpollbtn');
-if (newpollbtn !== null) {
-  newpollbtn.onclick = newPoll;
-}
+newpollbtn !== null && (newpollbtn.onclick = newPoll);
+$('#emotelist > div.modal-dialog > div.modal-content').draggable();
 
 const togglesCSS_Compact =
     '#queue .queue_entry{padding: 0px;line-height: 10px;}#queue .queue_entry .btn-group button {padding-top: 0px;padding-bottom: 0px;line-height: 14px;}#rightcontrols button {padding-top: 0px;padding-bottom: 0px;}#mediaurl {padding: 0px 3px;height: 20px;}#addfromurl .input-group button {padding-top: 0px;padding-bottom: 0px;}#rightcontrols{margin-top: 0px !important;}#playlistmanagerwrap{margin-top: 0px;}#videowrap{margin-bottom: 0px !important;}#queuefail .vertical-spacer{margin-top: 0px;}#addfromurl .vertical-spacer{margin-top: 0px;}#addfromurl .checkbox{margin: 0px;}#mainpage{padding-top: 25px !important;}';

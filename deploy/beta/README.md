@@ -4,12 +4,6 @@
 
 ## Updates
 
-### CyDJBeta12.30.21.1
-
-**Cytube changes:**
-
-- Fixed image and video embeds in chat (airforce)
-
 ### CyDJBeta12.30.21.0
 
 **Cytube changes:**
