@@ -3462,7 +3462,7 @@ $('#playercontrols').append($('#mediarefresh').detach());
 $('#rightpane').prepend($('#videocontrols').detach());
 $('#rightpane').prepend($('#plcontrol').detach());
 $('#leftpane').prepend($('#newpollbtn').detach());
-$('#leftpane').prepend($('#emotelistbtn').detach());
+$('#chatwrap').prepend($('#emotelistbtn').detach());
 $('#plcontrol').prepend($('#showmediaurl').detach());
 
 // header and footer links open in a new tab
@@ -3947,6 +3947,7 @@ if (UI_ModPanel) {
   toggleModPanel();
 }
 
+// adding hey nay thing
 if (UI_RateButtons) {
   transcontrols = $('<div id="transcontrols" class="btn-group pull-right" />')
                       .appendTo('#videowrap');
