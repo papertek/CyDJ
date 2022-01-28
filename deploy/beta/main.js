@@ -2733,7 +2733,7 @@ function showModPanel() {
 function showInfo() {
   if (DEFDESCR) {
     const arr = [];
-    text = '// UP NEXT ON PLAYLIST: //';
+    text = '// NEXT ON QUEUE: //';
     li1 = $('.queue_active').next();
     li2 = li1.next();
     li3 = li2.next();
@@ -2768,10 +2768,10 @@ function showInfo() {
     }
     text += arr.join('');
     if (arr.length < 8) {
-      text += ' // END OF PLAYLIST //';
+      text += ' // END OF QUEUE //';
     }
     if (arr.length > 7) {
-      text += ' // AND MORE! //';
+      text += ' // PLUS MORE! //';
     }
     mediainfo.html(`<marquee scrollamount="7.5">${text}</marquee>`);
   } else {
@@ -3835,12 +3835,12 @@ if (UI_EmotesBtn) {
 
 // moving emote button attempt
 if (UI_SpecialEmoteBtn) {
-$('#emotelistbtn').appendTo(chatcontrols).text('Emotes');
+$('#emotelistbtn').appendTo(chatcontrols).text('Emotes').title('List of emotes');
 }
 
 // adding chat commands button
 if (UI_CommandsBtn && (UI_UserCommands || UI_FontsBtn || UI_ChatSpeak)) {
-  chathelpbtn = $('<button id="chathelp-btn" class="btn btn-sm btn-default" />')
+  chathelpbtn = $('<button id="chathelp-btn" class="btn btn-sm btn-default" title="Show chat commands"/>')
                     .text('Chat Commands')
                     .appendTo(chatcontrols)
                     .on('click', () => showChatHelp());
