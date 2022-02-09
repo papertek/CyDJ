@@ -3954,7 +3954,7 @@ if (UI_EmotesBtn) {
 
 // moving emote button attempt
 if (UI_SpecialEmoteBtn) {
-  $('#emotelistbtn').appendTo(chatcontrols); // .text('Emotes');
+  $('#emotelistbtn').appendTo(chatcontrols);  // .text('Emotes');
   $('#emotelistbtn').html('<i class="glyphicon glyphicon-picture"></i>');
 }
 
@@ -5309,7 +5309,7 @@ function resizeStuff() {
       }
       fitChat('auto');
     } else if (m === 'syMode' && USERCONFIG.player === 'center') {
-      fitChat('auto');// it could've been this all along lmao
+      fitChat('auto');  // it could've been this all along lmao
     }
   }
 }
@@ -5941,11 +5941,20 @@ document.body.addEventListener('load', resizeStuff, true);
 socket.on('changeMedia', resizeStuff);
 
 // eslint-disable-next-line no-unused-vars
+<<<<<<< HEAD
+const resizeStuffLoop = setInterval(() => {  // xqcPeepo/EmmanuelAT was here
+  resizeStuff();                  // this should be fine right Clueless
+  setTimeout(scrollChat(), 500);  // auto scroll after .5 seconds
+}, 1000);  // every 1 seconds just to be safe?? : xqcPeepo here
+//  side note you can always cancel this interval by using
+//  clearInterval(resizeStuffLoop);
+=======
 const  resizeStuffLoop = setInterval(() => { // xqcPeepo/EmmanuelAT was here
   resizeStuff();                             // this should be fine right Clueless
   setTimeout(scrollChat(), 500);             // auto scroll after .5 seconds
 }, 1000);                                    // every 1 seconds just to be safe?? : xqcPeepo here
 // side note you can always cancel this interval by using clearInterval(resizeStuffLoop);
+>>>>>>> 93fa897ee4a2dd798478609e80f78223cddbdecb
 
 // Xaekai was here (john too)
 $.getScript('https://resources.pink.horse/scripts/mjoc.requests.js');
