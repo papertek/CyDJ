@@ -1264,22 +1264,25 @@ var clientDataLocal = null;
 
 function UpdateLocalStoredData(dataObject)
 {
-  if (clientDataLocal !== null)
+  if (clientDataLocal !== null){
     toStoreLocally = JSON.stringify(dataObject);
     localStorage.setItem(storagePath,toStoreLocally);
+  }
 }
 function SetLocalStorageData(dkey,dvalue)
 {
-  if (clientDataLocal !== null)
+  if (clientDataLocal !== null){
     if (clientDataLocal[dkey]){
       clientDataLocal[dkey] = dvalue;
     }
+  }
 }
 
 function GetLocalStorageData(dkey)
 {
-  if (clientDataLocal[dkey] === null)
+  if (clientDataLocal[dkey] === null){
     clientDataLocal[dkey] = examplePersistentDataArray[dkey];
+  }
   return clientDataLocal[dkey];
 }
 
