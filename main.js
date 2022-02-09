@@ -1262,15 +1262,13 @@ const examplePersistentDataArray = {
 var clientDataString = localStorage.getItem(storagePath);// xqcPeepo glizzyL
 var clientDataLocal = null;
 
-function UpdateLocalStoredData(dataObject)
-{
+function UpdateLocalStoredData(dataObject){
   if (clientDataLocal !== null){
     toStoreLocally = JSON.stringify(dataObject);
     localStorage.setItem(storagePath,toStoreLocally);
   }
 }
-function SetLocalStorageData(dkey,dvalue)
-{
+function SetLocalStorageData(dkey,dvalue){
   if (clientDataLocal !== null){
     if (clientDataLocal[dkey]){
       clientDataLocal[dkey] = dvalue;
@@ -1278,8 +1276,7 @@ function SetLocalStorageData(dkey,dvalue)
   }
 }
 
-function GetLocalStorageData(dkey)
-{
+function GetLocalStorageData(dkey){
   if (clientDataLocal[dkey] === null){
     clientDataLocal[dkey] = examplePersistentDataArray[dkey];
   }
