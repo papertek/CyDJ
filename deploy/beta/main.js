@@ -1,428 +1,3 @@
-/*
-The MIT License (MIT)
-//
-Copyright (c) 2013-2014 Zimny Lech, 2022 CyDJ developers
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of
-this software and associated documentation files (the "Software"), to deal in
-the Software without restriction, including without limitation the rights to
-use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies
-off the Software, and to permit persons to whom the Software is furnished to do
-so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
-FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
-COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
-IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-*/
-
-/* ----- STARTING CONFIGURATION - USER INTERFACE (UI) ----- */
-
-// CONFIGURATION NOTES:
-
-// In this section you can immediately enable and disable each option (set '1' to enable, '0' to
-// disable) Every option marked as [&] requires additional configuration (see other sections below)
-// WARNING! apostrophe sign (') in all text/html values must be prepend with "\" sign (e.g.
-// "don\'t")
-
-// FILTERS INSTALLATION: open 'Channel Settings' modal window, go to 'Edit' -> 'Chat Filters', click
-// 'Prepare fonts filters' button, and import
-
-// default old Synchtube layout (player and playlist on the left)
-const UI_DefaultSynchtube = true;
-// [&] channel favicon
-const UI_Favicon = true;
-// [&] small channel logo/avatar in the top navbar
-const UI_MiniLogo = true;
-// [&] channel custom brand name
-const UI_ChannelName = true;
-// [&] additional header dropdown menu
-const UI_HeaderDropMenu = true;
-// removing 'Layout' menu from the header
-const UI_RemoveLayoutMenu = true;
-// [&] big channel logo inserted into MOTD
-const UI_MOTDAutoLogo = true;
-// [&] switchable MOTD tabs application for homepage-like channel header
-const UI_MOTDTabs = false;
-// deleting previous MOTD after accepting/loading script
-const UI_MOTDDelete = false;
-// [&] button displaying channel rules
-const UI_RulesBtn = true;
-// [&] imageboard-style attention bar (requires external application)
-const UI_AttentionBar = false;
-// [&] additional custom channel announcement
-const UI_ChannelAnnouncement = true;
-// full-width video title bar
-const UI_FullTitleBar = true;
-// YouTube/Dailymotion progress bar
-const UI_ProgressBar = true;
-// [&] full-width title bar icon
-// [ REQUIRE: UI_FullTitleBar enabled ]
-const UI_TitleIcon = true;
-// [&] custom title bar description (default "Currently Playing:")
-// [ REQUIRE: UI_FullTitleBar enabled ]
-const UI_TitleBarDescription = true;
-// [&] chat message after user joining
-const UI_JoinText = true;
-// [&] chat message after user leaving
-const UI_LeaveText = true;
-// [&] additional commands in the chat window
-const UI_UserCommands = true;
-// [&] special signs/avatars before every message for defined users
-const UI_UserMarks = true;
-// automatic squavatars (2-colored square avatars) before every message
-const UI_Squavatars = false;
-// [&] custom mark after username (default ":")
-// [ REQUIRE: UI_UserMarks enabled ]
-const UI_UsernameMark = false;
-// [&] text added to random chat messages
-const UI_MessagesSuffix = false;
-// [&] custom sound for chat notifications
-const UI_CustomPingSound = true;
-// [&] chat sounds played after sending certain words
-const UI_SoundFilters = false;
-// text speaking after '!say' and '!mow' commands (english and polish)
-const UI_ChatSpeak = false;
-// [&] additional settings-independent emotes
-const UI_IndependentEmotes = true;
-// [&] additional settings-independent filters
-const UI_IndependentFilters = true;
-// button displaying box with clickable chat fonts
-const UI_FontsBtn = true;
-// [&] additional buttons in the fonts panel with unicode characters
-// [ REQUIRE: INSTALLATION (see above) ]
-const UI_UnicodeChars = false;
-// button displaying box with clickable chat emotes
-// [ REQUIRE: UI_FontsBtn enabled ]
-const UI_EmotesBtn = false;
-// [&] emotes panel pagination, display limited number of emotes at one time
-const UI_GroupEmotes = false;
-// button displaying modal window with chat commands help
-// [ REQUIRE: UI_EmotesBtn enabled ]
-const UI_CommandsBtn = true;
-// [&] panel with messages and help for moderators
-const UI_ModPanel = true;
-// [&] custom captions for add, refresh, voteskip buttons, and welcome text
-const UI_CustomCaptions = false;
-// [&] additional player options
-const UI_PlayerOptions = true;
-// player transformation buttons
-const UI_TransformationBtns = false;
-// [&] box with embed additional media database
-const UI_ChannelDatabase = true;
-// [&] box with embed galleries
-const UI_ChannelGalleries = false;
-// selector with player display modes
-const UI_DisplayModeSel = true;
-// [&] additional default channel theme
-const UI_ChannelTheme = false;
-// [&] possibility to embedding (displaying) images and .webm videos on the chat
-const UI_EmbeddingMedia = true;
-// embedded video preloaded controls
-const UI_MediaControls = true;
-// buttons with '/clear' and '/afk' functions
-// [ REQUIRE: UI_EmbeddingMedia enabled ]
-const UI_QuickCommandsBtns = true;
-// additional volume buttons for YouTube player
-const UI_VolumeBtns = true;
-// [&] random background image for empty playlist row corner
-const UI_EmptyCornerBackground = true;
-// extended 'Get URLs' function
-const UI_ExtendedGetURLs = true;
-// default unchecking "Add as temporary" checkbox after loading for registered users
-const UI_DefaultNonTemp = false;
-// [&] custom channel footer
-const UI_CustomFooter = false;
-// [&] right-sided footer box
-const UI_CustomRightFooter = false;
-// displaying in the footer user visits number and current online time
-const UI_UserStatistics = true;
-// [&] additional external script file
-const UI_ExternalScript = false;
-// caching script emotes, additional media database and default gallery
-const UI_ChannelCache = true;
-// adds report button
-const UI_ContextMenu = true;
-// adds easter egg
-const UI_PartyButton = true;
-// adds version
-const UI_Version = true;
-// adds hey and nay
-const UI_RateButtons = true;
-// moves emote list button
-const UI_SpecialEmoteBtn = true;
-// adds public voteskipping
-const UI_PublicSkip = true;
-// adds "add" test to help new users
-const UI_ButtonIcons = true;
-// adds snow (just an attempt on adding, i dont rly know how to make it work)
-const UI_Snow = false;
-
-
-// /////////////////////////////////////////////////////////////////////////////////////////////////
-
-/* ----- DETAILED BASIC CONFIGURATION ----- */
-
-// NOTES:
-// a) values for 'MOTDAutoLogo_Mode': 1 = first logo; 2 = random logo; 3 = logo
-// rotation; 7 = weekdays logos b) in 'SoundFilters_Array' use .ogg or .wav
-// files, some browsers has problems with embedded .mp3 c) in 'ModPanel_Array'
-// item leave empty first (username) field to make a message to all moderators
-// d) in 'EmbeddingMedia_Images' and 'EmbeddingMedia_Videos' you can define
-// acceptable file extensions
-//    use CSS syntax: e.g. 'a[href$=""]' defines acceptable end of an URL (file
-//    extension) you can also define URL fragments: 'a[href*=""]', or add
-//    excluding clause: '.not(\'a[href*=""]\'), etc.
-
-/* -- single variables -- */
-
-import('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@200&display=swap');
-
-const Favicon_URL = 'https://cdn.7tv.app/emote/614e8c0b20eaf897465a4c9d/1x';
-
-const MiniLogo_URL = 'https://cdn.7tv.app/emote/614e8c0b20eaf897465a4c9d/1x';
-
-const ChannelName_Caption = 'CyDJ';
-
-const Version_Now = 'CyDJPre2.10.21.1';
-
-const HeaderDropMenu_Title = 'Information';
-
-const MOTDAutoLogo_Mode = 1;
-
-const MOTDAutoLogo_Interval = 20;
-
-const RulesBtn_Caption = 'Read Channel Rules';
-
-const AttentionBar_URL =
-    'https://media.discordapp.net/attachments/899888900611375184/901603644502331412/unknown.png';
-
-const ChannelAnnouncement_Title = 'CyDJ Alert';
-
-const TitleIcon_URL = 'https://cdn.7tv.app/emote/6040a8bccf6746000db10348/2x';
-
-const TitleBarDescription_Caption = 'Now Playing:';
-
-const JoinText_Message = 'hello!';
-
-const LeaveText_Message = 'left';
-
-const UsernameMark_Char = '>';
-
-const MessagesSuffix_Text = '~xD';
-
-const MessagesSuffix_Percentage = 10;
-
-const CustomPingSound_URL = 'https://github.com/papertek/CyDJ/raw/beta/misc/pingsound.wav';
-
-const PlayerHiding_URL = 'https://c.tenor.com/Q6UjBrnSzvQAAAAC/anime-uh.gif';
-
-const GroupEmotes_Number = 100;
-
-const ExternalScript_URL = '';
-
-const Snow_URL = 'https://dl.dropboxusercontent.com/s/cvxizo3lax3xlrg/snowcss.css';
-
-const HeaderDropMenu_Array = [
-  ['CyDJ Rooms', ''],
-  ['Main Room', 'https://cytu.be/r/cydj'],
-  ['Second Room', 'https://cytu.be/r/secretfbimeeting'],
-  ['Watch Party', 'https://beta.synchtube.me/r/SecretTwitchRoom'],
-  ['Test Room', 'https://cytu.be/r/testplacelilroc'],
-  ['Test Room 2', 'https://cytu.be/r/emptyroomtestplace'],
-  ['Test Room 3', 'https://cytu.be/r/xqcPeepo'],
-  ['Community Related', ''],
-  ['CyDJ Discord', 'https://discord.gg/g8tCGSc2bx'],
-  ['xQcOW Updates Discord', 'https://discord.gg/xqcowupdates'],
-  ['Credits', ''],
-  [
-    'CyTube FAQ',
-    'https://github.com/calzoneman/sync/wiki/Beginner%27s-Guide-and-FAQ',
-  ],
-  ['CyTube Source', 'https://github.com/calzoneman/sync'],
-  ['CyDJ Source', 'https://github.com/papertek/CyDJ'],
-  ['CyDJ Bot Source', 'https://github.com/airforce270/CytubeBot'],
-];
-
-const MOTDAutoLogo_Array = [
-  'https://github.com/papertek/CyDJ/raw/beta/images/cydjnormal.jpg',
-];
-
-const MOTDTabs_Array = [
-  ['Home', 'Welcome to CyDJ!'],
-  ['Playlist', 'Playlist tab.<br /><br />We watched this, that and this.'],
-  [
-    'Schedule',
-    'Schedule:<br /><br /><ul><li>Monday: ...</li><li>Tuesday: ...</li><li>Wendesday: ...</li><li>Thursday: ...</li><li>Friday: ...</li><li>Saturday: ...</li><li>Sunday: ...</li></ul>',
-  ],
-  ['Contact', 'Contact:<br /><br />Email - ...<br />Skype - ...'],
-];
-
-const RandomQuotes_Array = [
-  'I like the Pope dancing',
-  'No quotes today',
-  'O rly?',
-  'People have the right to be stupid. You abuse that privilege',
-  'Don\'t play stupid with me',
-  'Roses are red violets are blue, God made me pretty, what happened to you?',
-  'Please don\'t interrupt me while I\'m ignoring you',
-  'Are you always this stupid, or are you making a special effort today?',
-  'I like you. You remind me of when I was young and stupid.',
-  'Go and buy me a beer',
-  'The door of this channel is always open for you... so feel free to leave!',
-  'I hate JQuery',
-  'amogus',
-];
-
-const AskAnswers_Array = [
-  '100% for sure',
-  'definitely, yes',
-  'yes',
-  'probably',
-  'not any chance',
-  'definitely no',
-  'a little chance',
-  'no',
-  '50/50',
-  'fairy is tired and will not answer',
-  'I refuse to answer',
-  'i asked your mom and she said no',
-  'i- i\'m too shy to answer..',
-  'umph... yes...',
-  'ahhh.. hhaahhh... yeah...',
-  'what',
-];
-
-class Badge {
-  static SUB_0_MONTHS_T1 =
-      'https://cdn.discordapp.com/attachments/915656975696687124/916022295254937652/0-Month_Subscriber.png';
-  static SUB_0_MONTHS_T2 =
-      'https://cdn.discordapp.com/attachments/915656975696687124/916022295473057862/2000-Month_Subscriber.png';
-  static SUB_0_MONTHS_T3 =
-      'https://cdn.discordapp.com/attachments/915656975696687124/916022295686971442/3000-Month_Subscriber.png';
-  static SUB_2_MONTHS_T1 =
-      'https://cdn.discordapp.com/attachments/915656975696687124/916022535622115328/2-Month_Subscriber.png';
-  static SUB_2_MONTHS_T2 =
-      'https://cdn.discordapp.com/attachments/915656975696687124/916022535831814155/2002-Month_Subscriber.png';
-  static SUB_2_MONTHS_T3 =
-      'https://cdn.discordapp.com/attachments/915656975696687124/916022536062521374/3002-Month_Subscriber.png';
-  static SUB_3_MONTHS_T1 =
-      'https://cdn.discordapp.com/attachments/915656975696687124/916022622767181864/3-Month_Subscriber.png';
-  static SUB_3_MONTHS_T2 =
-      'https://cdn.discordapp.com/attachments/915656975696687124/916022623056576562/2003-Month_Subscriber.png';
-  static SUB_3_MONTHS_T3 =
-      'https://cdn.discordapp.com/attachments/915656975696687124/916022623287267398/3003-Month_Subscriber.png';
-  static SUB_6_MONTHS_T1 =
-      'https://cdn.discordapp.com/attachments/915656975696687124/916022766510149682/6-Month_Subscriber.png';
-  static SUB_6_MONTHS_T2 =
-      'https://cdn.discordapp.com/attachments/915656975696687124/916022766736658452/2006-Month_Subscriber.png';
-  static SUB_6_MONTHS_T3 =
-      'https://cdn.discordapp.com/attachments/915656975696687124/916022766984130640/3006-Month_Subscriber.png';
-  static SUB_9_MONTHS_T1 =
-      'https://cdn.discordapp.com/attachments/915656975696687124/916022823489789972/9-Month_Subscriber.png';
-  static SUB_9_MONTHS_T2 =
-      'https://cdn.discordapp.com/attachments/915656975696687124/916022823703674910/2009-Month_Subscriber.png';
-  static SUB_9_MONTHS_T3 =
-      'https://cdn.discordapp.com/attachments/915656975696687124/916022824169259018/3009-Month_Subscriber.png';
-  static SUB_12_MONTHS_T1 =
-      'https://cdn.discordapp.com/attachments/915656975696687124/916022894918795304/12-Month_Subscriber.png';
-  static SUB_12_MONTHS_T2 =
-      'https://cdn.discordapp.com/attachments/915656975696687124/916022895199805440/2012-Month_Subscriber.png';
-  static SUB_12_MONTHS_T3 =
-      'https://cdn.discordapp.com/attachments/915656975696687124/916022895422107648/3012-Month_Subscriber.png';
-  static SUB_18_MONTHS_T1 =
-      'https://cdn.discordapp.com/attachments/915656975696687124/916022962866507846/18-Month_Subscriber.png';
-  static SUB_18_MONTHS_T2 =
-      'https://cdn.discordapp.com/attachments/915656975696687124/916022963105570877/2018-Month_Subscriber.png';
-  static SUB_18_MONTHS_T3 =
-      'https://cdn.discordapp.com/attachments/915656975696687124/916022963411771392/3018-Month_Subscriber.png';
-  static SUB_24_MONTHS_T1 =
-      'https://cdn.discordapp.com/attachments/915656975696687124/916023017929310339/24-Month_Subscriber.png';
-  static SUB_24_MONTHS_T2 =
-      'https://cdn.discordapp.com/attachments/915656975696687124/916023018134835291/2024-Month_Subscriber.png';
-  static SUB_24_MONTHS_T3 =
-      'https://cdn.discordapp.com/attachments/915656975696687124/916023018315206726/3024-Month_Subscriber.png';
-  static SUB_30_MONTHS_T1 =
-      'https://cdn.discordapp.com/attachments/915656975696687124/916023065576636426/30-Month_Subscriber.png';
-  static SUB_30_MONTHS_T2 =
-      'https://cdn.discordapp.com/attachments/915656975696687124/916023065761165403/2030-Month_Subscriber.png';
-  static SUB_30_MONTHS_T3 =
-      'https://cdn.discordapp.com/attachments/915656975696687124/916023065966690324/3030-Month_Subscriber.png';
-  static SUB_36_MONTHS_T1 =
-      'https://cdn.discordapp.com/attachments/915656975696687124/916023136565207040/36-Month_Subscriber.png';
-  static SUB_36_MONTHS_T2 =
-      'https://cdn.discordapp.com/attachments/915656975696687124/916023136770723870/2036-Month_Subscriber.png';
-  static SUB_36_MONTHS_T3 =
-      'https://cdn.discordapp.com/attachments/915656975696687124/916023136942706749/3036-Month_Subscriber.png';
-  static SUB_42_MONTHS_T1 =
-      'https://cdn.discordapp.com/attachments/915656975696687124/916023290441637959/42-Month_Subscriber.png';
-  static SUB_42_MONTHS_T2 =
-      'https://cdn.discordapp.com/attachments/915656975696687124/916023290672349254/2042-Month_Subscriber.png';
-  static SUB_42_MONTHS_T3 =
-      'https://cdn.discordapp.com/attachments/915656975696687124/916023291213410344/3042-Month_Subscriber.png';
-  static SUB_48_MONTHS_T1 =
-      'https://cdn.discordapp.com/attachments/915656975696687124/916023373505650758/48-Month_Subscriber.png';
-  static SUB_48_MONTHS_T2 =
-      'https://cdn.discordapp.com/attachments/915656975696687124/916023373786656768/2048-Month_Subscriber.png';
-  static SUB_48_MONTHS_T3 =
-      'https://cdn.discordapp.com/attachments/915656975696687124/916023374097051708/3048-Month_Subscriber.png';
-  static SUB_54_MONTHS_T1 =
-      'https://cdn.discordapp.com/attachments/915656975696687124/916023417508098108/54-Month_Subscriber.png';
-  static SUB_54_MONTHS_T2 =
-      'https://cdn.discordapp.com/attachments/915656975696687124/916023417793298463/2054-Month_Subscriber.png';
-  static SUB_54_MONTHS_T3 =
-      'https://cdn.discordapp.com/attachments/915656975696687124/916023418070114304/3054-Month_Subscriber.png';
-  static SUB_60_MONTHS_T1 =
-      'https://cdn.discordapp.com/attachments/915656975696687124/916023503910735882/60-Month_Subscriber.png';
-  static SUB_60_MONTHS_T2 =
-      'https://cdn.discordapp.com/attachments/915656975696687124/916023504170799184/2060-Month_Subscriber.png';
-  static SUB_60_MONTHS_T3 =
-      'https://cdn.discordapp.com/attachments/915656975696687124/916023504376332298/3060-Month_Subscriber.png';
-  static SUB_66_MONTHS_T1 =
-      'https://cdn.discordapp.com/attachments/915656975696687124/916023570788913182/66-Month_Subscriber.png';
-  static SUB_66_MONTHS_T2 =
-      'https://cdn.discordapp.com/attachments/915656975696687124/916023571028013176/2066-Month_Subscriber.png';
-  static SUB_66_MONTHS_T3 =
-      'https://cdn.discordapp.com/attachments/915656975696687124/916023571212546108/3066-Month_Subscriber.png';
-  static SUB_72_MONTHS_T1 =
-      'https://cdn.discordapp.com/attachments/915656975696687124/916023616469106698/72-Month_Subscriber.png';
-  static SUB_72_MONTHS_T2 =
-      'https://cdn.discordapp.com/attachments/915656975696687124/916023616670421042/2072-Month_Subscriber.png';
-  static SUB_72_MONTHS_T3 =
-      'https://cdn.discordapp.com/attachments/915656975696687124/916023616863354921/3072-Month_Subscriber.png';
-  static SUB_78_MONTHS_T1 =
-      'https://cdn.discordapp.com/attachments/915656975696687124/916023666947543110/78-Month_Subscriber.png';
-  static SUB_78_MONTHS_T2 =
-      'https://cdn.discordapp.com/attachments/915656975696687124/916023667278905405/2078-Month_Subscriber.png';
-  static SUB_78_MONTHS_T3 =
-      'https://cdn.discordapp.com/attachments/915656975696687124/916023667543117824/3078-Month_Subscriber.png';
-
-  static GIFT_SUBS_500 =
-      'https://cdn.discordapp.com/attachments/915656975696687124/916100252342300733/500_Gift_Subs.png';
-
-  static BITS_100 =
-      'https://cdn.discordapp.com/attachments/915656975696687124/915713189109444718/100_Bits.png';
-  static BITS_1000 =
-      'https://cdn.discordapp.com/attachments/915656975696687124/915713247716442182/1000_Bits.png';
-  static BITS_100000 =
-      'https://cdn.discordapp.com/attachments/915656975696687124/915713532006375464/100000_Bits.png';
-
-  static OWL =
-      'https://cdn.discordapp.com/attachments/915656975696687124/916116916702158948/OWL.png';
-
-  static NINETEEN_EIGHTY_FOUR =
-      'https://media.discordapp.net/attachments/915490680468561990/915492628508868648/die.png';
-
-  static formatToHtml(url) {
-    return `<span class="avatar"><img src="${url}" /></span>`;
-  }
-}
-
 const USER_BADGES = {
   'ZimnLech': [
     'https://dl.dropboxusercontent.com/s/89gv8fvyr49vnev/kobato-icon-small.jpg',
@@ -670,9 +245,261 @@ const USER_BADGES = {
   ],
 };
 
-const SoundFilters_Array = {
-  'oh no our table': 'https://github.com/papertek/CyDJ/raw/beta/misc/ohnoourtable.wav',
-};
+/*
+The MIT License (MIT)
+//
+Copyright (c) 2013-2014 Zimny Lech, 2022 CyDJ developers
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of
+this software and associated documentation files (the "Software"), to deal in
+the Software without restriction, including without limitation the rights to
+use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies
+off the Software, and to permit persons to whom the Software is furnished to do
+so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+*/
+// [&] box with embed additional media database
+const UI_ChannelDatabase = true;
+// [&] possibility to embedding (displaying) images and .webm videos on the chat
+const UI_EmbeddingMedia = true;
+
+
+// /////////////////////////////////////////////////////////////////////////////////////////////////
+
+/* ----- DETAILED BASIC CONFIGURATION ----- */
+
+// NOTES:
+// a) values for 'MOTDAutoLogo_Mode': 1 = first logo; 2 = random logo; 3 = logo
+// rotation; 7 = weekdays logos b) in 'SoundFilters_Array' use .ogg or .wav
+// files, some browsers has problems with embedded .mp3 c) in 'ModPanel_Array'
+// item leave empty first (username) field to make a message to all moderators
+// d) in 'EmbeddingMedia_Images' and 'EmbeddingMedia_Videos' you can define
+// acceptable file extensions
+//    use CSS syntax: e.g. 'a[href$=""]' defines acceptable end of an URL (file
+//    extension) you can also define URL fragments: 'a[href*=""]', or add
+//    excluding clause: '.not(\'a[href*=""]\'), etc.
+
+/* -- single variables -- */
+
+const Favicon_URL = 'https://cdn.7tv.app/emote/614e8c0b20eaf897465a4c9d/1x';
+
+const MiniLogo_URL = 'https://cdn.7tv.app/emote/614e8c0b20eaf897465a4c9d/1x';
+
+const ChannelName_Caption = 'CyDJ';
+
+const Version_Now = 'CyDJPre2.10.21.1';
+
+const HeaderDropMenu_Title = 'Information';
+
+const RulesBtn_Caption = 'Read Channel Rules';
+
+const ChannelAnnouncement_Title = 'CyDJ Alert';
+
+const TitleIcon_URL = 'https://cdn.7tv.app/emote/6040a8bccf6746000db10348/2x';
+
+const TitleBarDescription_Caption = 'Now Playing:';
+
+const JoinText_Message = 'hello!';
+
+const LeaveText_Message = 'left';
+
+const CustomPingSound_URL = 'https://github.com/papertek/CyDJ/raw/beta/misc/pingsound.wav';
+
+const PlayerHiding_URL = 'https://c.tenor.com/Q6UjBrnSzvQAAAAC/anime-uh.gif';
+
+const HeaderDropMenu_Array = [
+  ['CyDJ Rooms', ''],
+  ['Main Room', 'https://cytu.be/r/cydj'],
+  ['Second Room', 'https://cytu.be/r/secretfbimeeting'],
+  ['Watch Party', 'https://beta.synchtube.me/r/SecretTwitchRoom'],
+  ['Test Room', 'https://cytu.be/r/testplacelilroc'],
+  ['Test Room 2', 'https://cytu.be/r/emptyroomtestplace'],
+  ['Test Room 3', 'https://cytu.be/r/xqcPeepo'],
+  ['Community Related', ''],
+  ['CyDJ Discord', 'https://discord.gg/g8tCGSc2bx'],
+  ['xQcOW Updates Discord', 'https://discord.gg/xqcowupdates'],
+  ['Credits', ''],
+  [
+    'CyTube FAQ',
+    'https://github.com/calzoneman/sync/wiki/Beginner%27s-Guide-and-FAQ',
+  ],
+  ['CyTube Source', 'https://github.com/calzoneman/sync'],
+  ['CyDJ Source', 'https://github.com/papertek/CyDJ'],
+  ['CyDJ Bot Source', 'https://github.com/airforce270/CytubeBot'],
+];
+
+const MOTDAutoLogo_Array = [
+  'https://github.com/papertek/CyDJ/raw/beta/images/cydjnormal.jpg',
+];
+
+const RandomQuotes_Array = [
+  'I like the Pope dancing',
+  'No quotes today',
+  'O rly?',
+  'People have the right to be stupid. You abuse that privilege',
+  'Don\'t play stupid with me',
+  'Roses are red violets are blue, God made me pretty, what happened to you?',
+  'Please don\'t interrupt me while I\'m ignoring you',
+  'Are you always this stupid, or are you making a special effort today?',
+  'I like you. You remind me of when I was young and stupid.',
+  'Go and buy me a beer',
+  'The door of this channel is always open for you... so feel free to leave!',
+  'I hate JQuery',
+  'amogus',
+];
+
+const AskAnswers_Array = [
+  '100% for sure',
+  'definitely, yes',
+  'yes',
+  'probably',
+  'not any chance',
+  'definitely no',
+  'a little chance',
+  'no',
+  '50/50',
+  'fairy is tired and will not answer',
+  'I refuse to answer',
+  'i asked your mom and she said no',
+  'i- i\'m too shy to answer..',
+  'umph... yes...',
+  'ahhh.. hhaahhh... yeah...',
+  'what',
+];
+
+class Badge$1 {
+  static SUB_0_MONTHS_T1 =
+      'https://cdn.discordapp.com/attachments/915656975696687124/916022295254937652/0-Month_Subscriber.png';
+  static SUB_0_MONTHS_T2 =
+      'https://cdn.discordapp.com/attachments/915656975696687124/916022295473057862/2000-Month_Subscriber.png';
+  static SUB_0_MONTHS_T3 =
+      'https://cdn.discordapp.com/attachments/915656975696687124/916022295686971442/3000-Month_Subscriber.png';
+  static SUB_2_MONTHS_T1 =
+      'https://cdn.discordapp.com/attachments/915656975696687124/916022535622115328/2-Month_Subscriber.png';
+  static SUB_2_MONTHS_T2 =
+      'https://cdn.discordapp.com/attachments/915656975696687124/916022535831814155/2002-Month_Subscriber.png';
+  static SUB_2_MONTHS_T3 =
+      'https://cdn.discordapp.com/attachments/915656975696687124/916022536062521374/3002-Month_Subscriber.png';
+  static SUB_3_MONTHS_T1 =
+      'https://cdn.discordapp.com/attachments/915656975696687124/916022622767181864/3-Month_Subscriber.png';
+  static SUB_3_MONTHS_T2 =
+      'https://cdn.discordapp.com/attachments/915656975696687124/916022623056576562/2003-Month_Subscriber.png';
+  static SUB_3_MONTHS_T3 =
+      'https://cdn.discordapp.com/attachments/915656975696687124/916022623287267398/3003-Month_Subscriber.png';
+  static SUB_6_MONTHS_T1 =
+      'https://cdn.discordapp.com/attachments/915656975696687124/916022766510149682/6-Month_Subscriber.png';
+  static SUB_6_MONTHS_T2 =
+      'https://cdn.discordapp.com/attachments/915656975696687124/916022766736658452/2006-Month_Subscriber.png';
+  static SUB_6_MONTHS_T3 =
+      'https://cdn.discordapp.com/attachments/915656975696687124/916022766984130640/3006-Month_Subscriber.png';
+  static SUB_9_MONTHS_T1 =
+      'https://cdn.discordapp.com/attachments/915656975696687124/916022823489789972/9-Month_Subscriber.png';
+  static SUB_9_MONTHS_T2 =
+      'https://cdn.discordapp.com/attachments/915656975696687124/916022823703674910/2009-Month_Subscriber.png';
+  static SUB_9_MONTHS_T3 =
+      'https://cdn.discordapp.com/attachments/915656975696687124/916022824169259018/3009-Month_Subscriber.png';
+  static SUB_12_MONTHS_T1 =
+      'https://cdn.discordapp.com/attachments/915656975696687124/916022894918795304/12-Month_Subscriber.png';
+  static SUB_12_MONTHS_T2 =
+      'https://cdn.discordapp.com/attachments/915656975696687124/916022895199805440/2012-Month_Subscriber.png';
+  static SUB_12_MONTHS_T3 =
+      'https://cdn.discordapp.com/attachments/915656975696687124/916022895422107648/3012-Month_Subscriber.png';
+  static SUB_18_MONTHS_T1 =
+      'https://cdn.discordapp.com/attachments/915656975696687124/916022962866507846/18-Month_Subscriber.png';
+  static SUB_18_MONTHS_T2 =
+      'https://cdn.discordapp.com/attachments/915656975696687124/916022963105570877/2018-Month_Subscriber.png';
+  static SUB_18_MONTHS_T3 =
+      'https://cdn.discordapp.com/attachments/915656975696687124/916022963411771392/3018-Month_Subscriber.png';
+  static SUB_24_MONTHS_T1 =
+      'https://cdn.discordapp.com/attachments/915656975696687124/916023017929310339/24-Month_Subscriber.png';
+  static SUB_24_MONTHS_T2 =
+      'https://cdn.discordapp.com/attachments/915656975696687124/916023018134835291/2024-Month_Subscriber.png';
+  static SUB_24_MONTHS_T3 =
+      'https://cdn.discordapp.com/attachments/915656975696687124/916023018315206726/3024-Month_Subscriber.png';
+  static SUB_30_MONTHS_T1 =
+      'https://cdn.discordapp.com/attachments/915656975696687124/916023065576636426/30-Month_Subscriber.png';
+  static SUB_30_MONTHS_T2 =
+      'https://cdn.discordapp.com/attachments/915656975696687124/916023065761165403/2030-Month_Subscriber.png';
+  static SUB_30_MONTHS_T3 =
+      'https://cdn.discordapp.com/attachments/915656975696687124/916023065966690324/3030-Month_Subscriber.png';
+  static SUB_36_MONTHS_T1 =
+      'https://cdn.discordapp.com/attachments/915656975696687124/916023136565207040/36-Month_Subscriber.png';
+  static SUB_36_MONTHS_T2 =
+      'https://cdn.discordapp.com/attachments/915656975696687124/916023136770723870/2036-Month_Subscriber.png';
+  static SUB_36_MONTHS_T3 =
+      'https://cdn.discordapp.com/attachments/915656975696687124/916023136942706749/3036-Month_Subscriber.png';
+  static SUB_42_MONTHS_T1 =
+      'https://cdn.discordapp.com/attachments/915656975696687124/916023290441637959/42-Month_Subscriber.png';
+  static SUB_42_MONTHS_T2 =
+      'https://cdn.discordapp.com/attachments/915656975696687124/916023290672349254/2042-Month_Subscriber.png';
+  static SUB_42_MONTHS_T3 =
+      'https://cdn.discordapp.com/attachments/915656975696687124/916023291213410344/3042-Month_Subscriber.png';
+  static SUB_48_MONTHS_T1 =
+      'https://cdn.discordapp.com/attachments/915656975696687124/916023373505650758/48-Month_Subscriber.png';
+  static SUB_48_MONTHS_T2 =
+      'https://cdn.discordapp.com/attachments/915656975696687124/916023373786656768/2048-Month_Subscriber.png';
+  static SUB_48_MONTHS_T3 =
+      'https://cdn.discordapp.com/attachments/915656975696687124/916023374097051708/3048-Month_Subscriber.png';
+  static SUB_54_MONTHS_T1 =
+      'https://cdn.discordapp.com/attachments/915656975696687124/916023417508098108/54-Month_Subscriber.png';
+  static SUB_54_MONTHS_T2 =
+      'https://cdn.discordapp.com/attachments/915656975696687124/916023417793298463/2054-Month_Subscriber.png';
+  static SUB_54_MONTHS_T3 =
+      'https://cdn.discordapp.com/attachments/915656975696687124/916023418070114304/3054-Month_Subscriber.png';
+  static SUB_60_MONTHS_T1 =
+      'https://cdn.discordapp.com/attachments/915656975696687124/916023503910735882/60-Month_Subscriber.png';
+  static SUB_60_MONTHS_T2 =
+      'https://cdn.discordapp.com/attachments/915656975696687124/916023504170799184/2060-Month_Subscriber.png';
+  static SUB_60_MONTHS_T3 =
+      'https://cdn.discordapp.com/attachments/915656975696687124/916023504376332298/3060-Month_Subscriber.png';
+  static SUB_66_MONTHS_T1 =
+      'https://cdn.discordapp.com/attachments/915656975696687124/916023570788913182/66-Month_Subscriber.png';
+  static SUB_66_MONTHS_T2 =
+      'https://cdn.discordapp.com/attachments/915656975696687124/916023571028013176/2066-Month_Subscriber.png';
+  static SUB_66_MONTHS_T3 =
+      'https://cdn.discordapp.com/attachments/915656975696687124/916023571212546108/3066-Month_Subscriber.png';
+  static SUB_72_MONTHS_T1 =
+      'https://cdn.discordapp.com/attachments/915656975696687124/916023616469106698/72-Month_Subscriber.png';
+  static SUB_72_MONTHS_T2 =
+      'https://cdn.discordapp.com/attachments/915656975696687124/916023616670421042/2072-Month_Subscriber.png';
+  static SUB_72_MONTHS_T3 =
+      'https://cdn.discordapp.com/attachments/915656975696687124/916023616863354921/3072-Month_Subscriber.png';
+  static SUB_78_MONTHS_T1 =
+      'https://cdn.discordapp.com/attachments/915656975696687124/916023666947543110/78-Month_Subscriber.png';
+  static SUB_78_MONTHS_T2 =
+      'https://cdn.discordapp.com/attachments/915656975696687124/916023667278905405/2078-Month_Subscriber.png';
+  static SUB_78_MONTHS_T3 =
+      'https://cdn.discordapp.com/attachments/915656975696687124/916023667543117824/3078-Month_Subscriber.png';
+
+  static GIFT_SUBS_500 =
+      'https://cdn.discordapp.com/attachments/915656975696687124/916100252342300733/500_Gift_Subs.png';
+
+  static BITS_100 =
+      'https://cdn.discordapp.com/attachments/915656975696687124/915713189109444718/100_Bits.png';
+  static BITS_1000 =
+      'https://cdn.discordapp.com/attachments/915656975696687124/915713247716442182/1000_Bits.png';
+  static BITS_100000 =
+      'https://cdn.discordapp.com/attachments/915656975696687124/915713532006375464/100000_Bits.png';
+
+  static OWL =
+      'https://cdn.discordapp.com/attachments/915656975696687124/916116916702158948/OWL.png';
+
+  static NINETEEN_EIGHTY_FOUR =
+      'https://media.discordapp.net/attachments/915490680468561990/915492628508868648/die.png';
+
+  static formatToHtml(url) {
+    return `<span class="avatar"><img src="${url}" /></span>`;
+  }
+}
 
 const ModPanel_Array = [
   [
@@ -731,31 +558,6 @@ const ModPanel_Array = [
   ],
 ];
 
-const CustomCaptions_Array = {
-  'add': 'Add',
-  'refresh': 'Refresh',
-  'voteskip': 'Skip',
-  'welcome': 'Hi',
-};
-
-const UnicodeChars_Array = [
-  '★', '☆', '▲', '▼', '♥', '♪', '♿', '⚒', '♕', '✉', '☏', '♠', '→',
-  '☑', '☒', '✡', '☪', '✝', '☭', '☯', 'Ⓐ', '☕', '♨', '¥', '©', '∞',
-];
-
-const ChannelGalleries_Array = [
-  ['Anime pictures', 'http://imgur.com/a/SjwJb/embed'],
-  ['Historical photos', 'http://imgur.com/a/vnwC2/embed'],
-];
-
-/* -- HTML/CSS -- */
-
-const MOTDTabs_CSS = {
-  'padding': '20px',
-  'color': 'white',
-  'background-color': 'black',
-};
-
 const RulesBtn_HTML =
     '<ol><li>You want to write on the chat? Enter temporary nickname into <b>Guest Login</b> input and click enter.</li><li>You want to register a nick? Click <b>Account -> Profile</b> on the top of the channel, and fill the registration form. You don\'t need an email to register.</li><li>Troll skipping = immediate kick.</li><li>Don\'t be annoying.</li><li>Do not one man spam.</li><li>Do not encourage chat wars or harass/target people.</li><li>Queueing blatant NSFW videos such as porn/hentai/gore is strictly not allowed, doing so will result in an ip ban.</li><li>Queuing the same video but in different link variants is not allowed.</li><li>Mods have the right to skip a video if its overplayed.</li><li><b>These rules are subject to common sense.</b></li></ol>';
 
@@ -767,16 +569,6 @@ const EmbeddingMedia_Images =
 
 const EmbeddingMedia_Videos =
     'a[href$=".webm"], a[href$=".mp4"], a[href$=".MP4"], a[href$=".mov"], a[href$=".MOV"], a[href$=".mp3"], a[href$=".MP3"], a[href$=".wav"], a[href$=".WAV"], a[href$=".ogg"], a[href$=".OGG"], a[href$=".m4a"], a[href$=".M4A"]';
-
-const CustomFooter_HTML = 'This is custom footer.';
-
-const CustomRightFooter_HTML = '';
-
-// /////////////////////////////////////////////////////////////////////////////////////////////////
-
-/* ----- THEMES CONFIGURATION ----- */
-
-const ChannelThemeURL = 'https://papertek.github.io/CyDJ/deploy/beta/css/DJDefault.css';
 
 const ThemesCSS = [
   [
@@ -1151,18 +943,14 @@ if (LOADED) {
 
 /* ----- getting and setting channel options ----- */
 
-if (UI_DefaultSynchtube) {
+{
   defplayer = 'left';
   defuserlist = 'right';
   defqueue = 'left';
-} else {
-  defplayer = 'right';
-  defuserlist = 'left';
-  defqueue = 'right';
 }
 
 const DEFTHEME =
-    (UI_ChannelTheme && ChannelThemeURL != '') ? ChannelThemeURL : '/css/themes/slate.css';
+    '/css/themes/slate.css';
 
 const USERCONFIG = {
   'player': getOrDefault(CHANNEL.name + '_player', defplayer),
@@ -1182,7 +970,7 @@ const USERCONFIG = {
 let USERTHEME = getOrDefault(CHANNEL.name + '_theme', DEFTHEME);
 let FLUID = getOrDefault(CHANNEL.name + '_fluid', false);
 let LAYOUTBOX = getOrDefault(CHANNEL.name + '_layoutbox', true);
-let SOUNDSLVL = getOrDefault(CHANNEL.name + '_soundslvl', 3);
+getOrDefault(CHANNEL.name + '_soundslvl', 3);
 let EMBEDIMG = getOrDefault(CHANNEL.name + '_embedimg', true);
 let EMBEDVID = getOrDefault(CHANNEL.name + '_embedvid', true);
 let AUTOVID = getOrDefault(CHANNEL.name + '_autovid', true);
@@ -1194,16 +982,10 @@ let DEFDESCR = true;
 let CHATFUNC = true;
 // aditional command occuring in the chat message
 let COMMAND = false;
-// chat sounds not disabled by user
-let VOICES = false;
-// emotes have been loaded into emotes panel
-let EMOTES = false;
 // auto clearing messages window
 let CLEARING = false;
 // enabled anti-AFK function
 let ANTIAFK = false;
-// chat sounds panel visibility
-let SOUNDSPANEL = false;
 // playlist pinned to player
 let PINNED = false;
 // expanded playlist view
@@ -1212,10 +994,6 @@ let FULLPL = false;
 let MINIMIZED = false;
 // channel database has been loaded
 let CHANDB = false;
-// channel galleries have been loaded
-let GALLERY = false;
-// channel galleries have been viewed by user
-let GALLVIS = false;
 // using altered 'formatChatMessage' built-in function
 let ALTERCHATFORMAT = false;
 
@@ -1234,18 +1012,10 @@ let DROPBGCHANGE = 1;
 // number of background changes for fastest crash
 let FASTESTBGCHANGE = 1;
 
-// list of users with muted chat sounds by user
-const MUTEDVOICES = [];
-
-// array of links added from channel database by user
-const ADDEDLINKS = [];
-
 // simple hash for comparing if the new messages have appeared in the mod panel
 let HASH = '';
 
 const WEBKIT = 'webkitRequestAnimationFrame' in window;
-const SOUNDSVALUES = [0, 0.1, 0.2, 0.4, 0.7, 1];
-const SPEAKLINK = 'http://webanywhere.cs.washington.edu/cgi-bin/espeak/getsound.pl';
 const IMBA = new Audio('https://dl.dropboxusercontent.com/s/xdnpynq643ziq9o/inba.ogg');
 const DROPIT = new Audio('https://github.com/papertek/CyDJ/raw/beta/misc/dropit.wav');
 const FASTEST = new Audio('https://github.com/papertek/CyDJ/raw/beta/misc/fastestcrashegg.wav');
@@ -1305,18 +1075,6 @@ function addToPlaylist(link, stand) {
   if (parsed['id'] != null) {
     socket.emit('queue', {id: parsed['id'], pos: stand, type: parsed['type']});
   }
-}
-
-/**
- * Get text content from inner HTML.
- *
- * @param {string} html
- * @return {string}
- */
-function getText(html) {
-  const div = document.createElement('div');
-  div.innerHTML = html;
-  return div.textContent || div.innerText;
 }
 
 /**
@@ -1611,38 +1369,10 @@ function setModeAfterVideoChange() {
 }
 
 /**
- * Change welcome text.
- */
-function changeWelcomeText() {
-  if (CLIENT.rank > 0) {
-    $('#welcome').html($('#welcome').html().replace(/Welcome/, CustomCaptions_Array['welcome']));
-  }
-}
-
-/**
  * Set MOTD.
  */
 function changeMOTD() {
-  if (UI_MOTDTabs && MOTDTabs_Array.length > 0) {
-    // adding tabs application
-    motdtabswrap = $('<div id="motdtabswrap" />').appendTo('#motd');
-    for (const [i, tab] of MOTDTabs_Array.entries()) {
-      btn = $(`<button class="btn btn-default motdtabs-btn" tab="${i}">`)
-                .text(tab[0])
-                .appendTo(motdtabswrap)
-                .on('click', () => {
-                  $('.motdtabs-btn').removeClass('btn-success');
-                  $(this).addClass('btn-success');
-                  nr = $(this).attr('tab');
-                  motdtabscontent.html(MOTDTabs_Array[nr][1]);
-                });
-    }
-    motdtabscontent = $(`<div id="motdtabscontent">${MOTDTabs_Array[0][1]}</div>`)
-                          .css(MOTDTabs_CSS)
-                          .appendTo('#motd');
-    $('.motdtabs-btn:nth-child(1)').addClass('btn-success');
-  }
-  if (UI_MOTDAutoLogo) {
+  {
     // adding logo
     let logo = 0;
     let len = MOTDAutoLogo_Array.length;
@@ -1650,26 +1380,11 @@ function changeMOTD() {
       MOTDAutoLogo_Array = ['https://dl.dropboxusercontent.com/s/7mrz85gl29eiiks/logo.png'];
       len = 1;
     }
-    if (MOTDAutoLogo_Mode == '2' || MOTDAutoLogo_Mode == '3') {
-      logo = Math.floor(Math.random() * len);
-    } else if (MOTDAutoLogo_Mode == '7') {
-      logo = new Date().getDay();
-      if (typeof MOTDAutoLogo_Array[logo] === 'undefined') {
-        logo = 0;
-      }
-    }
     $(`<center><img id="motdlogo" src="${MOTDAutoLogo_Array[logo]}" />` +
       '</center>')
         .prependTo('#motd');
   }
-  if (UI_RulesBtn) {
-    // adding rules button
-    if (RulesBtn_Caption == '') {
-      RulesBtn_Caption = 'Read Channel Rules';
-    }
-    if (RulesBtn_HTML == '') {
-      RulesBtn_HTML = 'No rules.';
-    }
+  {
     rulesbtnwrap = $('<div id="rulesbtnwrap" />').appendTo('#motd');
     rulesbtn = $('<button id="rules-btn" class="btn btn-default btn-sm" />')
                    .text(RulesBtn_Caption + ' ▸')
@@ -1800,44 +1515,14 @@ function updateChatStats(msg) {
 }
 
 /**
- * Create squavatar.
- *
- * @param {string} str
- * @return {string}
- */
-function createSquavatar(str) {
-  for (i = 0, hash = 0; i < str.length; hash = str.charCodeAt(i++) + ((hash << 5) - hash))
-    ;
-  for (i = 0, col = ''; i < 3; col += ('00' + ((hash >> i++ * 8) & 0xFF).toString(16)).slice(-2))
-    ;
-  r = parseInt(col.substring(0, 2), 16);
-  g = parseInt(col.substring(2, 4), 16);
-  b = parseInt(col.substring(4, 6), 16);
-  r2 = 255 - r;
-  g2 = 255 - g;
-  b2 = 255 - b;
-  html = `<span class="squavatar" style="background-color:rgb(${r},${g},${b}); ` +
-      `border-color:rgb(${r2},${g2},${b2})"></span>`;
-  return html;
-}
-
-/**
  * Format chat messages before sending and execute commands.
  *
  * @param {string} msg
  * @return {string}
  */
 function prepareMessage(msg) {
-  if (UI_MessagesSuffix) {
-    if ((typeof MessagesSuffix_Percentage !== 'number') || MessagesSuffix_Percentage < 0) {
-      MessagesSuffix_Percentage = '10';
-    }
-    if (Math.random() < (MessagesSuffix_Percentage / 100)) {
-      msg += ' ' + MessagesSuffix_Text;
-    }
-  }
 
-  if (UI_UserCommands && msg.startsWith('!')) {
+  if (msg.startsWith('!')) {
     COMMAND = true;
     if (msg.startsWith('!stat')) {
       const {numberOfMessages, totalMessageLength} = getChatStats();
@@ -1890,7 +1575,7 @@ function prepareMessage(msg) {
       const randomEmote = TabCompletionEmotes[randomEmoteIndex];
       msg = randomEmote;
     } else if (msg.startsWith('!random') && hasPermission('playlistadd')) {
-      if (UI_ChannelDatabase) {
+      {
         let link = '';
         while (link === '' || link.includes(LAST_VIDEO_ID_QUEUED)) {
           rnd = Math.round(Math.random() * (ChannelDatabase.length - 1));
@@ -1966,19 +1651,6 @@ function prepareMessage(msg) {
     }
   }
   return msg;
-}
-
-
-/**
- * Insert code into chatline.
- *
- * (used in injected html)
- *
- * @param {string} str
- */
-// eslint-disable-next-line no-unused-vars
-function insertText(str) {
-  $('#chatline').val($('#chatline').val() + str).focus();
 }
 
 /**
@@ -2085,62 +1757,10 @@ function createDatabase() {
 }
 
 /**
- * Toggle database sections.
- *
- * (used in injected html)
- *
- * @param {number} a
- */
-// eslint-disable-next-line no-unused-vars
-function toggleCat(a) {
-  b = a - 1;
-  if (opening[b] == 0) {
-    dbcat.hide();
-    for (const i of opening.keys()) {
-      opening[i] = 0;
-    }
-    $(`#l${a}`).show();
-    opening[b] = 1;
-  } else {
-    $(`#l${a}`).hide();
-    opening[b] = 0;
-  }
-}
-
-/**
  * Patch layout for guest logins.
  */
 function patchWrap() {
   setTimeout(() => $('#playlistmanagerwrap').show(), 1500);
-}
-
-/**
- * Create channel gallery.
- */
-function createGallery() {
-  galleryframe = $(`<iframe id="galleryFrame" src=${ChannelGalleries_Array[0][1]} ` +
-                   'width="100%" />')
-                     .attr({'frameborder': '0', 'scrolling': 'no', 'height': '415px'})
-                     .appendTo(gallerywell);
-  galtitle = $('<span id="galtitle" class="conf-opt">Select Gallery</span>').appendTo(gallerywell);
-  galsel = $('<select id="gal-sel" class="form-control" />')
-               .appendTo(gallerywell)
-               .on('change', () => galleryframe.attr('src', galsel.val()));
-
-  for (const gallery of ChannelGalleries_Array) {
-    $(`<option value="${gallery[1]}" />`).html(gallery[0]).appendTo(galsel);
-  }
-
-  text = 'Reload Galleries (if problems or slow channel)';
-  cleargallerybtn = $('<button id="cleargallery-btn" class="btn btn-default btn-sm">' +
-                      `${text}</button>`)
-                        .appendTo(gallerywell)
-                        .on('click', () => {
-                          toggleDiv(gallerywrap);
-                          gallerywell.html('');
-                          GALLERY = false;
-                        });
-  GALLERY = true;
 }
 
 /**
@@ -2261,40 +1881,6 @@ function formatDBList() {
     list.push(`['${formatURL(item)}', '${title}'],`);
   }
   return list.join('\n');
-}
-
-/**
- * Change voteskip caption.
- */
-function changeSkipText() {
-  $('#voteskip').text(CustomCaptions_Array['voteskip'] + ' ' + $('#voteskip').text());
-}
-
-/**
- * Add database link to playlist.
- *
- * @param {string} link
- */
-// eslint-disable-next-line no-unused-vars
-function addVideo(link) {
-  parsed = parseMediaLink(link);
-  idp = parsed['id'];
-  if (idp != null) {
-    time = (new Date()).getTime();
-    if (!hasPermission('playlistadd')) {
-      alert('Please create a registered account to queue links!');
-    } else if (ADDEDLINKS[idp] != undefined && time - ADDEDLINKS[idp] < 120000) {
-      alert('Please wait before adding another link!');
-    } else {
-      socket.emit('queue', {
-        id: idp,
-        pos: 'end',
-        type: parsed['type'],
-        temp: $('.add-temp').prop('checked'),
-      });
-      ADDEDLINKS[idp] = time;
-    }
-  }
 }
 
 /**
@@ -2490,74 +2076,11 @@ function showChatFunctions() {
 }
 
 /**
- * Display list of emotes.
- */
-function showEmotes() {
-  if (typeof GroupEmotes_Number !== 'number' || GroupEmotes_Number < 1) {
-    GroupEmotes_Number = 100;
-  }
-  len = CHANNEL.emotes.length;
-  if (len < 1) {
-    emotespanel.addClass('row');
-    makeAlert('No emotes available', 'Ask channel administrator.').appendTo(emotespanel);
-  } else if (UI_GroupEmotes != '1' || len <= GroupEmotes_Number) {
-    for (const emote of CHANNEL.emotes) {
-      $(`<img onclick="insertText('${emote.name} ')" />`)
-          .attr({'src': emote.image, 'title': emote.name})
-          .appendTo(emotespanel);
-    }
-  } else {
-    let arr = [];
-    stop = GroupEmotes_Number - 1;
-    gr = Math.ceil(CHANNEL.emotes.length / GroupEmotes_Number);
-    html = '';
-
-    for (i = 0; i < len; i++) {
-      html += `<img src="${CHANNEL.emotes[i].image}" ` +
-          `onclick="insertText(\'${CHANNEL.emotes[i].name} \')" />`;
-      if (i % GroupEmotes_Number == stop) {
-        arr.push(html);
-        html = '';
-      }
-    }
-    if (len % GroupEmotes_Number != 0) {
-      arr.push(html);
-    }
-
-    for (i = 0; i < gr; i++) {
-      div = $(`<div id="emotes-${i}" class="groupemotes" style="display:none" />`)
-                .html(arr[i])
-                .appendTo(emotespanel);
-    }
-    arr = '';
-
-    emotesbtnwrap = $('<div id="emotesbtnwrap" />').appendTo(emotespanel);
-    emotesbtngroup = $('<div id="emotescontrols" class="btn-group">').appendTo(emotesbtnwrap);
-
-    for (i = 0; i < gr; i++) {
-      btn = $(`<button class="btn btn-sm btn-default emotesbtn" group="${i}">` +
-              `${i + 1}</button>`)
-                .appendTo(emotesbtngroup)
-                .on('click', function() {
-                  $('.emotesbtn').removeClass('active');
-                  $(this).addClass('active');
-                  $('.groupemotes').hide();
-                  nr = $(this).attr('group');
-                  $(`#emotes-${nr}`).show();
-                });
-    }
-    $('#emotes-0').show();
-    $('#emotescontrols button:nth-child(1)').addClass('active');
-  }
-  EMOTES = true;
-}
-
-/**
  * Show chat commands modal window.
  */
 function showChatHelp() {
   createModal('Chat Commands');
-  if (UI_FontsBtn) {
+  {
     body.append('<strong>Fonts commands</strong><br /><br />');
     html =
         [
@@ -2583,7 +2106,7 @@ function showChatHelp() {
         'For a quick CyDJ guide check out this Google Doc <a href="https://docs.google.com/document/d/1X2TdR9hc2KK0WEBLjY06CZaY30QyKxsI_7CQ1qbSz0g/edit" target="_blank">here</a>.';
     $('<ul />').html(html).appendTo(body);
   }
-  if (UI_UserCommands) {
+  {
     arr = {
       'pick': 'choosing a random option from a list separated by commas ' +
           '(e.g. <i>!pick japan,korea,china</i>)',
@@ -2602,7 +2125,7 @@ function showChatHelp() {
       'link': 'post a TinyURL link for this room (<i>!link</i>)',
       'randomemote': 'displays a random emote from the emote list (<i>!randomemote</i>)',
     };
-    if (UI_ChannelDatabase) {
+    {
       arr['random'] = 'adding random link from database (<i>!random</i>)';
     }
     body.append('<strong>New chat commands</strong><br /><br />');
@@ -2610,12 +2133,6 @@ function showChatHelp() {
     for (const [cmd, desc] of Object.entries(arr)) {
       ul.append(`<li><code>!${cmd}</code> - ${desc}</li>`);
     }
-  }
-  if (UI_ChatSpeak) {
-    body.append('<strong>Voice commands</strong><br /><br />');
-    html = '<li><code>!say</code> - text speaking in english (<i>!say Hello!</i>)</li>' +
-        '<li><code>!mow</code> - text speaking in polish (<i>!mow Chrząszcz brzmi w trzcinie.</i>)';
-    $('<ul />').html(html).appendTo(body);
   }
   arr = {
     'me': 'showing an action-style message (username does something, e.g. <i>/me is dancing</i>)',
@@ -2628,76 +2145,6 @@ function showChatHelp() {
   for (const [cmd, desc] of Object.entries(arr)) {
     ul.append(`<li><code>/${cmd}</code> - ${desc}</li>`);
   }
-}
-
-/**
- * Show chat sounds panel.
- */
-function showSoundsPanel() {
-  $('#userlist').append('<div id="sounds-dropdown" />');
-  setPanelProperties('#sounds-dropdown');
-
-  muteallbtn = $('<button id="muteall-btn" class="btn btn-xs btn-default">Mute All</button>')
-                   .appendTo('#sounds-dropdown')
-                   .on('click', function() {
-                     if (VOICES) {
-                       $(this).text('Unmute All').addClass('btn-danger');
-                       voicesbtn.addClass('btn-danger').attr('title', 'Unmute chat voices');
-                       VOICES = false;
-                       SOUNDSPANEL = false;
-                       $('#sounds-dropdown').remove();
-                     } else {
-                       $(this).text('Mute All').removeClass('btn-danger');
-                       voicesbtn.removeClass('btn-danger').attr('title', 'Mute chat voices');
-                       VOICES = true;
-                     }
-                   });
-  if (!VOICES) {
-    muteallbtn.text('Unmute All').addClass('btn-danger');
-  }
-
-  $('#sounds-dropdown').append('<div>Sounds level:</div>');
-
-  lvlgroup = $('<div id="lvlgroup" class="btn-group"></div>').appendTo('#sounds-dropdown');
-
-  for (i = 1; i <= 5; i++) {
-    btn = $(`<button class="btn btn-xs btn-default" id="lvlvol${i}" ` +
-            `level="${i}" />`)
-              .html(i)
-              .appendTo(lvlgroup)
-              .on('click', function() {
-                $(`#lvlvol${SOUNDSLVL}`).removeClass('btn-success');
-                SOUNDSLVL = $(this).attr('level');
-                setOpt(CHANNEL.name + '_soundslvl', SOUNDSLVL);
-                $(this).addClass('btn-success');
-              });
-  }
-  $(`#lvlvol${SOUNDSLVL}`).addClass('btn-success');
-
-  $('#sounds-dropdown').append('<div>Select users to mute sounds:</div>');
-
-  mutegroup =
-      $('<div id="mutegroup" class="btn-group-vertical"></div>').appendTo('#sounds-dropdown');
-
-  $('.userlist_item').each(function() {
-    user = $(this).find('span:nth-child(2)').html();
-    btn = $(`<button class="btn btn-xs btn-default" name="${user}" />`)
-              .html(user)
-              .appendTo(mutegroup)
-              .on('click', function() {
-                name = $(this).attr('name');
-                if (name in MUTEDVOICES && MUTEDVOICES[name] == '1') {
-                  $(this).removeClass('btn-danger');
-                  MUTEDVOICES[name] = 0;
-                } else {
-                  $(this).addClass('btn-danger');
-                  MUTEDVOICES[name] = 1;
-                }
-              });
-    if (user in MUTEDVOICES && MUTEDVOICES[user] == '1') {
-      btn.addClass('btn-danger');
-    }
-  });
 }
 
 /**
@@ -2787,9 +2234,6 @@ function showInfo() {
  * Hide and show player with covering image.
  */
 function coverPlayer() {
-  if (PlayerHiding_URL == '') {
-    PlayerHiding_URL = 'https://dl.dropboxusercontent.com/s/xz2o99scw5i7aai/stop.png';
-  }
   $('#videowrap').addClass('relative');
   w = $('#ytapiplayer').css('width');
   h = $('#videowrap').css('height').replace('px', '') - 31;
@@ -2825,46 +2269,6 @@ function unmutePlayer() {
   if (PLAYER && PLAYER.type == 'yt') {
     PLAYER.player.unMute();
   }
-}
-
-/**
- * Download current item.
- */
-/* function downloadCurrentItem() {
-  uid = $(`.pluid-${PL_CURRENT}`).data('media');
-  arr = {
-    'yt': 'http://youtube.com/watch?v=',
-    'vi': 'http://vimeo.com/',
-    'dm': 'http://dailymotion.com/video/',
-    'sc': '',
-  };
-  link = uid.type in arr ? `${arr[uid.type]}${uid.id}` : '';
-  if (link == '') {
-    alert(
-        'This link is not supported. Try YouTube, Vimeo, Dailymotion or
-SoundCloud.'); } else { createModal('Download current item');
-
-    $(`<a href="http://keepvid.com/?url=${link}" ` +
-      'target="_blank">Click here to download</a>')
-        .appendTo(body)
-        .on('click', () => outer.modal('hide'));
-  }
-} */
-
-/**
- * Preview YT video in modal window.
- *
- * (used in injected html)
- *
- * @param {string} a
- */
-// eslint-disable-next-line no-unused-vars
-function prevVideo(a) {
-  createModal('Preview Video');
-
-  player = $('<iframe id="previewFrame" width="558" height="314" frameborder="0" />')
-               .attr('src', `https://www.youtube.com/embed/${a}?wmode=transparent&enablejsapi`)
-               .appendTo(body);
 }
 
 /**
@@ -3172,7 +2576,7 @@ function toggleFluidLayout() {
     $('#fontspanel, #emotespanel').addClass('fluidpanel');
     setTimeout(refreshPlayer(), 1000);
   }
-  if (UI_DisplayModeSel) {
+  {
     setMode(modesel.val());
   }
   FLUID = !FLUID;
@@ -3423,7 +2827,7 @@ document.body.addEventListener('load', () => {
 }, true);
 
 // adding favicon
-if (UI_Favicon && Favicon_URL != '') {
+{
   $(document).ready(() => {
     $(`<link id="chanfavicon" href="${Favicon_URL}" type="image/x-icon" ` +
       'rel="shortcut icon" />')
@@ -3477,20 +2881,17 @@ $('#useroptions .modal-footer button:nth-child(1)').on('click', () => {
 });
 
 // changing channel name
-if (UI_ChannelName && ChannelName_Caption != '') {
+{
   $('.navbar-brand').html(ChannelName_Caption);
 }
 
 // adding channel small logo
-if (UI_MiniLogo && MiniLogo_URL != '') {
+{
   $(`<img id="chanavatar" src="${MiniLogo_URL}" />`).prependTo('.navbar-brand');
 }
 
 // adding header dropdown menu
-if (UI_HeaderDropMenu) {
-  if (HeaderDropMenu_Title == '') {
-    HeaderDropMenu_Title = 'Menu';
-  }
+{
   headerdrop = $('<li id="headerdrop" class="dropdown" />').insertAfter('#home-link');
   $('<a class="dropdown-toggle" data-toggle="dropdown" href="#" />')
       .html(HeaderDropMenu_Title + ' ▾')
@@ -3514,10 +2915,7 @@ if (UI_HeaderDropMenu) {
 }
 
 // adding version to the tab
-if (UI_Version) {
-  if (Version_Now == '') {
-    Version_Now = 'Menu';
-  }
+{
   headerdrop = $('<li id="headerdrop" class="dropdown" />').insertAfter('#channelset-link');
   $('<a class="dropdown-toggle" data-toggle="dropdown" href="#" />')
       .html(`${Version_Now}`)
@@ -3525,100 +2923,41 @@ if (UI_Version) {
 }
 
 // optional removing of "Layout" menu from header
-if (UI_RemoveLayoutMenu) {
+{
   $('#layout-link').remove();
-} else {
-  $('#layout-link li:nth-child(2) a').on('click', () => {
-    $('#configform, #modeform, #pinup-btn').hide();
-    fitChat('auto');
-  });
 }
 
-// changing some button captions or welcome message
-if (UI_CustomCaptions) {
-  if (CustomCaptions_Array['add'] != '') {
-    $('#showmediaurl').html(CustomCaptions_Array['add']);
-  }
-  if (CustomCaptions_Array['refresh'] != '') {
-    $('#mediarefresh').html(CustomCaptions_Array['refresh']);
-  }
-  if (CustomCaptions_Array['voteskip'] != '') {
-    socket.on('voteskip', changeSkipText);
-    changeSkipText();
-  }
-  if (CustomCaptions_Array['welcome'] != '') {
-    socket.on('login', changeWelcomeText);
-    changeWelcomeText();
-  }
-}
-
-if (UI_ButtonIcons) {
+{
   $('#showmediaurl').html('<i class="glyphicon glyphicon-plus"></i> Add');
 }
 
-// deleting previous MOTD
-if (UI_MOTDDelete) {
-  $('#motd').html('');
-}
-
 // setting MOTD
-if (UI_MOTDAutoLogo || UI_RulesBtn || (UI_MOTDTabs && MOTDTabs_Array.length > 0)) {
+{
   socket.on('setMotd', changeMOTD);
   changeMOTD();
 }
 
-// setting MOTD logo
-if (UI_MOTDAutoLogo) {
-  if (MOTDAutoLogo_Mode != '1' && MOTDAutoLogo_Mode != '2' && MOTDAutoLogo_Mode != '3' &&
-      MOTDAutoLogo_Mode != '7') {
-    MOTDAutoLogo_Mode = '1';
-  }
-  if (MOTDAutoLogo_Mode == '3') {
-    if (typeof MOTDAutoLogo_Interval !== 'number' || MOTDAutoLogo_Interval < 1) {
-      MOTDAutoLogo_Interval = 20;
-    }
-    setInterval(() => {
-      nr = Math.floor(Math.random() * MOTDAutoLogo_Array.length);
-      $('#motdlogo').attr('src', MOTDAutoLogo_Array[nr]);
-    }, MOTDAutoLogo_Interval * 1000);
-  }
-}
-
-// adding attention bar
-if (UI_AttentionBar && AttentionBar_URL != '') {
-  attbarwrap = $('<div id="attbarrow-outer" class="col-md-12" />').prependTo('#announcements');
-  attbar = $('<iframe id="attbar" width="100%" frameborder="0" scrolling="no" />')
-               .attr('src', AttentionBar_URL)
-               .appendTo(attbarwrap);
-}
-
 // adding custom channel announcement
-if (UI_ChannelAnnouncement) {
-  if (ChannelAnnouncement_Title == '') {
-    ChannelAnnouncement_Title = 'Administration Message';
-  }
-  if (ChannelAnnouncement_HTML == '') {
-    ChannelAnnouncement_HTML = '<i>no messages</i>';
-  }
+{
   makeAlert(ChannelAnnouncement_Title, ChannelAnnouncement_HTML).appendTo('#announcements');
 }
 
 // adding full-width title bar and progress bar
-if (UI_FullTitleBar) {
+{
   titlerow = $('<div id="titlerow" class="row" />').insertBefore('#main');
   titlerowouter = $('<div id="titlerow-outer" class="col-md-12" />')
                       .html($('#currenttitle').detach())
                       .appendTo(titlerow);
   mediainfo = $('<p id="mediainfo" />').html('Nothing is playing').prependTo('#videowrap');
 
-  if (UI_ProgressBar) {
+  {
     setInterval(() => progressBar(), 2000);
   }
 
   socket.on('changeMedia', showInfo);
   showInfo();
 
-  if (UI_TitleIcon && TitleIcon_URL != '') {
+  {
     $('#titlerow #currenttitle').css({
       'background-image': `url("${TitleIcon_URL}")`,
       'background-repeat': 'no-repeat',
@@ -3628,7 +2967,7 @@ if (UI_FullTitleBar) {
 }
 
 // changing title bar description
-if (UI_TitleBarDescription) {
+{
   socket.on('changeMedia', changeTitle);
   changeTitle();
 }
@@ -3680,13 +3019,13 @@ function dropthefast() {
 }
 
 // customizing chat notifications sound
-if (UI_CustomPingSound && CustomPingSound_URL != '') {
+{
   CHATSOUND = new Audio(CustomPingSound_URL);
   CHATSOUND.volume = 0.4;
 }
 
 // public skipping from ui
-if (UI_PublicSkip) {
+{
   $('#voteskip').on('click', function() {
     socket.emit('voteskip');
     socket.emit('chatMsg', {msg: '[red]Meh..[/] ResidentSleeper'});
@@ -3701,7 +3040,6 @@ chatflair = $('<span id="chatflair" class="label label-success pull-right pointe
                 .on('click', () => {
                   if (!CHATFUNC) {
                     $('#sounds-dropdown').remove();
-                    SOUNDSPANEL = false;
                     showChatFunctions();
                     CHATFUNC = false;
                   } else {
@@ -3713,29 +3051,22 @@ socket.on('rank', toggleChatFunctions);
 toggleChatFunctions();
 
 // optional chat joining message
-if (UI_JoinText) {
-  if (JoinText_Message == '') {
-    JoinText_Message = 'hello!';
-  }
+{
   socket.emit('chatMsg', {msg: `/me ${JoinText_Message}`});
 }
 
 // optional chat leaving message
-if (UI_LeaveText) {
-  if (LeaveText_Message == '') {
-    LeaveText_Message = 'left';
-  }
+{
   $(window).unload(() => socket.emit('chatMsg', {msg: `/me ${LeaveText_Message}`}));
 }
 
 // adding chat buttons wrapping
-if (UI_FontsBtn || UI_EmotesBtn || UI_CommandsBtn || UI_SoundFilters || UI_ModPanel ||
-    UI_ChatSpeak) {
+{
   chatcontrols = $('<div id="chatcontrols" class="btn-group" />').appendTo('#chatwrap');
 }
 
 // adding chat fonts button
-if (UI_FontsBtn) {
+{
   fontsbtn =
       $('<button id="fonts-btn" class="btn btn-sm btn-default" title="Display fonts panel" />')
           .html('<i class="glyphicon glyphicon-font"></i>')
@@ -3743,28 +3074,14 @@ if (UI_FontsBtn) {
           .on('click', () => toggleDiv(fontspanel));
 }
 
-// adding chat emotes button
-if (UI_EmotesBtn) {
-  emotesbtn =
-      $('<button id="emotes-btn" class="btn btn-sm btn-default" title="Display emotes panel" />')
-          .html('<i class="glyphicon glyphicon-picture"></i>')
-          .appendTo(chatcontrols)
-          .on('click', () => {
-            toggleDiv(emotespanel);
-            if (!UI_ChannelCache && !EMOTES) {
-              showEmotes();
-            }
-          });
-}
-
 // moving emote button attempt
-if (UI_SpecialEmoteBtn) {
+{
   $('#emotelistbtn').appendTo(chatcontrols);
   $('#emotelistbtn').html('<i title="Open emote menu" class="glyphicon glyphicon-picture"></i>');
 }
 
 // adding chat commands button
-if (UI_CommandsBtn && (UI_UserCommands || UI_FontsBtn || UI_ChatSpeak)) {
+{
   chathelpbtn =
       $('<button id="chathelp-btn" class="btn btn-sm btn-default" title="Show chat commands"/>')
           .html('<i class="glyphicon glyphicon-question-sign"></i>')
@@ -3773,7 +3090,7 @@ if (UI_CommandsBtn && (UI_UserCommands || UI_FontsBtn || UI_ChatSpeak)) {
 }
 
 // adding the stupid context button to show up
-if (UI_ContextMenu) {
+{
   chathelpbtn =
       $('<button id="context-btn" class="btn btn-sm btn-default" title="Opens a menu with links" />')
           .html('<i class="glyphicon glyphicon-align-center"></i>')
@@ -3786,7 +3103,7 @@ if (UI_ContextMenu) {
  */
 function showContextMenu() {
   createModal('Context Menu');
-  if (UI_ContextMenu) {
+  {
     body.append('<strong>Useful links</strong><br /><br />');
     html =
         [
@@ -3801,7 +3118,7 @@ function showContextMenu() {
 }
 
 // adding easter egg button
-if (UI_PartyButton) {
+{
   partybtn = $('<button id="party-btn" class="btn btn-sm btn-default" title="Party!" />')
                  .text('Party!')
                  .appendTo(chatcontrols)
@@ -3853,28 +3170,8 @@ function fastestCrash() {
   }, 12000);
 }
 
-// adding chat sounds toggle button and control panel
-if (UI_SoundFilters || UI_ChatSpeak) {
-  voicesbtn =
-      $('<button id="voices-btn" class="btn btn-sm btn-default" title="Mute chat voices" />')
-          .html('<i class="glyphicon glyphicon-volume-down"></i>')
-          .appendTo(chatcontrols)
-          .on('click', () => {
-            if (!SOUNDSPANEL) {
-              $('#chatfunc-dropdown').remove();
-              CHATFUNC = false;
-              showSoundsPanel();
-              SOUNDSPANEL = true;
-            } else {
-              $('#sounds-dropdown').remove();
-              SOUNDSPANEL = false;
-            }
-          });
-  VOICES = true;
-}
-
 // adding moderators panel button
-if (UI_ModPanel) {
+{
   modbtn = $('<button id="mod-btn" class="btn btn-sm btn-default" title="Show moderators panel" />')
                .html('<i class="glyphicon glyphicon-tasks"></i>')
                .appendTo(chatcontrols)
@@ -3885,7 +3182,7 @@ if (UI_ModPanel) {
 }
 
 // adding hey nay thing
-if (UI_RateButtons) {
+{
   transcontrols =
       $('<div id="transcontrols" class="btn-group pull-right" />').appendTo('#videowrap');
   Hey = $('<button id="hey-btn" class="btn btn-sm btn-default" title="Woot! (Cancels Voteskip)" />')
@@ -3920,8 +3217,8 @@ function naySound() {
 }
 
 // adding player control buttons
-if (UI_PlayerOptions) {
-  if (UI_FullTitleBar) {
+{
+  {
     switchdescrbtn = $('<button id="switchdescr-btn" class="btn btn-sm btn-default" />')
                          .attr('title', 'Switch description')
                          .html('<span class="glyphicon glyphicon-info-sign"></span>')
@@ -3962,68 +3259,13 @@ if (UI_PlayerOptions) {
   toggleMuteBtn();
 }
 
-// adding player transformation buttons
-if (UI_TransformationBtns) {
-  transcontrols =
-      $('<div id="transcontrols" class="btn-group pull-right" />').appendTo('#videowrap');
-
-  mirrorxbtn =
-      $('<button id="mirrorx-btn" class="btn btn-sm btn-default" title="Mirror X player" />')
-          .html('<span class="glyphicon glyphicon-resize-horizontal"></span>')
-          .appendTo(transcontrols)
-          .on('click', () => {
-            if ($('#ytapiplayer').hasClass('mX')) {
-              $('#ytapiplayer').removeClass('mX');
-            } else {
-              $('#ytapiplayer').addClass('mX');
-            }
-          });
-
-  mirrorybtn =
-      $('<button id="mirrory-btn" class="btn btn-sm btn-default" title="Mirror Y player" />')
-          .html('<span class="glyphicon glyphicon-resize-vertical"></span>')
-          .appendTo(transcontrols)
-          .on('click', () => {
-            if ($('#ytapiplayer').hasClass('mY')) {
-              $('#ytapiplayer').removeClass('mY');
-            } else {
-              $('#ytapiplayer').addClass('mY');
-            }
-          });
-
-  rotatebtn = $('<button id="rotate-btn" class="btn btn-sm btn-default" title="Rotate player" />')
-                  .html('<span class="glyphicon glyphicon-repeat"></span>')
-                  .appendTo(transcontrols)
-                  .on('click', () => {
-                    if ($('#ytapiplayer').hasClass('rotate')) {
-                      $('#ytapiplayer').removeClass('rotate');
-                    } else {
-                      $('#ytapiplayer').addClass('rotate');
-                    }
-                  });
-
-  verticalbtn =
-      $('<button id="vertical-btn" class="btn btn-sm btn-default" title="Vertical player" />')
-          .html('<span class="glyphicon glyphicon-arrow-up"></span>')
-          .appendTo(transcontrols)
-          .on('click', function() {
-            if ($('#ytapiplayer').hasClass('vertical')) {
-              $('#ytapiplayer').removeClass('vertical');
-              this.attr('title', 'Vertical player');
-            } else {
-              $('#ytapiplayer').addClass('vertical');
-              this.attr('title', 'Horizontal player');
-            }
-          });
-}
-
 // creating fonts and emotes main row
-if (UI_FontsBtn || UI_EmotesBtn) {
+{
   chatpanel = $('<div id="chatpanel" class="row" />').insertBefore('#playlistrow');
 }
 
 // adding fonts panel
-if (UI_FontsBtn) {
+{
   fontspanel = $('<div id="fontspanel" style="display:none" />').appendTo(chatpanel);
   fontsbtnwrap = $('<div id="fontsbtnwrap" />').appendTo(fontspanel);
 
@@ -4062,28 +3304,10 @@ if (UI_FontsBtn) {
       fontsbtnwrap.append('<br />');
     }
   }
-
-  if (UI_UnicodeChars && UnicodeChars_Array.length > 0) {
-    unibtnwrap = $('<div id="unibtnwrap" />').appendTo(fontspanel);
-    for (const char of UnicodeChars_Array) {
-      btn = $(`<button onclick="insertText('${char}')" />`)
-                .addClass('btn btn-primary')
-                .text(char)
-                .appendTo(unibtnwrap);
-    }
-  }
-}
-
-// adding emotes panel
-if (UI_EmotesBtn) {
-  emotespanel = $('<div id="emotespanel" style="display:none" />').appendTo(chatpanel);
-  if (UI_ChannelCache) {
-    showEmotes();
-  }
 }
 
 // adding background image to empty playlistrow corner
-if (UI_EmptyCornerBackground && EmptyCornerBackground.length > 0) {
+if (EmptyCornerBackground.length > 0) {
   rnd = Math.round(Math.random() * (EmptyCornerBackground.length - 1));
   $('#playlistrow').css({
     'background-image': `url("${EmptyCornerBackground[rnd]}")`,
@@ -4099,13 +3323,13 @@ layoutbtn = $('<button id="layout-btn" class="btn btn-sm btn-default btn-success
 $('#playlistmanagerwrap').show();
 
 // adding media database and gallery wrap
-if (UI_ChannelDatabase || UI_ChannelGalleries) {
+{
   leftpanecontrols =
       $('<div id="leftpanecontrols" class="btn-group pull-left" />').insertAfter(layoutbtn);
 }
 
 // adding media database button
-if (UI_ChannelDatabase) {
+{
   dbbtn =
       $('<button id="db-btn" class="btn btn-sm btn-default" title="Display submitted songs in categories" />')
           .text('Public Playlists')
@@ -4115,28 +3339,6 @@ if (UI_ChannelDatabase) {
             if (!CHANDB) {
               createDatabase();
             }
-          });
-}
-
-// adding galleries button
-if (UI_ChannelGalleries) {
-  gallerybtn =
-      $('<button id="gallery-btn" class="btn btn-sm btn-default">Channel Galleries</button>')
-          .appendTo(leftpanecontrols)
-          .on('click', () => {
-            toggleDiv(gallerywrap);
-            if (!GALLERY) {
-              createGallery();
-            }
-
-            // patch: strange imgur behaviour (not loading first cached gallery)
-            if (!GALLVIS && UI_ChannelCache && gallerywrap.css('display') != 'none') {
-              iframe = document.getElementById('galleryFrame');
-              if (iframe.src.includes('imgur.com')) {
-                iframe.src = iframe.src;
-              }
-            }
-            GALLVIS = true;
           });
 }
 
@@ -4174,7 +3376,7 @@ cbox = $('<input type="checkbox" id="min-layout" value="no" />')
 cbox.after(' Minimized');
 
 // adding selector with player display modes
-if (UI_DisplayModeSel) {
+{
   modeform = $('<div id="modeform" class="form-group" />').appendTo(configwell);
   $('<div class="col-lg-5 col-md-5">Display mode</div>').appendTo(modeform);
   modewrap = $('<div id="modewrap" class="col-lg-7 col-md-7" />').appendTo(modeform);
@@ -4189,7 +3391,6 @@ if (UI_DisplayModeSel) {
                   $('#config-btn, #configbtnwrap br').hide();
                   $('#min-layout').parent().hide();
                   $('#sounds-dropdown, #chatfunc-dropdown').remove();
-                  SOUNDSPANEL = false;
                   CHATFUNC = false;
                   if (PLAYER.type == 'jw') {
                     refreshPlayer();
@@ -4219,7 +3420,6 @@ themesel = $('<select id="theme-sel" class="form-control" />')
                .on('change', function() {
                  $('#sounds-dropdown, #chatfunc-dropdown').remove();
                  $('#playlistmanagerwrap').show();
-                 SOUNDSPANEL = false;
                  CHATFUNC = false;
                  USERTHEME = $(this).val();
                  setUserCSS();
@@ -4231,11 +3431,6 @@ if (ThemesCSS.length > 0) {
   for (const css of ThemesCSS) {
     themesel.append(`<option value="${css[1]}">${css[0]}</option>`);
   }
-}
-
-if (UI_ChannelTheme && ChannelThemeURL != '') {
-  themesel.prepend(`<option value="${ChannelThemeURL}"># Channel Theme</option>`)
-      .prepend('<option value="" class="theme-header" disabled>main theme</option>');
 }
 
 themesel.val(USERTHEME);
@@ -4287,7 +3482,7 @@ cbox = $('<input type="checkbox" id="hide-hf" value="no" />').appendTo(hidehf).o
 cbox.after(' H&F');
 
 // adding embedding options
-if (UI_EmbeddingMedia && (EmbeddingMedia_Images != '' || EmbeddingMedia_Videos != '')) {
+{
   const embedform = $('<div id="embedform" class="form-group" />').appendTo(configwell);
   $('<div class="col-lg-5 col-md-5 conf-cap">Embeds <span id="embed-help">[?]</span></div>')
       .appendTo(embedform);
@@ -4299,17 +3494,17 @@ if (UI_EmbeddingMedia && (EmbeddingMedia_Images != '' || EmbeddingMedia_Videos !
         'All videos are muted by default, if autoplay - click to unmute, else click to play.\n\n' +
         'This channel supports following types of links (specified as CSS codes):\n' +
         '■ Images - ';
-    if (EmbeddingMedia_Images != '') {
+    {
       txt += EmbeddingMedia_Images;
     }
     txt += '\n■ Videos - ';
-    if (EmbeddingMedia_Videos != '') {
+    {
       txt += EmbeddingMedia_Videos;
     }
     alert(txt);
   });
 
-  if (EmbeddingMedia_Images != '') {
+  {
     const embedimg = $('<label class="checkbox-inline" />').appendTo(embedwrap);
     cbox =
         $('<input type="checkbox" id="embed-img" checked>').appendTo(embedimg).on('click', () => {
@@ -4322,7 +3517,7 @@ if (UI_EmbeddingMedia && (EmbeddingMedia_Images != '' || EmbeddingMedia_Videos !
     }
   }
 
-  if (EmbeddingMedia_Videos != '') {
+  {
     embedvid = $('<label class="checkbox-inline" />').appendTo(embedwrap);
     cbox =
         $('<input type="checkbox" id="embed-webm" checked>').appendTo(embedvid).on('click', () => {
@@ -4355,13 +3550,13 @@ if (UI_EmbeddingMedia && (EmbeddingMedia_Images != '' || EmbeddingMedia_Videos !
 }
 
 // adding quick commands and volume buttons
-if (UI_QuickCommandsBtns || UI_VolumeBtns) {
+{
   funcbtnform = $('<div id="funcbtnform" class="form-group" />').appendTo(configwell);
   $('<div class="col-lg-5 col-md-5">Command buttons</div>').appendTo(funcbtnform);
   funcbtnwrap = $('<div id="funcbtnwrap" class="col-lg-7 col-md-7" />').appendTo(funcbtnform);
   btnsgroup = $('<div id="funcbtngroup" class="btn-group" />').appendTo(funcbtnwrap);
 
-  if (UI_QuickCommandsBtns) {
+  {
     clearbtn = $('<button id="clear-btn" class="btn btn-default btn-sm">/clear</button>')
                    .appendTo(btnsgroup)
                    .on('click', () => {
@@ -4377,7 +3572,7 @@ if (UI_QuickCommandsBtns || UI_VolumeBtns) {
     toggleClearBtn();
   }
 
-  if (UI_VolumeBtns) {
+  {
     voldownbtn = $('<button id="voldown-btn" class="btn btn-default btn-sm">vol -</button>')
                      .appendTo(btnsgroup)
                      .on('click', () => {
@@ -4403,7 +3598,7 @@ const item_count = [];
 let count_nr = 0;
 
 // adding media database layout
-if (UI_ChannelDatabase) {
+{
   dbwrap = $('<div id="dbwrap" class="col-lg-12 col-md-12" style="display:none" />')
                .insertBefore(configwrap);
   dbwell = $('<div id="db-well" class="well" />').appendTo(dbwrap);
@@ -4411,29 +3606,8 @@ if (UI_ChannelDatabase) {
   if (ChannelDatabase.length < 1 || ChannelDatabase[0][0] != '') {
     ChannelDatabase.unshift(['', '(various media)']);
   }
-  if (UI_ChannelCache) {
+  {
     createDatabase();
-  }
-}
-
-// adding galleries layout
-if (UI_ChannelGalleries) {
-  gallerywrap = $('<div id="gallerywrap" class="col-lg-12 col-md-12" style="display:none" />')
-                    .appendTo('#leftpane-inner');
-  gallerywell = $('<div id="gallery-well" class="well" />').appendTo(gallerywrap);
-
-  if (ChannelGalleries_Array.length < 1) {
-    ChannelGalleries_Array = [['Anime pictures', 'http://imgur.com/a/SjwJb/embed']];
-  }
-  if (UI_ChannelCache) {
-    createGallery();
-  }
-}
-
-// unchecking temporary media checkbox for registered users
-if (UI_DefaultNonTemp) {
-  if (CLIENT.rank > 0) {
-    $('.add-temp').prop('checked', false);
   }
 }
 
@@ -4517,7 +3691,7 @@ pinupbtn =
         });
 
 // extending 'Get URLs' function
-if (UI_ExtendedGetURLs) {
+{
   $('#getplaylist').unbind().on('click', () => getPlaylistURLs());
 }
 
@@ -4554,26 +3728,15 @@ html = '<br />CyTube Plus 4.5 · Copyright &copy; 2013-2014 Zimny Lech, Modified
     'Free source on <a href="http://github.com/papertek/CyDJ" target="_blank">GitHub</a>';
 $('.credit').append(html);
 
-if (UI_CustomRightFooter) {
-  rightfooter =
-      $(`<span id="rightfooter">${CustomRightFooter_HTML}</span>`).appendTo('footer .container');
-}
-
-if (UI_CustomFooter || UI_UserStatistics) {
-  leftfooter = UI_CustomRightFooter ? $('<span id="leftfooter" />') : $('<div id="leftfooter" />');
-  if (UI_CustomRightFooter && CustomFooter_HTML != '') {
-    leftfooter.html(CustomFooter_HTML);
-  }
+{
+  leftfooter = $('<div id="leftfooter" />');
   leftfooter.appendTo('footer .container');
 }
 
 USERVISITS++;
 setOpt(CHANNEL.name + '_visits', USERVISITS);
 
-if (UI_UserStatistics) {
-  if (UI_CustomFooter && CustomFooter_HTML != '') {
-    $('<br /><br />').appendTo(leftfooter);
-  }
+{
 
   $('<span>My visits: </span>' +
     `<span class="badge footer-badge">${USERVISITS}</span>` +
@@ -4592,19 +3755,20 @@ if (UI_UserStatistics) {
 
 // /////////////////////////////////////////////////////////////////////////////////////////////////
 
-if (UI_EmbeddingMedia && (EmbeddingMedia_Images != '' || EmbeddingMedia_Videos != '')) {
+{
   ALTERCHATFORMAT = true;
 }
-if (UI_UserMarks || UI_IndependentEmotes || UI_IndependentFilters) {
+{
   ALTERCHATFORMAT = true;
 }
+
+let formatChatMessage = formatChatMessage;
 
 // Alter chat messages formatting.
 // DEV NOTE: this is extended function from CyTube "util.js" file
 // airforce note: this seems to override a function that's defined by cytube on the client side
 if (ALTERCHATFORMAT) {
-  // eslint-disable-next-line no-unused-vars
-  function formatChatMessage(data, last) {
+  formatChatMessage = function(data, last) {
     if (!data.meta || data.msgclass) {
       data.meta = {
         addClass: data.msgclass,
@@ -4640,14 +3804,9 @@ if (ALTERCHATFORMAT) {
       }
     }
 
-    if (UI_UserMarks && UI_Squavatars) {
-      html = createSquavatar(data.username);
-      div.html(div.html() + html);
-    }
-
-    if (UI_UserMarks && UI_Squavatars != '1') {
+    {
       if (!!USER_BADGES[data.username]) {
-        const badges = USER_BADGES[data.username].map((url) => Badge.formatToHtml(url)).join('');
+        const badges = USER_BADGES[data.username].map((url) => Badge$1.formatToHtml(url)).join('');
         div.html(div.html() + badges);
       }
     }
@@ -4656,7 +3815,7 @@ if (ALTERCHATFORMAT) {
     if (!skip) {
       uname.appendTo(div);
     }
-    mark = (UI_UsernameMark && UsernameMark_Char != '') ? UsernameMark_Char : ':';
+    mark = ':';
     $('<strong class="username" />').text(data.username + mark + ' ').appendTo(uname);
 
     if (data.meta.modflair) {
@@ -4691,7 +3850,7 @@ if (ALTERCHATFORMAT) {
       message[0].innerHTML = data.username + ' ' + data.msg;
     }
 
-    if (UI_IndependentEmotes) {
+    {
       _div = div.html();
       for (const emote of IndependentEmotes) {
         filter = emote[0];
@@ -4704,7 +3863,7 @@ if (ALTERCHATFORMAT) {
       }
       div.html(_div);
     }
-    if (UI_IndependentFilters) {
+    {
       _div = div.html();
       for (const filt of IndependentFilters) {
         _div = _div.replace(filt.before, filt.after);
@@ -4765,7 +3924,7 @@ if (ALTERCHATFORMAT) {
         if (AUTOVID) {
           vid.prop('autoplay', 'true').prop('muted', 'true');
         }
-        if (UI_MediaControls) {
+        {
           vid.attr('controls', '');
         }
         $(this).html(vid);
@@ -4773,37 +3932,12 @@ if (ALTERCHATFORMAT) {
     }
 
     return div;
-  }
+  };
 }
 
 // client-side chat buffer for playing sounds
 _chatBuffer = addChatMessage;
 addChatMessage = (data) => {
-  if (UI_SoundFilters && VOICES &&
-      (!(data.username in MUTEDVOICES) || MUTEDVOICES[data.username] == '0')) {
-    for (i in SoundFilters_Array) {
-      if (data.msg.includes(i)) {
-        aud = new Audio(SoundFilters_Array[i]);
-        aud.volume = SOUNDSVALUES[SOUNDSLVL];
-        aud.play();
-      }
-    }
-  }
-  if (UI_ChatSpeak && VOICES &&
-      (!(data.username in MUTEDVOICES) || MUTEDVOICES[data.username] == '0')) {
-    msg = getText(data.msg);
-    if (msg.includes('!mow ')) {
-      str = msg.split('!mow ');
-      aud = new Audio(`${SPEAKLINK}?lang=polish&text=${encodeURI(str[1])}`);
-      aud.volume = SOUNDSVALUES[SOUNDSLVL];
-      aud.play();
-    } else if (msg.includes('!say ')) {
-      str = msg.split('!say ');
-      aud = new Audio(`${SPEAKLINK}?lang=english&text=${encodeURI(str[1])}`);
-      aud.volume = SOUNDSVALUES[SOUNDSLVL];
-      aud.play();
-    }
-  }
   _chatBuffer(data);
 };
 
@@ -4992,7 +4126,7 @@ function resizeStuff() {
   $('#messagebuffer').height(h);
   $('#userlist').height(h);
 
-  if (UI_DisplayModeSel) {
+  {
     m = modesel.val();
     // patches for various display modes
     if (m === 'chMode' || m === 'rMode') {
@@ -5050,16 +4184,6 @@ m.parentNode.insertBefore(a, m);
 })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 ga('create', 'UA-53755606-1', 'auto');
 ga('send', 'pageview');
-
-// adding external script file and music stuff
-
-if (UI_ExternalScript && ExternalScript_URL != '') {
-  $.getScript(ExternalScript_URL);
-}
-
-if (UI_Snow && Snow_URL != '') {
-  $.getScript(Snow_URL);
-}
 
 /* ----- END OF LIBRARY ----- */
 
@@ -5531,41 +4655,6 @@ function deleteMsgByUsername(username) {
   }
 }
 
-function evalMotd() {
-  const motd = document.getElementById('motd');
-  if (motd === null || motd.innerHTML.length === 0) {
-    return false;
-  }
-  const MOTD_JS = decodeURIComponent(motd.innerHTML.replace('&amp;', '&'));
-  try {
-    eval(MOTD_JS);
-  } catch (e) {
-    console.error(e);
-  }
-  return true;
-}
-
-if (!evalMotd()) {
-  const MOTD_TIMER_START = Date.now();
-  const MOTD_TIMER = setInterval(() => {
-    if (evalMotd() || Date.now() - MOTD_TIMER_START > 1 * 60 * 1000) {
-      clearInterval(MOTD_TIMER);
-    }
-  }, 250);
-}
-let MOTD_INIT = false;
-if (!MOTD_INIT) {
-  MOTD_INIT = true;
-  socket.on('setMotd', (str) => {
-    const MOTD_JS = decodeURIComponent(str);
-    try {
-      eval(MOTD_JS);
-    } catch (e) {
-      console.error(e);
-    }
-  });
-}
-
 /**
  * Fix raw video controls being hidden.
  *
@@ -5595,3 +4684,5 @@ socket.on('changeMedia', resizeStuff);
 setInterval(() => resizeStuff(), 1000);
 
 $.getScript('https://resources.pink.horse/scripts/mjoc.requests.js');
+
+export { formatChatMessage };
