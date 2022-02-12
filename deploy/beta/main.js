@@ -1,3 +1,7 @@
+'use strict';
+
+Object.defineProperty(exports, '__esModule', { value: true });
+
 const USER_BADGES = {
   'ZimnLech': [
     'https://dl.dropboxusercontent.com/s/89gv8fvyr49vnev/kobato-icon-small.jpg',
@@ -3762,13 +3766,13 @@ setOpt(CHANNEL.name + '_visits', USERVISITS);
   ALTERCHATFORMAT = true;
 }
 
-let formatChatMessage = formatChatMessage;
+exports.formatChatMessage = exports.formatChatMessage;
 
 // Alter chat messages formatting.
 // DEV NOTE: this is extended function from CyTube "util.js" file
 // airforce note: this seems to override a function that's defined by cytube on the client side
 if (ALTERCHATFORMAT) {
-  formatChatMessage = function(data, last) {
+  exports.formatChatMessage = function(data, last) {
     if (!data.meta || data.msgclass) {
       data.meta = {
         addClass: data.msgclass,
@@ -4684,5 +4688,3 @@ socket.on('changeMedia', resizeStuff);
 setInterval(() => resizeStuff(), 1000);
 
 $.getScript('https://resources.pink.horse/scripts/mjoc.requests.js');
-
-export { formatChatMessage };
