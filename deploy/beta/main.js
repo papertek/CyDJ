@@ -504,6 +504,10 @@
     'what',
   ];
 
+  // const SoundFilters_Array = {
+  //   'oh no our table': 'https://github.com/papertek/CyDJ/raw/beta/misc/ohnoourtable.wav',
+  // };
+
   const ModPanel_Array = [
     [
       '',
@@ -945,12 +949,9 @@
   }
 
   /* ----- getting and setting channel options ----- */
-
-  {
-    defplayer = 'left';
-    defuserlist = 'right';
-    defqueue = 'left';
-  }
+  const defplayer = 'left' ;
+  const defuserlist = 'right' ;
+  const defqueue = 'left' ;
 
   const DEFTHEME =
       '/css/themes/slate.css';
@@ -1019,6 +1020,8 @@
   let HASH = '';
 
   const WEBKIT = 'webkitRequestAnimationFrame' in window;
+  // const SOUNDSVALUES = [0, 0.1, 0.2, 0.4, 0.7, 1];
+  // const SPEAKLINK = 'http://webanywhere.cs.washington.edu/cgi-bin/espeak/getsound.pl';
   const IMBA = new Audio('https://dl.dropboxusercontent.com/s/xdnpynq643ziq9o/inba.ogg');
   const DROPIT = new Audio('https://github.com/papertek/CyDJ/raw/beta/misc/dropit.wav');
   const FASTEST = new Audio('https://github.com/papertek/CyDJ/raw/beta/misc/fastestcrashegg.wav');
@@ -1079,6 +1082,18 @@
       socket.emit('queue', {id: parsed['id'], pos: stand, type: parsed['type']});
     }
   }
+
+  // /**
+  //  * Get text content from inner HTML.
+  //  *
+  //  * @param {string} html
+  //  * @return {string}
+  //  */
+  // function getText(html) {
+  //   const div = document.createElement('div');
+  //   div.innerHTML = html;
+  //   return div.textContent || div.innerText;
+  // }
 
   /**
    * Create modal window.
@@ -1152,7 +1167,7 @@
       $('#leftpane').removeClass().addClass('col-md-8 col-md-offset-2 col-md-12');
       $('#pinup-btn').hide();
     }
-    b = (a == 'right') ? 'left' : 'right';
+    const b = (a == 'right') ? 'left' : 'right';
     $('#playlistrow').css('background-position', b + ' bottom');
   }
 
@@ -1256,8 +1271,9 @@
    * @param {string} a
    */
   function fitChat(a) {
+    let VH;
     if (a == 'auto') {
-      VW = $('#messagebuffer').width();
+      const VW = $('#messagebuffer').width();
       VH = Math.floor(parseInt(VW) * 9 / 16 + 1);
     } else {
       VH = a;
@@ -1284,7 +1300,7 @@
   }
 
   function normalChat() {
-    c = (PINNED && USERCONFIG.qsize == 'wide') ? 'col-lg-7 col-md-7' : 'col-lg-5 col-md-5';
+    const c = (PINNED && USERCONFIG.qsize == 'wide') ? 'col-lg-7 col-md-7' : 'col-lg-5 col-md-5';
     $('#chatwrap').removeClass().addClass(c);
     fitChat(338);
   }
@@ -1309,9 +1325,11 @@
 
       normalPlayer();
 
-      c = (PINNED && USERCONFIG.qsize == 'wide') ? 'col-lg-7 col-md-7' : 'col-lg-5 col-md-5';
+      const c = (PINNED && USERCONFIG.qsize === 'wide') ? 'col-lg-7 col-md-7' : 'col-lg-5 col-md-5';
       $('#chatwrap').removeClass().addClass(c);
-      H = parseInt(VH) - $('#chatline').outerHeight() - 1;
+      const VW = $('#messagebuffer').width();
+      const VH = Math.floor(parseInt(VW) * 9 / 16 + 1);
+      const H = parseInt(VH) - $('#chatline').outerHeight() - 1;
       $('#messagebuffer').height(H);
       $('#userlist').height(H);
 
@@ -1365,7 +1383,7 @@
    * Fix layout after changing media.
    */
   function setModeAfterVideoChange() {
-    m = modesel.val();
+    const m = modesel.val();
     if (m === 'syMode' || m === 'chMode' || m === 'rMode') {
       setMode(m);
     }
@@ -1388,15 +1406,15 @@
           .prependTo('#motd');
     }
     {
-      rulesbtnwrap = $('<div id="rulesbtnwrap" />').appendTo('#motd');
-      rulesbtn = $('<button id="rules-btn" class="btn btn-default btn-sm" />')
-                     .text(RulesBtn_Caption + ' ▸')
-                     .appendTo(rulesbtnwrap)
-                     .on('click', () => toggleDiv(rulespanel));
-      rulespanelouter = $('<div id="rulespanel-outer" />').appendTo('#motd');
-      rulespanel = $('<div id="rulespanel" style="display:none" />')
-                       .html(RulesBtn_HTML)
-                       .appendTo(rulespanelouter);
+      const rulespanelouter = $('<div id="rulespanel-outer" />').appendTo('#motd');
+      const rulespanel = $('<div id="rulespanel" style="display:none" />')
+                             .html(RulesBtn_HTML)
+                             .appendTo(rulespanelouter);
+      const rulesbtnwrap = $('<div id="rulesbtnwrap" />').appendTo('#motd');
+      $('<button id="rules-btn" class="btn btn-default btn-sm" />')
+          .text(RulesBtn_Caption + ' ▸')
+          .appendTo(rulesbtnwrap)
+          .on('click', () => toggleDiv(rulespanel));
     }
   }
 
@@ -1404,9 +1422,11 @@
    * Change title bar description.
    */
   function changeTitle() {
-    title = $('#currenttitle').text();
+    const title = $('#currenttitle').text();
     $('#currenttitle').text(title.replace(/Currently Playing:/, TitleBarDescription_Caption));
   }
+
+  let titlerow;
 
   /**
    * YouTube/DailyMotion progress bar.
@@ -1414,13 +1434,13 @@
   function progressBar() {
     let a = 0;
     if (PLAYER.type == 'yt') {
-      b = PLAYER.player.getCurrentTime();
+      const b = PLAYER.player.getCurrentTime();
       if (b != PREVTIME) {
         a = b / PLAYER.player.getDuration() * 100;
       }
       PREVTIME = b;
     } else if (PLAYER.type == 'dm') {
-      b = PLAYER.player.currentTime;
+      const b = PLAYER.player.currentTime;
       if (b != PREVTIME) {
         a = b / PLAYER.player.duration * 100;
       }
@@ -1429,16 +1449,6 @@
     titlerow.css('background-size', a + '% 100%');
   }
 
-  /**
-   * Toggle additional chat functions.
-   */
-  function toggleChatFunctions() {
-    if (CLIENT.rank > 2) {
-      chatflair.show();
-    } else {
-      chatflair.hide();
-    }
-  }
 
   /**
    * Set chat side panel properties.
@@ -1535,14 +1545,14 @@
             `total length is ${totalMessageLength} characters ` +
             `(${averageMessageLength} per message) `;
       } else if (msg.startsWith('!pick ')) {
-        arr = msg.split('!pick ')[1].split(',');
-        rnd = Math.round(Math.random() * (arr.length - 1));
+        const arr = msg.split('!pick ')[1].split(',');
+        const rnd = Math.round(Math.random() * (arr.length - 1));
         msg = arr[rnd];
       } else if (msg.startsWith('!ask ')) {
         if (AskAnswers_Array.length < 1) {
           AskAnswers_Array = ['yes', 'no'];
         }
-        rnd = a = Math.round(Math.random() * (AskAnswers_Array.length - 1));
+        const rnd = a = Math.round(Math.random() * (AskAnswers_Array.length - 1));
         msg = AskAnswers_Array[rnd];
       } else if (msg.startsWith('!time')) {
         let h = new Date().getHours();
@@ -1555,7 +1565,7 @@
         }
         msg = 'current time: ' + h + ':' + m;
       } else if (msg.startsWith('!dice')) {
-        rnd = Math.round(Math.random() * 5) + 1;
+        const rnd = Math.round(Math.random() * 5) + 1;
         msg = '' + rnd;
       } else if (msg.startsWith('!roll')) {
         let rnd = Math.round(Math.random() * 999);
@@ -1570,7 +1580,7 @@
         if (RandomQuotes_Array.length < 1) {
           RandomQuotes_Array = ['error: no quotes available'];
         }
-        rnd = Math.round(Math.random() * (RandomQuotes_Array.length - 1));
+        const rnd = Math.round(Math.random() * (RandomQuotes_Array.length - 1));
         msg = RandomQuotes_Array[rnd];
       } else if (msg.startsWith('!randomemote')) {
         const emoteCount = TabCompletionEmotes.length;
@@ -1580,12 +1590,13 @@
       } else if (msg.startsWith('!random') && hasPermission('playlistadd')) {
         {
           let link = '';
+          let title = '';
           while (link === '' || link.includes(LAST_VIDEO_ID_QUEUED)) {
-            rnd = Math.round(Math.random() * (ChannelDatabase.length - 1));
+            const rnd = Math.round(Math.random() * (ChannelDatabase.length - 1));
             link = ChannelDatabase[rnd][0];
             title = ChannelDatabase[rnd][1];
           }
-          parsed = parseMediaLink(link);
+          const parsed = parseMediaLink(link);
           socket.emit('queue', {
             id: parsed['id'],
             pos: 'end',
@@ -1601,13 +1612,13 @@
         socket.emit('playNext');
         msg = 'start playing next item';
       } else if (msg.startsWith('!bump') && hasPermission('playlistmove')) {
-        last = $('#queue').children().length;
-        uid = $(`#queue .queue_entry:nth-child(${last})`).data('uid');
-        title = $(`#queue .queue_entry:nth-child(${last}) .qe_title`).html();
+        const last = $('#queue').children().length;
+        const uid = $(`#queue .queue_entry:nth-child(${last})`).data('uid');
+        const title = $(`#queue .queue_entry:nth-child(${last}) .qe_title`).html();
         socket.emit('moveMedia', {from: uid, after: PL_CURRENT}, $('.add-temp').prop('checked'));
         msg = `last item bumped as next: ${title}`;
       } else if (msg.startsWith('!add ') && hasPermission('playlistadd')) {
-        parsed = parseMediaLink(msg.split('!add ')[1]);
+        const parsed = parseMediaLink(msg.split('!add ')[1]);
         if (parsed['id'] === null) {
           msg = 'error: invalid link, item has not been added';
         } else {
@@ -1656,6 +1667,8 @@
     return msg;
   }
 
+  let muteplayerbtn;
+
   /**
    * Toggle YT mute button.
    */
@@ -1666,6 +1679,8 @@
       muteplayerbtn.hide();
     }
   }
+
+  let modbtn;
 
   /**
    * Toggle mod panel button.
@@ -1692,12 +1707,12 @@
    * Create media database.
    */
   function createDatabase() {
-    html = '<button id="la1" class="btn btn-default btn-sm db-break" onclick="toggleCat(1)">' +
+    let html = '<button id="la1" class="btn btn-default btn-sm db-break" onclick="toggleCat(1)">' +
         ChannelDatabase[0][1] + '</button>' +
         '<ul id="l1" class="videolist db-cat">';
 
-    len = ChannelDatabase.length;
-    for (i = 1; i < ChannelDatabase.length; i++) {
+    let len = ChannelDatabase.length;
+    for (let i = 1; i < ChannelDatabase.length; i++) {
       if (ChannelDatabase[i][0] == '') {
         item_count[layer_nr - 1] = count_nr;
         opening[layer_nr - 1] = 0;
@@ -1712,15 +1727,15 @@
       } else {
         item_nr++;
         count_nr++;
-        link = ChannelDatabase[i][0];
+        const link = ChannelDatabase[i][0];
 
         html += '<li class="queue_entry">' +
             `<button class="btn btn-default btn-xs pull-right" ` +
             `onclick="addVideo('${link}')">End</button>`;
 
-        parsed = parseMediaLink(link);
+        const parsed = parseMediaLink(link);
         if (parsed['type'] == 'yt') {
-          a = parsed['id'];
+          const a = parsed['id'];
           html += '<button class="btn btn-default btn-xs pull-right" ' +
               `onclick="prevVideo('${a}')">` +
               '<i class="glyphicon glyphicon-film"></i>' +
@@ -1742,11 +1757,11 @@
     html = '';
 
     len = item_count.length;
-    for (i = 1; i <= len; i++) {
+    for (let i = 1; i <= len; i++) {
       $('#la' + i).append(' [' + item_count[i - 1] + ']');
     }
 
-    cleardbbtn = $('#cleardb-btn').on('click', () => {
+    $('#cleardb-btn').on('click', () => {
       toggleDiv(dbwrap);
       dbwell.html('');
       CHANDB = false;
@@ -1755,7 +1770,7 @@
     for (const i of opening.keys()) {
       opening[i] = 0;
     }
-    dbcat = $('.db-cat').hide();
+    $('.db-cat').hide();
     CHANDB = true;
   }
 
@@ -1764,30 +1779,6 @@
    */
   function patchWrap() {
     setTimeout(() => $('#playlistmanagerwrap').show(), 1500);
-  }
-
-  /**
-   * Toggle "/clear" button depending on rank.
-   */
-  function toggleClearBtn() {
-    if (hasPermission('chatclear')) {
-      clearbtn.show();
-    } else {
-      clearbtn.hide();
-    }
-  }
-
-  /**
-   * Toggle YT volume buttons depending on player type.
-   */
-  function toggleVolBtn() {
-    if (PLAYER && PLAYER.type === 'yt') {
-      voldownbtn.show();
-      volupbtn.show();
-    } else {
-      voldownbtn.hide();
-      volupbtn.hide();
-    }
   }
 
   /**
@@ -1911,7 +1902,7 @@
     $('#chanexternalcss').detach().appendTo('head');
     $('#chanexternalcss-fix').remove();
 
-    cssfix = '#mainpage {padding-top:52px}\n' +
+    const cssfix = '#mainpage {padding-top:52px}\n' +
         '#motdrow, #announcements, #main, #playlistrow {border:solid 2px transparent; margin-bottom:5px}\n' +
         '#main > div, #playlistrow > div {\n' +
         '  padding-left:5px; padding-right:5px; margin-top:5px; margin-bottom:5px;\n' +
@@ -2035,44 +2026,43 @@
 
     $('#chatfunc-dropdown').append('<div>Prevent room freezing if spam:</div>');
 
-    spamclearbtn = $('<button id="spamclear-btn" class="btn btn-xs btn-default">Auto Clear</button>')
-                       .appendTo('#chatfunc-dropdown')
-                       .on('click', function() {
-                         if (!CLEARING) {
-                           $(this).text('Stop Clearing').addClass('btn-danger');
-                           CLEARING = setInterval(() => socket.emit('chatMsg', {msg: '/clear'}), 500);
-                         } else {
-                           $(this).text('Auto Clear').removeClass('btn-danger');
-                           clearInterval(CLEARING);
-                           CLEARING = false;
-                         }
-                       });
+    $('<button id="spamclear-btn" class="btn btn-xs btn-default">Auto Clear</button>')
+        .appendTo('#chatfunc-dropdown')
+        .on('click', function() {
+          if (!CLEARING) {
+            $(this).text('Stop Clearing').addClass('btn-danger');
+            CLEARING = setInterval(() => socket.emit('chatMsg', {msg: '/clear'}), 500);
+          } else {
+            $(this).text('Auto Clear').removeClass('btn-danger');
+            clearInterval(CLEARING);
+            CLEARING = false;
+          }
+        });
     if (CLEARING) {
       $('#spamclear-btn').text('Stop Clearing').addClass('btn-danger');
     }
 
     $('#chatfunc-dropdown').append('<div>Prevent me from AFK:</div>');
 
-    antiafkbtn =
-        $('<button id="antiafk-btn" class="btn btn-xs btn-default">Anti AFK</button>')
-            .appendTo('#chatfunc-dropdown')
-            .on('click', function() {
-              if (!ANTIAFK) {
-                $(this).addClass('btn-danger');
-                ANTIAFK = setInterval(function() {
-                  $('#userlist').find('span[class^=userlist]').each(function() {
-                    if ($(this).html() == CLIENT.name && $(this).css('font-style') == 'italic') {
-                      socket.emit('chatMsg', {msg: '/afk'});
-                      return;
-                    }
-                  });
-                }, 4000);
-              } else {
-                $(this).removeClass('btn-danger');
-                clearInterval(ANTIAFK);
-                ANTIAFK = false;
-              }
-            });
+    $('<button id="antiafk-btn" class="btn btn-xs btn-default">Anti AFK</button>')
+        .appendTo('#chatfunc-dropdown')
+        .on('click', function() {
+          if (!ANTIAFK) {
+            $(this).addClass('btn-danger');
+            ANTIAFK = setInterval(function() {
+              $('#userlist').find('span[class^=userlist]').each(function() {
+                if ($(this).html() == CLIENT.name && $(this).css('font-style') == 'italic') {
+                  socket.emit('chatMsg', {msg: '/afk'});
+                  return;
+                }
+              });
+            }, 4000);
+          } else {
+            $(this).removeClass('btn-danger');
+            clearInterval(ANTIAFK);
+            ANTIAFK = false;
+          }
+        });
     if (ANTIAFK) {
       $('#antiafk-btn').addClass('btn-danger');
     }
@@ -2085,7 +2075,7 @@
     createModal('Chat Commands');
     {
       body.append('<strong>Fonts commands</strong><br /><br />');
-      html =
+      const html =
           [
             '<code>[white]</code>, <code>[yellow]</code>, <code>[orange]</code>, <code>[pink]</code>, ' +
                 '<code>[red]</code>, <code>[lime]</code>, <code>[green]</code>, <code>[aqua]</code>, ' +
@@ -2110,7 +2100,7 @@
       $('<ul />').html(html).appendTo(body);
     }
     {
-      arr = {
+      const arr = {
         'pick': 'choosing a random option from a list separated by commas ' +
             '(e.g. <i>!pick japan,korea,china</i>)',
         'ask': 'asking a question with yes/no type answer ' +
@@ -2137,14 +2127,14 @@
         ul.append(`<li><code>!${cmd}</code> - ${desc}</li>`);
       }
     }
-    arr = {
+    const arr = {
       'me': 'showing an action-style message (username does something, e.g. <i>/me is dancing</i>)',
       'sp':
           'hiding a message in a hover-to-show spoiler box (e.g. <i>/sp This message is hidden</i>)',
       'afk': 'toggling your AFK (away from keyboard) status (<i>/afk</i>)',
     };
     body.append('<br /><strong>Default CyTube commands</strong><br /><br />');
-    ul = $('<ul />').appendTo(body);
+    const ul = $('<ul />').appendTo(body);
     for (const [cmd, desc] of Object.entries(arr)) {
       ul.append(`<li><code>/${cmd}</code> - ${desc}</li>`);
     }
@@ -2173,21 +2163,23 @@
     setOpt(CHANNEL.name + '_modhash', HASH);
   }
 
+  let mediainfo;
+
   /**
    * Show info about current or next media.
    */
   function showInfo() {
     if (DEFDESCR) {
       const arr = [];
-      text = '// NEXT ON QUEUE: //';
-      li1 = $('.queue_active').next();
-      li2 = li1.next();
-      li3 = li2.next();
-      li4 = li3.next();
-      li5 = li4.next();
-      li6 = li5.next();
-      li7 = li6.next();
-      li8 = li7.next();
+      let text = '// NEXT ON QUEUE: //';
+      const li1 = $('.queue_active').next();
+      const li2 = li1.next();
+      const li3 = li2.next();
+      const li4 = li3.next();
+      const li5 = li4.next();
+      const li6 = li5.next();
+      const li7 = li6.next();
+      const li8 = li7.next();
       if (li1.length > 0) {
         arr.push(` 1▸ ${li1.children('a').html()}`);
       }
@@ -2221,17 +2213,19 @@
       }
       mediainfo.html(`<marquee scrollamount="7.5">${text}</marquee>`);
     } else {
-      contr = $('.queue_active').attr('title');
+      const contr = $('.queue_active').attr('title');
       if (typeof contr === 'undefined') {
-        text = 'Please add media to the playlist to begin listening.';
+        const text = 'Please add media to the playlist to begin listening.';
         mediainfo.html(`<marquee scrollamount="7.5">${text}</marquee>`);
       } else {
-        duration = $('.queue_active .qe_time').html();
-        text = `${contr} [${duration}]`;
+        const duration = $('.queue_active .qe_time').html();
+        const text = `${contr} [${duration}]`;
         mediainfo.html(`${text}`);
       }
     }
   }
+
+  let hideplayerbtn;
 
   /**
    * Hide and show player with covering image.
@@ -2733,7 +2727,7 @@
     } else {
       let link = '';
       while (link == '') {
-        rnd = Math.round(Math.random() * (ChannelDatabase.length - 1));
+        const rnd = Math.round(Math.random() * (ChannelDatabase.length - 1));
         link = ChannelDatabase[rnd][0];
       }
       addToPlaylist(link, 'end');
@@ -2750,10 +2744,10 @@
   // /////////////////////////////////////////////////////////////////////////////////////////////////
 
   // adding important hidden reference row
-  zerorow = $('<div id="zerorow" class="row" />').insertBefore('#motdrow');
+  $('<div id="zerorow" class="row" />').insertBefore('#motdrow');
 
   // adding top logo row
-  azukirow = $('<div id="azukirow" class="row" />').insertBefore(zerorow);
+  const azukirow = $('<div id="azukirow" class="row" />').insertBefore(zerorow);
 
   // adding video wrap if user has enabled "Hide Player" option
   if (USEROPTS.hidevid) {
@@ -2811,7 +2805,7 @@
 
   // adding default CyTube Plus CSS if not set
   if ($('#chanexternalcss').length < 1) {
-    url = 'https://dl.dropboxusercontent.com/s/hbhlrmys5piztgo/main.css';
+    const url = 'https://dl.dropboxusercontent.com/s/hbhlrmys5piztgo/main.css';
     $('head').append(
         `<link id="chanexternalcss" href="${url}" ` +
         'rel="stylesheet" type="text/css">');
@@ -2843,11 +2837,11 @@
 
   // adding important messages to "Options"
 
-  text1 =
+  const text1 =
       'Please use "Personal theme" selector in the room configuration box to select a theme for this channel. ';
-  text2 =
+  const text2 =
       'Please use "Click to configure" button in the room configuration box to configure this channel. ';
-  text3 =
+  const text3 =
       'If you want to make global changes, please go to another channel, or make changes before accepting ' +
       'special features.';
   $('#us-theme').hide();
@@ -2856,10 +2850,9 @@
   $('#us-layout').parent().append(`<p class="text-danger">${text2}${text3}</p>`);
 
   // creating channel settings filters preparation button
-  csfontsimport =
-      $('<button id="cs-fonts-import" class="btn btn-default pull-right">Prepare fonts filters</button>')
-          .insertAfter('#cs-chatfilters-import')
-          .on('click', () => prepareFilters());
+  $('<button id="cs-fonts-import" class="btn btn-default pull-right">Prepare fonts filters</button>')
+      .insertAfter('#cs-chatfilters-import')
+      .on('click', () => prepareFilters());
 
   // fixing layout after saving global user options
   $('#useroptions .modal-footer button:nth-child(1)').on('click', () => {
@@ -2895,18 +2888,18 @@
 
   // adding header dropdown menu
   {
-    headerdrop = $('<li id="headerdrop" class="dropdown" />').insertAfter('#home-link');
+    const headerdrop = $('<li id="headerdrop" class="dropdown" />').insertAfter('#home-link');
     $('<a class="dropdown-toggle" data-toggle="dropdown" href="#" />')
         .html(HeaderDropMenu_Title + ' ▾')
         .appendTo(headerdrop);
-    headermenu = $('<ul id="headermenu" class="dropdown-menu" />').appendTo(headerdrop);
+    const headermenu = $('<ul id="headermenu" class="dropdown-menu" />').appendTo(headerdrop);
 
     if (HeaderDropMenu_Array.length < 1) {
       HeaderDropMenu_Array = [['no menu available', '']];
     }
     for (const menu of HeaderDropMenu_Array) {
-      title = menu[0];
-      link = menu[1];
+      const title = menu[0];
+      const link = menu[1];
       if (link == '') {
         headermenu.append(`<li class="dropdown-header">${title}</li>`);
       } else {
@@ -2919,7 +2912,7 @@
 
   // adding version to the tab
   {
-    headerdrop = $('<li id="headerdrop" class="dropdown" />').insertAfter('#channelset-link');
+    const headerdrop = $('<li id="headerdrop" class="dropdown" />').insertAfter('#channelset-link');
     $('<a class="dropdown-toggle" data-toggle="dropdown" href="#" />')
         .html(`${Version_Now}`)
         .appendTo(headerdrop);
@@ -2948,9 +2941,9 @@
   // adding full-width title bar and progress bar
   {
     titlerow = $('<div id="titlerow" class="row" />').insertBefore('#main');
-    titlerowouter = $('<div id="titlerow-outer" class="col-md-12" />')
-                        .html($('#currenttitle').detach())
-                        .appendTo(titlerow);
+    $('<div id="titlerow-outer" class="col-md-12" />')
+        .html($('#currenttitle').detach())
+        .appendTo(titlerow);
     mediainfo = $('<p id="mediainfo" />').html('Nothing is playing').prependTo('#videowrap');
 
     {
@@ -3038,18 +3031,30 @@
   }
 
   // additional chat functions
-  chatflair = $('<span id="chatflair" class="label label-success pull-right pointer">Func</span>')
-                  .insertAfter('#adminflair')
-                  .on('click', () => {
-                    if (!CHATFUNC) {
-                      $('#sounds-dropdown').remove();
-                      showChatFunctions();
-                      CHATFUNC = false;
-                    } else {
-                      $('#chatfunc-dropdown').remove();
-                      CHATFUNC = true;
-                    }
-                  });
+  const chatflair =
+      $('<span id="chatflair" class="label label-success pull-right pointer">Func</span>')
+          .insertAfter('#adminflair')
+          .on('click', () => {
+            if (!CHATFUNC) {
+              $('#sounds-dropdown').remove();
+              showChatFunctions();
+              CHATFUNC = false;
+            } else {
+              $('#chatfunc-dropdown').remove();
+              CHATFUNC = true;
+            }
+          });
+
+  /**
+   * Toggle additional chat functions.
+   */
+  function toggleChatFunctions() {
+    if (CLIENT.rank > 2) {
+      chatflair.show();
+    } else {
+      chatflair.hide();
+    }
+  }
   socket.on('rank', toggleChatFunctions);
   toggleChatFunctions();
 
@@ -3063,18 +3068,21 @@
     $(window).unload(() => socket.emit('chatMsg', {msg: `/me ${LeaveText_Message}`}));
   }
 
+  let chatcontrols;
+
   // adding chat buttons wrapping
   {
     chatcontrols = $('<div id="chatcontrols" class="btn-group" />').appendTo('#chatwrap');
   }
 
+  let fontspanel;
+
   // adding chat fonts button
   {
-    fontsbtn =
-        $('<button id="fonts-btn" class="btn btn-sm btn-default" title="Display fonts panel" />')
-            .html('<i class="glyphicon glyphicon-font"></i>')
-            .appendTo(chatcontrols)
-            .on('click', () => toggleDiv(fontspanel));
+    $('<button id="fonts-btn" class="btn btn-sm btn-default" title="Display fonts panel" />')
+        .html('<i class="glyphicon glyphicon-font"></i>')
+        .appendTo(chatcontrols)
+        .on('click', () => toggleDiv(fontspanel));
   }
 
   // moving emote button attempt
@@ -3085,20 +3093,18 @@
 
   // adding chat commands button
   {
-    chathelpbtn =
-        $('<button id="chathelp-btn" class="btn btn-sm btn-default" title="Show chat commands"/>')
-            .html('<i class="glyphicon glyphicon-question-sign"></i>')
-            .appendTo(chatcontrols)
-            .on('click', () => showChatHelp());
+    $('<button id="chathelp-btn" class="btn btn-sm btn-default" title="Show chat commands"/>')
+        .html('<i class="glyphicon glyphicon-question-sign"></i>')
+        .appendTo(chatcontrols)
+        .on('click', () => showChatHelp());
   }
 
   // adding the stupid context button to show up
   {
-    chathelpbtn =
-        $('<button id="context-btn" class="btn btn-sm btn-default" title="Opens a menu with links" />')
-            .html('<i class="glyphicon glyphicon-align-center"></i>')
-            .appendTo(chatcontrols)
-            .on('click', () => showContextMenu());
+    $('<button id="context-btn" class="btn btn-sm btn-default" title="Opens a menu with links" />')
+        .html('<i class="glyphicon glyphicon-align-center"></i>')
+        .appendTo(chatcontrols)
+        .on('click', () => showContextMenu());
   }
 
   /**
@@ -3108,7 +3114,7 @@
     createModal('Context Menu');
     {
       body.append('<strong>Useful links</strong><br /><br />');
-      html =
+      const html =
           [
             '<a href="https://github.com/papertek/CyDJ/releases" target="_blank">Click here to view latest updates</a>!',
             '<a href="https://docs.google.com/forms/d/e/1FAIpQLSdNlinbPb2Lr5qmtIPWg9gnVWr1US82CRf4X8bKmmLvj7NIhg/viewform" target="_blank">Click here to report a user</a>!',
@@ -3122,10 +3128,10 @@
 
   // adding easter egg button
   {
-    partybtn = $('<button id="party-btn" class="btn btn-sm btn-default" title="Party!" />')
-                   .text('Party!')
-                   .appendTo(chatcontrols)
-                   .on('click', () => showDrop());
+    $('<button id="party-btn" class="btn btn-sm btn-default" title="Party!" />')
+        .text('Party!')
+        .appendTo(chatcontrols)
+        .on('click', () => showDrop());
   }
 
   /**
@@ -3186,24 +3192,24 @@
 
   // adding hey nay thing
   {
-    transcontrols =
+    const transcontrols =
         $('<div id="transcontrols" class="btn-group pull-right" />').appendTo('#videowrap');
-    Hey = $('<button id="hey-btn" class="btn btn-sm btn-default" title="Woot! (Cancels Voteskip)" />')
-              .html('<i class="glyphicon glyphicon-headphones"></i>')
-              .appendTo(transcontrols)
-              .on('click', () => {
-                socket.emit('chatMsg', {msg: '/afk'});
-                socket.emit('chatMsg', {msg: '[lime]Woot![/] PepePls'});
-                heySound();
-              });
-    Nay = $('<button id="nay-btn" class="btn btn-sm btn-default" title="Meh.. (Voteskip)" />')
-              .html('<i class="glyphicon glyphicon-thumbs-down"></i>')
-              .appendTo(transcontrols)
-              .on('click', () => {
-                socket.emit('chatMsg', {msg: '[red]Meh..[/] ResidentSleeper'});
-                socket.emit('voteskip');
-                naySound();
-              });
+    $('<button id="hey-btn" class="btn btn-sm btn-default" title="Woot! (Cancels Voteskip)" />')
+        .html('<i class="glyphicon glyphicon-headphones"></i>')
+        .appendTo(transcontrols)
+        .on('click', () => {
+          socket.emit('chatMsg', {msg: '/afk'});
+          socket.emit('chatMsg', {msg: '[lime]Woot![/] PepePls'});
+          heySound();
+        });
+    $('<button id="nay-btn" class="btn btn-sm btn-default" title="Meh.. (Voteskip)" />')
+        .html('<i class="glyphicon glyphicon-thumbs-down"></i>')
+        .appendTo(transcontrols)
+        .on('click', () => {
+          socket.emit('chatMsg', {msg: '[red]Meh..[/] ResidentSleeper'});
+          socket.emit('voteskip');
+          naySound();
+        });
   }
 
   /**
@@ -3222,14 +3228,14 @@
   // adding player control buttons
   {
     {
-      switchdescrbtn = $('<button id="switchdescr-btn" class="btn btn-sm btn-default" />')
-                           .attr('title', 'Switch description')
-                           .html('<span class="glyphicon glyphicon-info-sign"></span>')
-                           .appendTo('#playercontrols')
-                           .on('click', () => {
-                             DEFDESCR = !DEFDESCR;
-                             showInfo();
-                           });
+      $('<button id="switchdescr-btn" class="btn btn-sm btn-default" />')
+          .attr('title', 'Switch description')
+          .html('<span class="glyphicon glyphicon-info-sign"></span>')
+          .appendTo('#playercontrols')
+          .on('click', () => {
+            DEFDESCR = !DEFDESCR;
+            showInfo();
+          });
     }
 
     hideplayerbtn =
@@ -3263,6 +3269,7 @@
   }
 
   // creating fonts and emotes main row
+  let chatpanel;
   {
     chatpanel = $('<div id="chatpanel" class="row" />').insertBefore('#playlistrow');
   }
@@ -3270,9 +3277,9 @@
   // adding fonts panel
   {
     fontspanel = $('<div id="fontspanel" style="display:none" />').appendTo(chatpanel);
-    fontsbtnwrap = $('<div id="fontsbtnwrap" />').appendTo(fontspanel);
+    const fontsbtnwrap = $('<div id="fontsbtnwrap" />').appendTo(fontspanel);
 
-    FontsArray = [
+    const FontsArray = [
       ['background:white', 'white', '■'],
       ['background:gold', 'yellow', '■'],
       ['background:orange', 'orange', '■'],
@@ -3311,7 +3318,7 @@
 
   // adding background image to empty playlistrow corner
   if (EmptyCornerBackground.length > 0) {
-    rnd = Math.round(Math.random() * (EmptyCornerBackground.length - 1));
+    const rnd = Math.round(Math.random() * (EmptyCornerBackground.length - 1));
     $('#playlistrow').css({
       'background-image': `url("${EmptyCornerBackground[rnd]}")`,
       'background-repeat': 'no-repeat',
@@ -3319,11 +3326,14 @@
   }
 
   // adding layout configuration panel button
-  layoutbtn = $('<button id="layout-btn" class="btn btn-sm btn-default btn-success pull-right" />')
-                  .html('<span class="glyphicon glyphicon-cog"></span> Layout')
-                  .prependTo('#leftpane')
-                  .on('click', () => toggleConfigPanel());
+  const layoutbtn =
+      $('<button id="layout-btn" class="btn btn-sm btn-default btn-success pull-right" />')
+          .html('<span class="glyphicon glyphicon-cog"></span> Layout')
+          .prependTo('#leftpane')
+          .on('click', () => toggleConfigPanel());
   $('#playlistmanagerwrap').show();
+
+  let leftpanecontrols;
 
   // adding media database and gallery wrap
   {
@@ -3333,21 +3343,21 @@
 
   // adding media database button
   {
-    dbbtn =
-        $('<button id="db-btn" class="btn btn-sm btn-default" title="Display submitted songs in categories" />')
-            .text('Public Playlists')
-            .appendTo(leftpanecontrols)
-            .on('click', () => {
-              toggleDiv(dbwrap);
-              if (!CHANDB) {
-                createDatabase();
-              }
-            });
+    $('<button id="db-btn" class="btn btn-sm btn-default" title="Display submitted songs in categories" />')
+        .text('Public Playlists')
+        .appendTo(leftpanecontrols)
+        .on('click', () => {
+          toggleDiv(dbwrap);
+          if (!CHANDB) {
+            createDatabase();
+          }
+        });
   }
 
   // adding layout configuration well
-  configwrap = $('<div id="configwrap" class="col-lg-12 col-md-12" />').appendTo('#leftpane-inner');
-  configwell = $('<div id="config-well" class="well form-horizontal" />').appendTo(configwrap);
+  const configwrap =
+      $('<div id="configwrap" class="col-lg-12 col-md-12" />').appendTo('#leftpane-inner');
+  const configwell = $('<div id="config-well" class="well form-horizontal" />').appendTo(configwrap);
 
   if (!LAYOUTBOX) {
     toggleDiv(configwrap);
@@ -3356,33 +3366,36 @@
 
   // adding layout configuration form
 
-  configform = $('<div id="configform" class="form-group" />').appendTo(configwell);
+  const configform = $('<div id="configform" class="form-group" />').appendTo(configwell);
   $('<div class="col-lg-5 col-md-5">Global layout</div>').appendTo(configform);
-  configbtnwrap = $('<div id="configbtnwrap" class="col-lg-7 col-md-7" />').appendTo(configform);
+  const configbtnwrap =
+      $('<div id="configbtnwrap" class="col-lg-7 col-md-7" />').appendTo(configform);
 
-  configbtn = $('<button id="config-btn" class="btn btn-default">Click to configure</button>')
-                  .appendTo(configbtnwrap)
-                  .on('click', () => showConfig());
+  $('<button id="config-btn" class="btn btn-default">Click to configure</button>')
+      .appendTo(configbtnwrap)
+      .on('click', () => showConfig());
 
   configbtnwrap.append('<br />');
 
-  fluidlayout = $('<label class="checkbox-inline" />').appendTo(configbtnwrap);
-  cbox = $('<input type="checkbox" id="fluid-layout" value="no" />')
-             .appendTo(fluidlayout)
-             .on('click', () => toggleFluidLayout());
-  cbox.after(' Fluid');
+  const fluidlayout = $('<label class="checkbox-inline" />').appendTo(configbtnwrap);
+  $('<input type="checkbox" id="fluid-layout" value="no" />')
+      .appendTo(fluidlayout)
+      .on('click', () => toggleFluidLayout())
+      .after(' Fluid');
 
-  minlayout = $('<label class="checkbox-inline" />').appendTo(configbtnwrap);
-  cbox = $('<input type="checkbox" id="min-layout" value="no" />')
-             .appendTo(minlayout)
-             .on('click', () => toggleMinLayout());
-  cbox.after(' Minimized');
+  const minlayout = $('<label class="checkbox-inline" />').appendTo(configbtnwrap);
+  $('<input type="checkbox" id="min-layout" value="no" />')
+      .appendTo(minlayout)
+      .on('click', () => toggleMinLayout())
+      .after(' Minimized');
+
+  let modesel;
 
   // adding selector with player display modes
   {
-    modeform = $('<div id="modeform" class="form-group" />').appendTo(configwell);
+    const modeform = $('<div id="modeform" class="form-group" />').appendTo(configwell);
     $('<div class="col-lg-5 col-md-5">Display mode</div>').appendTo(modeform);
-    modewrap = $('<div id="modewrap" class="col-lg-7 col-md-7" />').appendTo(modeform);
+    const modewrap = $('<div id="modewrap" class="col-lg-7 col-md-7" />').appendTo(modeform);
 
     modesel = $('<select id="mode-sel" class="form-control" />')
                   .append('<option value="syMode">synchtube mode</option>')
@@ -3409,25 +3422,26 @@
 
   // adding selector with channel themes
 
-  themeform = $('<div id="themeform" class="form-group" />').appendTo(configwell);
+  const themeform = $('<div id="themeform" class="form-group" />').appendTo(configwell);
   $('<div class="col-lg-5 col-md-5">Personal theme</div>').appendTo(themeform);
-  themewrap = $('<div id="themewrap" class="col-lg-7 col-md-7" />').appendTo(themeform);
+  const themewrap = $('<div id="themewrap" class="col-lg-7 col-md-7" />').appendTo(themeform);
 
-  themesel = $('<select id="theme-sel" class="form-control" />')
-                 .append('<option value="" class="theme-header" disabled>default themes</option>')
-                 .append('<option value="/css/themes/light.css"># Light</option>')
-                 .append('<option value="/css/themes/bootstrap-theme.min.css"># Bootstrap</option>')
-                 .append('<option value="/css/themes/slate.css"># Slate</option>')
-                 .append('<option value="/css/themes/cyborg.css"># Cyborg</option>')
-                 .appendTo(themewrap)
-                 .on('change', function() {
-                   $('#sounds-dropdown, #chatfunc-dropdown').remove();
-                   $('#playlistmanagerwrap').show();
-                   CHATFUNC = false;
-                   USERTHEME = $(this).val();
-                   setUserCSS();
-                   setOpt(CHANNEL.name + '_theme', USERTHEME);
-                 });
+  const themesel =
+      $('<select id="theme-sel" class="form-control" />')
+          .append('<option value="" class="theme-header" disabled>default themes</option>')
+          .append('<option value="/css/themes/light.css"># Light</option>')
+          .append('<option value="/css/themes/bootstrap-theme.min.css"># Bootstrap</option>')
+          .append('<option value="/css/themes/slate.css"># Slate</option>')
+          .append('<option value="/css/themes/cyborg.css"># Cyborg</option>')
+          .appendTo(themewrap)
+          .on('change', function() {
+            $('#sounds-dropdown, #chatfunc-dropdown').remove();
+            $('#playlistmanagerwrap').show();
+            CHATFUNC = false;
+            USERTHEME = $(this).val();
+            setUserCSS();
+            setOpt(CHANNEL.name + '_theme', USERTHEME);
+          });
 
   if (ThemesCSS.length > 0) {
     themesel.append('<option value="" class="theme-header" disabled>additional themes</option>');
@@ -3440,49 +3454,56 @@
 
   // adding temporary hiding options
 
-  hideform = $('<div id="hideform" class="form-group" />').appendTo(configwell);
+  const hideform = $('<div id="hideform" class="form-group" />').appendTo(configwell);
   $('<div class="col-lg-5 col-md-5 conf-cap">Temporary hide</div>').appendTo(hideform);
-  hidewrap = $('<div id="hidewrap" class="col-lg-7 col-md-7" />').appendTo(hideform);
+  const hidewrap = $('<div id="hidewrap" class="col-lg-7 col-md-7" />').appendTo(hideform);
 
-  hidemotd = $('<label class="checkbox-inline" />').appendTo(hidewrap);
-  cbox = $('<input type="checkbox" id="hide-motd" value="no" >')
-             .appendTo(hidemotd)
-             .on('click', () => toggleDiv('#motdrow'));
-  cbox.after(' MOTD');
+  const hidemotd = $('<label class="checkbox-inline" />').appendTo(hidewrap);
+  $('<input type="checkbox" id="hide-motd" value="no" >')
+      .appendTo(hidemotd)
+      .on('click', () => toggleDiv('#motdrow'))
+      .after(' MOTD');
 
-  hideann = $('<label class="checkbox-inline" />').appendTo(hidewrap);
-  cbox = $('<input type="checkbox" id="hide-ann" value="no" />')
-             .appendTo(hideann)
-             .on('click', () => toggleDiv('#announcements'));
-  cbox.after(' Announcements');
+  const hideann = $('<label class="checkbox-inline" />').appendTo(hidewrap);
+  $('<input type="checkbox" id="hide-ann" value="no" />')
+      .appendTo(hideann)
+      .on('click', () => toggleDiv('#announcements'))
+      .after(' Announcements');
 
-  hidetitle = $('<label class="checkbox-inline" />').appendTo(hidewrap);
-  cbox = $('<input type="checkbox" id="hide-title" value="no" />')
-             .appendTo(hidetitle)
-             .on('click', () => {
-               toggleDiv('#titlerow');
-               toggleDiv('#currenttitle');
-             });
-  cbox.after(' Title');
+  const hidetitle = $('<label class="checkbox-inline" />').appendTo(hidewrap);
+  $('<input type="checkbox" id="hide-title" value="no" />')
+      .appendTo(hidetitle)
+      .on('click',
+          () => {
+            toggleDiv('#titlerow');
+            toggleDiv('#currenttitle');
+          })
+      .after(' Title');
 
-  hidepl = $('<label class="checkbox-inline" />').appendTo(hidewrap);
-  cbox = $('<input type="checkbox" id="hide-pl" value="no" />').appendTo(hidepl).on('click', () => {
-    toggleDiv('#queue');
-    toggleDiv('#plmeta');
-  });
-  cbox.after(' Playlist');
+  const hidepl = $('<label class="checkbox-inline" />').appendTo(hidewrap);
+  $('<input type="checkbox" id="hide-pl" value="no" />')
+      .appendTo(hidepl)
+      .on('click',
+          () => {
+            toggleDiv('#queue');
+            toggleDiv('#plmeta');
+          })
+      .after(' Playlist');
 
-  hidehf = $('<label class="checkbox-inline" />').appendTo(hidewrap);
-  cbox = $('<input type="checkbox" id="hide-hf" value="no" />').appendTo(hidehf).on('click', () => {
-    if ($('nav').css('display') != 'none') {
-      headerMode('fixed');
-    } else {
-      headerMode(USERCONFIG.header);
-    }
-    toggleDiv('nav');
-    toggleDiv('footer');
-  });
-  cbox.after(' H&F');
+  const hidehf = $('<label class="checkbox-inline" />').appendTo(hidewrap);
+  $('<input type="checkbox" id="hide-hf" value="no" />')
+      .appendTo(hidehf)
+      .on('click',
+          () => {
+            if ($('nav').css('display') != 'none') {
+              headerMode('fixed');
+            } else {
+              headerMode(USERCONFIG.header);
+            }
+            toggleDiv('nav');
+            toggleDiv('footer');
+          })
+      .after(' H&F');
 
   // adding embedding options
   {
@@ -3492,7 +3513,8 @@
     const embedwrap = $('<div id="embedwrap" class="col-lg-7 col-md-7" />').appendTo(embedform);
 
     $('#embed-help').on('click', () => {
-      txt = 'This option lets you see images or videos directly on the chat, instead of links.\n' +
+      let txt =
+          'This option lets you see images or videos directly on the chat, instead of links.\n' +
           'Click on image or double click on video to open in the new tab.\n' +
           'All videos are muted by default, if autoplay - click to unmute, else click to play.\n\n' +
           'This channel supports following types of links (specified as CSS codes):\n' +
@@ -3509,42 +3531,49 @@
 
     {
       const embedimg = $('<label class="checkbox-inline" />').appendTo(embedwrap);
-      cbox =
-          $('<input type="checkbox" id="embed-img" checked>').appendTo(embedimg).on('click', () => {
-            EMBEDIMG = !EMBEDIMG;
-            setOpt(CHANNEL.name + '_embedimg', EMBEDIMG);
-          });
-      cbox.after(' img');
+      const cbox = $('<input type="checkbox" id="embed-img" checked>')
+                       .appendTo(embedimg)
+                       .on('click',
+                           () => {
+                             EMBEDIMG = !EMBEDIMG;
+                             setOpt(CHANNEL.name + '_embedimg', EMBEDIMG);
+                           })
+                       .after(' img');
       if (!EMBEDIMG) {
         cbox.removeAttr('checked');
       }
     }
 
     {
-      embedvid = $('<label class="checkbox-inline" />').appendTo(embedwrap);
-      cbox =
-          $('<input type="checkbox" id="embed-webm" checked>').appendTo(embedvid).on('click', () => {
-            EMBEDVID = !EMBEDVID;
-            setOpt(CHANNEL.name + '_embedvid', EMBEDVID);
-            if (EMBEDVID) {
-              autovid.show();
-            } else {
-              autovid.hide();
-            }
-          });
-      cbox.after(' video');
+      const embedvid = $('<label class="checkbox-inline" />').appendTo(embedwrap);
+      const cbox = $('<input type="checkbox" id="embed-webm" checked>')
+                       .appendTo(embedvid)
+                       .on('click',
+                           () => {
+                             EMBEDVID = !EMBEDVID;
+                             setOpt(CHANNEL.name + '_embedvid', EMBEDVID);
+                             if (EMBEDVID) {
+                               autovid.show();
+                             } else {
+                               autovid.hide();
+                             }
+                           })
+                       .after(' video');
       if (!EMBEDVID) {
         cbox.removeAttr('checked');
       }
 
-      autovid = $('<label class="checkbox-inline" />').appendTo(embedwrap);
-      cbox = $('<input type="checkbox" id="auto-webm" checked>').appendTo(autovid).on('click', () => {
-        AUTOVID = !AUTOVID;
-        setOpt(CHANNEL.name + '_autovid', AUTOVID);
-      });
-      cbox.after(' autoplay');
+      const autovid = $('<label class="checkbox-inline" />').appendTo(embedwrap);
+      const cbox2 = $('<input type="checkbox" id="auto-webm" checked>')
+                        .appendTo(autovid)
+                        .on('click',
+                            () => {
+                              AUTOVID = !AUTOVID;
+                              setOpt(CHANNEL.name + '_autovid', AUTOVID);
+                            })
+                        .after(' autoplay');
       if (!AUTOVID) {
-        cbox.removeAttr('checked');
+        cbox2.removeAttr('checked');
       }
       if (!EMBEDVID) {
         autovid.hide();
@@ -3552,12 +3581,40 @@
     }
   }
 
+  let clearbtn;
+  let voldownbtn;
+  let volupbtn;
+
+  /**
+   * Toggle "/clear" button depending on rank.
+   */
+  function toggleClearBtn() {
+    if (hasPermission('chatclear')) {
+      clearbtn.show();
+    } else {
+      clearbtn.hide();
+    }
+  }
+
+  /**
+   * Toggle YT volume buttons depending on player type.
+   */
+  function toggleVolBtn() {
+    if (PLAYER && PLAYER.type === 'yt') {
+      voldownbtn.show();
+      volupbtn.show();
+    } else {
+      voldownbtn.hide();
+      volupbtn.hide();
+    }
+  }
+
   // adding quick commands and volume buttons
   {
-    funcbtnform = $('<div id="funcbtnform" class="form-group" />').appendTo(configwell);
+    const funcbtnform = $('<div id="funcbtnform" class="form-group" />').appendTo(configwell);
     $('<div class="col-lg-5 col-md-5">Command buttons</div>').appendTo(funcbtnform);
-    funcbtnwrap = $('<div id="funcbtnwrap" class="col-lg-7 col-md-7" />').appendTo(funcbtnform);
-    btnsgroup = $('<div id="funcbtngroup" class="btn-group" />').appendTo(funcbtnwrap);
+    const funcbtnwrap = $('<div id="funcbtnwrap" class="col-lg-7 col-md-7" />').appendTo(funcbtnform);
+    const btnsgroup = $('<div id="funcbtngroup" class="btn-group" />').appendTo(funcbtnwrap);
 
     {
       clearbtn = $('<button id="clear-btn" class="btn btn-default btn-sm">/clear</button>')
@@ -3567,9 +3624,9 @@
                          socket.emit('chatMsg', {msg: '/clear'});
                        }
                      });
-      afkbtn = $('<button id="afk-btn" class="btn btn-default btn-sm">/afk</button>')
-                   .appendTo(btnsgroup)
-                   .on('click', () => socket.emit('chatMsg', {msg: '/afk'}));
+      $('<button id="afk-btn" class="btn btn-default btn-sm">/afk</button>')
+          .appendTo(btnsgroup)
+          .on('click', () => socket.emit('chatMsg', {msg: '/afk'}));
 
       socket.on('rank', toggleClearBtn);
       toggleClearBtn();
@@ -3600,6 +3657,9 @@
   const item_count = [];
   let count_nr = 0;
 
+  let dbwrap;
+  let dbwell;
+
   // adding media database layout
   {
     dbwrap = $('<div id="dbwrap" class="col-lg-12 col-md-12" style="display:none" />')
@@ -3615,7 +3675,7 @@
   }
 
   // adding playlist options for moderators button
-  advplaylist =
+  const advplaylist =
       $('<button id="advplaylist" class="btn btn-sm btn-default" title="Advanced options" />')
           .append('<span class="glyphicon glyphicon-wrench" />')
           .insertBefore('#qlockbtn')
@@ -3623,63 +3683,62 @@
 
   // adding advanced playlist options form
 
-  advplcontrol =
+  const advplcontrol =
       $('<div id="advplcontrol" class="col-lg-12 col-md-12" />').insertAfter('#playlistmanager');
-  advplcontrols =
+  const advplcontrols =
       $('<div id="advplcontrols" class="btn-group" style="display:none" />').appendTo(advplcontrol);
 
   // adding advanced playlist options buttons
 
-  playnextbtn = $('<button id="playnext-btn" class="btn btn-default">Play next</button>')
-                    .appendTo(advplcontrols)
-                    .on('click', () => socket.emit('playNext'));
+  const playnextbtn = $('<button id="playnext-btn" class="btn btn-default">Play next</button>')
+                          .appendTo(advplcontrols)
+                          .on('click', () => socket.emit('playNext'));
 
-  addrandombtn = $('<button id="addrandom-btn" class="btn btn-default">Add random</button>')
-                     .appendTo(advplcontrols)
-                     .on('click', () => addRandomItem());
+  const addrandombtn = $('<button id="addrandom-btn" class="btn btn-default">Add random</button>')
+                           .appendTo(advplcontrols)
+                           .on('click', () => addRandomItem());
 
-  bumplastbtn = $('<button id="bumplast-btn" class="btn btn-default">Bump last</button>')
-                    .appendTo(advplcontrols)
-                    .on('click', () => {
-                      len = $('#queue').children().length;
-                      uid = $(`#queue .queue_entry:nth-child(${len})`).data('uid');
-                      socket.emit('moveMedia', {from: uid, after: PL_CURRENT});
-                    });
+  const bumplastbtn = $('<button id="bumplast-btn" class="btn btn-default">Bump last</button>')
+                          .appendTo(advplcontrols)
+                          .on('click', () => {
+                            len = $('#queue').children().length;
+                            uid = $(`#queue .queue_entry:nth-child(${len})`).data('uid');
+                            socket.emit('moveMedia', {from: uid, after: PL_CURRENT});
+                          });
 
-  deletelastbtn = $('<button id="deletelast-btn" class="btn btn-default">Delete last</button>')
-                      .appendTo(advplcontrols)
-                      .on('click', () => {
-                        if (confirm('Are you sure to delete last item?')) {
-                          len = $('#queue').children().length;
-                          uid = $(`#queue .queue_entry:nth-child(${len})`).data('uid');
-                          socket.emit('delete', uid);
-                        }
-                      });
+  const deletelastbtn = $('<button id="deletelast-btn" class="btn btn-default">Delete last</button>')
+                            .appendTo(advplcontrols)
+                            .on('click', () => {
+                              if (confirm('Are you sure to delete last item?')) {
+                                len = $('#queue').children().length;
+                                uid = $(`#queue .queue_entry:nth-child(${len})`).data('uid');
+                                socket.emit('delete', uid);
+                              }
+                            });
 
   toggleAdvancedPl();
 
   // adding playlist expanding button
-  expandbtn = $('<button id="expand-btn" class="btn btn-sm btn-default" title="Expand playlist" />')
-                  .append('<span class="glyphicon glyphicon-resize-full" />')
-                  .prependTo('#videocontrols')
-                  .on('click', () => expandQueue());
+  const expandbtn =
+      $('<button id="expand-btn" class="btn btn-sm btn-default" title="Expand playlist" />')
+          .append('<span class="glyphicon glyphicon-resize-full" />')
+          .prependTo('#videocontrols')
+          .on('click', () => expandQueue());
 
   // adding playlist scrolling button
-  scrollbtn =
-      $('<button id="scroll-btn" class="btn btn-sm btn-default" title="Scroll playlist to current item" />')
-          .append('<span class="glyphicon glyphicon-hand-right" />')
-          .prependTo('#videocontrols')
-          .on('click', () => scrollQueue());
+  $('<button id="scroll-btn" class="btn btn-sm btn-default" title="Scroll playlist to current item" />')
+      .append('<span class="glyphicon glyphicon-hand-right" />')
+      .prependTo('#videocontrols')
+      .on('click', () => scrollQueue());
 
   // adding contributors button
-  contribbtn =
-      $('<button id="contrib-btn" class="btn btn-sm btn-default" title="Contributors list" />')
-          .append('<span class="glyphicon glyphicon-user" />')
-          .prependTo('#videocontrols')
-          .on('click', () => showContributors());
+  $('<button id="contrib-btn" class="btn btn-sm btn-default" title="Contributors list" />')
+      .append('<span class="glyphicon glyphicon-user" />')
+      .prependTo('#videocontrols')
+      .on('click', () => showContributors());
 
   // adding pin-up button
-  pinupbtn =
+  const pinupbtn =
       $('<button id="pinup-btn" class="btn btn-sm btn-default" title="Pin playlist to player" />')
           .append('<span class="glyphicon glyphicon-pushpin" />')
           .prependTo('#videocontrols')
@@ -3726,10 +3785,12 @@
   })();
 
   // rearranging footer
+  $('.credit').append(
+      '<br />CyTube Plus 4.5 · Copyright &copy; 2013-2014 Zimny Lech, Modified by CyDJ staff · ' +
+      'Free source on <a href="http://github.com/papertek/CyDJ" target="_blank">GitHub</a>');
 
-  html = '<br />CyTube Plus 4.5 · Copyright &copy; 2013-2014 Zimny Lech, Modified by CyDJ staff · ' +
-      'Free source on <a href="http://github.com/papertek/CyDJ" target="_blank">GitHub</a>';
-  $('.credit').append(html);
+  let leftfooter;
+  let onlinetime;
 
   {
     leftfooter = $('<div id="leftfooter" />');
@@ -3937,10 +3998,35 @@
   }
 
   // client-side chat buffer for playing sounds
-  _chatBuffer = addChatMessage;
-  addChatMessage = (data) => {
-    _chatBuffer(data);
-  };
+  // _chatBuffer = addChatMessage;
+  // addChatMessage = (data) => {
+  //   if (UI_SoundFilters && VOICES &&
+  //       (!(data.username in MUTEDVOICES) || MUTEDVOICES[data.username] == '0')) {
+  //     for (i in SoundFilters_Array) {
+  //       if (data.msg.includes(i)) {
+  //         aud = new Audio(SoundFilters_Array[i]);
+  //         aud.volume = SOUNDSVALUES[SOUNDSLVL];
+  //         aud.play();
+  //       }
+  //     }
+  //   }
+  //   if (UI_ChatSpeak && VOICES &&
+  //       (!(data.username in MUTEDVOICES) || MUTEDVOICES[data.username] == '0')) {
+  //     msg = getText(data.msg);
+  //     if (msg.includes('!mow ')) {
+  //       str = msg.split('!mow ');
+  //       aud = new Audio(`${SPEAKLINK}?lang=polish&text=${encodeURI(str[1])}`);
+  //       aud.volume = SOUNDSVALUES[SOUNDSLVL];
+  //       aud.play();
+  //     } else if (msg.includes('!say ')) {
+  //       str = msg.split('!say ');
+  //       aud = new Audio(`${SPEAKLINK}?lang=english&text=${encodeURI(str[1])}`);
+  //       aud.volume = SOUNDSVALUES[SOUNDSLVL];
+  //       aud.play();
+  //     }
+  //   }
+  //   _chatBuffer(data);
+  // };
 
   // fix formatting and sending chat messages
   // DEV NOTE: this are extended events from CyTube "util.js" file
@@ -3954,11 +4040,11 @@
       if (CHATTHROTTLE) {
         return;
       }
-      _msg = $('#chatline').val();
-      msg = $('#chatline').val();
+      const _msg = $('#chatline').val();
+      let msg = $('#chatline').val();
       if (msg.trim()) {
         msg = prepareMessage(msg.trim());
-        meta = {};
+        const meta = {};
         if (COMMAND) {
           socket.emit('chatMsg', {msg: _msg});
           msg = `➥ ${msg}`;
@@ -4012,8 +4098,8 @@
   });
 
   $('#chatbtn').on('click', () => {
-    _msg = $('#chatline').val();
-    msg = $('#chatline').val();
+    const _msg = $('#chatline').val();
+    let msg = $('#chatline').val();
     if (msg.trim()) {
       msg = prepareMessage(msg.trim());
       if (COMMAND) {
@@ -4128,7 +4214,7 @@
     $('#userlist').height(h);
 
     {
-      m = modesel.val();
+      const m = modesel.val();
       // patches for various display modes
       if (m === 'chMode' || m === 'rMode') {
         if (WEBKIT) {
@@ -4333,9 +4419,9 @@
       $('#chatline').val(words.join(' '));
       return;
     }
-    let matches = TabCompletionEmotes.filter((str) => str.toLowerCase().startsWith(current));
-    matches = matches.concat(usersWithCap.filter((str) => str.toLowerCase().startsWith(current))
-                                 .map((str) => words.length === 1 ? str + ':' : str));
+    const matches = TabCompletionEmotes.filter((str) => str.toLowerCase().startsWith(current))
+                        .concat(usersWithCap.filter((str) => str.toLowerCase().startsWith(current))
+                                    .map((str) => words.length === 1 ? str + ':' : str));
     if (matches.length === 0) {
       return;
     }
