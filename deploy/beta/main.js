@@ -3215,7 +3215,7 @@ var cydj = (function (exports) {
   // adding chat commands button
   {
     $('<button id="chathelp-btn" class="btn btn-sm btn-default" title="Show chat commands"/>')
-        .html('<i class="glyphicon glyphicon-question-sign"></i>')
+        .html('<span class="material-icons">help_outline</span>')
         .appendTo(chatcontrols)
         .on('click', () => showChatHelp());
   }
