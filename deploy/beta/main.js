@@ -1802,7 +1802,7 @@ var cydj = (function (exports) {
    * @param {number} a
    */
   function toggleCat(a) {
-    b = a - 1;
+    const b = a - 1;
     if (opening[b] == 0) {
       $('.db-cat').hide();
       for (const i of opening.keys()) {
@@ -2216,7 +2216,7 @@ var cydj = (function (exports) {
         arr['random'] = 'adding random link from database (<i>!random</i>)';
       }
       modalBody.append('<strong>New chat commands</strong><br /><br />');
-      ul = $('<ul />').appendTo(modalBody);
+      const ul = $('<ul />').appendTo(modalBody);
       for (const [cmd, desc] of Object.entries(arr)) {
         ul.append(`<li><code>!${cmd}</code> - ${desc}</li>`);
       }
@@ -2320,14 +2320,15 @@ var cydj = (function (exports) {
   }
 
   let hideplayerbtn;
+  let coverpl;
 
   /**
    * Hide and show player with covering image.
    */
   function coverPlayer() {
     $('#videowrap').addClass('relative');
-    w = $('#ytapiplayer').css('width');
-    h = $('#videowrap').css('height').replace('px', '') - 31;
+    const w = $('#ytapiplayer').css('width');
+    const h = $('#videowrap').css('height').replace('px', '') - 31;
     coverpl = $('<div id="coverpl" />')
                   .css({
                     'width': w,
@@ -3255,7 +3256,7 @@ var cydj = (function (exports) {
   function showContextMenu() {
     createModal('Context Menu');
     {
-      body.append('<strong>Useful links</strong><br /><br />');
+      modalBody.append('<strong>Useful links</strong><br /><br />');
       const html =
           [
             '<a href="https://github.com/papertek/CyDJ/releases" target="_blank">Click here to view latest updates</a>!',
@@ -4910,6 +4911,13 @@ var cydj = (function (exports) {
   document.body.addEventListener('load', resizeStuff, true);
   socket.on('changeMedia', resizeStuff);
   setInterval(() => resizeStuff(), 1000);
+
+  (() => {
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = 'https://fonts.googleapis.com/icon?family=Material+Icons';
+    document.getElementsByTagName('head')[0].appendChild(link);
+  })();
 
   exports.addVideo = addVideo;
   exports.insertText = insertText;
