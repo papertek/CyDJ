@@ -2850,7 +2850,7 @@ var cydj = (function (exports) {
    * Add random item from channel database.
    */
   function addRandomItem() {
-    time = (new Date()).getTime();
+    const time = (new Date()).getTime();
     if ((time - LASTADD) < 120000) {
       alert('You can add random video every 2 minutes.');
     } else {
@@ -3830,8 +3830,8 @@ var cydj = (function (exports) {
   const bumplastbtn = $('<button id="bumplast-btn" class="btn btn-default">Bump last</button>')
                           .appendTo(advplcontrols)
                           .on('click', () => {
-                            len = $('#queue').children().length;
-                            uid = $(`#queue .queue_entry:nth-child(${len})`).data('uid');
+                            const len = $('#queue').children().length;
+                            const uid = $(`#queue .queue_entry:nth-child(${len})`).data('uid');
                             socket.emit('moveMedia', {from: uid, after: PL_CURRENT});
                           });
 
@@ -3839,8 +3839,8 @@ var cydj = (function (exports) {
                             .appendTo(advplcontrols)
                             .on('click', () => {
                               if (confirm('Are you sure to delete last item?')) {
-                                len = $('#queue').children().length;
-                                uid = $(`#queue .queue_entry:nth-child(${len})`).data('uid');
+                                const len = $('#queue').children().length;
+                                const uid = $(`#queue .queue_entry:nth-child(${len})`).data('uid');
                                 socket.emit('delete', uid);
                               }
                             });
