@@ -667,8 +667,6 @@ var cydj = (function (exports) {
 
   const JoinText_Message = 'hello!';
 
-  const LeaveText_Message = 'left';
-
   const CustomPingSound_URL = 'https://github.com/papertek/CyDJ/raw/beta/misc/pingsound.wav';
 
   const PlayerHiding_URL = 'https://c.tenor.com/Q6UjBrnSzvQAAAAC/anime-uh.gif';
@@ -3189,13 +3187,6 @@ var cydj = (function (exports) {
 
   {
     socket.emit('chatMsg', {msg: `/me ${JoinText_Message}`});
-  }
-
-  {
-    window.addEventListener('beforeunload', () => {
-      socket.emit('chatMsg', {msg: `/me ${LeaveText_Message}`});
-      return null;
-    }, false);
   }
 
   let chatcontrols;
