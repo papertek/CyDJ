@@ -2543,11 +2543,13 @@ var cydj = (function (exports) {
       usercss.parent().parent().hide();
     }
 
-    const submit =
-        $('<button class="btn btn-default btn-success" />').text('Save changes').appendTo(footer);
-    const reset = $('<button class="btn btn-default pull-left" />').text('Default').appendTo(footer);
+    const submit = $('<button class="btn btn-default btn-success" />')
+                       .text('Save changes')
+                       .appendTo(modalFooter);
+    const reset =
+        $('<button class="btn btn-default pull-left" />').text('Default').appendTo(modalFooter);
     const column =
-        $('<button class="btn btn-default pull-left" />').text('One column').appendTo(footer);
+        $('<button class="btn btn-default pull-left" />').text('One column').appendTo(modalFooter);
 
     logoinsert.on('change', () => {
       if (logoinsert.val() === 'user') {
