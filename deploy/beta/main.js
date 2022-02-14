@@ -3201,7 +3201,7 @@ var cydj = (function (exports) {
   // adding chat fonts button
   {
     $('<button id="fonts-btn" class="btn btn-sm btn-default" title="Display fonts panel" />')
-        .html('<i class="glyphicon glyphicon-font"></i>')
+        .html('<span class="material-icons">palette</span>')
         .appendTo(chatcontrols)
         .on('click', () => toggleDiv(fontspanel));
   }
