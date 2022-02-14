@@ -3209,7 +3209,8 @@ var cydj = (function (exports) {
   // moving emote button attempt
   {
     $('#emotelistbtn').appendTo(chatcontrols);
-    $('#emotelistbtn').html('<i title="Open emote menu" class="glyphicon glyphicon-picture"></i>');
+    $('#emotelistbtn')
+        .html('<span> title="Open emote menu" <span class="material-icons">face</span>');
   }
 
   // adding chat commands button
