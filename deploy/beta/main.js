@@ -3187,14 +3187,14 @@ var cydj = (function (exports) {
   socket.on('rank', toggleChatFunctions);
   toggleChatFunctions();
 
-  // optional chat joining message
   {
     socket.emit('chatMsg', {msg: `/me ${JoinText_Message}`});
   }
 
-  // optional chat leaving message
   {
-    $(window).unload(() => socket.emit('chatMsg', {msg: `/me ${LeaveText_Message}`}));
+    window.addEventListener('beforeunload', () => {
+      socket.emit('chatMsg', {msg: `/me ${LeaveText_Message}`});
+    }, false);
   }
 
   let chatcontrols;
