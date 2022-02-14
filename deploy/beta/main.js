@@ -1095,7 +1095,12 @@ var cydj = (function (exports) {
   //   return div.textContent || div.innerText;
   // }
 
-  let outer;
+  let modalOuter;
+  let modalDialog;
+  let modalContent;
+  let modalHead;
+  let modalBody;
+  let modalFooter;
 
   /**
    * Create modal window.
@@ -1103,21 +1108,21 @@ var cydj = (function (exports) {
    * @param {string} title
    */
   function createModal(title) {
-    const outer = $('<div class="modal fade" />').appendTo($('body'));
-    const modal1 = $('<div class="modal-dialog" />').appendTo(outer);
-    const modal2 = $('<div class="modal-content" />').appendTo(modal1);
-    const head = $('<div class="modal-header" />').appendTo(modal2);
+    modalOuter = $('<div class="modal fade" />').appendTo($('body'));
+    modalDialog = $('<div class="modal-dialog" />').appendTo(modalOuter);
+    modalContent = $('<div class="modal-content" />').appendTo(modalDialog);
+    modalHead = $('<div class="modal-header" />').appendTo(modalContent);
     $('<button class="close" data-dismiss="modal" aria-hidden="true" />')
         .html('&times;')
-        .appendTo(head);
-    $('<h3 />').text(title).appendTo(head);
-    $('<div class="modal-body" />').appendTo(modal2);
-    $('<div class="modal-footer" />').appendTo(modal2);
-    outer.on('hidden', () => {
+        .appendTo(modalHead);
+    $('<h3 />').text(title).appendTo(modalHead);
+    modalBody = $('<div class="modal-body" />').appendTo(modalContent);
+    modalFooter = $('<div class="modal-footer" />').appendTo(modalContent);
+    modalOuter.on('hidden', () => {
       outer.remove();
       unhidePlayer();
     });
-    outer.modal();
+    modalOuter.modal();
   }
 
   /**
@@ -2161,10 +2166,9 @@ var cydj = (function (exports) {
    */
   function showChatHelp() {
     createModal('Chat Commands');
-    const body = $('body');
 
     {
-      body.append('<strong>Fonts commands</strong><br /><br />');
+      modalBody.append('<strong>Fonts commands</strong><br /><br />');
       const html =
           [
             '<code>[white]</code>, <code>[yellow]</code>, <code>[orange]</code>, <code>[pink]</code>, ' +
@@ -2187,7 +2191,7 @@ var cydj = (function (exports) {
           ].map((line) => `<li>${line}</li>`)
               .join('') +
           'For a quick CyDJ guide check out this Google Doc <a href="https://docs.google.com/document/d/1X2TdR9hc2KK0WEBLjY06CZaY30QyKxsI_7CQ1qbSz0g/edit" target="_blank">here</a>.';
-      $('<ul />').html(html).appendTo(body);
+      $('<ul />').html(html).appendTo(modalBody);
     }
     {
       const arr = {
@@ -2211,8 +2215,8 @@ var cydj = (function (exports) {
       {
         arr['random'] = 'adding random link from database (<i>!random</i>)';
       }
-      body.append('<strong>New chat commands</strong><br /><br />');
-      ul = $('<ul />').appendTo(body);
+      modalBody.append('<strong>New chat commands</strong><br /><br />');
+      ul = $('<ul />').appendTo(modalBody);
       for (const [cmd, desc] of Object.entries(arr)) {
         ul.append(`<li><code>!${cmd}</code> - ${desc}</li>`);
       }
@@ -2223,8 +2227,8 @@ var cydj = (function (exports) {
           'hiding a message in a hover-to-show spoiler box (e.g. <i>/sp This message is hidden</i>)',
       'afk': 'toggling your AFK (away from keyboard) status (<i>/afk</i>)',
     };
-    body.append('<br /><strong>Default CyTube commands</strong><br /><br />');
-    const ul = $('<ul />').appendTo(body);
+    modalBody.append('<br /><strong>Default CyTube commands</strong><br /><br />');
+    const ul = $('<ul />').appendTo(modalBody);
     for (const [cmd, desc] of Object.entries(arr)) {
       ul.append(`<li><code>/${cmd}</code> - ${desc}</li>`);
     }
@@ -2236,7 +2240,7 @@ var cydj = (function (exports) {
   function showModPanel() {
     createModal('Moderators panel');
 
-    html = '';
+    let html = '';
     for (const panel of ModPanel_Array) {
       const name = panel[0];
       const mess = panel[1];
@@ -2394,7 +2398,7 @@ var cydj = (function (exports) {
 
     $('<iframe id="previewFrame" width="558" height="314" frameborder="0" />')
         .attr('src', `https://www.youtube.com/embed/${a}?wmode=transparent&enablejsapi`)
-        .appendTo($('body'));
+        .appendTo(modalBody);
   }
 
   /**
@@ -2441,7 +2445,7 @@ var cydj = (function (exports) {
   function showConfig() {
     createModal('Layout Configuration');
 
-    const form = $('<form class="form-horizontal" />').appendTo($('body'));
+    const form = $('<form class="form-horizontal" />').appendTo(modalBody);
 
     function addOption(txt, elem) {
       const g = $('<div class="form-group" />').appendTo(form);
@@ -2566,7 +2570,7 @@ var cydj = (function (exports) {
     });
 
     submit.on('click', () => {
-      outer.modal('hide');
+      modalOuter.modal('hide');
 
       USERCONFIG.player = playerlocation.val();
       setOpt(CHANNEL.name + '_player', playerlocation.val());
@@ -2623,7 +2627,7 @@ var cydj = (function (exports) {
     });
 
     reset.on('click', () => {
-      outer.modal('hide');
+      modalOuter.modal('hide');
 
       USERCONFIG.player = defplayer;
       setOpt(CHANNEL.name + '_player', defplayer);
@@ -2658,7 +2662,7 @@ var cydj = (function (exports) {
     });
 
     column.on('click', () => {
-      outer.modal('hide');
+      modalOuter.modal('hide');
 
       USERCONFIG.player = 'center';
       setOpt(CHANNEL.name + '_player', 'center');
@@ -2806,7 +2810,7 @@ var cydj = (function (exports) {
                                   .sort((a, b) => b[1] - a[1])
                                   .map(([user, count]) => `${count}: ${user}`);
 
-    body.append(
+    modalBody.append(
         '<strong>Number of added playlist items:</strong>' +
         '<br /><br />' + userContributions.join('<br />'));
   }
@@ -2833,17 +2837,18 @@ var cydj = (function (exports) {
   function getPlaylistURLs() {
     createModal('Playlist URLs');
 
-    const body = $('body');
-    const footer = $('footer');
-
-    const data = $('<textarea rows="10" class="form-control" />').val(formatRawList()).appendTo(body);
-    const rlist = $('<button class="btn btn-default pull-left">Raw Links</button>').appendTo(footer);
-    const tlist = $('<button class="btn btn-default pull-left">Plain Text</button>').appendTo(footer);
-    const hlist = $('<button class="btn btn-default pull-left">HTML Code</button>').appendTo(footer);
+    const data =
+        $('<textarea rows="10" class="form-control" />').val(formatRawList()).appendTo(modalBody);
+    const rlist =
+        $('<button class="btn btn-default pull-left">Raw Links</button>').appendTo(modalFooter);
+    const tlist =
+        $('<button class="btn btn-default pull-left">Plain Text</button>').appendTo(modalFooter);
+    const hlist =
+        $('<button class="btn btn-default pull-left">HTML Code</button>').appendTo(modalFooter);
     const olist =
-        $('<button class="btn btn-default pull-left">Ordered List</button>').appendTo(footer);
+        $('<button class="btn btn-default pull-left">Ordered List</button>').appendTo(modalFooter);
     const dlist =
-        $('<button class="btn btn-default pull-left">Database Format</button>').appendTo(footer);
+        $('<button class="btn btn-default pull-left">Database Format</button>').appendTo(modalFooter);
 
     rlist.on('click', () => data.val(formatRawList()));
     tlist.on('click', () => data.val(formatPlainTextList()));
@@ -3257,7 +3262,7 @@ var cydj = (function (exports) {
             '<a href="https://discord.gg/g8tCGSc2bx" target="_blank">Click here to join the Discord</a>!',
           ].map((item) => `<li>${item}</li>`)
               .join('');
-      $('<ul />').html(html).appendTo(body);
+      $('<ul />').html(html).appendTo(modalBody);
     }
   }
 
