@@ -1899,14 +1899,39 @@
     $('#chanexternalcss').detach().appendTo('head');
     $('#chanexternalcss-fix').remove();
 
-    const cssfix = '#mainpage {padding-top:52px}\n' +
-        '#motdrow, #announcements, #main, #playlistrow {border:solid 2px transparent; margin-bottom:5px}\n' +
-        '#main > div, #playlistrow > div {\n' +
-        '  padding-left:5px; padding-right:5px; margin-top:5px; margin-bottom:5px;\n' +
-        '}\n' +
-        '#motdwrap {margin:5px -10px}\n' +
-        '#announcements .alert {margin:0px -10px 5px}\n' +
-        '#drinkcount {margin:0px}\n';
+    const cssfix = `
+      #mainpage {
+        padding-top: 52px;
+      }
+
+      #motdrow,
+      #announcements,
+      #main,
+      #playlistrow {
+        border: solid 2px transparent;
+        margin-bottom: 5px;
+      }
+
+      #main > div,
+      #playlistrow > div {
+        padding-left: 5px;
+        padding-right: 5px;
+        margin-top: 5px;
+        margin-bottom: 5px;
+      }
+
+      #motdwrap {
+        margin:5px -10px;
+      }
+
+      #announcements .alert {
+        margin:0px -10px 5px;
+      }
+
+      #drinkcount {
+        margin: 0px;
+      }
+    `;
 
     $('head').append(`<style id="chanexternalcss-fix" type="text/css">${cssfix}</style>`);
     $('#usertheme').attr('href', '/css/themes/slate.css');
@@ -1914,7 +1939,7 @@
     if (USERTHEME.includes('/css/themes/')) {
       $('#usertheme').attr('href', USERTHEME);
     } else {
-      $('<link id="usertheme-fix" rel="stylesheet" type="text/css" href="' + USERTHEME + '"></link>')
+      $(`<link id="usertheme-fix" rel="stylesheet" type="text/css" href="${USERTHEME}"></link>`)
           .appendTo('head');
     }
     $('#usercss').remove();
@@ -3835,7 +3860,7 @@
         };
       }
 
-      skip = data.username === last.name;
+      let skip = data.username === last.name;
       if (data.meta.addClass === 'server-whisper') {
         skip = true;
       }
@@ -3855,8 +3880,8 @@
       }
 
       if (USEROPTS.show_timestamps) {
-        time = $('<span class="timestamp" />').appendTo(div);
-        timestamp = new Date(data.time).toTimeString().split(' ')[0];
+        const time = $('<span class="timestamp" />').appendTo(div);
+        const timestamp = new Date(data.time).toTimeString().split(' ')[0];
         time.text(`[${timestamp}] `);
         if (data.meta.addClass && data.meta.addClassToNameAndTimestamp) {
           time.addClass(data.meta.addClass);
@@ -3870,11 +3895,11 @@
         }
       }
 
-      uname = $('<span />');
+      const uname = $('<span />');
       if (!skip) {
         uname.appendTo(div);
       }
-      mark = ':';
+      const mark = ':';
       $('<strong class="username" />').text(data.username + mark + ' ').appendTo(uname);
 
       if (data.meta.modflair) {
@@ -3888,7 +3913,7 @@
         $('<span class="glyphicon" />').addClass(data.meta.superadminflair.icon).prependTo(uname);
       }
 
-      message = $('<span />').appendTo(div);
+      const message = $('<span />').appendTo(div);
       message[0].innerHTML = data.msg;
 
       if (data.meta.addClass == 'greentext') {
@@ -3910,20 +3935,19 @@
       }
 
       {
-        _div = div.html();
+        let _div = div.html();
         for (const emote of IndependentEmotes) {
-          filter = emote[0];
-          html = `<img src="${emote[1]}" title="${filter}" ` +
+          const filter = emote[0];
+          const html = `<img src="${emote[1]}" title="${filter}" ` +
               `style="width:${emote[2]}px; ` +
               `height:${emote[3]}px; cursor:pointer" ` +
               `onclick="insertText('${filter}')" />`;
-          re = new RegExp(filter, 'g');
-          _div = _div.replace(re, html);
+          _div = _div.replace(new RegExp(filter, 'g'), html);
         }
         div.html(_div);
       }
       {
-        _div = div.html();
+        let _div = div.html();
         for (const filt of IndependentFilters) {
           _div = _div.replace(filt.before, filt.after);
         }
