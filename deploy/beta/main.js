@@ -1,4 +1,4 @@
-var cydj = (function (exports) {
+var cydj = (function (exports, fontawesomeSvgCore, freeSolidSvgIcons) {
   'use strict';
 
   class Badge {
@@ -624,6 +624,10 @@ var cydj = (function (exports) {
   IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
   CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
   */
+
+  fontawesomeSvgCore.library.add(freeSolidSvgIcons.faCamera);
+
+  const camera = fontawesomeSvgCore.icon({prefix: 'fas', iconName: 'camera'});
   // [&] box with embed additional media database
   const UI_ChannelDatabase = true;
   // [&] possibility to embedding (displaying) images and .webm videos on the chat
@@ -3201,7 +3205,8 @@ var cydj = (function (exports) {
   // adding chat fonts button
   {
     $('<button id="fonts-btn" class="btn btn-sm btn-default" title="Display fonts panel" />')
-        .html('<span class="material-icons">text_format</span>')
+        // .html('<span class="material-icons">text_format</span>')
+        .html('<i class="fa-solid fa-font">text_format</i>')
         .appendTo(chatcontrols)
         .on('click', () => toggleDiv(fontspanel));
   }
@@ -4914,6 +4919,7 @@ var cydj = (function (exports) {
   // john was here
 
   exports.addVideo = addVideo;
+  exports.camera = camera;
   exports.insertText = insertText;
   exports.prevVideo = prevVideo;
   exports.toggleCat = toggleCat;
@@ -4922,4 +4928,4 @@ var cydj = (function (exports) {
 
   return exports;
 
-})({});
+})({}, fontawesomeSvgCore, freeSolidSvgIcons);
