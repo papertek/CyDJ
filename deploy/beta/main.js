@@ -4894,7 +4894,7 @@ var cydj = (function (exports) {
       $('.queue_entry').css('background-color', '#293d36bd');
       $('.dropdown-menu').css('background-color', '#383E40');
       $('.btn-default').css('background-image', 'linear-gradient(#3a3f44,#3a3f44 60%,#313539)');
-      $('#motd').css('background-color', '#293d36bd');
+      $('#motd').css('background-color', '#fff0');
       $('#motdwrap').css('background-color', '#293d36bd');
       $('#userlist').css('background-color', '#272b30');
     } else {
