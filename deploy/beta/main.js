@@ -4895,6 +4895,7 @@ var cydj = (function (exports) {
       $('.dropdown-menu').css('background-color', '#383E40');
       $('.btn-default').css('background-image', 'linear-gradient(#4c333e00,#4c333e00 60%,#4c333e00)');
       $('.btn-default').css('border-color', '#4cb290');
+      $('.btn-default').css('border-color', '#3a3f4400');
       $('.btn-default:hover').css('background-color', '#4cb290');
       $('#motd').css('background-color', '#fff0');
       $('#motdwrap').css('background-color', '#293d36bd');
@@ -4904,6 +4905,7 @@ var cydj = (function (exports) {
       $('.queue_entry').css('background-color', '');
       $('.dropdown-menu').css('background-color', '');
       $('.btn-default').css('background-image', '');
+      $('.btn-default').css('border-color', '');
       $('.btn-default').css('border-color', '');
       $('.btn-default:hover').css('background-color', '');
       $('#motd').css('background-color', '');
