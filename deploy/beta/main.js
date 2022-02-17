@@ -4564,18 +4564,18 @@ var cydj = (function (exports) {
     $('#chatline').val($('#chatline').val() + str).focus();
   }
 
-  let muteplayerbtn;
+  // let muteplayerbtn;
 
   /**
    * Toggle YT mute button.
    */
-  function toggleMuteBtn() {
+  /* function toggleMuteBtn() {
     if (PLAYER && PLAYER.type === 'yt') {
       muteplayerbtn.show();
     } else {
       muteplayerbtn.hide();
     }
-  }
+  }*/
 
   let modbtn;
 
@@ -4584,9 +4584,9 @@ var cydj = (function (exports) {
    */
   function toggleModPanel() {
     if (CLIENT.rank < 2) {
-      modbtn.hide();
+      modbtn.remove();
     } else {
-      modbtn.show();
+      modbtn.add();
     }
   }
 
@@ -6262,7 +6262,7 @@ var cydj = (function (exports) {
               }
             });
 
-    muteplayerbtn =
+    /* muteplayerbtn =
         $('<button id="muteplayer-btn" class="btn btn-sm btn-default" title="Mute player" />')
             .append('<span class="glyphicon glyphicon-volume-off" />')
             .appendTo('#playercontrols')
@@ -6274,7 +6274,7 @@ var cydj = (function (exports) {
                 $(this).addClass('btn-danger').attr('title', 'Unmute player');
                 mutePlayer();
               }
-            });
+            });*/
 
     socket.on('changeMedia', toggleMuteBtn);
     toggleMuteBtn();
