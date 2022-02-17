@@ -6274,10 +6274,10 @@ var cydj = (function (exports) {
                 $(this).addClass('btn-danger').attr('title', 'Unmute player');
                 mutePlayer();
               }
-            });*/
+            });
 
     socket.on('changeMedia', toggleMuteBtn);
-    toggleMuteBtn();
+    toggleMuteBtn();*/
   }
 
   // creating fonts and emotes main row
