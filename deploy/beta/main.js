@@ -4905,7 +4905,7 @@ var cydj = (function (exports) {
       $('.dropdown-menu').css('background-color', '');
       $('.btn-default').css('background-image', '');
       $('.btn-default').css('border-color', '');
-      $('.btn-default:hover').css('background-color', '#4cb290');
+      $('.btn-default:hover').css('background-color', '');
       $('#motd').css('background-color', '');
       $('#motdwrap').css('background-color', '');
       $('#userlist').css('background-color', '');
