@@ -4891,6 +4891,8 @@ var cydj = (function (exports) {
     messageBuffer.classList.remove(oldThemeType);
     if (USERTHEME === '/css/themes/slate.css') {
       $('body').css('background-color', '#141414');
+      $('a').css('color', '#94d1bd');
+      $('a:hover, a:focus').css('color', '#b8e0d3');
       $('.queue_entry').css('background-color', '#293d36bd');
       $('.dropdown-menu').css('background-color', '#383E40');
       $('.btn').css({'background-image': 'linear-gradient(#4c333e00,#4c333e00 60%,#4c333e00)!important', 'border-color': '#4cb290!important', 'border-color': '#3a3f4400!important'});
@@ -4900,6 +4902,8 @@ var cydj = (function (exports) {
       $('#userlist').css('background-color', '#222a27');
     } else {
       $('body').css('background-color', '');
+      $('a').css('color', '');
+      $('a:hover, a:focus').css('color', '');
       $('.queue_entry').css('background-color', '');
       $('.dropdown-menu').css('background-color', '');
       $('.btn').css({'background-image': '', 'border-color': '', 'border-color': ''});
