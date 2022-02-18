@@ -6142,7 +6142,7 @@ var cydj = (function (exports) {
 
   // adding easter egg button
   {
-    $('<button id="party-btn" class="btn btn-sm btn-default" title="Party!" />')
+    $('<button id="party-btn" class="btn btn-sm btn-default" title="Party! DO NOT USE IF YOU ARE SUBJECT TO EPILEPSY!!!" />')
         .text('Party!')
         .appendTo(chatcontrols)
         .on('click', () => showDrop());
