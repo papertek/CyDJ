@@ -6041,7 +6041,7 @@ var cydj = (function (exports) {
   // public skipping from ui
   {
     $('#voteskip').on('click', function() {
-      socket.emit('voteskip');
+   //   socket.emit('voteskip');
       socket.emit('chatMsg', {msg: '[red]Meh..[/] ResidentSleeper'});
       $('#voteskip').attr('disabled', true);
       naySound();
