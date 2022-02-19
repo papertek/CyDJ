@@ -2858,7 +2858,7 @@ var cydj = (function (exports) {
     mixoutsTo: api
   });
   api.noAuto;
-  api.config;
+  var config$1 = api.config;
   var library$1 = api.library;
   api.dom;
   api.parse;
@@ -3507,6 +3507,7 @@ var cydj = (function (exports) {
   library$1.add(faCamera);
 
   const camera = icon({prefix: 'fas', iconName: 'camera'});
+  config$1.autoA11y = true;
   // [&] box with embed additional media database
   const UI_ChannelDatabase = true;
   // [&] possibility to embedding (displaying) images and .webm videos on the chat
