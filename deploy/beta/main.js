@@ -3711,7 +3711,8 @@ var cydj = (function (exports) {
     ],
     [
       'Black Cat',
-      'https://papertek.github.io/CyDJ/deploy/beta/css/blackcat.css',
+      'https:///dl.dropboxusercontent.com/s/09m0wr1rsmyo39e/BlackCat.css',
+      // 'https://papertek.github.io/CyDJ/deploy/beta/css/blackcat.css',
     ],
     [
       'U.U.F.O',
