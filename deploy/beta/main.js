@@ -4961,7 +4961,6 @@ var cydj = (function (exports) {
       if (document.getElementById('green-update') === undefined) {
         const style = document.createElement('style');
         style.id = 'green-update';
-        style.type = 'text/css';
         style.textContent = greencss;
         document.getElementsByTagName('head')[0].appendChild(style);
       }
