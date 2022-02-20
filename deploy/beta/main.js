@@ -4735,7 +4735,7 @@ var cydj = (function (exports) {
   function formatRawList() {
     const len = $('#queue .queue_entry').length + 1;
     const list = [];
-    for (i = 1; i < len; i++) {
+    for (let i = 1; i < len; i++) {
       const item = $(`#queue .queue_entry:nth-child(${i})`).data('media');
       list.push(formatURL(item));
     }
@@ -4745,7 +4745,7 @@ var cydj = (function (exports) {
   function formatPlainTextList() {
     const len = $('#queue .queue_entry').length + 1;
     const list = [];
-    for (i = 1; i < len; i++) {
+    for (let i = 1; i < len; i++) {
       const item = $(`#queue .queue_entry:nth-child(${i})`).data('media');
       list.push(`${i}. ${formatURL(item)} // ${item.title} [${item.duration}]`);
     }
@@ -4755,7 +4755,7 @@ var cydj = (function (exports) {
   function formatHTMLList() {
     const len = $('#queue .queue_entry').length + 1;
     const list = [];
-    for (i = 1; i < len; i++) {
+    for (let i = 1; i < len; i++) {
       const item = $(`#queue .queue_entry:nth-child(${i})`).data('media');
       const {title, duration} = item;
       const link = formatURL(item);
@@ -4769,7 +4769,7 @@ var cydj = (function (exports) {
   function formatOrderedList() {
     const len = $('#queue .queue_entry').length + 1;
     const list = [];
-    for (i = 1; i < len; i++) {
+    for (let i = 1; i < len; i++) {
       const item = $(`#queue .queue_entry:nth-child(${i})`).data('media');
       const link = formatURL(item);
       list.push(`${item.title} ■■ ${link} ■■ [${item.duration}]`);
@@ -4781,7 +4781,7 @@ var cydj = (function (exports) {
   function formatDBList() {
     const len = $('#queue .queue_entry').length + 1;
     const list = [];
-    for (i = 1; i < len; i++) {
+    for (let i = 1; i < len; i++) {
       const item = $(`#queue .queue_entry:nth-child(${i})`).data('media');
       const re1 = new RegExp('\\\\', 'g');
       const re2 = new RegExp('\'', 'g');
