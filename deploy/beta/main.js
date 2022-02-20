@@ -4957,7 +4957,7 @@ var cydj = (function (exports) {
     const messageBuffer = document.getElementById('messagebuffer');
     messageBuffer.classList.add(newThemeType);
     messageBuffer.classList.remove(oldThemeType);
-    if (USERTHEME === '/css/themes/slate.css') {
+    if (document.getElementById('usertheme').getAttribute('href') === '/css/themes/slate.css') {
       if (document.getElementById('green-update') === undefined) {
         const style = document.createElement('style');
         style.id = 'green-update';
