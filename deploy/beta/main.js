@@ -4901,7 +4901,7 @@ var cydj = (function (exports) {
       $('.qe_title').css('color', '#ff66ab!important');
       $('.queue_entry').css('background-color', '#293d36bd');
       $('.dropdown-menu').css('background-color', '#383E40');
-      $('.btn').css({'background-image': 'linear-gradient(#4c333e00,#4c333e00 60%,#4c333e00)!important', 'border-color': '#4cb290!important', 'border-color': '#3a3f4400!important'});
+  //    $('.btn').css({'background-image': 'linear-gradient(#4c333e00,#4c333e00 60%,#4c333e00)!important', 'border-color': '#4cb290!important', 'border-color': '#3a3f4400!important'});
       $('.btn-default:hover').css('background-color', '#4cb290');
       $('.modal-body').css('background-color', '#293d36');
       $('.modal-header').css('background-color', '#293d36');
@@ -4917,7 +4917,7 @@ var cydj = (function (exports) {
       $('.qe_title').css('color', '');
       $('.queue_entry').css('background-color', '');
       $('.dropdown-menu').css('background-color', '');
-      $('.btn').css({'background-image': '', 'border-color': '', 'border-color': ''});
+   //   $('.btn').css({'background-image': '', 'border-color': '', 'border-color': ''});
       $('.btn-default:hover').css('background-color', '');
       $('.modal-body').css('background-color', '');
       $('.modal-header').css('background-color', '');
@@ -7795,6 +7795,7 @@ var cydj = (function (exports) {
   socket.on('changeMedia', fixRawVideoControls);
   socket.on('mediaUpdate', fixRawVideoControls);
 
+  // resize stuff loop
   document.body.addEventListener('load', resizeStuff, true);
   socket.on('changeMedia', resizeStuff);
   setInterval(() => resizeStuff(), 1000);
