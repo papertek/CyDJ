@@ -3537,7 +3537,7 @@ var cydj = (function (exports) {
 
   const ChannelName_Caption = 'CyDJ';
 
-  const Version_Now = 'CyDJPre2.16.21.0';
+  const Version_Now = 'CyDJPre2.20.21.0';
 
   const HeaderDropMenu_Title = 'Information';
 
@@ -6106,7 +6106,8 @@ var cydj = (function (exports) {
   {
     $('<button id="fonts-btn" class="btn btn-sm btn-default" title="Display fonts panel" />')
         // .html('<span class="material-icons">text_format</span>')
-        .html('<i class="fa-solid fa-font"></i>')
+        // .html('<i class="fa-solid fa-font"></i>')
+        .html('<i class="glyphicon glyphicon-font"></i>')
         .appendTo(chatcontrols)
         .on('click', () => toggleDiv(fontspanel));
   }
