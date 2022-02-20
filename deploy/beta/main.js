@@ -7800,9 +7800,6 @@ var cydj = (function (exports) {
   socket.on('changeMedia', resizeStuff);
   setInterval(() => resizeStuff(), 1000);
 
-  // css fix?
-  document.body.addEventListener('load', setUserCSS, true);
-
   (() => {
     const head = document.getElementsByTagName('head')[0];
 
