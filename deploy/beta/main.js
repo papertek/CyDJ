@@ -4965,7 +4965,7 @@ var cydj = (function (exports) {
         document.getElementsByTagName('head')[0].appendChild(style);
       }
     } else {
-      if (document.getElementById('green-update') === undefined) {
+      if (document.getElementById('green-update') !== undefined) {
         document.getElementById('green-update').remove();
       }
     }
