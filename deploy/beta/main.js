@@ -6106,7 +6106,8 @@ var cydj = (function (exports) {
   {
     $('<button id="fonts-btn" class="btn btn-sm btn-default" title="Display fonts panel" />')
         // .html('<span class="material-icons">text_format</span>')
-        .html('<i class="fa-solid fa-font"></i>')
+        // .html('<i class="fa-solid fa-font"></i>')
+        .html('<i class="glyphicon glyphicon-font"></i>')
         .appendTo(chatcontrols)
         .on('click', () => toggleDiv(fontspanel));
   }
@@ -6115,13 +6116,15 @@ var cydj = (function (exports) {
   {
     $('#emotelistbtn').appendTo(chatcontrols);
     $('#emotelistbtn')
-        .html('<i title="Open emote menu"</i> <span class="material-icons">face</span>');
+        .html('<i title="Open emote menu" class="glyphicon glyphicon-picture"></i>');
+  //      .html('<i title="Open emote menu"</i> <span class="material-icons">face</span>');
   }
 
   // adding chat commands button
   {
     $('<button id="chathelp-btn" class="btn btn-sm btn-default" title="Show chat commands"/>')
-        .html('<span class="material-icons">help_outline</span>')
+  //      .html('<span class="material-icons">help_outline</span>')
+        .html('<i class="glyphicon glyphicon-question-sign"></i>')
         .appendTo(chatcontrols)
         .on('click', () => showChatHelp());
   }
