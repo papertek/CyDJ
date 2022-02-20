@@ -3707,8 +3707,7 @@ var cydj = (function (exports) {
     ],
     [
       'Spring',
-  //    'https://papertek.github.io/CyDJ/deploy/beta/css/spring.css',
-        'https://dl.dropboxusercontent.com/s/dntv1rzmvarbull/Spring.css',
+      'https://papertek.github.io/CyDJ/deploy/beta/css/spring.css',
     ],
     [
       'Black Cat',
