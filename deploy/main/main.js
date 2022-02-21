@@ -3117,7 +3117,7 @@ var cydj = (function (exports) {
       Xqc.BITS_100,
       'https://cdn.discordapp.com/attachments/719709749423112284/917509143353507912/1xend.gif',
     ],
-    'MrNite': [
+    'MrNiTe': [
       Xqc.SUB_9_MONTHS_T1,
     ],
     'l_charles_l': [
