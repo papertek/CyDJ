@@ -3973,8 +3973,8 @@ var cydj = (function (exports) {
    * Refresh player.
    */
   function refreshPlayer() {
-    PLAYER.mediaType = '';
-    PLAYER.mediaId = '';
+    //  PLAYER.type = '';
+    //  PLAYER.id = '';
     socket.emit('playerReady');
   }
 
