@@ -3562,7 +3562,7 @@ var cydj = (function (exports) {
 
   const ChannelName_Caption = 'CyDJ';
 
-  const Version_Now = 'CyDJPre2.20.21.0';
+  const Version_Now = 'CyDJPre2.25.21.0';
 
   const HeaderDropMenu_Title = 'Information';
 
@@ -3973,8 +3973,8 @@ var cydj = (function (exports) {
    * Refresh player.
    */
   function refreshPlayer() {
-    PLAYER.type = '';
-    PLAYER.id = '';
+    //  PLAYER.type = '';
+    //  PLAYER.id = '';
     socket.emit('playerReady');
   }
 
