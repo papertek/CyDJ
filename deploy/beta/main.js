@@ -4993,8 +4993,10 @@ var cydj = (function (exports) {
     } else {
       if (document.getElementById('green-update') !== undefined) {
         document.getElementById('green-update').remove();
-        setUserCSS();
       }
+    }
+    if (document.getElementById('usertheme').getAttribute('href') !== '/css/themes/slate.css') {
+      setUserCSS();
     }
   }
 
