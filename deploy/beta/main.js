@@ -6231,9 +6231,9 @@ var cydj = (function (exports) {
     {
       modalBody.append('<strong>wowwww</strong><br /><br />');
       $('button class="btn btn-default btn-success" />')
-          .text('resizeStuff();')
+          .text('setUserCSS();')
           .appendTo(modalBody)
-          .on('click');
+          .on('click', () => setUserCSS());
     }
   }
 
