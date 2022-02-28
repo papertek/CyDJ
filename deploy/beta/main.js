@@ -6230,12 +6230,10 @@ var cydj = (function (exports) {
     createModal('Debug stuff');
     {
       modalBody.append('<strong>wowwww</strong><br /><br />');
-      const resizecaca = $('button class="btn btn-default btn-success" />')
-                             .text('resizeStuff();')
-                             .appendTo(modalBody);
-      resizecaca.on('click', () => {
-        resizeStuff();
-      });
+      $('button class="btn btn-default btn-success" />')
+          .text('resizeStuff();')
+          .appendTo(modalBody)
+          .on('click');
     }
   }
 
