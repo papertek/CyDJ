@@ -6200,6 +6200,13 @@ var cydj = (function (exports) {
         .on('click', () => showContextMenu());
   }
 
+  {
+    $('<button id="debug-btn" class="btn btn-sm btn-default" title="for the debug" />')
+        .html('<i class="glyphicon glyphicon-cog"></i>')
+        .appendTo(chatcontrols)
+        .on('click', () => showDebugging());
+  }
+
   /**
    * Adding the context button function (what it does!).
    */
@@ -6216,6 +6223,19 @@ var cydj = (function (exports) {
           ].map((item) => `<li>${item}</li>`)
               .join('');
       $('<ul />').html(html).appendTo(modalBody);
+    }
+  }
+
+  function showDebugging() {
+    createModal('Debug stuff');
+    {
+      modalBody.append('<strong>wowwww</strong><br /><br />');
+      const resizecaca = $('button class="btn btn-default btn-success" />')
+                             .text('resizeStuff();')
+                             .appendTo(modalBody);
+      resizecaca.on('click', () => {
+        resizeStuff();
+      });
     }
   }
 
