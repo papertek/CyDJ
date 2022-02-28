@@ -4995,9 +4995,6 @@ var cydj = (function (exports) {
         document.getElementById('green-update').remove();
       }
     }
-    if (document.getElementById('usertheme').getAttribute('href') !== '/css/themes/slate.css') {
-      setUserCSS();
-    }
   }
 
   // /////////////////////////////////////////////////////////////////////////////////////////////////
