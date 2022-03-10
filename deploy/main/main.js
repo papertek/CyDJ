@@ -3562,7 +3562,7 @@ var cydj = (function (exports) {
 
   const ChannelName_Caption = 'CyDJ';
 
-  const Version_Now = 'CyDJPre2.25.21.0';
+  const Version_Now = 'CyDJPre3.9.21.0';
 
   const HeaderDropMenu_Title = 'Information';
 
@@ -4991,7 +4991,7 @@ var cydj = (function (exports) {
         document.getElementsByTagName('head')[0].appendChild(style);
       }
     } else {
-      if (document.getElementById('green-update') !== undefined) {
+      if (document.getElementById('green-update')) {
         document.getElementById('green-update').remove();
       }
     }
@@ -7318,7 +7318,7 @@ var cydj = (function (exports) {
   // finishing variable
   LOADED = true;
 
-  // Google Analytics code
+  // Google Analytics code for Main Room ONLY
   (function(i, s, o, g, r, a, m) {
   i['GoogleAnalyticsObject'] = r;
   i[r] = i[r] || function() {
@@ -7330,7 +7330,7 @@ var cydj = (function (exports) {
   a.src = g;
   m.parentNode.insertBefore(a, m);
   })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-  ga('create', 'UA-53755606-1', 'auto');
+  ga('create', 'G-GGK9WFE72W', 'auto');
   ga('send', 'pageview');
 
   /* ----- END OF LIBRARY ----- */
