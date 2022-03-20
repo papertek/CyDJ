@@ -2889,6 +2889,11 @@ var cydj = (function (exports) {
         'https://cdn.discordapp.com/attachments/915656975696687124/916116916702158948/OWL.png';
   }
 
+  class VIP {
+    static VIPBADGE =
+        'https://cdn.discordapp.com/attachments/915656975696687124/916100799233425548/VIP.png';
+  }
+
   class Xqc {
     static SUB_0_MONTHS_T1 =
         'https://cdn.discordapp.com/attachments/915656975696687124/916022295254937652/0-Month_Subscriber.png';
@@ -3011,6 +3016,7 @@ var cydj = (function (exports) {
     'JohnRG123': [
       'https://media.discordapp.net/attachments/915490680468561990/915492628508868648/die.png',
       'https://cdn.discordapp.com/attachments/899888900611375184/901313787951480862/small.png',
+      VIP.VIPBADGE,
     ],
     'mrfart2323': [
       Xqc.SUB_12_MONTHS_T1,
