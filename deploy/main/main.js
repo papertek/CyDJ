@@ -3076,7 +3076,7 @@ var cydj = (function (exports) {
       'https://cdn.discordapp.com/attachments/915650094697693184/931998299181949029/ezgif.com-gif-maker_1.gif',
     ],
     'notjuham': [
-      Xqc.SUB_30_MONTHS_T1,
+      Xqc.SUB_36_MONTHS_T1,
       'https://cdn.discordapp.com/attachments/891695154333884447/922151274303070229/notjuham1818.png',
     ],
     'Pugnator': [
@@ -3121,7 +3121,7 @@ var cydj = (function (exports) {
       Xqc.SUB_9_MONTHS_T1,
     ],
     'l_charles_l': [
-      Xqc.SUB_6_MONTHS_T1,
+      Xqc.SUB_9_MONTHS_T1,
     ],
     'Enzo_SuperCraftZ': [
       Xqc.SUB_12_MONTHS_T1,
@@ -3132,6 +3132,7 @@ var cydj = (function (exports) {
     ],
     'LEBB': [
       Xqc.SUB_12_MONTHS_T1,
+      'https://cdn.discordapp.com/attachments/915650094697693184/954252288539627520/POKIBRUH.gif',
     ],
     'feelssunnyman': [
       Xqc.SUB_9_MONTHS_T3,
@@ -3139,6 +3140,7 @@ var cydj = (function (exports) {
     ],
     'T_Nizzy': [
       Xqc.SUB_6_MONTHS_T1,
+      'https://cdn.discordapp.com/attachments/905159869626187817/945147116337106964/35235235.gif',
     ],
     'Getronix': [
       Xqc.SUB_12_MONTHS_T1,
@@ -3275,6 +3277,18 @@ var cydj = (function (exports) {
     'Coconut19': [
       Xqc.SUB_12_MONTHS_T1,
     ],
+    'FaZeFaDaZe': [
+      Xqc.SUB_0_MONTHS_T1,
+    ],
+    'migboss': [
+      Xqc.SUB_6_MONTHS_T1,
+    ],
+    'Lango': [
+      Xqc.SUB_24_MONTHS_T1,
+    ],
+    'ItMePeachy': [
+      Xqc.SUB_3_MONTHS_T1,
+    ],
   };
 
   const CHANNEL_DATABASE = [
@@ -3405,6 +3419,41 @@ var cydj = (function (exports) {
     [
       'https://www.youtube.com/watch?v=X21dsemjoRA',
       'Camellia - Clouds in the Blue',
+    ],
+    ['', 'Final Community Choice'],
+    [
+      'https://www.youtube.com/watch?v=XbGs_qK2PQA',
+      'Eminem - Rap God (Explicit)',
+    ],
+    ['https://www.youtube.com/watch?v=r_0JjYUe5jo', 'Eminem - Godzilla ft. Juice WRLD'],
+    ['https://www.youtube.com/watch?v=iRNoQqsEKDo', 'Sheck Wes - Mo Bamba'],
+    [
+      'https://www.youtube.com/watch?v=AC979eEzzUE',
+      'Mario Judah - I Miss the Rage',
+    ],
+    ['https://www.youtube.com/watch?v=tGYvIELGlbA', 'Rad Museum - Off-Line (feat. DEAN, LeeHi)'],
+    [
+      'https://www.youtube.com/watch?v=A67ZkAd1wmI',
+      'Caramella Girls - Caramelldansen (English Version)',
+    ],
+    ['https://www.youtube.com/watch?v=zmDNp_4MYTQ', 'Claptone - Zero'],
+    ['https://www.youtube.com/watch?v=ctxgzPGIXCo', 'Riton, Kah-Lo - Ginger'],
+    [
+      'https://www.youtube.com/watch?v=45GIr91MZ7s',
+      'Physika - World Unknown (Extended Mix)',
+    ],
+    [
+      'https://www.youtube.com/watch?v=v-FLIwQQ_Fk',
+      'DJ Fresh - Gold Dust (Fox Stevenson Remix)',
+    ],
+    [
+      'https://www.youtube.com/watch?v=1y2wUv8R-0M',
+      'Gawr Gura - REFLECT (Assertive Hardcore Bootleg)',
+    ],
+    ['https://www.youtube.com/watch?v=6jo68G_C16s', 'Kizuna Ai - Sky High (Mtell Hardcore Bootleg)'],
+    [
+      'https://www.youtube.com/watch?v=Gif0FoEyPBI',
+      'Akari Nanawo - Higher\'s High (Mtell Hardcore Bootleg)',
     ],
     ['', 'HYPER DANKS XQCTECHNO'],
     [
@@ -3562,7 +3611,7 @@ var cydj = (function (exports) {
 
   const ChannelName_Caption = 'CyDJ';
 
-  const Version_Now = 'CyDJPre3.9.21.0';
+  const Version_Now = 'CyDJPre3.19.21.0';
 
   const HeaderDropMenu_Title = 'Information';
 
@@ -3705,10 +3754,10 @@ var cydj = (function (exports) {
       '<ol><li>You want to write on the chat? Enter temporary nickname into <b>Guest Login</b> input and click enter.</li><li>You want to register a nick? Click <b>Account -> Profile</b> on the top of the channel, and fill the registration form. You don\'t need an email to register.</li><li>Troll skipping = immediate kick.</li><li>Don\'t be annoying.</li><li>Do not one man spam.</li><li>Do not encourage chat wars or harass/target people.</li><li>Queueing blatant NSFW videos such as porn/hentai/gore is strictly not allowed, doing so will result in an ip ban.</li><li>Queuing the same video but in different link variants is not allowed.</li><li>Mods have the right to skip a video if its overplayed.</li><li><b>These rules are subject to common sense.</b></li></ol>';
 
   const ChannelAnnouncement_HTML =
-      'Welcome chatters to CyDJ! We are finally getting close to the real deal! But this is only a pre-release, many enhancements and bug fixes are to be resolved. The main agenda are new fonts, updated logo, and code cleanup.';
+      'Welcome chatters to CyDJ! We are finally getting close to the real deal! But this is only a pre-release. Most bugs are expected to be resolved before releasing 1.0, please report any bugs on GitHub.';
 
   const EmbeddingMedia_Images =
-      'a[href$=".jpg"], a[href$=".jpg:large"], a[href$=".jpeg"], a[href$=".JPG"], a[href$=".png"], a[href$=".tiff"], a[href$=".gif"]';
+      'a[href$=".jpg"], a[href$=".jpg:large"], a[href$=".jpeg"], a[href$=".JPG"], a[href$=".png"] ,a[href$=".PNG"], a[href$=".tiff"], a[href$=".gif"]';
 
   const EmbeddingMedia_Videos =
       'a[href$=".webm"], a[href$=".mp4"], a[href$=".MP4"], a[href$=".mov"], a[href$=".MOV"], a[href$=".mp3"], a[href$=".MP3"], a[href$=".wav"], a[href$=".WAV"], a[href$=".ogg"], a[href$=".OGG"], a[href$=".m4a"], a[href$=".M4A"]';
@@ -7362,6 +7411,7 @@ var cydj = (function (exports) {
   let CHAT_INIT = false;
   if (!CHAT_INIT) {
     CHAT_INIT = true;
+
     socket.on('chatMsg', (obj) => {
       const mb = document.getElementById('messagebuffer');
       if (mb && mb.lastChild && $(mb.lastChild).attr('class').startsWith('chat-msg-') &&
