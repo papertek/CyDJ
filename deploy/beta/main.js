@@ -2888,10 +2888,10 @@ var cydj = (function (exports) {
     static OWL =
         'https://cdn.discordapp.com/attachments/915656975696687124/916116916702158948/OWL.png';
   }
-
+  // pls note this is placeholder
   class VIP {
     static VIPBADGE =
-        'https://cdn.discordapp.com/attachments/915656975696687124/916100799233425548/VIP.png';
+        'https://cdn.discordapp.com/attachments/679270173567614987/922352061356572682/1x_4.gif';
   }
 
   class Xqc {
@@ -3294,10 +3294,11 @@ var cydj = (function (exports) {
     ],
     'ItMePeachy': [
       Xqc.SUB_3_MONTHS_T1,
-    ],  
+    ],
     'deblankyy': [
       Xqc.SUB_9_MONTHS_T1,
-      'https://cdn.discordapp.com/attachments/917119248428597278/955164791272513646/555555.png',]
+      'https://cdn.discordapp.com/attachments/917119248428597278/955164791272513646/555555.png',
+    ],
   };
 
   const CHANNEL_DATABASE = [
