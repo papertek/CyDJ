@@ -3294,7 +3294,10 @@ var cydj = (function (exports) {
     ],
     'ItMePeachy': [
       Xqc.SUB_3_MONTHS_T1,
-    ],
+    ],  
+    'deblankyy': [
+      Xqc.SUB_9_MONTHS_T1,
+      'https://cdn.discordapp.com/attachments/917119248428597278/955164791272513646/555555.png',]
   };
 
   const CHANNEL_DATABASE = [
