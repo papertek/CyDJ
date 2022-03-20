@@ -3294,10 +3294,11 @@ var cydj = (function (exports) {
     ],
     'ItMePeachy': [
       Xqc.SUB_3_MONTHS_T1,
-    ],  
+    ],
     'deblankyy': [
       Xqc.SUB_9_MONTHS_T1,
-      'https://cdn.discordapp.com/attachments/917119248428597278/955164791272513646/555555.png',]
+      'https://cdn.discordapp.com/attachments/917119248428597278/955164791272513646/555555.png',
+    ],
   };
 
   const CHANNEL_DATABASE = [
@@ -3965,7 +3966,7 @@ var cydj = (function (exports) {
   // channel database has been loaded
   let CHANDB = false;
   // using altered 'formatChatMessage' built-in function
-  let ALTERCHATFORMAT = false;
+  let ALTERCHATFORMAT = true;
 
   // previous read of a current item time for the progress bar
   let PREVTIME = 0;
@@ -6937,7 +6938,7 @@ var cydj = (function (exports) {
 
   // rearranging footer
   $('.credit').append(
-      '<br />CyTube Plus 4.5 · Copyright &copy; 2013-2014 Zimny Lech, Modified by CyDJ staff · ' +
+      '<br />Built off CyTube Plus 4.5 · Copyright &copy; 2013-2014 Zimny Lech, Modified by CyDJ staff · ' +
       'Free source on <a href="http://github.com/papertek/CyDJ" target="_blank">GitHub</a>');
 
   let leftfooter;
