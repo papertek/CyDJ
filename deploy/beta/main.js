@@ -6288,7 +6288,7 @@ var cydj = (function (exports) {
   function showDebugging() {
     createModal('Debug stuff');
     {
-      modalBody.append('<strong>wowwww</strong><br /><br />');
+      modalBody.append('<strong>Buttons that do stuff</strong><br /><br />');
       const bootan1 = $('<button class="btn btn-default btn-success" />')
                           .text('setUserCSS();')
                           .appendTo(modalBody);
