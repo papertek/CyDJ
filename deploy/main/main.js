@@ -2888,6 +2888,15 @@ var cydj = (function (exports) {
     static OWL =
         'https://cdn.discordapp.com/attachments/915656975696687124/916116916702158948/OWL.png';
   }
+  // pls note this is placeholder
+  /* class VIP {
+    static VIPBADGE =
+        'https://cdn.discordapp.com/attachments/679270173567614987/922352061356572682/1x_4.gif';
+  }
+
+  function GiveVIPColor() {
+
+  }*/
 
   class Xqc {
     static SUB_0_MONTHS_T1 =
@@ -3011,6 +3020,7 @@ var cydj = (function (exports) {
     'JohnRG123': [
       'https://media.discordapp.net/attachments/915490680468561990/915492628508868648/die.png',
       'https://cdn.discordapp.com/attachments/899888900611375184/901313787951480862/small.png',
+      /* VIP.VIPBADGE, */
     ],
     'mrfart2323': [
       Xqc.SUB_12_MONTHS_T1,
@@ -3105,7 +3115,7 @@ var cydj = (function (exports) {
     ],
     'eljulidi1337': [
       Xqc.SUB_6_MONTHS_T3,
-      'https://cdn.discordapp.com/attachments/891695154333884447/922146791862988810/ezgif.com-gif-maker_28.gif',
+      'https://cdn.discordapp.com/attachments/920790624930758666/956307055583563846/elij.gif',
     ],
     'pepegaOverheat': [
       Xqc.SUB_6_MONTHS_T1,
@@ -3139,7 +3149,7 @@ var cydj = (function (exports) {
       'https://cdn.discordapp.com/attachments/915656975696687124/916100799233425548/VIP.png',
     ],
     'T_Nizzy': [
-      Xqc.SUB_6_MONTHS_T1,
+      Xqc.SUB_9_MONTHS_T1,
       'https://cdn.discordapp.com/attachments/905159869626187817/945147116337106964/35235235.gif',
     ],
     'Getronix': [
@@ -3202,9 +3212,6 @@ var cydj = (function (exports) {
     ],
     'parsekktv': [
       Xqc.SUB_18_MONTHS_T1,
-    ],
-    'T_Nizzy': [
-      Xqc.SUB_9_MONTHS_T1,
     ],
     'zHardTimes': [
       Xqc.SUB_18_MONTHS_T1,
@@ -3288,6 +3295,10 @@ var cydj = (function (exports) {
     ],
     'ItMePeachy': [
       Xqc.SUB_3_MONTHS_T1,
+    ],
+    'deblankyy': [
+      Xqc.SUB_9_MONTHS_T1,
+      'https://cdn.discordapp.com/attachments/917119248428597278/955164791272513646/555555.png',
     ],
   };
 
@@ -3611,7 +3622,7 @@ var cydj = (function (exports) {
 
   const ChannelName_Caption = 'CyDJ';
 
-  const Version_Now = 'CyDJPre3.19.21.0';
+  const Version_Now = 'CyDJPre3.25.21.0';
 
   const HeaderDropMenu_Title = 'Information';
 
@@ -3633,7 +3644,7 @@ var cydj = (function (exports) {
     ['CyDJ Rooms', ''],
     ['Main Room', 'https://cytu.be/r/cydj'],
     ['Second Room', 'https://cytu.be/r/secretfbimeeting'],
-    ['Watch Party', 'https://beta.synchtube.me/r/SecretTwitchRoom'],
+    //  ['Watch Party', 'https://beta.synchtube.me/r/SecretTwitchRoom'],
     ['Test Room', 'https://cytu.be/r/testplacelilroc'],
     ['Test Room 2', 'https://cytu.be/r/emptyroomtestplace'],
     ['Test Room 3', 'https://cytu.be/r/xqcPeepo'],
@@ -5045,6 +5056,8 @@ var cydj = (function (exports) {
       }
     }
   }
+  // attempt a fix on css
+  window.onload = setUserCSS();
 
   // /////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -6928,7 +6941,7 @@ var cydj = (function (exports) {
 
   // rearranging footer
   $('.credit').append(
-      '<br />CyTube Plus 4.5 · Copyright &copy; 2013-2014 Zimny Lech, Modified by CyDJ staff · ' +
+      '<br />Built off CyTube Plus 4.5 · Copyright &copy; 2013-2014 Zimny Lech, Modified by CyDJ staff · ' +
       'Free source on <a href="http://github.com/papertek/CyDJ" target="_blank">GitHub</a>');
 
   let leftfooter;
