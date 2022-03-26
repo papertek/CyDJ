@@ -6261,13 +6261,6 @@ var cydj = (function (exports) {
         .appendTo(chatcontrols)
         .on('click', () => showContextMenu());
   }
-  // adds the button
-  {
-    $('<button id="debug-btn" class="btn btn-sm btn-default" title="for the debug" />')
-        .html('<i class="glyphicon glyphicon-cog"></i>')
-        .appendTo(chatcontrols)
-        .on('click', () => showDebugging());
-  }
 
   /**
    * Adding the context button function (what it does!).
@@ -6285,25 +6278,6 @@ var cydj = (function (exports) {
           ].map((item) => `<li>${item}</li>`)
               .join('');
       $('<ul />').html(html).appendTo(modalBody);
-    }
-  }
-  // adds debugging, can be added upon later
-  function showDebugging() {
-    createModal('Debug stuff');
-    {
-      modalBody.append('<strong>Buttons that do stuff</strong><br /><br />');
-      const bootan1 = $('<button class="btn btn-default btn-success" />')
-                          .text('setUserCSS();')
-                          .appendTo(modalBody);
-      bootan1.on('click', () => setUserCSS());
-      const bootan2 = $('<button class="btn btn-default btn-success" />')
-                          .text('chatflair.show();')
-                          .appendTo(modalBody);
-      bootan2.on('click', () => chatflair.show());
-      const bootan3 = $('<button class="btn btn-default btn-success" />')
-                          .text('location.reload();')
-                          .appendTo(modalBody);
-      bootan3.on('click', () => location.reload());
     }
   }
 
