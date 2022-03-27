@@ -6190,8 +6190,8 @@ var cydj = (function (exports) {
       naySound();
     });
   }
-
-  const votehey = function(data) {
+  // RARE JOHN NOTE!! define data.count later, i think its defined somewhere in cytube side
+  /* const votehey = function(data) {
     const icon = $('#hey-btn').find('.glyphicon').remove();
     if (data.count > 0) {
       $('#hey-btn').text(' (' + data.count + ')');
@@ -6200,7 +6200,7 @@ var cydj = (function (exports) {
     }
 
     icon.prependTo($('#hey-btn'));
-  };
+  };*/
 
   // additional chat functions
   const chatflair =
@@ -6367,7 +6367,7 @@ var cydj = (function (exports) {
           socket.emit('chatMsg', {msg: '/afk'});
           socket.emit('chatMsg', {msg: '[lime]Woot![/] PepePls'});
           heySound();
-          votehey();
+          // votehey();
         });
     $('<button id="nay-btn" class="btn btn-sm btn-default" title="Meh.. (Voteskip)" />')
         .html('<i class="glyphicon glyphicon-thumbs-down"></i>')
