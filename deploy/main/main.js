@@ -3075,7 +3075,7 @@ var cydj = (function (exports) {
     ],
     'airforce2700': [
       Xqc.SUB_12_MONTHS_T1,
-      'https://cdn.betterttv.net/emote/6091a20a39b5010444d0b980/1x.gif',
+      'https://cdn.betterttv.net/emote/5d82600ec0652668c9e4e2f2/1x',
     ],
     'Skully_OW': [
       Xqc.SUB_30_MONTHS_T1,
