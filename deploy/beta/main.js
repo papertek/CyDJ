@@ -6158,7 +6158,7 @@ var cydj = (function (exports) {
     DROPBGCHANGE++;
 
     const newColor = DROPBGCHANGE % 2 === 0 ? 'red' : 'black';
-    elems.forEach((elem) => elem.style.backgroundColor = newColor);
+    elems.forEach((elem) => elem.style.color = newColor);
   }
 
   // Fastest Crash easter egg bg changes
