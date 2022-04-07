@@ -5022,7 +5022,7 @@ var cydj = (function (exports) {
   }
 
   #userlist {
-      background-color: #222a27
+      background-color: #222a27!important
   }`;
 
     $('head').append(`<style id="chanexternalcss-fix" type="text/css">${cssfix}</style>`);
