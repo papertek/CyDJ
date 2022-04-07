@@ -5022,7 +5022,7 @@ var cydj = (function (exports) {
   }
 
   #userlist {
-      background-color: #222a27!important
+      background-color: #222a27
   }`;
 
     $('head').append(`<style id="chanexternalcss-fix" type="text/css">${cssfix}</style>`);
@@ -6337,10 +6337,11 @@ var cydj = (function (exports) {
       DROPBGCHANGE = 0;
       clearInterval(partyFlash);
 
-      const body = document.getElementsByTagName('body')[0];
-      const wrap = document.getElementById('wrap');
-      const mainPage = document.getElementById('mainpage');
-      const elems = [body, wrap, mainPage];
+      /*    const body = document.getElementsByTagName('body')[0];
+          const wrap = document.getElementById('wrap');
+          const mainPage = document.getElementById('mainpage'); */
+      const userlistthing = document.getElementById('userlist');
+      const elems = [userlistthing];
 
       elems.forEach((elem) => elem.style.backgroundImage = '');
       elems.forEach((elem) => elem.style.backgroundColor = '');
