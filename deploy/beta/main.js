@@ -4407,7 +4407,7 @@ var cydj = (function (exports) {
     const rulespanel = $('<div id="rulespanel" style="display:none" />')
                            .html(RulesBtn_HTML)
                            .appendTo(rulespanelouter);
-    toggleDiv(rulespanel)();
+    rulespanel();
     // modalBody.append(RulesBtn_HTML);
   }
 
