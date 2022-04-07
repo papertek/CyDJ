@@ -6393,7 +6393,7 @@ var cydj = (function (exports) {
       elems.forEach((elem) => elem.style.backgroundColor = '');
 
       setUserCSS();
-    }, 12000);
+    }, 9000);
   }
 
   // adding moderators panel button
