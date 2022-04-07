@@ -4403,7 +4403,9 @@ var cydj = (function (exports) {
 
   function rulesmodal() {
     createModal('Rules Panel');
-    $('<div id="rulespanel" style="display:none" />').html(RulesBtn_HTML).appendTo(modalBody);
+    {
+      $('<div id="rulespanel" style="display:none" />').html(RulesBtn_HTML).appendTo(modalBody);
+    }
   }
 
   /**
