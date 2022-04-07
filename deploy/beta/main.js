@@ -3628,7 +3628,7 @@ var cydj = (function (exports) {
 
   const RulesBtn_Caption = 'Read Channel Rules';
 
-  const ChannelAnnouncement_Title = '<h4>CyDJ Alert</h4>';
+  const ChannelAnnouncement_Title = 'CyDJ Alert';
 
   const TitleIcon_URL = 'https://cdn.7tv.app/emote/6040a8bccf6746000db10348/2x';
 
@@ -4397,13 +4397,18 @@ var cydj = (function (exports) {
       $('<button id="rules-btn" class="btn btn-default btn-sm" />')
           .text(RulesBtn_Caption + ' ▸')
           .appendTo(rulesbtnwrap)
-          .on('click', () => toggleDiv(rulesmodal));
+          .on('click', () => rulesModal());
     }
   }
 
-  function rulesmodal() {
+  function rulesModal() {
     createModal('Rules Panel');
-    modalBody.append(RulesBtn_HTML);
+    const rulespanelouter = $('<div id="rulespanel-outer" />').appendTo('.modal-body');
+    const rulespanel = $('<div id="rulespanel" style="display:none" />')
+                           .html(RulesBtn_HTML)
+                           .appendTo(rulespanelouter);
+    toggleDiv(rulespanel)();
+    // modalBody.append(RulesBtn_HTML);
   }
 
   /**
