@@ -3628,7 +3628,7 @@ var cydj = (function (exports) {
 
   const RulesBtn_Caption = 'Read Channel Rules';
 
-  const ChannelAnnouncement_Title = 'CyDJ Alert';
+  const ChannelAnnouncement_Title = '<h4>CyDJ Alert</h4>';
 
   const TitleIcon_URL = 'https://cdn.7tv.app/emote/6040a8bccf6746000db10348/2x';
 
