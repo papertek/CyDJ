@@ -4626,10 +4626,8 @@ var cydj = (function (exports) {
           BGCHANGE = 0;
           clearInterval(inbaFlash);
 
-          const body = document.getElementsByTagName('body')[0];
-          const wrap = document.getElementById('wrap');
-          const mainPage = document.getElementById('mainpage');
-          const elems = [body, wrap, mainPage];
+          const userlistthing = document.getElementById('userlist');
+          const elems = [userlistthing];
 
           elems.forEach((elem) => elem.style.backgroundImage = '');
           elems.forEach((elem) => elem.style.backgroundColor = '');
@@ -6133,10 +6131,8 @@ var cydj = (function (exports) {
    * Easter egg.
    */
   function inba() {
-    const body = document.getElementsByTagName('body')[0];
-    const wrap = document.getElementById('wrap');
-    const mainPage = document.getElementById('mainpage');
-    const elems = [body, wrap, mainPage];
+    const userlistthing = document.getElementById('userlist');
+    const elems = [userlistthing];
 
     elems.forEach((elem) => elem.style.backgroundImage = 'none');
     BGCHANGE++;
@@ -6149,9 +6145,7 @@ var cydj = (function (exports) {
    * Dropit easter egg.
    */
   function dropthebeat() {
-    //  const body = document.getElementsByTagName('body')[0];
     const userlistthing = document.getElementById('userlist');
-    //  const mainPage = document.getElementById('mainpage');
     const elems = [userlistthing];
 
     elems.forEach((elem) => elem.style.backgroundImage = 'none');
@@ -6163,10 +6157,8 @@ var cydj = (function (exports) {
 
   // Fastest Crash easter egg bg changes
   function dropthefast() {
-    const body = document.getElementsByTagName('body')[0];
-    const wrap = document.getElementById('wrap');
-    const mainPage = document.getElementById('mainpage');
-    const elems = [body, wrap, mainPage];
+    const userlistthing = document.getElementById('userlist');
+    const elems = [userlistthing];
 
     elems.forEach((elem) => elem.style.backgroundImage = 'none');
     FASTESTBGCHANGE++;
@@ -6337,9 +6329,6 @@ var cydj = (function (exports) {
       DROPBGCHANGE = 0;
       clearInterval(partyFlash);
 
-      /*    const body = document.getElementsByTagName('body')[0];
-          const wrap = document.getElementById('wrap');
-          const mainPage = document.getElementById('mainpage'); */
       const userlistthing = document.getElementById('userlist');
       const elems = [userlistthing];
 
@@ -6360,10 +6349,8 @@ var cydj = (function (exports) {
       FASTESTBGCHANGE = 100;
       clearInterval(fastestFlash);
 
-      const body = document.getElementsByTagName('body')[0];
-      const wrap = document.getElementById('wrap');
-      const mainPage = document.getElementById('mainpage');
-      const elems = [body, wrap, mainPage];
+      const userlistthing = document.getElementById('userlist');
+      const elems = [userlistthing];
 
       elems.forEach((elem) => elem.style.backgroundImage = '');
       elems.forEach((elem) => elem.style.backgroundColor = '');
