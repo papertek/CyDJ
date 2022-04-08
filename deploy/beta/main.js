@@ -6086,7 +6086,7 @@ var cydj = (function (exports) {
   // adding version to the tab
   {
     const headerdrop = $('<li id="headerdrop" class="dropdown" />').insertAfter('#channelset-link');
-    $('<a class="dropdown-toggle" data-toggle="dropdown" href="https://github.com/papertek/CyDJ" />')
+    $('<a class="dropdown-toggle disabled" href="https://github.com/papertek/CyDJ" />')
         .html(`${Version_Now}`)
         .appendTo(headerdrop);
   }
