@@ -4012,6 +4012,7 @@ var cydj = (function (exports) {
   }
 
   document.body.addEventListener('load', preloadAudio, true);
+  window.onload = preloadAudio();
 
   // /////////////////////////////////////////////////////////////////////////////////////////////////
 
