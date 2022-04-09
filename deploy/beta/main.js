@@ -6344,7 +6344,7 @@ var cydj = (function (exports) {
     GGUN.play();
     const glueFlash = setInterval(() => droptheglue(), 100);
     setTimeout(() => {
-      GLUEGUNBGCHANGE = 100;
+      GLUEGUNBGCHANGE = 150;
       clearInterval(glueFlash);
 
       const userlistthing = document.getElementById('userlist');
