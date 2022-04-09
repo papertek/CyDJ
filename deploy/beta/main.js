@@ -4386,13 +4386,6 @@ var cydj = (function (exports) {
           .prependTo('#motd');
     }
     {
-      /*    if (RulesBtn_HTML === '') {
-            RulesBtn_HTML = 'No rules.';
-          }*/
-      /*    const rulespanelouter = $('<div id="rulespanel-outer" />').appendTo('#motd');
-          const rulespanel = $('<div id="rulespanel" style="display:none" />')
-                                 .html(RulesBtn_HTML)
-                                 .appendTo(rulespanelouter); */
       const rulesbtnwrap = $('<div id="rulesbtnwrap" />').appendTo('#motd');
       $('<button id="rules-btn" class="btn btn-default btn-sm" />')
           .text(RulesBtn_Caption + ' ▸')
@@ -4667,19 +4660,6 @@ var cydj = (function (exports) {
   function insertText(str) {
     $('#chatline').val($('#chatline').val() + str).focus();
   }
-
-  // let muteplayerbtn;
-
-  /**
-   * Toggle YT mute button.
-   */
-  /* function toggleMuteBtn() {
-    if (PLAYER && PLAYER.type === 'yt') {
-      muteplayerbtn.show();
-    } else {
-      muteplayerbtn.hide();
-    }
-  }*/
 
   let modbtn;
 
@@ -5815,8 +5795,6 @@ var cydj = (function (exports) {
     $('#pinup-btn').attr('title', 'Pinup playlist to player');
     $('#config-btn, #configbtnwrap br').show();
     $('#min-layout').parent().show();
-    // $("#mode-sel").find("option[value='chMode'],
-    // option[value='sMode']").show();
     $('#mode-sel').find('option[value=\'chMode\']').show();
     PINNED = false;
   }
@@ -6475,23 +6453,6 @@ var cydj = (function (exports) {
                 coverPlayer();
               }
             });
-
-    /* muteplayerbtn =
-        $('<button id="muteplayer-btn" class="btn btn-sm btn-default" title="Mute player" />')
-            .append('<span class="glyphicon glyphicon-volume-off" />')
-            .appendTo('#playercontrols')
-            .on('click', function() {
-              if ($(this).hasClass('btn-danger')) {
-                $(this).removeClass('btn-danger').attr('title', 'Mute player');
-                unmutePlayer();
-              } else {
-                $(this).addClass('btn-danger').attr('title', 'Unmute player');
-                mutePlayer();
-              }
-            });
-
-    socket.on('changeMedia', toggleMuteBtn);
-    toggleMuteBtn();*/
   }
 
   // creating fonts and emotes main row
@@ -7961,6 +7922,7 @@ var cydj = (function (exports) {
   socket.on('changeMedia', fixRawVideoControls);
   socket.on('mediaUpdate', fixRawVideoControls);
 
+  // hacky fix for broken layout elements :/
   document.body.addEventListener('load', resizeStuff, true);
   socket.on('changeMedia', resizeStuff);
   setInterval(() => resizeStuff(), 1000);
