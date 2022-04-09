@@ -3622,7 +3622,7 @@ var cydj = (function (exports) {
 
   const ChannelName_Caption = 'CyDJ';
 
-  const Version_Now = 'CyDJPre3.25.21.0';
+  const Version_Now = 'CyDJPre4.8.21.0';
 
   const HeaderDropMenu_Title = 'Information';
 
@@ -3983,6 +3983,8 @@ var cydj = (function (exports) {
   let DROPBGCHANGE = 1;
   // number of background changes for fastest crash
   let FASTESTBGCHANGE = 1;
+  // number of bg changes for glue gun command
+  let GLUEGUNBGCHANGE = 1;
 
   // array of links added from channel database by user
   const ADDEDLINKS = [];
@@ -3993,6 +3995,7 @@ var cydj = (function (exports) {
   const IMBA = new Audio('https://dl.dropboxusercontent.com/s/xdnpynq643ziq9o/inba.ogg');
   const DROPIT = new Audio('https://github.com/papertek/CyDJ/raw/beta/misc/dropit.wav');
   const FASTEST = new Audio('https://github.com/papertek/CyDJ/raw/beta/misc/fastestcrashegg.wav');
+  const GGUN = new Audio('https://github.com/papertek/CyDJ/raw/beta/misc/gluegun.wav');
   const HEY = new Audio('https://github.com/papertek/CyDJ/raw/beta/misc/hey.wav');
   const NAY = new Audio('https://github.com/papertek/CyDJ/raw/beta/misc/nay.wav');
   CHATSOUND.volume = 0.4;
@@ -4009,6 +4012,7 @@ var cydj = (function (exports) {
   }
 
   document.body.addEventListener('load', preloadAudio, true);
+  window.onload = preloadAudio();
 
   // /////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -4383,16 +4387,17 @@ var cydj = (function (exports) {
           .prependTo('#motd');
     }
     {
-      const rulespanelouter = $('<div id="rulespanel-outer" />').appendTo('#motd');
-      const rulespanel = $('<div id="rulespanel" style="display:none" />')
-                             .html(RulesBtn_HTML)
-                             .appendTo(rulespanelouter);
       const rulesbtnwrap = $('<div id="rulesbtnwrap" />').appendTo('#motd');
       $('<button id="rules-btn" class="btn btn-default btn-sm" />')
           .text(RulesBtn_Caption + ' ▸')
           .appendTo(rulesbtnwrap)
-          .on('click', () => toggleDiv(rulespanel));
+          .on('click', () => rulesModal());
     }
+  }
+
+  function rulesModal() {
+    createModal('Rules Panel');
+    modalBody.append(RulesBtn_HTML);
   }
 
   /**
@@ -4616,6 +4621,9 @@ var cydj = (function (exports) {
       } else if (msg.startsWith('!crash')) {
         msg = '[mqr] GOOOOOOO xqcTECHNO FEELSWAYTOOGOOD xqcDisco [/mqr]';
         fastestCrash();
+      } else if (msg.startsWith('!gluegun')) {
+        msg = '[mqr] GOOOOOOO xqcTechno FEELSWAYTOOGOOD AlienPls3 [/mqr]';
+        glueGun();
       } else if (msg.startsWith('!inba')) {
         IMBA.volume = 0.6;
         IMBA.play();
@@ -4626,10 +4634,8 @@ var cydj = (function (exports) {
           BGCHANGE = 0;
           clearInterval(inbaFlash);
 
-          const body = document.getElementsByTagName('body')[0];
-          const wrap = document.getElementById('wrap');
-          const mainPage = document.getElementById('mainpage');
-          const elems = [body, wrap, mainPage];
+          const userlistthing = document.getElementById('userlist');
+          const elems = [userlistthing];
 
           elems.forEach((elem) => elem.style.backgroundImage = '');
           elems.forEach((elem) => elem.style.backgroundColor = '');
@@ -4655,19 +4661,6 @@ var cydj = (function (exports) {
   function insertText(str) {
     $('#chatline').val($('#chatline').val() + str).focus();
   }
-
-  // let muteplayerbtn;
-
-  /**
-   * Toggle YT mute button.
-   */
-  /* function toggleMuteBtn() {
-    if (PLAYER && PLAYER.type === 'yt') {
-      muteplayerbtn.show();
-    } else {
-      muteplayerbtn.hide();
-    }
-  }*/
 
   let modbtn;
 
@@ -5321,7 +5314,7 @@ var cydj = (function (exports) {
         text += ' // END OF QUEUE //';
       }
       if (arr.length > 7) {
-        text += ' // PLUS MORE! //';
+        text += ' // PLUS MORE //';
       }
       mediainfo.html(`<marquee scrollamount="7.5">${text}</marquee>`);
     } else {
@@ -5803,8 +5796,6 @@ var cydj = (function (exports) {
     $('#pinup-btn').attr('title', 'Pinup playlist to player');
     $('#config-btn, #configbtnwrap br').show();
     $('#min-layout').parent().show();
-    // $("#mode-sel").find("option[value='chMode'],
-    // option[value='sMode']").show();
     $('#mode-sel').find('option[value=\'chMode\']').show();
     PINNED = false;
   }
@@ -6074,7 +6065,7 @@ var cydj = (function (exports) {
   // adding version to the tab
   {
     const headerdrop = $('<li id="headerdrop" class="dropdown" />').insertAfter('#channelset-link');
-    $('<a class="dropdown-toggle" data-toggle="dropdown" href="#" />')
+    $('<a class="dropdown-toggle disabled" href="https://github.com/papertek/CyDJ" />')
         .html(`${Version_Now}`)
         .appendTo(headerdrop);
   }
@@ -6133,10 +6124,8 @@ var cydj = (function (exports) {
    * Easter egg.
    */
   function inba() {
-    const body = document.getElementsByTagName('body')[0];
-    const wrap = document.getElementById('wrap');
-    const mainPage = document.getElementById('mainpage');
-    const elems = [body, wrap, mainPage];
+    const userlistthing = document.getElementById('userlist');
+    const elems = [userlistthing];
 
     elems.forEach((elem) => elem.style.backgroundImage = 'none');
     BGCHANGE++;
@@ -6149,10 +6138,8 @@ var cydj = (function (exports) {
    * Dropit easter egg.
    */
   function dropthebeat() {
-    const body = document.getElementsByTagName('body')[0];
-    const wrap = document.getElementById('wrap');
-    const mainPage = document.getElementById('mainpage');
-    const elems = [body, wrap, mainPage];
+    const userlistthing = document.getElementById('userlist');
+    const elems = [userlistthing];
 
     elems.forEach((elem) => elem.style.backgroundImage = 'none');
     DROPBGCHANGE++;
@@ -6163,15 +6150,25 @@ var cydj = (function (exports) {
 
   // Fastest Crash easter egg bg changes
   function dropthefast() {
-    const body = document.getElementsByTagName('body')[0];
-    const wrap = document.getElementById('wrap');
-    const mainPage = document.getElementById('mainpage');
-    const elems = [body, wrap, mainPage];
+    const userlistthing = document.getElementById('userlist');
+    const elems = [userlistthing];
 
     elems.forEach((elem) => elem.style.backgroundImage = 'none');
     FASTESTBGCHANGE++;
 
     const newColor = FASTESTBGCHANGE % 2 === 0 ? 'blue' : 'black';
+    elems.forEach((elem) => elem.style.backgroundColor = newColor);
+  }
+
+  // glue gun easter egg bg changes
+  function droptheglue() {
+    const userlistthing = document.getElementById('userlist');
+    const elems = [userlistthing];
+
+    elems.forEach((elem) => elem.style.backgroundImage = 'none');
+    GLUEGUNBGCHANGE++;
+
+    const newColor = GLUEGUNBGCHANGE % 2 === 0 ? 'blue' : 'limegreen';
     elems.forEach((elem) => elem.style.backgroundColor = newColor);
   }
 
@@ -6190,6 +6187,17 @@ var cydj = (function (exports) {
       naySound();
     });
   }
+  // RARE JOHN NOTE!! define data.count later, i think its defined somewhere in cytube side
+  /* const votehey = function(data) {
+    const icon = $('#hey-btn').find('.glyphicon').remove();
+    if (data.count > 0) {
+      $('#hey-btn').text(' (' + data.count + ')');
+    } else {
+      $('#hey-btn').text('');
+    }
+
+    icon.prependTo($('#hey-btn'));
+  };*/
 
   // additional chat functions
   const chatflair =
@@ -6300,10 +6308,8 @@ var cydj = (function (exports) {
       DROPBGCHANGE = 0;
       clearInterval(partyFlash);
 
-      const body = document.getElementsByTagName('body')[0];
-      const wrap = document.getElementById('wrap');
-      const mainPage = document.getElementById('mainpage');
-      const elems = [body, wrap, mainPage];
+      const userlistthing = document.getElementById('userlist');
+      const elems = [userlistthing];
 
       elems.forEach((elem) => elem.style.backgroundImage = '');
       elems.forEach((elem) => elem.style.backgroundColor = '');
@@ -6322,16 +6328,33 @@ var cydj = (function (exports) {
       FASTESTBGCHANGE = 100;
       clearInterval(fastestFlash);
 
-      const body = document.getElementsByTagName('body')[0];
-      const wrap = document.getElementById('wrap');
-      const mainPage = document.getElementById('mainpage');
-      const elems = [body, wrap, mainPage];
+      const userlistthing = document.getElementById('userlist');
+      const elems = [userlistthing];
 
       elems.forEach((elem) => elem.style.backgroundImage = '');
       elems.forEach((elem) => elem.style.backgroundColor = '');
 
       setUserCSS();
     }, 12000);
+  }
+
+  // glue gun function
+  function glueGun() {
+    GGUN.volume = 0.5;
+    GGUN.play();
+    const glueFlash = setInterval(() => droptheglue(), 100);
+    setTimeout(() => {
+      GLUEGUNBGCHANGE = 150;
+      clearInterval(glueFlash);
+
+      const userlistthing = document.getElementById('userlist');
+      const elems = [userlistthing];
+
+      elems.forEach((elem) => elem.style.backgroundImage = '');
+      elems.forEach((elem) => elem.style.backgroundColor = '');
+
+      setUserCSS();
+    }, 9000);
   }
 
   // adding moderators panel button
@@ -6356,6 +6379,7 @@ var cydj = (function (exports) {
           socket.emit('chatMsg', {msg: '/afk'});
           socket.emit('chatMsg', {msg: '[lime]Woot![/] PepePls'});
           heySound();
+          // votehey();
         });
     $('<button id="nay-btn" class="btn btn-sm btn-default" title="Meh.. (Voteskip)" />')
         .html('<i class="glyphicon glyphicon-thumbs-down"></i>')
@@ -6404,23 +6428,6 @@ var cydj = (function (exports) {
                 coverPlayer();
               }
             });
-
-    /* muteplayerbtn =
-        $('<button id="muteplayer-btn" class="btn btn-sm btn-default" title="Mute player" />')
-            .append('<span class="glyphicon glyphicon-volume-off" />')
-            .appendTo('#playercontrols')
-            .on('click', function() {
-              if ($(this).hasClass('btn-danger')) {
-                $(this).removeClass('btn-danger').attr('title', 'Mute player');
-                unmutePlayer();
-              } else {
-                $(this).addClass('btn-danger').attr('title', 'Unmute player');
-                mutePlayer();
-              }
-            });
-
-    socket.on('changeMedia', toggleMuteBtn);
-    toggleMuteBtn();*/
   }
 
   // creating fonts and emotes main row
@@ -7890,6 +7897,7 @@ var cydj = (function (exports) {
   socket.on('changeMedia', fixRawVideoControls);
   socket.on('mediaUpdate', fixRawVideoControls);
 
+  // hacky fix for broken layout elements :/
   document.body.addEventListener('load', resizeStuff, true);
   socket.on('changeMedia', resizeStuff);
   setInterval(() => resizeStuff(), 1000);
