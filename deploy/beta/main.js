@@ -5255,6 +5255,7 @@ var cydj = (function (exports) {
   /**
    * Show chat sounds panel.
    */
+  let voicesbtn;
   function showSoundsPanel() {
     $('#userlist').append('<div id="sounds-dropdown" />');
     setPanelProperties('#sounds-dropdown');
