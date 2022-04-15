@@ -3566,150 +3566,6 @@ var cydj = (function (exports) {
     return logos;
   })();
 
-  /**
-   * Load and manage twemojis.
-   *
-   * https://github.com/twitter/twemoji#api
-   */
-
-  /**
-   * @typedef {Object} Twemoji Representation of a twemoji emoji.
-   * @property {string} codes Unicode code of the emoji, i.e. "1F600"
-   * @property {string} char The unicode character of the emoji, i.e. "😀"
-   * @property {string} name Human-readable name of the emoji, i.e. "grinning face"
-   * @property {string} category Specific category of the emoji, i.e. "Smileys & Emotion
-   *    (face-smiling)"
-   * @property {string} group Broader group of the emoji, i.e. "Smileys & Emotion"
-   * @property {string} subgroup Subgroup of the emoji, i.e. "face-smiling"
-   */
-
-  async function initTwemoji() {
-    await loadTwemojiScript();
-    console.log('Loaded twemoji.js');
-
-    const twemojisWithSkinTones = await loadTwemojiEmojis();
-    console.log(`Loaded ${twemojisWithSkinTones.length} twemojis`);
-
-    // Skin tone emojis currently aren't processed correctly. Skip them.
-    const twemojisBeforeDedup =
-        twemojisWithSkinTones.filter((twemoji) => !twemoji.name.includes('skin tone'));
-    console.log(`Filtered to ${twemojisBeforeDedup.length} twemojis`);
-
-    const twemojis = (() => {
-      const /** @type {!Array<!Twemoji>} */ dedupedTwemojis = [];
-      const /** @type {!Array<string>} */ parsedEmojiNames = [];
-
-      for (const emoji of twemojisBeforeDedup) {
-        const name = emoji.name.replace(' ', '-');
-        if (parsedEmojiNames.includes(name)) {
-          continue;
-        }
-        dedupedTwemojis.push(emoji);
-        parsedEmojiNames.push(name);
-      }
-
-      return dedupedTwemojis;
-    })();
-    console.log(`Deduped to ${twemojis.length} twemojis`);
-
-
-    for (const emoji of twemojis) {
-      const name = ':' + emoji.name.replace(' ', '-') + ':';
-      const image = getTwemojiUrl(emoji);
-
-      // Add the emote when the browser determines it has time to do so.
-      requestIdleCallback(() => addEmote(name, image));
-    }
-
-    // Disabled for now - the emotes are added lazily for performance reasons.
-    //
-    // to get fix previous chat messages that didn't have the emote parsed I will grab them now
-    // const messageBuffer = document.getElementById('messagebuffer');
-    // for (const messageContainer of Array.from(messageBuffer.children)) {
-    //   // this is assuming we don't have any other classes for chat messages, which might change in
-    //   // the future but I'll update the code to reflect that as well
-    //   for (const message of Array.from(messageContainer.querySelectorAll('span:not([class])'))) {
-    //     if (message === null) {
-    //       continue;
-    //     }
-
-    //     twemoji.parse(message);
-    //   }
-    // }
-  }
-
-  /**
-   * Load the twemoji script.
-   *
-   * @return {!Promise<void>} Promise indicating the function's completion.
-   */
-  async function loadTwemojiScript() {
-    return new Promise((resolve, reject) => {
-      $.getScript('https://twemoji.maxcdn.com/v/latest/twemoji.min.js', (successText) => {
-         resolve(successText);
-       }).fail((jqxhr, textStatus, error) => reject(new Error(`${textStatus}: ${error}`)));
-    });
-  }
-
-  /**
-   * Load the twemoji emojis.
-   *
-   * @return {!Promise<!Array<!Twemoji>>} Promise resolving to the twemojis.
-   */
-  async function loadTwemojiEmojis() {
-    return new Promise((resolve, reject) => {
-      $.getJSON('https://unpkg.com/emoji.json/emoji.json', (response) => {
-         resolve(response);
-       }).fail((jqxhr, textStatus, error) => reject(new Error(`${textStatus}: ${error}`)));
-    });
-  }
-
-  const BAD_EMOTE_PATTERN = /\s/g;
-
-  /**
-   * Add a new emote.
-   *
-   * Modified version of window.Callbacks.updateEmote() that assumes, for performance reasons, that
-   * the emote being updated doesn't yet exist.
-   *
-   * @param {string} name The emote's name.
-   * @param {string} image The emote's image.
-   */
-  function addEmote(name, image) {
-    console.log(`Loading emoji ${name}`);
-    const emote = {name: name, image: image, regex: new RegExp(name, 'gi')};
-
-    CHANNEL.emotes.push(emote);
-
-    if (BAD_EMOTE_PATTERN.test(name)) {
-      CHANNEL.badEmotes.push(emote);
-    } else {
-      CHANNEL.emoteMap[name] = emote;
-    }
-
-    EMOTELIST.handleChange();
-    CSEMOTELIST.handleChange();
-  }
-
-  /**
-   * Get a URL for an image for a twemoji.
-   *
-   * Requires twemoji script to be loaded.
-   *
-   * @param {!Twemoji} emoji Twemoji to retrieve the URL for.
-   * @return {string} URL to an image for the twemoji.
-   */
-  function getTwemojiUrl(emoji) {
-    const tempDiv = document.createElement('div');
-    tempDiv.textContent = emoji.char;
-
-    const src = twemoji.parse(tempDiv).firstElementChild.src;
-
-    tempDiv.remove();
-
-    return src;
-  }
-
   /*
   The MIT License (MIT)
   //
@@ -3844,9 +3700,9 @@ var cydj = (function (exports) {
     'what',
   ];
 
-  // const SoundFilters_Array = {
-  //   'oh no our table': 'https://github.com/papertek/CyDJ/raw/beta/misc/ohnoourtable.wav',
-  // };
+  const SoundFilters_Array = {
+    'oh no our table': 'https://github.com/papertek/CyDJ/raw/beta/misc/ohnoourtable.wav',
+  };
 
   const ModPanel_Array = [
     [
@@ -4086,7 +3942,7 @@ var cydj = (function (exports) {
   let USERTHEME = getOrDefault(CHANNEL.name + '_theme', DEFTHEME);
   let FLUID = getOrDefault(CHANNEL.name + '_fluid', false);
   let LAYOUTBOX = getOrDefault(CHANNEL.name + '_layoutbox', true);
-  getOrDefault(CHANNEL.name + '_soundslvl', 3);
+  let SOUNDSLVL = getOrDefault(CHANNEL.name + '_soundslvl', 3);
   let EMBEDIMG = getOrDefault(CHANNEL.name + '_embedimg', true);
   let EMBEDVID = getOrDefault(CHANNEL.name + '_embedvid', true);
   let AUTOVID = getOrDefault(CHANNEL.name + '_autovid', true);
@@ -4098,10 +3954,14 @@ var cydj = (function (exports) {
   let CHATFUNC = true;
   // aditional command occuring in the chat message
   let COMMAND = false;
+  // chat sounds not disabled by user
+  let VOICES = false;
   // auto clearing messages window
   let CLEARING = false;
   // enabled anti-AFK function
   let ANTIAFK = false;
+  // chat sounds panel visibility
+  let SOUNDSPANEL = false;
   // playlist pinned to player
   let PINNED = false;
   // expanded playlist view
@@ -4129,6 +3989,9 @@ var cydj = (function (exports) {
   let FASTESTBGCHANGE = 1;
   // number of bg changes for glue gun command
   let GLUEGUNBGCHANGE = 1;
+
+  // list of users with muted chat sounds by user
+  const MUTEDVOICES = [];
 
   // array of links added from channel database by user
   const ADDEDLINKS = [];
@@ -5390,6 +5253,76 @@ var cydj = (function (exports) {
   }
 
   /**
+   * Show chat sounds panel.
+   */
+  function showSoundsPanel() {
+    $('#userlist').append('<div id="sounds-dropdown" />');
+    setPanelProperties('#sounds-dropdown');
+
+    const muteallbtn = $('<button id="muteall-btn" class="btn btn-xs btn-default">Mute All</button>')
+                           .appendTo('#sounds-dropdown')
+                           .on('click', function() {
+                             if (VOICES) {
+                               $(this).text('Unmute All').addClass('btn-danger');
+                               voicesbtn.addClass('btn-danger').attr('title', 'Unmute chat voices');
+                               VOICES = false;
+                               SOUNDSPANEL = false;
+                               $('#sounds-dropdown').remove();
+                             } else {
+                               $(this).text('Mute All').removeClass('btn-danger');
+                               voicesbtn.removeClass('btn-danger').attr('title', 'Mute chat voices');
+                               VOICES = true;
+                             }
+                           });
+    if (!VOICES) {
+      muteallbtn.text('Unmute All').addClass('btn-danger');
+    }
+
+    $('#sounds-dropdown').append('<div>Sounds level:</div>');
+
+    const lvlgroup = $('<div id="lvlgroup" class="btn-group"></div>').appendTo('#sounds-dropdown');
+
+    for (let i = 1; i <= 5; i++) {
+      $(`<button class="btn btn-xs btn-default" id="lvlvol${i}" ` +
+        `level="${i}" />`)
+          .html(i)
+          .appendTo(lvlgroup)
+          .on('click', function() {
+            $(`#lvlvol${SOUNDSLVL}`).removeClass('btn-success');
+            SOUNDSLVL = $(this).attr('level');
+            setOpt(CHANNEL.name + '_soundslvl', SOUNDSLVL);
+            $(this).addClass('btn-success');
+          });
+    }
+    $(`#lvlvol${SOUNDSLVL}`).addClass('btn-success');
+
+    $('#sounds-dropdown').append('<div>Select users to mute sounds:</div>');
+
+    const mutegroup =
+        $('<div id="mutegroup" class="btn-group-vertical"></div>').appendTo('#sounds-dropdown');
+
+    $('.userlist_item').each(function() {
+      const user = $(this).find('span:nth-child(2)').html();
+      const btn = $(`<button class="btn btn-xs btn-default" name="${user}" />`)
+                      .html(user)
+                      .appendTo(mutegroup)
+                      .on('click', function() {
+                        name = $(this).attr('name');
+                        if (name in MUTEDVOICES && MUTEDVOICES[name] == '1') {
+                          $(this).removeClass('btn-danger');
+                          MUTEDVOICES[name] = 0;
+                        } else {
+                          $(this).addClass('btn-danger');
+                          MUTEDVOICES[name] = 1;
+                        }
+                      });
+      if (user in MUTEDVOICES && MUTEDVOICES[user] == '1') {
+        btn.addClass('btn-danger');
+      }
+    });
+  }
+
+  /**
    * Show moderators panel.
    */
   function showModPanel() {
@@ -6350,6 +6283,7 @@ var cydj = (function (exports) {
           .on('click', () => {
             if (!CHATFUNC) {
               $('#sounds-dropdown').remove();
+              SOUNDSPANEL = false;
               showChatFunctions();
               CHATFUNC = false;
             } else {
@@ -6499,6 +6433,26 @@ var cydj = (function (exports) {
 
       setUserCSS();
     }, 9000);
+  }
+
+  // adding chat sounds toggle button and control panel
+  {
+    voicesbtn =
+        $('<button id="voices-btn" class="btn btn-sm btn-default" title="Mute chat voices" />')
+            .html('<i class="glyphicon glyphicon-volume-down"></i>')
+            .appendTo(chatcontrols)
+            .on('click', () => {
+              if (!SOUNDSPANEL) {
+                $('#chatfunc-dropdown').remove();
+                CHATFUNC = false;
+                showSoundsPanel();
+                SOUNDSPANEL = true;
+              } else {
+                $('#sounds-dropdown').remove();
+                SOUNDSPANEL = false;
+              }
+            });
+    VOICES = true;
   }
 
   // adding moderators panel button
@@ -6713,6 +6667,7 @@ var cydj = (function (exports) {
                     $('#config-btn, #configbtnwrap br').hide();
                     $('#min-layout').parent().hide();
                     $('#sounds-dropdown, #chatfunc-dropdown').remove();
+                    SOUNDSPANEL = false;
                     CHATFUNC = false;
                     if (PLAYER.type === 'jw') {
                       refreshPlayer();
@@ -6743,6 +6698,7 @@ var cydj = (function (exports) {
           .on('change', function() {
             $('#sounds-dropdown, #chatfunc-dropdown').remove();
             $('#playlistmanagerwrap').show();
+            SOUNDSPANEL = false;
             CHATFUNC = false;
             USERTHEME = $(this).val();
             setUserCSS();
@@ -7302,6 +7258,23 @@ var cydj = (function (exports) {
     };
   }
 
+  // client-side chat buffer for playing sounds
+
+  _chatBuffer = addChatMessage;
+  addChatMessage = function(data) {
+    if (VOICES &&
+        (!(data.username in MUTEDVOICES) || MUTEDVOICES[data.username] == '0')) {
+      for (i in SoundFilters_Array) {
+        if (data.msg.indexOf(i) > -1) {
+          aud = new Audio(SoundFilters_Array[i]);
+          aud.volume = SOUNDSVALUES[SOUNDSLVL];
+          aud.play();
+        }
+      }
+    }
+    _chatBuffer(data);
+  };
+
   // fix formatting and sending chat messages
   // DEV NOTE: this are extended events from CyTube "util.js" file
 
@@ -7575,10 +7548,6 @@ var cydj = (function (exports) {
   let CHAT_INIT = false;
   if (!CHAT_INIT) {
     CHAT_INIT = true;
-
-    {
-      initTwemoji();
-    }
 
     socket.on('chatMsg', (obj) => {
       const mb = document.getElementById('messagebuffer');
