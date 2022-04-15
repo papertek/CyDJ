@@ -7261,7 +7261,7 @@ var cydj = (function (exports) {
 
   // client-side chat buffer for playing sounds
 
-  _chatBuffer = addChatMessage;
+  const _chatBuffer = addChatMessage;
   addChatMessage = function(data) {
     if (VOICES &&
         (!(data.username in MUTEDVOICES) || MUTEDVOICES[data.username] == '0')) {
