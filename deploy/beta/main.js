@@ -4445,10 +4445,10 @@ var cydj = (function (exports) {
    * @param {string} div
    */
   function setPanelProperties(div) {
-    bgcolor = $('body').css('background-color');
-    color = $('body').css('color');
-    height = $('#userlist').height();
-    width = $('#userlist').width();
+    const bgcolor = $('body').css('background-color');
+    const color = $('body').css('color');
+    const height = $('#userlist').height();
+    const width = $('#userlist').width();
     $(div).css({
       'background-color': bgcolor,
       'color': color,
