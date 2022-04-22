@@ -4653,7 +4653,7 @@ var cydj = (function (exports) {
       } else if (msg.startsWith('!script')) {
         msg = 'http://github.com/papertek/CyDJ';
       } else if (msg.startsWith('!music')) {
-        const item = $(`#queue .queue_entry`).data('media');
+        const item = $(`.queue_active a`).data('media');
         msg = 'Heres the link: ' +
             `${formatURL(item)}`;
       } else if (msg.startsWith('!crash')) {
