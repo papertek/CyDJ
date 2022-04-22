@@ -4633,13 +4633,13 @@ var cydj = (function (exports) {
         msg = 'Now playing: ' + $('.queue_active a').html();
       } else if (msg.startsWith('!discord')) {
         msg = 'https://discord.gg/g8tCGSc2bx';
-      } else if (msg.startsWith('!jamlink')) {
+      } else if (msg.startsWith('!link')) {
         msg = 'https://tinyurl.com/jamcydj';
       } else if (msg.startsWith('!guide')) {
         msg = 'https://tinyurl.com/CyDJguide';
       } else if (msg.startsWith('!script')) {
         msg = 'http://github.com/papertek/CyDJ';
-      } else if (msg.startsWith('!link')) {
+      } else if (msg.startsWith('!media')) {
         const item = $(`.queue_active`).data('media');
         msg = 'Heres the link: ' +
             `${formatURL(item)}`;
@@ -5239,6 +5239,7 @@ var cydj = (function (exports) {
         'roll': 'rolling 3-digit number (<i>!roll</i>)',
         'time': 'displaying current time (<i>!time</i>)',
         'np': 'displaying current playing title (<i>!np</i>)',
+        'media': 'displaying current media in the playlist (<i>!media</i>)',
         'skip': 'skip current item (<i>!skip</i>)',
         'add': 'adding a link to the end of playlist ' +
             '(e.g. <i>!add https://www.youtube.com/watch?v=29FFHC2D12Q</i>)',
