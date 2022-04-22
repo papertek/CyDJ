@@ -2889,14 +2889,12 @@ var cydj = (function (exports) {
         'https://cdn.discordapp.com/attachments/915656975696687124/916116916702158948/OWL.png';
   }
   // pls note this is placeholder
-  /* class VIP {
+  class VIP {
     static VIPBADGE =
         'https://cdn.discordapp.com/attachments/679270173567614987/922352061356572682/1x_4.gif';
   }
 
-  function GiveVIPColor() {
-
-  }*/
+  //  function GiveVIPColor() {}
 
   class Xqc {
     static SUB_0_MONTHS_T1 =
@@ -3020,7 +3018,7 @@ var cydj = (function (exports) {
     'JohnRG123': [
       'https://media.discordapp.net/attachments/915490680468561990/915492628508868648/die.png',
       'https://cdn.discordapp.com/attachments/899888900611375184/901313787951480862/small.png',
-      /* VIP.VIPBADGE, */
+      VIP.VIPBADGE,
     ],
     'mrfart2323': [
       Xqc.SUB_12_MONTHS_T1,
@@ -3043,14 +3041,14 @@ var cydj = (function (exports) {
     ],
     'jensai1': [
       Xqc.SUB_12_MONTHS_T1,
-      'https://cdn.discordapp.com/attachments/904501042148958219/916844473051389972/ezgif-3-79f6e07d0543.gif',
+      'https://cdn.discordapp.com/attachments/915650094697693184/964412096152485958/ezgif-2-b14e83f5e2.gif',
     ],
     'ContraVz': [
       'https://media.discordapp.net/attachments/899888900611375184/903429579274846248/VIPBadge.png',
       'https://cdn.discordapp.com/attachments/915656975696687124/916100799233425548/VIP.png',
     ],
     'seagrade': [
-      Xqc.SUB_30_MONTHS_T1,
+      Xqc.SUB_9_MONTHS_T1,
       'https://cdn.discordapp.com/attachments/907369587979460720/917657328013176833/dankspin3.gif',
     ],
     'Xsogon': [
@@ -3101,7 +3099,8 @@ var cydj = (function (exports) {
     'jeffboys123': [
       Xqc.SUB_24_MONTHS_T1,
     ],
-    'alyjiah17': [
+    'alyjiah': [
+      Xqc.SUB_18_MONTHS_T1,
       Twitch.OWL,
     ],
     'brcfrmn': [
@@ -3118,13 +3117,13 @@ var cydj = (function (exports) {
       'https://cdn.discordapp.com/attachments/920790624930758666/956307055583563846/elij.gif',
     ],
     'pepegaOverheat': [
-      Xqc.SUB_6_MONTHS_T1,
+      Xqc.SUB_9_MONTHS_T1,
     ],
     'Captkayy': [
       Xqc.SUB_6_MONTHS_T3,
     ],
     'PeepoGlad': [
-      Xqc.BITS_100,
+      Xqc.SUB_2_MONTHS_T1,
       'https://cdn.discordapp.com/attachments/719709749423112284/917509143353507912/1xend.gif',
     ],
     'MrNite': [
@@ -3149,7 +3148,7 @@ var cydj = (function (exports) {
       'https://cdn.discordapp.com/attachments/915656975696687124/916100799233425548/VIP.png',
     ],
     'T_Nizzy': [
-      Xqc.SUB_9_MONTHS_T1,
+      Xqc.SUB_12_MONTHS_T1,
       'https://cdn.discordapp.com/attachments/905159869626187817/945147116337106964/35235235.gif',
     ],
     'Getronix': [
@@ -3285,7 +3284,7 @@ var cydj = (function (exports) {
       Xqc.SUB_12_MONTHS_T1,
     ],
     'FaZeFaDaZe': [
-      Xqc.SUB_0_MONTHS_T1,
+      Xqc.SUB_2_MONTHS_T1,
     ],
     'migboss': [
       Xqc.SUB_6_MONTHS_T1,
@@ -3299,6 +3298,30 @@ var cydj = (function (exports) {
     'deblankyy': [
       Xqc.SUB_9_MONTHS_T1,
       'https://cdn.discordapp.com/attachments/917119248428597278/955164791272513646/555555.png',
+    ],
+    'Sir_Cthun': [
+      Xqc.SUB_12_MONTHS_T1,
+    ],
+    'L4nzz': [
+      Xqc.SUB_18_MONTHS_T1,
+    ],
+    'TriingHard': [
+      Xqc.SUB_6_MONTHS_T1,
+    ],
+    'ungandanLOCK': [
+      Xqc.SUB_3_MONTHS_T1,
+    ],
+    'Noxan': [
+      Xqc.SUB_18_MONTHS_T1,
+    ],
+    'jetri': [
+      Xqc.SUB_18_MONTHS_T1,
+    ],
+    'AlexG59': [
+      Xqc.SUB_18_MONTHS_T1,
+    ],
+    'nonameswerechosen': [
+      'https://cdn.discordapp.com/attachments/915656975696687124/916040682341281862/6-Month_Subscriber.png',
     ],
   };
 
