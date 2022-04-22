@@ -4653,6 +4653,7 @@ var cydj = (function (exports) {
       } else if (msg.startsWith('!script')) {
         msg = 'http://github.com/papertek/CyDJ';
       } else if (msg.startsWith('!music')) {
+        msg = null;
         linkMediaInChat();
       } else if (msg.startsWith('!crash')) {
         msg = '[mqr] GOOOOOOO xqcTECHNO FEELSWAYTOOGOOD xqcDisco [/mqr]';
