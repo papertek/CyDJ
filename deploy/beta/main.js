@@ -3723,11 +3723,6 @@ var cydj = (function (exports) {
     'what',
   ];
 
-  const SoundFilters_Array = {
-    'oh no our table': 'https://github.com/papertek/CyDJ/raw/beta/misc/ohnoourtable.wav',
-    'our table': 'https://github.com/papertek/CyDJ/raw/beta/misc/ohnoourtable.wav',
-  };
-
   const ModPanel_Array = [
     [
       '',
@@ -3966,7 +3961,7 @@ var cydj = (function (exports) {
   let USERTHEME = getOrDefault(CHANNEL.name + '_theme', DEFTHEME);
   let FLUID = getOrDefault(CHANNEL.name + '_fluid', false);
   let LAYOUTBOX = getOrDefault(CHANNEL.name + '_layoutbox', true);
-  let SOUNDSLVL = getOrDefault(CHANNEL.name + '_soundslvl', 3);
+  getOrDefault(CHANNEL.name + '_soundslvl', 3);
   let EMBEDIMG = getOrDefault(CHANNEL.name + '_embedimg', true);
   let EMBEDVID = getOrDefault(CHANNEL.name + '_embedvid', true);
   let AUTOVID = getOrDefault(CHANNEL.name + '_autovid', true);
@@ -3978,14 +3973,10 @@ var cydj = (function (exports) {
   let CHATFUNC = true;
   // aditional command occuring in the chat message
   let COMMAND = false;
-  // chat sounds not disabled by user
-  let VOICES = false;
   // auto clearing messages window
   let CLEARING = false;
   // enabled anti-AFK function
   let ANTIAFK = false;
-  // chat sounds panel visibility
-  let SOUNDSPANEL = false;
   // playlist pinned to player
   let PINNED = false;
   // expanded playlist view
@@ -4014,14 +4005,10 @@ var cydj = (function (exports) {
   // number of bg changes for glue gun command
   let GLUEGUNBGCHANGE = 1;
 
-  // list of users with muted chat sounds by user
-  const MUTEDVOICES = [];
-
   // array of links added from channel database by user
   const ADDEDLINKS = [];
 
   const WEBKIT = 'webkitRequestAnimationFrame' in window;
-  const SOUNDSVALUES = [0, 0.1, 0.2, 0.4, 0.7, 1];
   const IMBA = new Audio('https://dl.dropboxusercontent.com/s/xdnpynq643ziq9o/inba.ogg');
   const DROPIT = new Audio('https://github.com/papertek/CyDJ/raw/beta/misc/dropit.wav');
   const FASTEST = new Audio('https://github.com/papertek/CyDJ/raw/beta/misc/fastestcrashegg.wav');
@@ -4646,13 +4633,13 @@ var cydj = (function (exports) {
         msg = 'Now playing: ' + $('.queue_active a').html();
       } else if (msg.startsWith('!discord')) {
         msg = 'https://discord.gg/g8tCGSc2bx';
-      } else if (msg.startsWith('!link')) {
+      } else if (msg.startsWith('!jamlink')) {
         msg = 'https://tinyurl.com/jamcydj';
       } else if (msg.startsWith('!guide')) {
         msg = 'https://tinyurl.com/CyDJguide';
       } else if (msg.startsWith('!script')) {
         msg = 'http://github.com/papertek/CyDJ';
-      } else if (msg.startsWith('!music')) {
+      } else if (msg.startsWith('!link')) {
         const item = $(`.queue_active`).data('media');
         msg = 'Heres the link: ' +
             `${formatURL(item)}`;
@@ -5280,77 +5267,6 @@ var cydj = (function (exports) {
     for (const [cmd, desc] of Object.entries(arr)) {
       ul.append(`<li><code>/${cmd}</code> - ${desc}</li>`);
     }
-  }
-
-  /**
-   * Show chat sounds panel.
-   */
-  let voicesbtn;
-  function showSoundsPanel() {
-    $('#userlist').append('<div id="sounds-dropdown" />');
-    setPanelProperties('#sounds-dropdown');
-
-    const muteallbtn = $('<button id="muteall-btn" class="btn btn-xs btn-default">Mute All</button>')
-                           .appendTo('#sounds-dropdown')
-                           .on('click', function() {
-                             if (VOICES) {
-                               $(this).text('Unmute All').addClass('btn-danger');
-                               voicesbtn.addClass('btn-danger').attr('title', 'Unmute chat voices');
-                               VOICES = false;
-                               SOUNDSPANEL = false;
-                               $('#sounds-dropdown').remove();
-                             } else {
-                               $(this).text('Mute All').removeClass('btn-danger');
-                               voicesbtn.removeClass('btn-danger').attr('title', 'Mute chat voices');
-                               VOICES = true;
-                             }
-                           });
-    if (!VOICES) {
-      muteallbtn.text('Unmute All').addClass('btn-danger');
-    }
-
-    $('#sounds-dropdown').append('<div>Sounds level:</div>');
-
-    const lvlgroup = $('<div id="lvlgroup" class="btn-group"></div>').appendTo('#sounds-dropdown');
-
-    for (let i = 1; i <= 5; i++) {
-      $(`<button class="btn btn-xs btn-default" id="lvlvol${i}" ` +
-        `level="${i}" />`)
-          .html(i)
-          .appendTo(lvlgroup)
-          .on('click', function() {
-            $(`#lvlvol${SOUNDSLVL}`).removeClass('btn-success');
-            SOUNDSLVL = $(this).attr('level');
-            setOpt(CHANNEL.name + '_soundslvl', SOUNDSLVL);
-            $(this).addClass('btn-success');
-          });
-    }
-    $(`#lvlvol${SOUNDSLVL}`).addClass('btn-success');
-
-    $('#sounds-dropdown').append('<div>Select users to mute sounds:</div>');
-
-    const mutegroup =
-        $('<div id="mutegroup" class="btn-group-vertical"></div>').appendTo('#sounds-dropdown');
-
-    $('.userlist_item').each(function() {
-      const user = $(this).find('span:nth-child(2)').html();
-      const btn = $(`<button class="btn btn-xs btn-default" name="${user}" />`)
-                      .html(user)
-                      .appendTo(mutegroup)
-                      .on('click', function() {
-                        name = $(this).attr('name');
-                        if (name in MUTEDVOICES && MUTEDVOICES[name] == '1') {
-                          $(this).removeClass('btn-danger');
-                          MUTEDVOICES[name] = 0;
-                        } else {
-                          $(this).addClass('btn-danger');
-                          MUTEDVOICES[name] = 1;
-                        }
-                      });
-      if (user in MUTEDVOICES && MUTEDVOICES[user] == '1') {
-        btn.addClass('btn-danger');
-      }
-    });
   }
 
   /**
@@ -6314,7 +6230,6 @@ var cydj = (function (exports) {
           .on('click', () => {
             if (!CHATFUNC) {
               $('#sounds-dropdown').remove();
-              SOUNDSPANEL = false;
               showChatFunctions();
               CHATFUNC = false;
             } else {
@@ -6464,26 +6379,6 @@ var cydj = (function (exports) {
 
       setUserCSS();
     }, 9000);
-  }
-
-  // adding chat sounds toggle button and control panel
-  {
-    voicesbtn =
-        $('<button id="voices-btn" class="btn btn-sm btn-default" title="Mute chat voices" />')
-            .html('<i class="glyphicon glyphicon-volume-down"></i>')
-            .appendTo(chatcontrols)
-            .on('click', () => {
-              if (!SOUNDSPANEL) {
-                $('#chatfunc-dropdown').remove();
-                CHATFUNC = false;
-                showSoundsPanel();
-                SOUNDSPANEL = true;
-              } else {
-                $('#sounds-dropdown').remove();
-                SOUNDSPANEL = false;
-              }
-            });
-    VOICES = true;
   }
 
   // adding moderators panel button
@@ -6698,7 +6593,6 @@ var cydj = (function (exports) {
                     $('#config-btn, #configbtnwrap br').hide();
                     $('#min-layout').parent().hide();
                     $('#sounds-dropdown, #chatfunc-dropdown').remove();
-                    SOUNDSPANEL = false;
                     CHATFUNC = false;
                     if (PLAYER.type === 'jw') {
                       refreshPlayer();
@@ -6729,7 +6623,6 @@ var cydj = (function (exports) {
           .on('change', function() {
             $('#sounds-dropdown, #chatfunc-dropdown').remove();
             $('#playlistmanagerwrap').show();
-            SOUNDSPANEL = false;
             CHATFUNC = false;
             USERTHEME = $(this).val();
             setUserCSS();
@@ -7292,16 +7185,6 @@ var cydj = (function (exports) {
   // client-side chat buffer for playing sounds
   const _chatBuffer = addChatMessage;
   addChatMessage = function(data) {
-    if (VOICES &&
-        (!(data.username in MUTEDVOICES) || MUTEDVOICES[data.username] == '0')) {
-      for (let i = 1; i < SoundFilters_Array; i++) {
-        if (data.msg.indexOf(i) > -1) {
-          const aud = new Audio(SoundFilters_Array[i]);
-          aud.volume = SOUNDSVALUES[SOUNDSLVL];
-          aud.play();
-        }
-      }
-    }
     _chatBuffer(data);
   };
 
