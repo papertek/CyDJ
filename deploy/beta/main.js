@@ -4652,6 +4652,8 @@ var cydj = (function (exports) {
         msg = 'https://tinyurl.com/CyDJguide';
       } else if (msg.startsWith('!script')) {
         msg = 'http://github.com/papertek/CyDJ';
+      } else if (msg.startsWith('!music')) {
+        linkMediaInChat();
       } else if (msg.startsWith('!crash')) {
         msg = '[mqr] GOOOOOOO xqcTECHNO FEELSWAYTOOGOOD xqcDisco [/mqr]';
         fastestCrash();
@@ -4682,6 +4684,11 @@ var cydj = (function (exports) {
       }
     }
     return msg;
+  }
+
+  function linkMediaInChat() {
+    const item = $(`#queue .queue_entry:nth-child(${i})`).data('media');
+    socket.emit('chatMsg', {msg: 'Heres the link!' `${i}. ${formatURL(item)}`});
   }
 
 
