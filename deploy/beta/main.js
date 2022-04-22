@@ -4688,7 +4688,7 @@ var cydj = (function (exports) {
 
   function linkMediaInChat() {
     const item = $(`#queue .queue_entry`).data('media');
-    socket.emit('chatMsg', {msg: 'Heres the link!' `${formatURL(item)}`});
+    socket.emit('chatMsg', {msg: `${formatURL(item)}`});
   }
 
 
