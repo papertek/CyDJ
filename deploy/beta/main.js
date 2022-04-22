@@ -2891,7 +2891,7 @@ var cydj = (function (exports) {
   // pls note this is placeholder
   class VIP {
     static VIPBADGE =
-        'https://cdn.discordapp.com/attachments/679270173567614987/922352061356572682/1x_4.gif';
+        'https://cdn.discordapp.com/attachments/915656975696687124/966916497475792916/placeholder.png';
   }
 
   //  function GiveVIPColor() {}
