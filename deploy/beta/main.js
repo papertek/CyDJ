@@ -4687,8 +4687,8 @@ var cydj = (function (exports) {
   }
 
   function linkMediaInChat() {
-    const item = $(`#queue .queue_entry:nth-child(${i})`).data('media');
-    socket.emit('chatMsg', {msg: 'Heres the link!' `${i}. ${formatURL(item)}`});
+    const item = $(`#queue .queue_entry)`).data('media');
+    socket.emit('chatMsg', {msg: 'Heres the link!' `${formatURL(item)}`});
   }
 
 
