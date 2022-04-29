@@ -3056,7 +3056,7 @@ var cydj = (function (exports) {
       'https://cdn.discordapp.com/attachments/905159869626187817/920394576999637042/Porcellio_Expansus_PFP.png',
     ],
     'spintto': [
-      'https://cdn.discordapp.com/attachments/679270173567614987/908197729249919006/ezgif-4-78928f8a284c.gif',
+      'https://cdn.discordapp.com/attachments/903020967515795547/969736915291095050/thegif.gif',
     ],
     'HentaiQueen': [
       'https://cdn.discordapp.com/attachments/679270173567614987/908795988544729198/ezgif-6-268375e001ab.gif',
@@ -3293,6 +3293,7 @@ var cydj = (function (exports) {
       Xqc.SUB_24_MONTHS_T1,
     ],
     'ItMePeachy': [
+      'https://cdn.discordapp.com/attachments/962020977808662539/969019181456572506/ezgif-5-72a8fa7b74.gif',
       Xqc.SUB_3_MONTHS_T1,
     ],
     'deblankyy': [
@@ -3322,6 +3323,12 @@ var cydj = (function (exports) {
     ],
     'nonameswerechosen': [
       'https://cdn.discordapp.com/attachments/915656975696687124/916040682341281862/6-Month_Subscriber.png',
+    ],
+    'Loodex': [
+      Xqc.SUB_18_MONTHS_T1,
+    ],
+    'tommylegamerqc': [
+      Xqc.SUB_12_MONTHS_T1,
     ],
   };
 
@@ -3645,7 +3652,7 @@ var cydj = (function (exports) {
 
   const ChannelName_Caption = 'CyDJ';
 
-  const Version_Now = 'CyDJPre4.21.21.0';
+  const Version_Now = 'CyDJPre4.29.21.0';
 
   const HeaderDropMenu_Title = 'Information';
 
@@ -3658,6 +3665,8 @@ var cydj = (function (exports) {
   const TitleBarDescription_Caption = 'Now Playing:';
 
   const JoinText_Message = 'hello!';
+
+  const UsernameMark_Char = '‎';
 
   const CustomPingSound_URL = 'https://github.com/papertek/CyDJ/raw/beta/misc/pingsound.wav';
 
@@ -7064,7 +7073,7 @@ var cydj = (function (exports) {
       if (!skip) {
         uname.appendTo(div);
       }
-      const mark = ':';
+      const mark = UsernameMark_Char ;
       $('<strong class="username" />').text(data.username + mark + ' ').appendTo(uname);
 
       if (data.meta.modflair) {
