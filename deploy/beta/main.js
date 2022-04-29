@@ -3056,7 +3056,7 @@ var cydj = (function (exports) {
       'https://cdn.discordapp.com/attachments/905159869626187817/920394576999637042/Porcellio_Expansus_PFP.png',
     ],
     'spintto': [
-      'https://cdn.discordapp.com/attachments/679270173567614987/908197729249919006/ezgif-4-78928f8a284c.gif',
+      'https://cdn.discordapp.com/attachments/903020967515795547/969736915291095050/thegif.gif',
     ],
     'HentaiQueen': [
       'https://cdn.discordapp.com/attachments/679270173567614987/908795988544729198/ezgif-6-268375e001ab.gif',
@@ -3323,6 +3323,12 @@ var cydj = (function (exports) {
     ],
     'nonameswerechosen': [
       'https://cdn.discordapp.com/attachments/915656975696687124/916040682341281862/6-Month_Subscriber.png',
+    ],
+    'Loodex': [
+      Xqc.SUB_18_MONTHS_T1,
+    ],
+    'tommylegamerqc': [
+      Xqc.SUB_12_MONTHS_T1,
     ],
   };
 
