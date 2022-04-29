@@ -3660,6 +3660,8 @@ var cydj = (function (exports) {
 
   const JoinText_Message = 'hello!';
 
+  const UsernameMark_Char = '‎';
+
   const CustomPingSound_URL = 'https://github.com/papertek/CyDJ/raw/beta/misc/pingsound.wav';
 
   const PlayerHiding_URL = 'https://c.tenor.com/Q6UjBrnSzvQAAAAC/anime-uh.gif';
@@ -7065,7 +7067,7 @@ var cydj = (function (exports) {
       if (!skip) {
         uname.appendTo(div);
       }
-      const mark = ':';
+      const mark = UsernameMark_Char ;
       $('<strong class="username" />').text(data.username + mark + ' ').appendTo(uname);
 
       if (data.meta.modflair) {
