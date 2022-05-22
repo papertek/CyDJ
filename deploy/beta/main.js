@@ -3655,8 +3655,6 @@ var cydj = (function (exports) {
 
   const RulesBtn_Caption = 'Read Channel Rules';
 
-  const ChannelAnnouncement_Title = 'CyDJ Alert';
-
   const TitleIcon_URL = 'https://cdn.7tv.app/emote/6040a8bccf6746000db10348/2x';
 
   const TitleBarDescription_Caption = 'Now Playing:';
@@ -3788,9 +3786,6 @@ var cydj = (function (exports) {
 
   const RulesBtn_HTML =
       '<ol><li>You want to write on the chat? Enter temporary nickname into <b>Guest Login</b> input and click enter.</li><li>You want to register a nick? Click <b>Account -> Profile</b> on the top of the channel, and fill the registration form. You don\'t need an email to register.</li><li>Troll skipping = immediate kick.</li><li>Don\'t be annoying.</li><li>Do not one man spam.</li><li>Do not encourage chat wars or harass/target people.</li><li>Queueing blatant NSFW videos such as porn/hentai/gore is strictly not allowed, doing so will result in an ip ban.</li><li>Queuing the same video but in different link variants is not allowed.</li><li>Mods have the right to skip a video if its overplayed.</li><li><b>These rules are subject to common sense.</b></li></ol>';
-
-  const ChannelAnnouncement_HTML =
-      'Welcome chatters to CyDJ! We are finally getting close to the real deal! But this is only a pre-release. Most bugs are expected to be resolved before releasing 1.0, please report any bugs on GitHub.';
 
   const EmbeddingMedia_Images =
       'a[href$=".jpg"], a[href$=".jpg:large"], a[href$=".jpeg"], a[href$=".JPG"], a[href$=".png"] ,a[href$=".PNG"], a[href$=".tiff"], a[href$=".gif"]';
@@ -6114,11 +6109,6 @@ var cydj = (function (exports) {
   {
     socket.on('setMotd', changeMOTD);
     changeMOTD();
-  }
-
-  // adding custom channel announcement
-  {
-    makeAlert(ChannelAnnouncement_Title, ChannelAnnouncement_HTML).appendTo('#announcements');
   }
 
   // adding full-width title bar and progress bar
