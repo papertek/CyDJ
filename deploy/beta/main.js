@@ -3994,7 +3994,7 @@ var cydj = (function (exports) {
   // channel database has been loaded
   let CHANDB = false;
   // using altered 'formatChatMessage' built-in function
-  let ALTERCHATFORMAT = false;
+  let ALTERCHATFORMAT = true;
 
   // previous read of a current item time for the progress bar
   let PREVTIME = 0;
