@@ -3669,8 +3669,6 @@ var cydj = (function (exports) {
 
   const PlayerHiding_URL = 'https://c.tenor.com/Q6UjBrnSzvQAAAAC/anime-uh.gif';
 
-  const GroupEmotes_Number = 100;
-
   const HeaderDropMenu_Array = [
     ['CyDJ Rooms', ''],
     ['Main Room', 'https://cytu.be/r/cydj'],
@@ -3994,7 +3992,7 @@ var cydj = (function (exports) {
   // channel database has been loaded
   let CHANDB = false;
   // using altered 'formatChatMessage' built-in function
-  let ALTERCHATFORMAT = true;
+  let ALTERCHATFORMAT = false;
 
   // previous read of a current item time for the progress bar
   let PREVTIME = 0;
@@ -5204,67 +5202,6 @@ var cydj = (function (exports) {
     }
   }
 
-  let emotespanel;
-
-  /**
-   * Display list of emotes.
-   */
-  function showEmotes() {
-    const len = CHANNEL.emotes.length;
-    if (len < 1) {
-      emotespanel.addClass('row');
-      makeAlert('No emotes available', 'Ask channel administrator.').appendTo(emotespanel);
-    } else if (len <= GroupEmotes_Number) {
-      for (const emote of CHANNEL.emotes) {
-        $(`<img onclick="cydj.insertText('${emote.name} ')" />`)
-            .attr({'src': emote.image, 'title': emote.name})
-            .appendTo(emotespanel);
-      }
-    } else {
-      let arr = [];
-      const stopAt = GroupEmotes_Number - 1;
-      const gr = Math.ceil(CHANNEL.emotes.length / GroupEmotes_Number);
-      let html = '';
-
-      for (let i = 0; i < len; i++) {
-        html += `<img src="${CHANNEL.emotes[i].image}" ` +
-            `onclick="cydj.insertText(\'${CHANNEL.emotes[i].name} \')" />`;
-        if (i % GroupEmotes_Number === stopAt) {
-          arr.push(html);
-          html = '';
-        }
-      }
-      if (len % GroupEmotes_Number !== 0) {
-        arr.push(html);
-      }
-
-      for (let i = 0; i < gr; i++) {
-        div = $(`<div id="emotes-${i}" class="groupemotes" style="display:none" />`)
-                  .html(arr[i])
-                  .appendTo(emotespanel);
-      }
-      arr = '';
-
-      emotesbtnwrap = $('<div id="emotesbtnwrap" />').appendTo(emotespanel);
-      emotesbtngroup = $('<div id="emotescontrols" class="btn-group">').appendTo(emotesbtnwrap);
-
-      for (let i = 0; i < gr; i++) {
-        $(`<button class="btn btn-sm btn-default emotesbtn" group="${i}">` +
-          `${i + 1}</button>`)
-            .appendTo(emotesbtngroup)
-            .on('click', function() {
-              $('.emotesbtn').removeClass('active');
-              $(this).addClass('active');
-              $('.groupemotes').hide();
-              nr = $(this).attr('group');
-              $(`#emotes-${nr}`).show();
-            });
-      }
-      $('#emotes-0').show();
-      $('#emotescontrols button:nth-child(1)').addClass('active');
-    }
-  }
-
   /**
    * Show chat commands modal window.
    */
@@ -6342,16 +6279,6 @@ var cydj = (function (exports) {
         .on('click', () => toggleDiv(fontspanel));
   }
 
-  // adding chat emotes button
-  {
-    $('<button id="emotes-btn" class="btn btn-sm btn-default" title="Display emotes panel" />')
-        .html('<i class="glyphicon glyphicon-picture"></i>')
-        .appendTo(chatcontrols)
-        .on('click', () => {
-          toggleDiv(emotespanel);
-        });
-  }
-
   // moving emote button attempt
   {
     $('#emotelistbtn').appendTo(chatcontrols);
@@ -6579,14 +6506,6 @@ var cydj = (function (exports) {
       if (i % 13 === 12) {
         fontsbtnwrap.append('<br />');
       }
-    }
-  }
-
-  // adding emotes panel
-  {
-    emotespanel = $('<div id="emotespanel" style="display:none" />').appendTo(chatpanel);
-    {
-      showEmotes();
     }
   }
 
