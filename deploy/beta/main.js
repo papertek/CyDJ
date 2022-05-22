@@ -3026,7 +3026,7 @@ var cydj = (function (exports) {
     ],
     'IP0G': [
       Xqc.BITS_100000,
-      'https://cdn.discordapp.com/attachments/679270173567614987/907384062807789598/1_25x25.gif',
+      'https://static-cdn.jtvnw.net/emoticons/v2/304550342/static/light/1.0',
     ],
     'ACCOUNT2': [
       Xqc.SUB_12_MONTHS_T1,
@@ -3048,11 +3048,11 @@ var cydj = (function (exports) {
       'https://cdn.discordapp.com/attachments/915656975696687124/916100799233425548/VIP.png',
     ],
     'seagrade': [
-      Xqc.SUB_9_MONTHS_T1,
+      Xqc.SUB_12_MONTHS_T1,
       'https://cdn.discordapp.com/attachments/907369587979460720/917657328013176833/dankspin3.gif',
     ],
     'Xsogon': [
-      Xqc.SUB_18_MONTHS_T1,
+      Xqc.SUB_24_MONTHS_T1,
       'https://cdn.discordapp.com/attachments/905159869626187817/920394576999637042/Porcellio_Expansus_PFP.png',
     ],
     'spintto': [
@@ -3123,7 +3123,7 @@ var cydj = (function (exports) {
       Xqc.SUB_6_MONTHS_T3,
     ],
     'PeepoGlad': [
-      Xqc.SUB_2_MONTHS_T1,
+      Xqc.SUB_3_MONTHS_T1,
       'https://cdn.discordapp.com/attachments/719709749423112284/917509143353507912/1xend.gif',
     ],
     'MrNite': [
@@ -3158,7 +3158,7 @@ var cydj = (function (exports) {
       Xqc.SUB_3_MONTHS_T1,
     ],
     'BryG05': [
-      Xqc.SUB_3_MONTHS_T1,
+      Xqc.SUB_6_MONTHS_T1,
     ],
     'SenileCookie': [
       Xqc.SUB_18_MONTHS_T1,
@@ -3202,9 +3202,6 @@ var cydj = (function (exports) {
     'LEBB': [
       Xqc.SUB_12_MONTHS_T1,
       'https://cdn.discordapp.com/attachments/915650094697693184/933641907052118016/Lebb.jpeg',
-    ],
-    'Psychedelic111': [
-      Xqc.SUB_3_MONTHS_T1,
     ],
     'aade_': [
       Xqc.SUB_12_MONTHS_T1,
