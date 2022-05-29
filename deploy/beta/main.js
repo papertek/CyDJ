@@ -3327,6 +3327,9 @@ var cydj = (function (exports) {
     'tommylegamerqc': [
       Xqc.SUB_12_MONTHS_T1,
     ],
+    'peroshka': [
+      Xqc.SUB_18_MONTHS_T3,
+    ],
   };
 
   const CHANNEL_DATABASE = [
