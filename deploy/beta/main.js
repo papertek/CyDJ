@@ -3652,7 +3652,7 @@ var cydj = (function (exports) {
 
   const ChannelName_Caption = 'CyDJ';
 
-  const Version_Now = 'CyDJPre5.22.22.0';
+  const Version_Now = 'CyDJPre6.4.22.0';
 
   const HeaderDropMenu_Title = 'Information';
 
@@ -4613,7 +4613,7 @@ var cydj = (function (exports) {
         msg = 'current item has been voteskipped';
       } else if (msg.startsWith('!next') && hasPermission('playlistjump')) {
         socket.emit('playNext');
-        msg = 'start playing next item';
+        msg = 'started playing next item';
       } else if (msg.startsWith('!bump') && hasPermission('playlistmove')) {
         const last = $('#queue').children().length;
         const uid = $(`#queue .queue_entry:nth-child(${last})`).data('uid');
@@ -4622,7 +4622,7 @@ var cydj = (function (exports) {
         msg = `last item bumped as next: ${title}`;
       } else if (msg.startsWith('!add ') && hasPermission('playlistadd')) {
         const parsed = parseMediaLink(msg.split('!add ')[1]);
-        if (parsed['id'] == null) {
+        if (parsed['id'] === null) {
           msg = 'error: invalid link, item has not been added';
         } else {
           socket.emit('queue', {
