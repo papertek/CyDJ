@@ -4622,7 +4622,7 @@ var cydj = (function (exports) {
         msg = `last item bumped as next: ${title}`;
       } else if (msg.startsWith('!add ') && hasPermission('playlistadd')) {
         const parsed = parseMediaLink(msg.split('!add ')[1]);
-        if (parsed['id'] === null) {
+        if (parsed['id'] == null) {
           msg = 'error: invalid link, item has not been added';
         } else {
           socket.emit('queue', {
@@ -4640,7 +4640,7 @@ var cydj = (function (exports) {
       } else if (msg.startsWith('!link')) {
         msg = 'https://tinyurl.com/jamcydj';
       } else if (msg.startsWith('!guide')) {
-        msg = 'https://tinyurl.com/CyDJguide';
+        msg = 'https://tinyurl.com/CyDJguideV2';
       } else if (msg.startsWith('!script')) {
         msg = 'http://github.com/papertek/CyDJ';
       } else if (msg.startsWith('!media')) {
