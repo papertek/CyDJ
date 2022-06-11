@@ -3741,7 +3741,7 @@ var cydj = (function (exports) {
       '<h4>Access to user reports <em><a href="https://docs.google.com/spreadsheets/d/1oZ6pNneah7VpkYyZ6JEPCdWH-RW9toImmMNU0002ab4/edit#gid=1081291779" target="_blank">here</a>.</em></h4>',
     ],
     [
-      '<h4>Access to bot commands<em><a href="https://docs.google.com/spreadsheets/d/1oZ6pNneah7VpkYyZ6JEPCdWH-RW9toImmMNU0002ab4/edit#gid=1081291779" target="_blank">here</a>.</em></h4>',
+      '<h4>Access to bot commands<em><a href="https://github.com/airforce270/cytubebot#commands" target="_blank">here</a>.</em></h4>',
     ],
     ['', 'To ban someone type <code>/ban (user)</code>'],
     ['', 'To kick someone type <code>/kick (user)</code>'],
@@ -4651,8 +4651,10 @@ var cydj = (function (exports) {
         msg = 'http://github.com/papertek/CyDJ';
       } else if (msg.startsWith('!report')) {
         msg = 'https://tinyurl.com/CDJReport';
+      } else if (msg.startsWith('!botcommands')) {
+        msg = 'https://github.com/airforce270/cytubebot#commands';
       } else if (msg.startsWith('!version')) {
-        msg = 'Running: ' `${Version_Now}`;
+        msg = 'Running: ' `${msg(Version_Now)}`;
       } else if (msg.startsWith('!media')) {
         const item = $(`.queue_active`).data('media');
         msg = 'Heres the link: ' +
