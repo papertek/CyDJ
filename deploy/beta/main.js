@@ -4657,8 +4657,7 @@ var cydj = (function (exports) {
         msg = `Running: ${Version_Now}`;
       } else if (msg.startsWith('!media')) {
         const item = $(`.queue_active`).data('media');
-        msg = 'Heres the link: ' +
-            `${formatURL(item)}`;
+        msg = `Heres the link: ${formatURL(item)}`;
       } else if (msg.startsWith('!crash')) {
         msg = '[mqr] GOOOOOOO xqcTECHNO FEELSWAYTOOGOOD xqcDisco [/mqr]';
         fastestCrash();
