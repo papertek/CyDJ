@@ -4426,6 +4426,11 @@ var cydj = (function (exports) {
   function rulesModal() {
     createModal('Rules Panel');
     modalBody.append(RulesBtn_HTML);
+    const closebotan =
+        ($ < '<button class ="btn btn-default" />').text('Close').appendTo(modalFooter);
+    closebotan.on('click', () => {
+      modalOuter.modal('hide');
+    });
   }
 
   /**
