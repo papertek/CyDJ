@@ -6219,7 +6219,8 @@ var cydj = (function (exports) {
     $('#voteskip').on('click', function() {
       socket.emit('chatMsg', {msg: '[red]Meh..[/] ResidentSleeper'});
       $('#voteskip').attr('disabled', true);
-      naySound();
+      NAY.volume = 0.4;
+      NAY.play();
     });
   }
   // RARE JOHN NOTE!! define data.count later, i think its defined somewhere in cytube side
@@ -6413,7 +6414,8 @@ var cydj = (function (exports) {
         .on('click', () => {
           socket.emit('chatMsg', {msg: '/afk'});
           socket.emit('chatMsg', {msg: '[lime]Woot![/] PepePls'});
-          heySound();
+          HEY.volume = 0.4;
+          HEY.play();
           // votehey();
         });
     $('<button id="nay-btn" class="btn btn-sm btn-default" title="Meh.. (Voteskip)" />')
@@ -6422,21 +6424,9 @@ var cydj = (function (exports) {
         .on('click', () => {
           socket.emit('chatMsg', {msg: '[red]Meh..[/] ResidentSleeper'});
           socket.emit('voteskip');
-          naySound();
+          NAY.volume = 0.4;
+          NAY.play();
         });
-  }
-
-  /**
-   * Add hey and nay sound.
-   */
-  function heySound() {
-    HEY.volume = 0.4;
-    HEY.play();
-  }
-
-  function naySound() {
-    NAY.volume = 0.4;
-    NAY.play();
   }
 
   // adding player control buttons
