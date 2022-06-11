@@ -3025,11 +3025,11 @@ var cydj = (function (exports) {
       'https://cdn.discordapp.com/attachments/899888900611375184/917638191723450418/Gigachad_1.jpg',
     ],
     'IP0G': [
-      Xqc.BITS_100000,
+      'https://cdn.discordapp.com/attachments/679270173567614987/984717275963748362/ezgif-3-018bdeb1e1.gif',
       'https://static-cdn.jtvnw.net/emoticons/v2/304550342/static/light/1.0',
     ],
     'ACCOUNT2': [
-      Xqc.SUB_12_MONTHS_T1,
+      'https://cdn.discordapp.com/attachments/904501042148958219/981805543121371136/ezgif-2-b39e272ae5.png',
       'https://media.discordapp.net/attachments/899888900611375184/901380813243944970/EZ_1.png',
     ],
     'Zombsiee': [
@@ -3048,7 +3048,6 @@ var cydj = (function (exports) {
       'https://cdn.discordapp.com/attachments/915656975696687124/916100799233425548/VIP.png',
     ],
     'seagrade': [
-      Xqc.SUB_12_MONTHS_T1,
       'https://cdn.discordapp.com/attachments/907369587979460720/917657328013176833/dankspin3.gif',
     ],
     'Xsogon': [
@@ -3123,7 +3122,7 @@ var cydj = (function (exports) {
       Xqc.SUB_6_MONTHS_T3,
     ],
     'PeepoGlad': [
-      Xqc.SUB_3_MONTHS_T1,
+      'https://cdn.discordapp.com/attachments/904501042148958219/981805543121371136/ezgif-2-b39e272ae5.png',
       'https://cdn.discordapp.com/attachments/719709749423112284/917509143353507912/1xend.gif',
     ],
     'MrNite': [
@@ -3170,7 +3169,7 @@ var cydj = (function (exports) {
       Xqc.SUB_18_MONTHS_T1,
     ],
     'isiete': [
-      Xqc.SUB_9_MONTHS_T1,
+      Xqc.SUB_12_MONTHS_T1,
     ],
     'xQt0001': [
       Xqc.SUB_12_MONTHS_T3,
@@ -3233,7 +3232,7 @@ var cydj = (function (exports) {
       Xqc.SUB_12_MONTHS_T1,
     ],
     'Yaekaii': [
-      Xqc.SUB_12_MONTHS_T1,
+      Xqc.SUB_18_MONTHS_T3,
     ],
     'cerasuz': [
       Xqc.SUB_18_MONTHS_T1,
@@ -3257,6 +3256,7 @@ var cydj = (function (exports) {
       Xqc.SUB_18_MONTHS_T1,
     ],
     'Loi_561': [
+      'https://cdn.discordapp.com/attachments/904501042148958219/981805543121371136/ezgif-2-b39e272ae5.png',
       'https://cdn.discordapp.com/attachments/915490680468561990/945090131499581440/loi.gif',
     ],
     'CherrySlushy': [
@@ -3290,7 +3290,7 @@ var cydj = (function (exports) {
       Xqc.SUB_24_MONTHS_T1,
     ],
     'ItMePeachy': [
-      Xqc.SUB_3_MONTHS_T1,
+      'https://cdn.discordapp.com/attachments/904501042148958219/981805543121371136/ezgif-2-b39e272ae5.png',
       'https://cdn.discordapp.com/attachments/962020977808662539/969019181456572506/ezgif-5-72a8fa7b74.gif',
     ],
     'deblankyy': [
@@ -3329,6 +3329,12 @@ var cydj = (function (exports) {
     ],
     'peroshka': [
       Xqc.SUB_18_MONTHS_T3,
+    ],
+    'peroshka': [
+      Xqc.SUB_18_MONTHS_T3,
+    ],
+    'TommyLegamerQc': [
+      Xqc.SUB_12_MONTHS_T1,
     ],
   };
 
@@ -3652,7 +3658,7 @@ var cydj = (function (exports) {
 
   const ChannelName_Caption = 'CyDJ';
 
-  const Version_Now = 'CyDJPre6.4.22.0';
+  const Version_Now = 'CyDJPre6.11.22.0';
 
   const HeaderDropMenu_Title = 'Information';
 
@@ -4643,6 +4649,10 @@ var cydj = (function (exports) {
         msg = 'https://tinyurl.com/CyDJguideV2';
       } else if (msg.startsWith('!script')) {
         msg = 'http://github.com/papertek/CyDJ';
+      } else if (msg.startsWith('!report')) {
+        msg = 'https://tinyurl.com/CDJReport';
+      } else if (msg.startsWith('!version')) {
+        msg = 'Running: ' `${Version_Now}`;
       } else if (msg.startsWith('!media')) {
         const item = $(`.queue_active`).data('media');
         msg = 'Heres the link: ' +
