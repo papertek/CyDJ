@@ -5241,7 +5241,7 @@ var cydj = (function (exports) {
             '<code>!!</code> - beginning and end of fastest bounce text scrolling!',
           ].map((line) => `<li>${line}</li>`)
               .join('') +
-          'For a quick CyDJ guide check out this Google Doc <a href="https://docs.google.com/document/d/1X2TdR9hc2KK0WEBLjY06CZaY30QyKxsI_7CQ1qbSz0g/edit" target="_blank">here</a>.';
+          'For a quick CyDJ guide check out this Google Doc <a href="https://tinyurl.com/CyDJguideV2" target="_blank">here</a>.';
       $('<ul />').html(html).appendTo(modalBody);
     }
     {
@@ -5263,7 +5263,8 @@ var cydj = (function (exports) {
         'version': 'displays current script version (<i>!version</i>)',
         'report': 'links a report fourm for reporting a user (<i>!report</i>)',
         'guide': 'links the CyDJ guide (<i>!guide</i>)',
-        'botcommands': 'link to bot commands (<i>!guide</i>)',
+        'script': 'links the CyDJ GitHub (<i>!script</i>)',
+        'botcommands': 'link to bot commands (<i>!botcommands</i>)',
         'discord': 'link to the CyDJ discord (<i>!discord</i>)',
         'link': 'post a TinyURL link for this room (<i>!link</i>)',
         'randomemote': 'displays a random emote from the emote list (<i>!randomemote</i>)',
