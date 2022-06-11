@@ -3025,11 +3025,11 @@ var cydj = (function (exports) {
       'https://cdn.discordapp.com/attachments/899888900611375184/917638191723450418/Gigachad_1.jpg',
     ],
     'IP0G': [
-      Xqc.BITS_100000,
+      'https://cdn.discordapp.com/attachments/679270173567614987/984717275963748362/ezgif-3-018bdeb1e1.gif',
       'https://static-cdn.jtvnw.net/emoticons/v2/304550342/static/light/1.0',
     ],
     'ACCOUNT2': [
-      Xqc.SUB_12_MONTHS_T1,
+      'https://cdn.discordapp.com/attachments/904501042148958219/981805543121371136/ezgif-2-b39e272ae5.png',
       'https://media.discordapp.net/attachments/899888900611375184/901380813243944970/EZ_1.png',
     ],
     'Zombsiee': [
@@ -3048,7 +3048,6 @@ var cydj = (function (exports) {
       'https://cdn.discordapp.com/attachments/915656975696687124/916100799233425548/VIP.png',
     ],
     'seagrade': [
-      Xqc.SUB_12_MONTHS_T1,
       'https://cdn.discordapp.com/attachments/907369587979460720/917657328013176833/dankspin3.gif',
     ],
     'Xsogon': [
@@ -3123,7 +3122,7 @@ var cydj = (function (exports) {
       Xqc.SUB_6_MONTHS_T3,
     ],
     'PeepoGlad': [
-      Xqc.SUB_3_MONTHS_T1,
+      'https://cdn.discordapp.com/attachments/904501042148958219/981805543121371136/ezgif-2-b39e272ae5.png',
       'https://cdn.discordapp.com/attachments/719709749423112284/917509143353507912/1xend.gif',
     ],
     'MrNiTe': [
@@ -3170,7 +3169,7 @@ var cydj = (function (exports) {
       Xqc.SUB_18_MONTHS_T1,
     ],
     'isiete': [
-      Xqc.SUB_9_MONTHS_T1,
+      Xqc.SUB_12_MONTHS_T1,
     ],
     'xQt0001': [
       Xqc.SUB_12_MONTHS_T3,
@@ -3233,7 +3232,7 @@ var cydj = (function (exports) {
       Xqc.SUB_12_MONTHS_T1,
     ],
     'Yaekaii': [
-      Xqc.SUB_12_MONTHS_T1,
+      Xqc.SUB_18_MONTHS_T3,
     ],
     'cerasuz': [
       Xqc.SUB_18_MONTHS_T1,
@@ -3257,6 +3256,7 @@ var cydj = (function (exports) {
       Xqc.SUB_18_MONTHS_T1,
     ],
     'Loi_561': [
+      'https://cdn.discordapp.com/attachments/904501042148958219/981805543121371136/ezgif-2-b39e272ae5.png',
       'https://cdn.discordapp.com/attachments/915490680468561990/945090131499581440/loi.gif',
     ],
     'CherrySlushy': [
@@ -3290,7 +3290,7 @@ var cydj = (function (exports) {
       Xqc.SUB_24_MONTHS_T1,
     ],
     'ItMePeachy': [
-      Xqc.SUB_3_MONTHS_T1,
+      'https://cdn.discordapp.com/attachments/904501042148958219/981805543121371136/ezgif-2-b39e272ae5.png',
       'https://cdn.discordapp.com/attachments/962020977808662539/969019181456572506/ezgif-5-72a8fa7b74.gif',
     ],
     'deblankyy': [
@@ -3325,6 +3325,15 @@ var cydj = (function (exports) {
       Xqc.SUB_18_MONTHS_T1,
     ],
     'tommylegamerqc': [
+      Xqc.SUB_12_MONTHS_T1,
+    ],
+    'peroshka': [
+      Xqc.SUB_18_MONTHS_T3,
+    ],
+    'peroshka': [
+      Xqc.SUB_18_MONTHS_T3,
+    ],
+    'TommyLegamerQc': [
       Xqc.SUB_12_MONTHS_T1,
     ],
   };
@@ -3649,7 +3658,7 @@ var cydj = (function (exports) {
 
   const ChannelName_Caption = 'CyDJ';
 
-  const Version_Now = 'CyDJPre5.22.22.0';
+  const Version_Now = 'CyDJPre6.11.22.0';
 
   const HeaderDropMenu_Title = 'Information';
 
@@ -3730,7 +3739,11 @@ var cydj = (function (exports) {
   const ModPanel_Array = [
     [
       '',
-      '<strong>Access to user reports <em><a href="https://docs.google.com/spreadsheets/d/1oZ6pNneah7VpkYyZ6JEPCdWH-RW9toImmMNU0002ab4/edit#gid=1081291779" target="_blank">here</a>.</em></strong>',
+      '<h4>Access to user reports <em><a href="https://docs.google.com/spreadsheets/d/1oZ6pNneah7VpkYyZ6JEPCdWH-RW9toImmMNU0002ab4/edit#gid=1081291779" target="_blank">here</a>.</em></h4>',
+    ],
+    [
+      '',
+      '<h4>Access to bot commands <em><a href="https://github.com/airforce270/cytubebot#commands" target="_blank">here</a>.</em></h4>',
     ],
     ['', 'To ban someone type <code>/ban (user)</code>'],
     ['', 'To kick someone type <code>/kick (user)</code>'],
@@ -3745,7 +3758,6 @@ var cydj = (function (exports) {
     ['', 'To mute someone type <code>/mute (user)</code>'],
     ['', 'To unmute someone type <code>/unmute (user)</code>'],
     ['', 'To clear chat type <code>/clear</code>'],
-    ['', '<strong>--ADVANCED COMMANDS</strong>'],
     ['', 'To remove a users queue type <code>/clean (user)</code>'],
     [
       '',
@@ -3763,7 +3775,6 @@ var cydj = (function (exports) {
       '',
       'The same as above but an even more wider area of ips <code>/ipban (user) wrange (reason)</code>',
     ],
-    ['', '<strong>--FUN COMMANDS</strong>'],
     [
       '',
       'Drinks! <code>/d (message)</code> ~ Drinks are just an asthetic for you or other people',
@@ -3788,7 +3799,7 @@ var cydj = (function (exports) {
       '<ol><li>You want to write on the chat? Enter temporary nickname into <b>Guest Login</b> input and click enter.</li><li>You want to register a nick? Click <b>Account -> Profile</b> on the top of the channel, and fill the registration form. You don\'t need an email to register.</li><li>Troll skipping = immediate kick.</li><li>Don\'t be annoying.</li><li>Do not one man spam.</li><li>Do not encourage chat wars or harass/target people.</li><li>Queueing blatant NSFW videos such as porn/hentai/gore is strictly not allowed, doing so will result in an ip ban.</li><li>Queuing the same video but in different link variants is not allowed.</li><li>Mods have the right to skip a video if its overplayed.</li><li><b>These rules are subject to common sense.</b></li></ol>';
 
   const EmbeddingMedia_Images =
-      'a[href$=".jpg"], a[href$=".jpg:large"], a[href$=".jpeg"], a[href$=".JPG"], a[href$=".png"] ,a[href$=".PNG"], a[href$=".tiff"], a[href$=".gif"]';
+      'a[href$=".jpg"], a[href$=".jpg:large"], a[href$=".jpeg"], a[href$=".JPEG"], a[href$=".JPG"], a[href$=".png"], a[href$=".PNG"], a[href$=".tiff"], a[href$=".TIFF"], a[href$=".webp"], a[href$=".WEBP"], a[href$=".gif"], a[href$=".GIF"]';
 
   const EmbeddingMedia_Videos =
       'a[href$=".webm"], a[href$=".mp4"], a[href$=".MP4"], a[href$=".mov"], a[href$=".MOV"], a[href$=".mp3"], a[href$=".MP3"], a[href$=".wav"], a[href$=".WAV"], a[href$=".ogg"], a[href$=".OGG"], a[href$=".m4a"], a[href$=".M4A"]';
@@ -4610,7 +4621,7 @@ var cydj = (function (exports) {
         msg = 'current item has been voteskipped';
       } else if (msg.startsWith('!next') && hasPermission('playlistjump')) {
         socket.emit('playNext');
-        msg = 'start playing next item';
+        msg = 'started playing next item';
       } else if (msg.startsWith('!bump') && hasPermission('playlistmove')) {
         const last = $('#queue').children().length;
         const uid = $(`#queue .queue_entry:nth-child(${last})`).data('uid');
@@ -4637,13 +4648,18 @@ var cydj = (function (exports) {
       } else if (msg.startsWith('!link')) {
         msg = 'https://tinyurl.com/jamcydj';
       } else if (msg.startsWith('!guide')) {
-        msg = 'https://tinyurl.com/CyDJguide';
+        msg = 'https://tinyurl.com/CyDJguideV2';
       } else if (msg.startsWith('!script')) {
         msg = 'http://github.com/papertek/CyDJ';
+      } else if (msg.startsWith('!report')) {
+        msg = 'https://tinyurl.com/CDJReport';
+      } else if (msg.startsWith('!botcommands')) {
+        msg = 'https://github.com/airforce270/cytubebot#commands';
+      } else if (msg.startsWith('!version')) {
+        msg = `Running: ${Version_Now}`;
       } else if (msg.startsWith('!media')) {
         const item = $(`.queue_active`).data('media');
-        msg = 'Heres the link: ' +
-            `${formatURL(item)}`;
+        msg = `Heres the link: ${formatURL(item)}`;
       } else if (msg.startsWith('!crash')) {
         msg = '[mqr] GOOOOOOO xqcTECHNO FEELSWAYTOOGOOD xqcDisco [/mqr]';
         fastestCrash();
@@ -6205,7 +6221,8 @@ var cydj = (function (exports) {
     $('#voteskip').on('click', function() {
       socket.emit('chatMsg', {msg: '[red]Meh..[/] ResidentSleeper'});
       $('#voteskip').attr('disabled', true);
-      naySound();
+      NAY.volume = 0.4;
+      NAY.play();
     });
   }
   // RARE JOHN NOTE!! define data.count later, i think its defined somewhere in cytube side
@@ -6399,7 +6416,8 @@ var cydj = (function (exports) {
         .on('click', () => {
           socket.emit('chatMsg', {msg: '/afk'});
           socket.emit('chatMsg', {msg: '[lime]Woot![/] PepePls'});
-          heySound();
+          HEY.volume = 0.4;
+          HEY.play();
           // votehey();
         });
     $('<button id="nay-btn" class="btn btn-sm btn-default" title="Meh.. (Voteskip)" />')
@@ -6408,21 +6426,9 @@ var cydj = (function (exports) {
         .on('click', () => {
           socket.emit('chatMsg', {msg: '[red]Meh..[/] ResidentSleeper'});
           socket.emit('voteskip');
-          naySound();
+          NAY.volume = 0.4;
+          NAY.play();
         });
-  }
-
-  /**
-   * Add hey and nay sound.
-   */
-  function heySound() {
-    HEY.volume = 0.4;
-    HEY.play();
-  }
-
-  function naySound() {
-    NAY.volume = 0.4;
-    NAY.play();
   }
 
   // adding player control buttons
