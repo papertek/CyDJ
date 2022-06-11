@@ -4429,9 +4429,6 @@ var cydj = (function (exports) {
     $('<button class ="btn btn-default" type="button" data-dismiss="modal"/>')
         .text('Close')
         .appendTo(modalFooter);
-    /*  closebotan.on('click', () => {
-        modalOuter.modal('hide');
-      });*/
   }
 
   /**
@@ -5223,6 +5220,9 @@ var cydj = (function (exports) {
    */
   function showChatHelp() {
     createModal('Chat Commands');
+    $('<button class ="btn btn-default" type="button" data-dismiss="modal"/>')
+        .text('Close')
+        .appendTo(modalFooter);
 
     {
       modalBody.append('<strong>Fonts commands</strong><br /><br />');
@@ -5302,7 +5302,9 @@ var cydj = (function (exports) {
    */
   function showModPanel() {
     createModal('Moderators panel');
-
+    $('<button class ="btn btn-default" type="button" data-dismiss="modal"/>')
+        .text('Close')
+        .appendTo(modalFooter);
     let html = '';
     for (const panel of ModPanel_Array) {
       const name = panel[0];
@@ -6323,6 +6325,9 @@ var cydj = (function (exports) {
    */
   function showContextMenu() {
     createModal('Context Menu');
+    $('<button class ="btn btn-default" type="button" data-dismiss="modal"/>')
+        .text('Close')
+        .appendTo(modalFooter);
     {
       modalBody.append('<strong>Useful links</strong><br /><br />');
       const html =
