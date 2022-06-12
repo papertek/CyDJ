@@ -7950,6 +7950,29 @@ var cydj = (function (exports) {
   socket.on('changeMedia', resizeStuff);
   setInterval(() => resizeStuff(), 1000);
 
+  const element = document.getElementById('config-well');
+  const resizer = document.createElement('resizable');
+  resizer.className = 'resizer';
+  resizer.style.position = 'absolute';
+  resizer.style.right = 0;
+  resizer.style.bottom = 0;
+  resizer.style.cursor = 'se-resize';
+  element.appendChild(resizer);
+  resizer.addEventListener('mousedown', initResize, false);
+
+  function initResize(e) {
+    window.addEventListener('mousemove', Resize, false);
+    window.addEventListener('mouseup', stopResize, false);
+  }
+  function Resize(e) {
+    element.style.width = (e.clientX - element.offsetLeft) + 'px';
+    element.style.height = (e.clientY - element.offsetTop) + 'px';
+  }
+  function stopResize(e) {
+    window.removeEventListener('mousemove', Resize, false);
+    window.removeEventListener('mouseup', stopResize, false);
+  }
+
   exports.addVideo = addVideo;
   exports.camera = camera;
   exports.insertText = insertText;
