@@ -7950,7 +7950,7 @@ var cydj = (function (exports) {
   socket.on('changeMedia', resizeStuff);
   setInterval(() => resizeStuff(), 1000);
 
-  const element = document.getElementById('config-well');
+  const element = document.getElementById('well');
   const resizer = document.createElement('div');
   resizer.className = 'resizer';
   resizer.style.position = 'absolute';
