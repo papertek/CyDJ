@@ -3657,7 +3657,7 @@ var cydj = (function (exports) {
 
   const ChannelName_Caption = 'CyDJ';
 
-  const Version_Now = 'CyDJPre6.11.22.0';
+  const Version_Now = 'CyDJPre6.12.22.0';
 
   const HeaderDropMenu_Title = 'Information';
 
@@ -7950,7 +7950,7 @@ var cydj = (function (exports) {
   socket.on('changeMedia', resizeStuff);
   setInterval(() => resizeStuff(), 1000);
 
-  const element = document.getElementById('well');
+  /* const element = document.getElementById('well');
   const resizer = document.createElement('div');
   resizer.className = 'resizer';
   resizer.style.position = 'absolute';
@@ -7971,7 +7971,7 @@ var cydj = (function (exports) {
   function stopResize(e) {
     window.removeEventListener('mousemove', Resize, false);
     window.removeEventListener('mouseup', stopResize, false);
-  }
+  } */
 
   exports.addVideo = addVideo;
   exports.camera = camera;
