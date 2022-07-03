@@ -3032,13 +3032,13 @@ var cydj = (function (exports) {
       'https://media.discordapp.net/attachments/899888900611375184/901380813243944970/EZ_1.png',
     ],
     'Zombsiee': [
-      'https://media.discordapp.net/attachments/899888900611375184/901570550034477076/st_small_507x507-pad_600x600_f8f8f8-removebg-preview.png',
+      'https://cdn.discordapp.com/attachments/915490680468561990/993237825510199306/zombsloserbadge.png',
     ],
     'GiveMeAnOnion': [
       Xqc.SUB_18_MONTHS_T1,
       'https://images-ext-1.discordapp.net/external/V-pZ97hRKTpvONRbEeYiG2tdmVBH11KU0u2KooeIU1g/https/i.imgur.com/CTJoS3c.png',
     ],
-    'jensai1': [
+    'jensai2': [
       Xqc.SUB_12_MONTHS_T1,
       'https://cdn.discordapp.com/attachments/915650094697693184/964412096152485958/ezgif-2-b14e83f5e2.gif',
     ],
@@ -3171,7 +3171,7 @@ var cydj = (function (exports) {
       Xqc.SUB_12_MONTHS_T1,
     ],
     'xQt0001': [
-      Xqc.SUB_12_MONTHS_T3,
+      Xqc.SUB_18_MONTHS_T3,
     ],
     'ayyvollet': [
       Xqc.SUB_3_MONTHS_T1,
@@ -3657,7 +3657,7 @@ var cydj = (function (exports) {
 
   const ChannelName_Caption = 'CyDJ';
 
-  const Version_Now = 'CyDJPre6.12.22.0';
+  const Version_Now = 'CyDJPre7.3.22.0';
 
   const HeaderDropMenu_Title = 'Information';
 
