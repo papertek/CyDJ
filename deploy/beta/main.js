@@ -3032,7 +3032,7 @@ var cydj = (function (exports) {
       'https://media.discordapp.net/attachments/899888900611375184/901380813243944970/EZ_1.png',
     ],
     'Zombsiee': [
-      'https://media.discordapp.net/attachments/899888900611375184/901570550034477076/st_small_507x507-pad_600x600_f8f8f8-removebg-preview.png',
+      'https://cdn.discordapp.com/attachments/915490680468561990/993237825510199306/zombsloserbadge.png',
     ],
     'GiveMeAnOnion': [
       Xqc.SUB_18_MONTHS_T1,
@@ -3171,7 +3171,7 @@ var cydj = (function (exports) {
       Xqc.SUB_12_MONTHS_T1,
     ],
     'xQt0001': [
-      Xqc.SUB_12_MONTHS_T3,
+      Xqc.SUB_18_MONTHS_T3,
     ],
     'ayyvollet': [
       Xqc.SUB_3_MONTHS_T1,
