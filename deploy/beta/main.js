@@ -3032,7 +3032,7 @@ var cydj = (function (exports) {
       'https://media.discordapp.net/attachments/899888900611375184/901380813243944970/EZ_1.png',
     ],
     'Zombsiee': [
-      'https://cdn.discordapp.com/attachments/915490680468561990/993237825510199306/zombsloserbadge.png',
+      'https://media.discordapp.net/attachments/899888900611375184/901570550034477076/st_small_507x507-pad_600x600_f8f8f8-removebg-preview.png',
     ],
     'GiveMeAnOnion': [
       Xqc.SUB_18_MONTHS_T1,
@@ -3657,7 +3657,7 @@ var cydj = (function (exports) {
 
   const ChannelName_Caption = 'CyDJ';
 
-  const Version_Now = 'CyDJPre7.3.22.0';
+  const Version_Now = 'CyDJPre7.3.22.1';
 
   const HeaderDropMenu_Title = 'Information';
 
