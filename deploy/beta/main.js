@@ -3290,7 +3290,7 @@ var cydj = (function (exports) {
     ],
     'ItMePeachy': [
       'https://cdn.discordapp.com/attachments/904501042148958219/981805543121371136/ezgif-2-b39e272ae5.png',
-      'https://cdn.discordapp.com/attachments/962020977808662539/969019181456572506/ezgif-5-72a8fa7b74.gif',
+      'https://cdn.discordapp.com/attachments/915650094697693184/964412096152485958/ezgif-2-b14e83f5e2.gif',
     ],
     'deblankyy': [
       Xqc.SUB_9_MONTHS_T1,
