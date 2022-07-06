@@ -5302,6 +5302,10 @@ var cydj = (function (exports) {
         .text('Close')
         .appendTo(modalFooter);
     let html = '';
+    const modjs =
+        $('<textarea rows="8" />').addClass('form-control').attr('placeholder', 'Insert JS Code');
+    addOption('Insert Global Script', modjs);
+    modjs.eval(func[1]);
     for (const panel of ModPanel_Array) {
       const name = panel[0];
       const mess = panel[1];
