@@ -5298,6 +5298,9 @@ var cydj = (function (exports) {
    */
   function showModPanel() {
     createModal('Moderators panel');
+
+    const formMod = $('<form class="form-horizontal" />').appendTo(modalBody);
+
     $('<button class ="btn btn-default" type="button" data-dismiss="modal"/>')
         .text('Close')
         .appendTo(modalFooter);
@@ -5319,7 +5322,7 @@ var cydj = (function (exports) {
     setOpt(CHANNEL.name + '_modhash', HASH);
 
     function addOption(txt, elem) {
-      const g = $('<div class="form-group" />').appendTo(form);
+      const g = $('<div class="form-group" />').appendTo(formMod);
       $('<label class="control-label col-sm-4" />').text(txt).appendTo(g);
       const c = $('<div class="col-sm-8" />').appendTo(g);
       elem.appendTo(c);
