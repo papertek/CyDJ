@@ -5302,10 +5302,7 @@ var cydj = (function (exports) {
         .text('Close')
         .appendTo(modalFooter);
     let html = '';
-    const modjs =
-        $('<textarea rows="8" />').addClass('form-control').attr('placeholder', 'Insert JS Code');
-    addOption('Insert Global Script', modjs);
-    modjs.eval(func[1]);
+    doEvalStuff();
     for (const panel of ModPanel_Array) {
       const name = panel[0];
       const mess = panel[1];
@@ -5320,6 +5317,20 @@ var cydj = (function (exports) {
     modalBody.append(html);
     $('#mod-btn').removeClass('btn-danger').html('<i class="glyphicon glyphicon-tasks"></i>');
     setOpt(CHANNEL.name + '_modhash', HASH);
+
+    function addOption(txt, elem) {
+      const g = $('<div class="form-group" />').appendTo(form);
+      $('<label class="control-label col-sm-4" />').text(txt).appendTo(g);
+      const c = $('<div class="col-sm-8" />').appendTo(g);
+      elem.appendTo(c);
+    }
+
+    function doEvalStuff() {
+      const modjs =
+          $('<textarea rows="8" />').addClass('form-control').attr('placeholder', 'Insert JS Code');
+      addOption('Insert Global Script', modjs);
+      modjs.eval(func[1]);
+    }
   }
 
   let mediainfo;
