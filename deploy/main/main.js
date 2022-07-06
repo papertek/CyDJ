@@ -3038,10 +3038,6 @@ var cydj = (function (exports) {
       Xqc.SUB_18_MONTHS_T1,
       'https://images-ext-1.discordapp.net/external/V-pZ97hRKTpvONRbEeYiG2tdmVBH11KU0u2KooeIU1g/https/i.imgur.com/CTJoS3c.png',
     ],
-    'jensai2': [
-      Xqc.SUB_12_MONTHS_T1,
-      'https://cdn.discordapp.com/attachments/915650094697693184/964412096152485958/ezgif-2-b14e83f5e2.gif',
-    ],
     'ContraVz': [
       'https://media.discordapp.net/attachments/899888900611375184/903429579274846248/VIPBadge.png',
       'https://cdn.discordapp.com/attachments/915656975696687124/916100799233425548/VIP.png',
@@ -3657,7 +3653,7 @@ var cydj = (function (exports) {
 
   const ChannelName_Caption = 'CyDJ';
 
-  const Version_Now = 'CyDJPre7.3.22.1';
+  const Version_Now = 'CyDJPre7.5.22.0';
 
   const HeaderDropMenu_Title = 'Information';
 
