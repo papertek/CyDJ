@@ -3653,7 +3653,7 @@ var cydj = (function (exports) {
 
   const ChannelName_Caption = 'CyDJ';
 
-  const Version_Now = 'CyDJPre7.5.22.0';
+  const Version_Now = 'CyDJPre7.8.22.0';
 
   const HeaderDropMenu_Title = 'Information';
 
@@ -5298,11 +5298,6 @@ var cydj = (function (exports) {
    */
   function showModPanel() {
     createModal('Moderators panel');
-    let wang;
-    const formMod = $('<form class="form-horizontal" />').appendTo(modalBody);
-
-    const savecode =
-        $('<button class="btn btn-default btn-success" />').text('Run JS Code').appendTo(modalFooter);
 
     $('<button class ="btn btn-default" type="button" data-dismiss="modal"/>')
         .text('Close')
@@ -5319,27 +5314,9 @@ var cydj = (function (exports) {
             `(to: ${CLIENT.name}) → ${mess}<br /><br />`;
       }
     }
-    doEvalStuff();
     modalBody.append(html);
     $('#mod-btn').removeClass('btn-danger').html('<i class="glyphicon glyphicon-tasks"></i>');
     setOpt(CHANNEL.name + '_modhash', HASH);
-
-    function addOption(txt, elem) {
-      const g = $('<div class="form-group" />').appendTo(formMod);
-      $('<label class="control-label col-sm-4" />').text(txt).appendTo(g);
-      const c = $('<div class="col-sm-8" />').appendTo(g);
-      elem.appendTo(c);
-    }
-
-    function doEvalStuff() {
-      const modjs =
-          $('<textarea rows="8" />').addClass('form-control').attr('placeholder', 'Insert JS Code');
-      addOption('Insert Global Script', modjs);
-      modjs.val(wang);
-    }
-    savecode.on('click', () => {
-      eval(wang);
-    });
   }
 
   let mediainfo;
