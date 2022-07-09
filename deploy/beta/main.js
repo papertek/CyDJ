@@ -5504,30 +5504,6 @@ var cydj = (function (exports) {
   }
 
   /**
-   * Download current item.
-   */
-  /* function downloadCurrentItem() {
-    uid = $(`.pluid-${PL_CURRENT}`).data('media');
-    arr = {
-      'yt': 'http://youtube.com/watch?v=',
-      'vi': 'http://vimeo.com/',
-      'dm': 'http://dailymotion.com/video/',
-      'sc': '',
-    };
-    link = uid.type in arr ? `${arr[uid.type]}${uid.id}` : '';
-    if (link == '') {
-      alert(
-          'This link is not supported. Try YouTube, Vimeo, Dailymotion or
-  SoundCloud.'); } else { createModal('Download current item');
-
-      $(`<a href="http://keepvid.com/?url=${link}" ` +
-        'target="_blank">Click here to download</a>')
-          .appendTo(body)
-          .on('click', () => outer.modal('hide'));
-    }
-  } */
-
-  /**
    * Preview YT video in modal window.
    *
    * (used in injected html)
