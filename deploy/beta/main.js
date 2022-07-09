@@ -3731,11 +3731,6 @@ var cydj = (function (exports) {
     'what',
   ];
 
-  const SoundFilters_Array = {
-    'oh no our table': 'https://github.com/papertek/CyDJ/raw/beta/misc/ohnoourtable.wav',
-    'our table': 'https://github.com/papertek/CyDJ/raw/beta/misc/ohnoourtable.wav',
-  };
-
   const ModPanel_Array = [
     [
       '',
@@ -4028,7 +4023,6 @@ var cydj = (function (exports) {
   const ADDEDLINKS = [];
 
   const WEBKIT = 'webkitRequestAnimationFrame' in window;
-  const SOUNDSVALUES = [0, 0.1, 0.2, 0.4, 0.7, 1];
   const IMBA = new Audio('https://dl.dropboxusercontent.com/s/xdnpynq643ziq9o/inba.ogg');
   const DROPIT = new Audio('https://github.com/papertek/CyDJ/raw/beta/misc/dropit.wav');
   const FASTEST = new Audio('https://github.com/papertek/CyDJ/raw/beta/misc/fastestcrashegg.wav');
@@ -7303,22 +7297,6 @@ var cydj = (function (exports) {
       return div;
     };
   }
-
-  // client-side chat buffer for playing sounds
-  const _chatBuffer = addChatMessage;
-  addChatMessage = function(data) {
-    if (VOICES &&
-        (!(data.username in MUTEDVOICES) || MUTEDVOICES[data.username] == '0')) {
-      for (let i = 1; i < SoundFilters_Array; i++) {
-        if (data.msg.indexOf(i) > -1) {
-          const aud = new Audio(SoundFilters_Array[i]);
-          aud.volume = SOUNDSVALUES[SOUNDSLVL];
-          aud.play();
-        }
-      }
-    }
-    _chatBuffer(data);
-  };
 
   // fix formatting and sending chat messages
   // DEV NOTE: this are extended events from CyTube "util.js" file
