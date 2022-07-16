@@ -230,7 +230,7 @@ const MessagesSuffix_Percentage = 10;
 
 const CustomPingSound_URL = 'https://github.com/papertek/CyDJ/raw/beta/misc/pingsound.wav';
 
-const PlayerHiding_URL = 'https://c.tenor.com/Q6UjBrnSzvQAAAAC/anime-uh.gif';
+const PlayerHiding_URL = 'https://cdn.discordapp.com/attachments/986926739190063114/997122193454551060/forsen.gif';
 
 const GroupEmotes_Number = 100;
 
