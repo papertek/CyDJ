@@ -3074,7 +3074,7 @@ var cydj = (function (exports) {
       'https://cdn.discordapp.com/attachments/915656975696687124/916100799233425548/VIP.png',
     ],
     'n3r1': [
-      Xqc.SUB_24_MONTHS_T1,
+      Xqc.SUB_30_MONTHS_T1,
       'https://cdn.discordapp.com/attachments/915650094697693184/931998299181949029/ezgif.com-gif-maker_1.gif',
     ],
     'notjuham': [
@@ -3653,7 +3653,7 @@ var cydj = (function (exports) {
 
   const ChannelName_Caption = 'CyDJ';
 
-  const Version_Now = 'CyDJPre7.5.22.0';
+  const Version_Now = 'CyDJPre7.17.22.0';
 
   const HeaderDropMenu_Title = 'Information';
 
@@ -3993,7 +3993,7 @@ var cydj = (function (exports) {
   // channel database has been loaded
   let CHANDB = false;
   // using altered 'formatChatMessage' built-in function
-  let ALTERCHATFORMAT = false;
+  let ALTERCHATFORMAT = true;
 
   // previous read of a current item time for the progress bar
   let PREVTIME = 0;
@@ -5298,6 +5298,7 @@ var cydj = (function (exports) {
    */
   function showModPanel() {
     createModal('Moderators panel');
+
     $('<button class ="btn btn-default" type="button" data-dismiss="modal"/>')
         .text('Close')
         .appendTo(modalFooter);
@@ -5423,30 +5424,6 @@ var cydj = (function (exports) {
       PLAYER.player.unMute();
     }
   }
-
-  /**
-   * Download current item.
-   */
-  /* function downloadCurrentItem() {
-    uid = $(`.pluid-${PL_CURRENT}`).data('media');
-    arr = {
-      'yt': 'http://youtube.com/watch?v=',
-      'vi': 'http://vimeo.com/',
-      'dm': 'http://dailymotion.com/video/',
-      'sc': '',
-    };
-    link = uid.type in arr ? `${arr[uid.type]}${uid.id}` : '';
-    if (link == '') {
-      alert(
-          'This link is not supported. Try YouTube, Vimeo, Dailymotion or
-  SoundCloud.'); } else { createModal('Download current item');
-
-      $(`<a href="http://keepvid.com/?url=${link}" ` +
-        'target="_blank">Click here to download</a>')
-          .appendTo(body)
-          .on('click', () => outer.modal('hide'));
-    }
-  } */
 
   /**
    * Preview YT video in modal window.
@@ -7195,12 +7172,6 @@ var cydj = (function (exports) {
       return div;
     };
   }
-
-  // client-side chat buffer for playing sounds
-  const _chatBuffer = addChatMessage;
-  addChatMessage = function(data) {
-    _chatBuffer(data);
-  };
 
   // fix formatting and sending chat messages
   // DEV NOTE: this are extended events from CyTube "util.js" file
