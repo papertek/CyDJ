@@ -3968,7 +3968,7 @@ var cydj = (function (exports) {
   let USERTHEME = getOrDefault(CHANNEL.name + '_theme', DEFTHEME);
   let FLUID = getOrDefault(CHANNEL.name + '_fluid', false);
   let LAYOUTBOX = getOrDefault(CHANNEL.name + '_layoutbox', true);
-  let SOUNDSLVL = getOrDefault(CHANNEL.name + '_soundslvl', 3);
+  getOrDefault(CHANNEL.name + '_soundslvl', 3);
   let EMBEDIMG = getOrDefault(CHANNEL.name + '_embedimg', true);
   let EMBEDVID = getOrDefault(CHANNEL.name + '_embedvid', true);
   let AUTOVID = getOrDefault(CHANNEL.name + '_autovid', true);
@@ -3980,14 +3980,10 @@ var cydj = (function (exports) {
   let CHATFUNC = true;
   // aditional command occuring in the chat message
   let COMMAND = false;
-  // chat sounds not disabled by user
-  let VOICES = false;
   // auto clearing messages window
   let CLEARING = false;
   // enabled anti-AFK function
   let ANTIAFK = false;
-  // chat sounds panel visibility
-  let SOUNDSPANEL = false;
   // playlist pinned to player
   let PINNED = false;
   // expanded playlist view
@@ -4015,9 +4011,6 @@ var cydj = (function (exports) {
   let FASTESTBGCHANGE = 1;
   // number of bg changes for glue gun command
   let GLUEGUNBGCHANGE = 1;
-
-  // list of users with muted chat sounds by user
-  const MUTEDVOICES = [];
 
   // array of links added from channel database by user
   const ADDEDLINKS = [];
@@ -5301,77 +5294,6 @@ var cydj = (function (exports) {
   }
 
   /**
-   * Show chat sounds panel.
-   */
-  let voicesbtn;
-  function showSoundsPanel() {
-    $('#userlist').append('<div id="sounds-dropdown" />');
-    setPanelProperties('#sounds-dropdown');
-
-    const muteallbtn = $('<button id="muteall-btn" class="btn btn-xs btn-default">Mute All</button>')
-                           .appendTo('#sounds-dropdown')
-                           .on('click', function() {
-                             if (VOICES) {
-                               $(this).text('Unmute All').addClass('btn-danger');
-                               voicesbtn.addClass('btn-danger').attr('title', 'Unmute chat voices');
-                               VOICES = false;
-                               SOUNDSPANEL = false;
-                               $('#sounds-dropdown').remove();
-                             } else {
-                               $(this).text('Mute All').removeClass('btn-danger');
-                               voicesbtn.removeClass('btn-danger').attr('title', 'Mute chat voices');
-                               VOICES = true;
-                             }
-                           });
-    if (!VOICES) {
-      muteallbtn.text('Unmute All').addClass('btn-danger');
-    }
-
-    $('#sounds-dropdown').append('<div>Sounds level:</div>');
-
-    const lvlgroup = $('<div id="lvlgroup" class="btn-group"></div>').appendTo('#sounds-dropdown');
-
-    for (let i = 1; i <= 5; i++) {
-      $(`<button class="btn btn-xs btn-default" id="lvlvol${i}" ` +
-        `level="${i}" />`)
-          .html(i)
-          .appendTo(lvlgroup)
-          .on('click', function() {
-            $(`#lvlvol${SOUNDSLVL}`).removeClass('btn-success');
-            SOUNDSLVL = $(this).attr('level');
-            setOpt(CHANNEL.name + '_soundslvl', SOUNDSLVL);
-            $(this).addClass('btn-success');
-          });
-    }
-    $(`#lvlvol${SOUNDSLVL}`).addClass('btn-success');
-
-    $('#sounds-dropdown').append('<div>Select users to mute sounds:</div>');
-
-    const mutegroup =
-        $('<div id="mutegroup" class="btn-group-vertical"></div>').appendTo('#sounds-dropdown');
-
-    $('.userlist_item').each(function() {
-      const user = $(this).find('span:nth-child(2)').html();
-      const btn = $(`<button class="btn btn-xs btn-default" name="${user}" />`)
-                      .html(user)
-                      .appendTo(mutegroup)
-                      .on('click', function() {
-                        name = $(this).attr('name');
-                        if (name in MUTEDVOICES && MUTEDVOICES[name] == '1') {
-                          $(this).removeClass('btn-danger');
-                          MUTEDVOICES[name] = 0;
-                        } else {
-                          $(this).addClass('btn-danger');
-                          MUTEDVOICES[name] = 1;
-                        }
-                      });
-      if (user in MUTEDVOICES && MUTEDVOICES[user] == '1') {
-        btn.addClass('btn-danger');
-      }
-    });
-  }
-
-  /**
    * Show moderators panel.
    */
   function showModPanel() {
@@ -6307,7 +6229,6 @@ var cydj = (function (exports) {
           .on('click', () => {
             if (!CHATFUNC) {
               $('#sounds-dropdown').remove();
-              SOUNDSPANEL = false;
               showChatFunctions();
               CHATFUNC = false;
             } else {
@@ -6460,26 +6381,6 @@ var cydj = (function (exports) {
 
       setUserCSS();
     }, 9000);
-  }
-
-  // adding chat sounds toggle button and control panel
-  {
-    voicesbtn =
-        $('<button id="voices-btn" class="btn btn-sm btn-default" title="Mute chat voices" />')
-            .html('<i class="glyphicon glyphicon-volume-down"></i>')
-            .appendTo(chatcontrols)
-            .on('click', () => {
-              if (!SOUNDSPANEL) {
-                $('#chatfunc-dropdown').remove();
-                CHATFUNC = false;
-                showSoundsPanel();
-                SOUNDSPANEL = true;
-              } else {
-                $('#sounds-dropdown').remove();
-                SOUNDSPANEL = false;
-              }
-            });
-    VOICES = true;
   }
 
   // adding moderators panel button
@@ -6683,7 +6584,6 @@ var cydj = (function (exports) {
                     $('#config-btn, #configbtnwrap br').hide();
                     $('#min-layout').parent().hide();
                     $('#sounds-dropdown, #chatfunc-dropdown').remove();
-                    SOUNDSPANEL = false;
                     CHATFUNC = false;
                     if (PLAYER.type === 'jw') {
                       refreshPlayer();
@@ -6714,7 +6614,6 @@ var cydj = (function (exports) {
           .on('change', function() {
             $('#sounds-dropdown, #chatfunc-dropdown').remove();
             $('#playlistmanagerwrap').show();
-            SOUNDSPANEL = false;
             CHATFUNC = false;
             USERTHEME = $(this).val();
             setUserCSS();
