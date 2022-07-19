@@ -3173,7 +3173,7 @@ var cydj = (function (exports) {
       Xqc.SUB_3_MONTHS_T1,
     ],
     'Tzuqi': [
-      Xqc.SUB_9_MONTHS_T1,
+      Xqc.SUB_12_MONTHS_T1,
     ],
     'MrDestructoidCyDJ': [
       'https://cdn.discordapp.com/attachments/679270173567614987/922352061356572682/1x_4.gif',
@@ -3653,7 +3653,7 @@ var cydj = (function (exports) {
 
   const ChannelName_Caption = 'CyDJ';
 
-  const Version_Now = 'CyDJPre7.17.22.0';
+  const Version_Now = 'CyDJPre7.18.22.0';
 
   const HeaderDropMenu_Title = 'Information';
 
