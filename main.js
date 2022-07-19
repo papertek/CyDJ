@@ -2274,7 +2274,7 @@ function coverPlayer() {
   }
   $('#videowrap').addClass('relative');
   const w = $('#ytapiplayer').css('width');
-  const h = $('#videowrap').css('height').replace('px', '') - 31;
+  const h = $('#videowrap').css('height').replace('px', '') - 28;
   coverpl = $('<div id="coverpl" />')
                 .css({
                   'width': w,
