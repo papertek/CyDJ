@@ -3653,7 +3653,7 @@ var cydj = (function (exports) {
 
   const ChannelName_Caption = 'CyDJ';
 
-  const Version_Now = 'CyDJPre7.18.22.0';
+  const Version_Now = 'CyDJPre7.19.22.0';
 
   const HeaderDropMenu_Title = 'Information';
 
@@ -5390,7 +5390,7 @@ var cydj = (function (exports) {
   function coverPlayer() {
     $('#videowrap').addClass('relative');
     const w = $('#ytapiplayer').css('width');
-    const h = $('#videowrap').css('height').replace('px', '') - 31;
+    const h = $('#videowrap').css('height').replace('px', '') - 30;
     coverpl = $('<div id="coverpl" />')
                   .css({
                     'width': w,
