@@ -3332,8 +3332,11 @@ var cydj = (function (exports) {
       Xqc.SUB_12_MONTHS_T1,
     ],
     'MDPog': [
-      Xqc.SUB_36_MONTHS_T1,
       'https://cdn.discordapp.com/attachments/915656975696687124/916100799233425548/VIP.png',
+       Xqc.SUB_36_MONTHS_T1,
+    ],
+    'PinkFLD': [
+      Xqc.SUB_36_MONTHS_T1,
     ],
   };
 
@@ -3657,7 +3660,7 @@ var cydj = (function (exports) {
 
   const ChannelName_Caption = 'CyDJ';
 
-  const Version_Now = 'CyDJPre7.23.22.0';
+  const Version_Now = 'CyDJPre7.23.22.1';
 
   const HeaderDropMenu_Title = 'Information';
 
