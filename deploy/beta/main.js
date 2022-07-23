@@ -3331,6 +3331,10 @@ var cydj = (function (exports) {
     'TommyLegamerQc': [
       Xqc.SUB_12_MONTHS_T1,
     ],
+    'MDPog': [
+      Xqc.SUB_36_MONTHS_T1,
+      'https://cdn.discordapp.com/attachments/915656975696687124/916100799233425548/VIP.png',
+    ],
   };
 
   const CHANNEL_DATABASE = [
