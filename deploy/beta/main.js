@@ -3335,6 +3335,9 @@ var cydj = (function (exports) {
       Xqc.SUB_36_MONTHS_T1,
       'https://cdn.discordapp.com/attachments/915656975696687124/916100799233425548/VIP.png',
     ],
+    'PinkFLD': [
+      Xqc.SUB_36_MONTHS_T1,
+    ],
   };
 
   const CHANNEL_DATABASE = [
