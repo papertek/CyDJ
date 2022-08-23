@@ -3329,7 +3329,7 @@ var cydj = (function (exports) {
       Xqc.SUB_18_MONTHS_T3,
     ],
     'TommyLegamerQc': [
-      Xqc.SUB_12_MONTHS_T1,
+      Xqc.SUB_18_MONTHS_T1,
     ],
     'MDPog': [
       'https://cdn.discordapp.com/attachments/915656975696687124/916100799233425548/VIP.png',
@@ -3660,7 +3660,7 @@ var cydj = (function (exports) {
 
   const ChannelName_Caption = 'CyDJ';
 
-  const Version_Now = 'CyDJPre7.23.22.1';
+  const Version_Now = 'CyDJPre8.23.22.0';
 
   const HeaderDropMenu_Title = 'Information';
 
