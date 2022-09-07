@@ -5450,6 +5450,10 @@ var cydj = (function (exports) {
     $('<iframe id="previewFrame" width="558" height="314" frameborder="0" />')
         .attr('src', `https://www.youtube.com/embed/${a}?wmode=transparent&enablejsapi`)
         .appendTo(modalBody);
+    $('<button class ="btn btn-default" type="button" data-dismiss="modal"/>')
+        .text('Close')
+        .appendTo(modalFooter);
+    $('Preview Video').empty();
   }
 
   /**
