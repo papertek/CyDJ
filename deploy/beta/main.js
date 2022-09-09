@@ -5451,11 +5451,11 @@ var cydj = (function (exports) {
         .attr('src', `https://www.youtube.com/embed/${a}?wmode=transparent&enablejsapi`)
         .appendTo(modalBody);
     const closepv = $('<button class ="btn btn-default" type="button" data-dismiss="modal"/>')
-        .text('Close')
-        .appendTo(modalFooter);
-  closepv.on('click', () => {
-    $('Preview Video').empty();
-  });
+                        .text('Close')
+                        .appendTo(modalFooter);
+    closepv.on('click', () => {
+      $('Preview Video').empty();
+    });
   }
 
   /**
@@ -7424,21 +7424,6 @@ var cydj = (function (exports) {
 
   // finishing variable
   LOADED = true;
-
-  // Google Analytics code for Main Room ONLY
-  (function(i, s, o, g, r, a, m) {
-  i['GoogleAnalyticsObject'] = r;
-  i[r] = i[r] || function() {
-    // eslint-disable-next-line prefer-rest-params
-    (i[r].q = i[r].q || []).push(arguments);
-  }, i[r].l = 1 * new Date();
-  a = s.createElement(o), m = s.getElementsByTagName(o)[0];
-  a.async = 1;
-  a.src = g;
-  m.parentNode.insertBefore(a, m);
-  })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-  ga('create', 'G-GGK9WFE72W', 'auto');
-  ga('send', 'pageview');
 
   /* ----- END OF LIBRARY ----- */
 
