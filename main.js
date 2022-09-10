@@ -24,6 +24,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 import {config, icon, library} from '@fortawesome/fontawesome-svg-core';
 import {faCamera} from '@fortawesome/free-solid-svg-icons';
 
+import {intAnal} from './lib/analytics';
 import {formatBadgeToHtml, USER_BADGES} from './lib/badges';
 import {CHANNEL_DATABASE} from './lib/database';
 import {LOGOS} from './lib/logos';
@@ -48,6 +49,9 @@ library.add(faCamera);
 
 // adds debugging bootan debug1
 const UI_DEBUG = false;
+
+// adds google analytics and cookies
+const GAnalytics = false;
 
 // default old Synchtube layout (player and playlist on the left)
 const UI_DefaultSynchtube = true;
@@ -201,7 +205,7 @@ const MiniLogo_URL = 'https://cdn.7tv.app/emote/614e8c0b20eaf897465a4c9d/1x';
 
 const ChannelName_Caption = 'CyDJ';
 
-const Version_Now = 'CyDJPre9.7.22.0';
+const Version_Now = 'CyDJPre9.9.22.0';
 
 const HeaderDropMenu_Title = 'Information';
 
@@ -2323,6 +2327,12 @@ export function prevVideo(a) {
   $('<iframe id="previewFrame" width="558" height="314" frameborder="0" />')
       .attr('src', `https://www.youtube.com/embed/${a}?wmode=transparent&enablejsapi`)
       .appendTo(modalBody);
+  const closepv = $('<button class ="btn btn-default" type="button" data-dismiss="modal"/>')
+                      .text('Close')
+                      .appendTo(modalFooter);
+  closepv.on('click', () => {
+    $('Preview Video').empty();
+  });
 }
 
 /**
@@ -4585,7 +4595,11 @@ if (FLUID) {
 // finishing variable
 LOADED = true;
 
-// Google Analytics code for Main Room ONLY
+if (GAnalytics) {
+  intAnal();
+}
+
+/* Google Analytics code for Main Room ONLY
 (function(i, s, o, g, r, a, m) {
 i['GoogleAnalyticsObject'] = r;
 i[r] = i[r] || function() {
@@ -4599,6 +4613,7 @@ m.parentNode.insertBefore(a, m);
 })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 ga('create', 'G-GGK9WFE72W', 'auto');
 ga('send', 'pageview');
+*/
 
 if (UI_Snow && Snow_URL !== '') {
   $.getScript(Snow_URL);
