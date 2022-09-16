@@ -3078,7 +3078,7 @@ var cydj = (function (exports) {
       'https://cdn.discordapp.com/attachments/915650094697693184/931998299181949029/ezgif.com-gif-maker_1.gif',
     ],
     'notjuham': [
-      Xqc.SUB_36_MONTHS_T1,
+      Xqc.SUB_42_MONTHS_T1,
       'https://cdn.discordapp.com/attachments/891695154333884447/922151274303070229/notjuham1818.png',
     ],
     'Pugnator': [
@@ -3337,6 +3337,9 @@ var cydj = (function (exports) {
     ],
     'PinkFLD': [
       Xqc.SUB_36_MONTHS_T1,
+    ],
+    'EscapeAltDelete': [
+      Xqx.SUB_12_MONTHS_T1,
     ],
   };
 
