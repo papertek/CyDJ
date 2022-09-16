@@ -3333,13 +3333,13 @@ var cydj = (function (exports) {
     ],
     'MDPog': [
       'https://cdn.discordapp.com/attachments/915656975696687124/916100799233425548/VIP.png',
-       Xqc.SUB_36_MONTHS_T1,
+      Xqc.SUB_36_MONTHS_T1,
     ],
     'PinkFLD': [
       Xqc.SUB_36_MONTHS_T1,
     ],
     'EscapeAltDelete': [
-      Xqx.SUB_12_MONTHS_T1,
+      Xqc.SUB_12_MONTHS_T1,
     ],
   };
 
@@ -3663,7 +3663,7 @@ var cydj = (function (exports) {
 
   const ChannelName_Caption = 'CyDJ';
 
-  const Version_Now = 'CyDJPre9.15.22.0';
+  const Version_Now = 'CyDJPre9.16.22.0';
 
   const HeaderDropMenu_Title = 'Information';
 
