@@ -3001,7 +3001,6 @@ var cydj = (function (exports) {
         'https://cdn.discordapp.com/attachments/915656975696687124/916023667543117824/3078-Month_Subscriber.png';
     static GIFT_SUBS_500 =
         'https://cdn.discordapp.com/attachments/915656975696687124/916100252342300733/500_Gift_Subs.png';
-
     static BITS_100 =
         'https://cdn.discordapp.com/attachments/915656975696687124/915713189109444718/100_Bits.png';
     static BITS_1000 =
@@ -3341,6 +3340,17 @@ var cydj = (function (exports) {
     'EscapeAltDelete': [
       Xqc.SUB_12_MONTHS_T1,
     ],
+    'Colith': [
+      Xqc.SUB_12_MONTHS_T1,
+    ],
+    'esattt': [
+      'https://cdn.discordapp.com/attachments/915656975696687124/916100799233425548/VIP.png',
+      Xqc.SUB_18_MONTHS_T3,
+    ],
+    'dea9h': [
+      Xqc.SUB_12_MONTHS_T1,
+      Xqc.BITS_1000,
+    ],
   };
 
   const CHANNEL_DATABASE = [
@@ -3663,7 +3673,7 @@ var cydj = (function (exports) {
 
   const ChannelName_Caption = 'CyDJ';
 
-  const Version_Now = 'CyDJPre9.16.22.0';
+  const Version_Now = 'CyDJPre10.15.22.0';
 
   const HeaderDropMenu_Title = 'Information';
 
