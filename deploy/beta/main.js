@@ -6374,9 +6374,8 @@ var cydj = (function (exports) {
                           .text('location.reload();')
                           .appendTo(modalBody);
       bootan3.on('click', () => location.reload());
-      const bootan4 = $('<button class="btn btn-default btn-success" />')
-                          .text('location.reload();')
-                          .appendTo(modalBody);
+      const bootan4 =
+          $('<button class="btn btn-default btn-success" />').text('showDrop();').appendTo(modalBody);
       bootan4.on('click', () => showDrop());
     }
   }
