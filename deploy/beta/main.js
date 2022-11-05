@@ -3351,6 +3351,9 @@ var cydj = (function (exports) {
       Xqc.SUB_12_MONTHS_T1,
       Xqc.BITS_1000,
     ],
+    'mmmmmmeat': [
+      Xqc.SUB_18_MONTHS_T1,
+    ],
   };
 
   const CHANNEL_DATABASE = [
@@ -3673,7 +3676,7 @@ var cydj = (function (exports) {
 
   const ChannelName_Caption = 'CyDJ';
 
-  const Version_Now = 'CyDJPre11.3.22.0';
+  const Version_Now = 'CyDJPre11.5.22.0';
 
   const HeaderDropMenu_Title = 'Information';
 
