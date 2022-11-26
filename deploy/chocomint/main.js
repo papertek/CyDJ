@@ -6365,16 +6365,19 @@ var cydj = (function (exports) {
     createModal('Debug stuff');
     {
       modalBody.append('<strong>Buttons that do stuff</strong><br /><br />');
-      const debugbotan = $('<button class="btn btn-default btn-success" />');
+      const debugbotan = document.getElementsByClassName('btn btn-default btn-success');
 
-      const bootan1 = debugbotan.text('setUserCSS();').appendTo(modalBody);
-      bootan1.on('click', () => setUserCSS());
-      const bootan2 = debugbotan.text('chatflair.show();').appendTo(modalBody);
-      bootan2.on('click', () => chatflair.show());
-      const bootan3 = debugbotan.text('location.reload();').appendTo(modalBody);
-      bootan3.on('click', () => location.reload());
-      const bootan4 = debugbotan.text('showDrop();').appendTo(modalBody);
-      bootan4.on('click', () => showDrop());
+      function createBotans() {
+        const bootan1 = debugbotan.text('setUserCSS();').appendTo(modalBody);
+        bootan1.on('click', () => setUserCSS());
+        const bootan2 = debugbotan.text('chatflair.show();').appendTo(modalBody);
+        bootan2.on('click', () => chatflair.show());
+        const bootan3 = debugbotan.text('location.reload();').appendTo(modalBody);
+        bootan3.on('click', () => location.reload());
+        const bootan4 = debugbotan.text('showDrop();').appendTo(modalBody);
+        bootan4.on('click', () => showDrop());
+      }
+      createBotans();
     }
   }
 
