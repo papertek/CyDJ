@@ -3718,7 +3718,7 @@ var cydj = (function (exports) {
   ];
 
   const MOTDAutoLogo_Array = [
-    'https://github.com/papertek/CyDJ/raw/beta/images/cydjhallo.jpg',
+    'https://github.com/papertek/CyDJ/raw/beta/images/cydjnormal.jpg',
   ];
 
   const RandomQuotes_Array = [
