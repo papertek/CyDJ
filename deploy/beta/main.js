@@ -3676,7 +3676,7 @@ var cydj = (function (exports) {
 
   const ChannelName_Caption = 'CyDJ';
 
-  const Version_Now = 'CyDJPre11.11.22.0';
+  const Version_Now = 'CyDJPre11.16.22.0';
 
   const HeaderDropMenu_Title = 'Information';
 
@@ -3819,7 +3819,7 @@ var cydj = (function (exports) {
       '<ol><li>You want to write on the chat? Enter temporary nickname into <b>Guest Login</b> input and click enter.</li><li>You want to register a nick? Click <b>Account -> Profile</b> on the top of the channel, and fill the registration form. You don\'t need an email to register.</li><li>Troll skipping = immediate kick.</li><li>Don\'t be annoying.</li><li>Do not one man spam.</li><li>Do not encourage chat wars or harass/target people.</li><li>Queueing blatant NSFW videos such as porn/hentai/gore is strictly not allowed, doing so will result in an ip ban.</li><li>Queuing the same video but in different link variants is not allowed.</li><li>Mods have the right to skip a video if its overplayed.</li><li><b>These rules are subject to common sense.</b></li></ol>';
 
   const ChannelAnnouncement_HTML =
-      'Please join the <a href="https://discord.gg/g8tCGSc2bx" target="_blank">Discord</a> for an important announcement regarding the future of CyDJ!';
+      'Please join the <a href="https://discord.gg/g8tCGSc2bx" target="_blank">Discord</a> for news regarding CyDJ.';
 
   const EmbeddingMedia_Images =
       'a[href$=".jpg"], a[href$=".jpg:large"], a[href$=".jpeg"], a[href$=".JPEG"], a[href$=".JPG"], a[href$=".png"], a[href$=".PNG"], a[href$=".tiff"], a[href$=".TIFF"], a[href$=".webp"], a[href$=".WEBP"], a[href$=".gif"], a[href$=".GIF"]';
@@ -6331,13 +6331,6 @@ var cydj = (function (exports) {
         .appendTo(chatcontrols)
         .on('click', () => showContextMenu());
   }
-  // adds the button
-  {
-    $('<button id="debug-btn" class="btn btn-sm btn-default" title="for the debug" />')
-        .html('<i class="glyphicon glyphicon-cog"></i>')
-        .appendTo(chatcontrols)
-        .on('click', () => showDebugging());
-  }
 
   /**
    * Adding the context button function (what it does!).
@@ -6358,28 +6351,6 @@ var cydj = (function (exports) {
           ].map((item) => `<li>${item}</li>`)
               .join('');
       $('<ul />').html(html).appendTo(modalBody);
-    }
-  }
-  // adds debugging, can be added upon later
-  function showDebugging() {
-    createModal('Debug stuff');
-    {
-      modalBody.append('<strong>Buttons that do stuff</strong><br /><br />');
-      const bootan1 = $('<button class="btn btn-default btn-success" />')
-                          .text('setUserCSS();')
-                          .appendTo(modalBody);
-      bootan1.on('click', () => setUserCSS());
-      const bootan2 = $('<button class="btn btn-default btn-success" />')
-                          .text('chatflair.show();')
-                          .appendTo(modalBody);
-      bootan2.on('click', () => chatflair.show());
-      const bootan3 = $('<button class="btn btn-default btn-success" />')
-                          .text('location.reload();')
-                          .appendTo(modalBody);
-      bootan3.on('click', () => location.reload());
-      const bootan4 =
-          $('<button class="btn btn-default btn-success" />').text('showDrop();').appendTo(modalBody);
-      bootan4.on('click', () => showDrop());
     }
   }
 
