@@ -6366,7 +6366,8 @@ var cydj = (function (exports) {
     {
       modalBody.append('<strong>Buttons that do stuff</strong><br /><br />');
       for (let i = 0; i < 4; i++) {
-        const debugbotan = $('<button class="btn btn-default btn-success"><br />');
+        const debugbotan =
+            $('<button class="btn btn-default btn-success"><br />').appendTo(modalBody);
         debugbotan.text('test') + [i];
       }
     }
