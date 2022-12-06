@@ -6365,7 +6365,7 @@ var cydj = (function (exports) {
     createModal('Debug stuff');
     {
       modalBody.append('<strong>Buttons that do stuff</strong><br /><br />');
-      const debugbotan = document.getElementsByClassName('btn btn-default btn-success');
+      const debugbotan = $('<button class="btn btn-default btn-success"><br />');
 
       function createBotans() {
         const bootan1 = debugbotan.text('setUserCSS();').appendTo(modalBody);
