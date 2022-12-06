@@ -6368,7 +6368,7 @@ var cydj = (function (exports) {
       for (let i = 0; i < 4; i++) {
         const debugbotan =
             $('<button class="btn btn-default btn-success"><br />').appendTo(modalBody);
-        debugbotan.text('test') + i;
+        text += debugbotan + i;
       }
     }
   }
