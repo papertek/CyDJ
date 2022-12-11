@@ -6331,13 +6331,6 @@ var cydj = (function (exports) {
         .appendTo(chatcontrols)
         .on('click', () => showContextMenu());
   }
-  // adds the button
-  {
-    $('<button id="debug-btn" class="btn btn-sm btn-default" title="for the debug" />')
-        .html('<i class="glyphicon glyphicon-cog"></i>')
-        .appendTo(chatcontrols)
-        .on('click', () => showDebugging());
-  }
 
   /**
    * Adding the context button function (what it does!).
@@ -6360,10 +6353,10 @@ var cydj = (function (exports) {
       $('<ul />').html(html).appendTo(modalBody);
     }
   }
-  // adds debugging, can be added upon later
+  /*
   function showDebugging() {
     createModal('Debug stuff');
-    {
+    if (UI_DEBUG) {
       modalBody.append('<strong>Buttons that do stuff</strong><br /><br />');
       for (let i = 0; i < 4; i++) {
         const debugbotan =
@@ -6372,7 +6365,7 @@ var cydj = (function (exports) {
       }
     }
   }
-
+  */
   // adding easter egg button
   {
     $('<button id="party-btn" class="btn btn-sm btn-default" title="Party! DO NOT USE IF YOU ARE SUBJECT TO EPILEPSY!!!" />')
