@@ -205,7 +205,7 @@ const MiniLogo_URL = 'https://cdn.7tv.app/emote/614e8c0b20eaf897465a4c9d/1x';
 
 const ChannelName_Caption = 'CyDJ';
 
-const Version_Now = 'CyDJPre11.3.22.0';
+const Version_Now = 'CyDJPre12.10.22.0';
 
 const HeaderDropMenu_Title = 'Information';
 
@@ -250,7 +250,7 @@ const HeaderDropMenu_Array = [
   ['Test Room 3', 'https://cytu.be/r/xqcPeepo'],
   ['Community Related', ''],
   ['CyDJ Discord', 'https://discord.gg/g8tCGSc2bx'],
-  ['xQcOW Updates Discord', 'https://discord.gg/xqcowupdates'],
+  ['Camellia Discord', 'https://discord.gg/camellia'],
   ['Credits', ''],
   [
     'CyTube FAQ',
@@ -262,7 +262,7 @@ const HeaderDropMenu_Array = [
 ];
 
 const MOTDAutoLogo_Array = [
-  'https://github.com/papertek/CyDJ/raw/beta/images/cydjhallo.jpg',
+  'https://github.com/papertek/CyDJ/raw/beta/images/cydjnormal.jpg',
 ];
 
 const MOTDTabs_Array = [
@@ -403,7 +403,7 @@ const RulesBtn_HTML =
     '<ol><li>You want to write on the chat? Enter temporary nickname into <b>Guest Login</b> input and click enter.</li><li>You want to register a nick? Click <b>Account -> Profile</b> on the top of the channel, and fill the registration form. You don\'t need an email to register.</li><li>Troll skipping = immediate kick.</li><li>Don\'t be annoying.</li><li>Do not one man spam.</li><li>Do not encourage chat wars or harass/target people.</li><li>Queueing blatant NSFW videos such as porn/hentai/gore is strictly not allowed, doing so will result in an ip ban.</li><li>Queuing the same video but in different link variants is not allowed.</li><li>Mods have the right to skip a video if its overplayed.</li><li><b>These rules are subject to common sense.</b></li></ol>';
 
 const ChannelAnnouncement_HTML =
-    'Please join the <a href="https://discord.gg/g8tCGSc2bx" target="_blank">Discord</a> for an important announcement regarding the future of CyDJ!';
+    'Please join the <a href="https://discord.gg/g8tCGSc2bx" target="_blank">Discord</a> for news regarding CyDJ.';
 
 const EmbeddingMedia_Images =
     'a[href$=".jpg"], a[href$=".jpg:large"], a[href$=".jpeg"], a[href$=".JPEG"], a[href$=".JPG"], a[href$=".png"], a[href$=".PNG"], a[href$=".tiff"], a[href$=".TIFF"], a[href$=".webp"], a[href$=".WEBP"], a[href$=".gif"], a[href$=".GIF"]';
@@ -3323,7 +3323,19 @@ function showDebugging() {
     bootan3.on('click', () => location.reload());
   }
 }
-
+/*
+function showDebugging() {
+  createModal('Debug stuff');
+  if (UI_DEBUG) {
+    modalBody.append('<strong>Buttons that do stuff</strong><br /><br />');
+    for (let i = 0; i < 4; i++) {
+      const debugbotan =
+          $('<button class="btn btn-default btn-success"><br />').appendTo(modalBody);
+      debugbotan.text(`${i}test`) + i;
+    }
+  }
+}
+*/
 // adding easter egg button
 if (UI_PartyButton) {
   $('<button id="party-btn" class="btn btn-sm btn-default" title="Party! DO NOT USE IF YOU ARE SUBJECT TO EPILEPSY!!!" />')
