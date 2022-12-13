@@ -3685,7 +3685,7 @@ var cydj = (function (exports) {
 
   const ChannelName_Caption = 'CyDJ';
 
-  const Version_Now = 'CyDJPre12.10.22.0';
+  const Version_Now = 'CyDJPre12.12.22.0';
 
   const HeaderDropMenu_Title = 'Information';
 
