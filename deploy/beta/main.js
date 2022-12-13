@@ -3363,6 +3363,10 @@ var cydj = (function (exports) {
     'Samtelegram': [
       Xqc.SUB_3_MONTHS_T1,
     ],
+    'CherryBun': [
+      'https://cdn.discordapp.com/attachments/904501042148958219/1052090998005710868/ch1.gif',
+      'https://cdn.discordapp.com/attachments/904501042148958219/1052090998408359997/ch2.gif',
+    ],
   };
 
   const CHANNEL_DATABASE = [
@@ -3685,7 +3689,7 @@ var cydj = (function (exports) {
 
   const ChannelName_Caption = 'CyDJ';
 
-  const Version_Now = 'CyDJPre12.12.22.0';
+  const Version_Now = 'CyDJPre12.12.22.1';
 
   const HeaderDropMenu_Title = 'Information';
 
