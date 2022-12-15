@@ -3363,6 +3363,10 @@ var cydj = (function (exports) {
     'Samtelegram': [
       Xqc.SUB_3_MONTHS_T1,
     ],
+    'CherryBun': [
+      'https://cdn.discordapp.com/attachments/904501042148958219/1052090998005710868/ch1.gif',
+      'https://cdn.discordapp.com/attachments/904501042148958219/1052090998408359997/ch2.gif',
+    ],
   };
 
   const CHANNEL_DATABASE = [
@@ -3685,7 +3689,7 @@ var cydj = (function (exports) {
 
   const ChannelName_Caption = 'CyDJ';
 
-  const Version_Now = 'CyDJPre12.12.22.0';
+  const Version_Now = 'CyDJPre12.15.22.0';
 
   const HeaderDropMenu_Title = 'Information';
 
@@ -3850,7 +3854,7 @@ var cydj = (function (exports) {
       'https://papertek.github.io/CyDJ/deploy/beta/css/twitchclassic.css',
     ],
     [
-      'Pre DJ',
+      'Old DJ',
       'https://papertek.github.io/CyDJ/deploy/beta/css/DJDefault.css',
     ],
     [
@@ -3860,6 +3864,10 @@ var cydj = (function (exports) {
     [
       'Black Cat',
       'https://papertek.github.io/CyDJ/deploy/beta/css/blackcat.css',
+    ],
+    [
+      'Peachy Theme',
+      'https://papertek.github.io/CyDJ/deploy/beta/css/peachy.css',
     ],
     [
       'U.U.F.O',
