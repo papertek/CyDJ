@@ -3862,12 +3862,12 @@ var cydj = (function (exports) {
       'https://papertek.github.io/CyDJ/deploy/beta/css/spring.css',
     ],
     [
-      'Black Cat',
-      'https://papertek.github.io/CyDJ/deploy/beta/css/blackcat.css',
+      'Peachy',
+      'https://papertek.github.io/CyDJ/deploy/beta/css/peachy.css',
     ],
     [
-      'Peachy Theme',
-      'https://papertek.github.io/CyDJ/deploy/beta/css/peachy.css',
+      'Black Cat',
+      'https://papertek.github.io/CyDJ/deploy/beta/css/blackcat.css',
     ],
     [
       'U.U.F.O',
