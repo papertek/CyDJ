@@ -3689,7 +3689,7 @@ var cydj = (function (exports) {
 
   const ChannelName_Caption = 'CyDJ';
 
-  const Version_Now = 'CyDJPre12.12.22.1';
+  const Version_Now = 'CyDJPre12.15.22.0';
 
   const HeaderDropMenu_Title = 'Information';
 
@@ -3854,12 +3854,16 @@ var cydj = (function (exports) {
       'https://papertek.github.io/CyDJ/deploy/beta/css/twitchclassic.css',
     ],
     [
-      'Pre DJ',
+      'Old DJ',
       'https://papertek.github.io/CyDJ/deploy/beta/css/DJDefault.css',
     ],
     [
       'Spring',
       'https://papertek.github.io/CyDJ/deploy/beta/css/spring.css',
+    ],
+    [
+      'Peachy',
+      'https://papertek.github.io/CyDJ/deploy/beta/css/peachy.css',
     ],
     [
       'Black Cat',
