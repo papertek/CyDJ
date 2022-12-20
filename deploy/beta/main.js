@@ -3371,6 +3371,7 @@ var cydj = (function (exports) {
 
   // ID of previous video queued (so !random doesn't add it again)
   let LAST_VIDEO_ID_QUEUED = 'some-bogus-dont-leave-empty';
+  let COMMAND = false;
 
   /**
    * Format chat messages before sending and execute commands.
@@ -3379,7 +3380,7 @@ var cydj = (function (exports) {
    * @return {string}
    */
 
-  async function prepareMessage(msg) {
+  function prepareMessage(msg) {
     if (msg.startsWith('!')) {
       COMMAND = true;
       if (msg.startsWith('!stat')) {
@@ -3525,6 +3526,24 @@ var cydj = (function (exports) {
     }
     return msg;
   }
+
+  $('#chatline').on('keydown', (ev) => {
+    if (ev.key === 'Enter') {
+      if (CHATTHROTTLE) {
+        return;
+      }
+      const _msg = $('#chatline').val();
+      let msg = $('#chatline').val();
+      if (msg.trim()) {
+        msg = prepareMessage(msg.trim());
+        if (COMMAND) {
+          socket.emit('chatMsg', {msg: _msg});
+          msg = `➥ ${msg}`;
+          COMMAND = false;
+        }
+      }
+    }
+  });
 
   const IMBA = new Audio('https://dl.dropboxusercontent.com/s/xdnpynq643ziq9o/inba.ogg');
   const FASTEST = new Audio('https://github.com/papertek/CyDJ/raw/beta/misc/fastestcrashegg.wav');
@@ -7264,6 +7283,11 @@ var cydj = (function (exports) {
       if (msg.trim()) {
         msg = prepareMessage(msg.trim());
         const meta = {};
+        /* if (COMMAND) {
+          socket.emit('chatMsg', {msg: _msg});
+          msg = `➥ ${msg}`;
+          COMMAND = false;
+        } */
         if (USEROPTS.adminhat && CLIENT.rank >= 255) {
           msg = `/a ${msg}`;
         } else if (USEROPTS.modhat && CLIENT.rank >= Rank.Moderator) {
