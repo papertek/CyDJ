@@ -3371,6 +3371,7 @@ var cydj = (function (exports) {
 
   // ID of previous video queued (so !random doesn't add it again)
   let LAST_VIDEO_ID_QUEUED = 'some-bogus-dont-leave-empty';
+  // additional command occuring in the chat message
   let COMMAND = false;
 
   /**
