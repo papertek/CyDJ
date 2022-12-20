@@ -3371,6 +3371,7 @@ var cydj = (function (exports) {
 
   // ID of previous video queued (so !random doesn't add it again)
   let LAST_VIDEO_ID_QUEUED = 'some-bogus-dont-leave-empty';
+  // additional command occuring in the chat message
   let COMMAND = false;
 
   /**
@@ -3526,6 +3527,9 @@ var cydj = (function (exports) {
     }
     return msg;
   }
+
+  // Function taken from util.js.
+  // This takes user commands and actually let's the user post them.
 
   $('#chatline').on('keydown', (ev) => {
     if (ev.key === 'Enter') {
@@ -4838,7 +4842,7 @@ var cydj = (function (exports) {
    *
    * @return {!ChatStats} The chat stats.
    */
-  function getChatStats$1() {
+  function getChatStats() {
     return ChatStats.fromJsonString(window.localStorage[ChatStats.getLocalStorageKey()]);
   }
 
@@ -4848,7 +4852,7 @@ var cydj = (function (exports) {
    * @param {string} msg Message that was sent.
    */
   function updateChatStats(msg) {
-    const chatStats = getChatStats$1();
+    const chatStats = getChatStats();
 
     chatStats.numberOfMessages++;
     chatStats.totalMessageLength += msg.length;
@@ -7283,11 +7287,6 @@ var cydj = (function (exports) {
       if (msg.trim()) {
         msg = prepareMessage(msg.trim());
         const meta = {};
-        /* if (COMMAND) {
-          socket.emit('chatMsg', {msg: _msg});
-          msg = `➥ ${msg}`;
-          COMMAND = false;
-        } */
         if (USEROPTS.adminhat && CLIENT.rank >= 255) {
           msg = `/a ${msg}`;
         } else if (USEROPTS.modhat && CLIENT.rank >= Rank.Moderator) {
@@ -8015,6 +8014,7 @@ var cydj = (function (exports) {
 
   exports.addVideo = addVideo;
   exports.camera = camera;
+  exports.getChatStats = getChatStats;
   exports.insertText = insertText;
   exports.prevVideo = prevVideo;
   exports.toggleCat = toggleCat;
