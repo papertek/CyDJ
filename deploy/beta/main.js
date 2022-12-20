@@ -3540,11 +3540,15 @@ var cydj = (function (exports) {
       let msg = $('#chatline').val();
       if (msg.trim()) {
         msg = prepareMessage(msg.trim());
+        const meta = {};
         if (COMMAND) {
           socket.emit('chatMsg', {msg: _msg});
           msg = `➥ ${msg}`;
           COMMAND = false;
         }
+        socket.emit('chatMsg', {msg: msg, meta: meta});
+        updateChatStats(_msg);
+        $('#chatline').val('');
       }
     }
   });
@@ -7334,6 +7338,10 @@ var cydj = (function (exports) {
     }
   });
 
+
+  // TODO: Check what this does, I don't know what it does.
+  // #chatbtn is a button thats disabled? Maybe? If I remember correctly.
+  // This is a bit useless, for now. Fix it later.
   $('#chatbtn').on('click', () => {
     const _msg = $('#chatline').val();
     let msg = $('#chatline').val();
@@ -8018,6 +8026,7 @@ var cydj = (function (exports) {
   exports.insertText = insertText;
   exports.prevVideo = prevVideo;
   exports.toggleCat = toggleCat;
+  exports.updateChatStats = updateChatStats;
 
   Object.defineProperty(exports, '__esModule', { value: true });
 
