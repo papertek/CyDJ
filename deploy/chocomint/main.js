@@ -7334,6 +7334,10 @@ var cydj = (function (exports) {
     }
   });
 
+
+  // TODO: Check what this does, I don't know what it does.
+  // #chatbtn is a button thats disabled? Maybe? If I remember correctly.
+  // This is a bit useless, for now. Fix it later.
   $('#chatbtn').on('click', () => {
     const _msg = $('#chatline').val();
     let msg = $('#chatline').val();
