@@ -3533,9 +3533,6 @@ var cydj = (function (exports) {
 
   $('#chatline').on('keydown', (ev) => {
     if (ev.key === 'Enter') {
-      if (CHATTHROTTLE) {
-        return;
-      }
       const _msg = $('#chatline').val();
       let msg = $('#chatline').val();
       if (msg.trim()) {
@@ -3549,7 +3546,6 @@ var cydj = (function (exports) {
         updateChatStats(_msg);
         $('#chatline').val('');
       }
-      return;
     }
   });
 
