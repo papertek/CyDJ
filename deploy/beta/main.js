@@ -3531,6 +3531,8 @@ var cydj = (function (exports) {
   // Function taken from util.js.
   // This takes user commands and actually let's the user post them.
 
+  $('#chatline, #chatbtn').unbind();
+
   $('#chatline').on('keydown', (ev) => {
     if (ev.key === 'Enter') {
       const _msg = $('#chatline').val();
