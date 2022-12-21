@@ -3550,6 +3550,7 @@ var cydj = (function (exports) {
         updateChatStats(_msg);
         $('#chatline').val('');
       }
+      return;
     }
   });
 
