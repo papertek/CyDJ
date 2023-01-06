@@ -3528,8 +3528,6 @@ var cydj = (function (exports) {
     return msg;
   }
 
-  document.body.addEventListener('load', utilShit, true);
-
   // Function taken from util.js.
   // This takes user commands and actually let's the user post them.
   /*
@@ -7277,85 +7275,82 @@ var cydj = (function (exports) {
 
   // fix formatting and sending chat messages
   // DEV NOTE: this are extended events from CyTube "util.js" file
-  function utilShit() {
-    $('#chatline, #chatbtn').off();
 
-    let /** @type {string} */ unsentMsg = null;
+  $('#chatline, #chatbtn').off();
 
-    $('#chatline').on('keydown', (ev) => {
-      if (ev.key === 'Enter') {
-        if (CHATTHROTTLE) {
-          return;
-        }
-        const _msg = $('#chatline').val();
-        let msg = $('#chatline').val();
-        if (msg.trim()) {
-          msg = prepareMessage(msg.trim());
-          const meta = {};
-          if (USEROPTS.adminhat && CLIENT.rank >= 255) {
-            msg = `/a ${msg}`;
-          } else if (USEROPTS.modhat && CLIENT.rank >= Rank.Moderator) {
-            meta.modflair = CLIENT.rank;
-          }
-          if (CLIENT.rank >= 2 && msg.startsWith('/m ')) {
-            meta.modflair = CLIENT.rank;
-            msg = msg.substring(3);
-          }
-          if (msg.startsWith('/say')) {
-            meta.addClass = 'shout';
-            meta.forceShowName = true;
-            meta.addClassToNameAndTimestamp = true;
-          }
-          socket.emit('chatMsg', {msg: msg, meta: meta});
-          updateChatStats(_msg);
-          CHATHIST.push($('#chatline').val());
-          CHATHISTIDX = CHATHIST.length;
-          $('#chatline').val('');
-        }
+  let /** @type {string} */ unsentMsg = null;
+
+  $('#chatline').on('keydown', (ev) => {
+    if (ev.key === 'Enter') {
+      if (CHATTHROTTLE) {
         return;
-      } else if (ev.key === 'Tab') {
-        chatTabComplete();
-        ev.preventDefault();
-        return false;
-      } else if (ev.key === 'ArrowUp') {
-        unsentMsg = $('#chatline').val();
-        if (CHATHISTIDX > 0) {
-          CHATHISTIDX--;
-          $('#chatline').val(CHATHIST[CHATHISTIDX]);
-        }
-        ev.preventDefault();
-        return false;
-      } else if (ev.key === 'ArrowDown') {
-        if (CHATHISTIDX === CHATHIST.length - 1 && unsentMsg !== null) {
-          CHATHISTIDX++;
-          $('#chatline').val(unsentMsg);
-          unsentMsg = null;
-        } else if (CHATHISTIDX < CHATHIST.length - 1) {
-          CHATHISTIDX++;
-          $('#chatline').val(CHATHIST[CHATHISTIDX]);
-        }
-        ev.preventDefault();
-        return false;
       }
-    });
-
-
-    // TODO: Check what this does, I don't know what it does.
-    // #chatbtn is a button thats disabled? Maybe? If I remember correctly.
-    // This is a bit useless, for now. Fix it later.
-    $('#chatbtn').on('click', () => {
       const _msg = $('#chatline').val();
       let msg = $('#chatline').val();
       if (msg.trim()) {
         msg = prepareMessage(msg.trim());
-        socket.emit('chatMsg', {msg: msg});
+        const meta = {};
+        if (USEROPTS.adminhat && CLIENT.rank >= 255) {
+          msg = `/a ${msg}`;
+        } else if (USEROPTS.modhat && CLIENT.rank >= Rank.Moderator) {
+          meta.modflair = CLIENT.rank;
+        }
+        if (CLIENT.rank >= 2 && msg.startsWith('/m ')) {
+          meta.modflair = CLIENT.rank;
+          msg = msg.substring(3);
+        }
+        if (msg.startsWith('/say')) {
+          meta.addClass = 'shout';
+          meta.forceShowName = true;
+          meta.addClassToNameAndTimestamp = true;
+        }
+        socket.emit('chatMsg', {msg: msg, meta: meta});
         updateChatStats(_msg);
+        CHATHIST.push($('#chatline').val());
+        CHATHISTIDX = CHATHIST.length;
         $('#chatline').val('');
       }
-    });
-  }
+      return;
+    } else if (ev.key === 'Tab') {
+      chatTabComplete();
+      ev.preventDefault();
+      return false;
+    } else if (ev.key === 'ArrowUp') {
+      unsentMsg = $('#chatline').val();
+      if (CHATHISTIDX > 0) {
+        CHATHISTIDX--;
+        $('#chatline').val(CHATHIST[CHATHISTIDX]);
+      }
+      ev.preventDefault();
+      return false;
+    } else if (ev.key === 'ArrowDown') {
+      if (CHATHISTIDX === CHATHIST.length - 1 && unsentMsg !== null) {
+        CHATHISTIDX++;
+        $('#chatline').val(unsentMsg);
+        unsentMsg = null;
+      } else if (CHATHISTIDX < CHATHIST.length - 1) {
+        CHATHISTIDX++;
+        $('#chatline').val(CHATHIST[CHATHISTIDX]);
+      }
+      ev.preventDefault();
+      return false;
+    }
+  });
 
-  document.body.addEventListener('load', utilShit, true);
+
+  // TODO: Check what this does, I don't know what it does.
+  // #chatbtn is a button thats disabled? Maybe? If I remember correctly.
+  // This is a bit useless, for now. Fix it later.
+  $('#chatbtn').on('click', () => {
+    const _msg = $('#chatline').val();
+    let msg = $('#chatline').val();
+    if (msg.trim()) {
+      msg = prepareMessage(msg.trim());
+      socket.emit('chatMsg', {msg: msg});
+      updateChatStats(_msg);
+      $('#chatline').val('');
+    }
+  });
 
   /**
    * @typedef {Object} SetUserMetaEvent
@@ -8031,7 +8026,6 @@ var cydj = (function (exports) {
   exports.prevVideo = prevVideo;
   exports.toggleCat = toggleCat;
   exports.updateChatStats = updateChatStats;
-  exports.utilShit = utilShit;
 
   Object.defineProperty(exports, '__esModule', { value: true });
 
