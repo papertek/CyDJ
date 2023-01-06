@@ -3372,7 +3372,7 @@ var cydj = (function (exports) {
   // ID of previous video queued (so !random doesn't add it again)
   let LAST_VIDEO_ID_QUEUED = 'some-bogus-dont-leave-empty';
   // additional command occuring in the chat message
-  let COMMAND = false;
+  // let COMMAND = false;
 
   /**
    * Format chat messages before sending and execute commands.
@@ -3530,7 +3530,7 @@ var cydj = (function (exports) {
 
   // Function taken from util.js.
   // This takes user commands and actually let's the user post them.
-
+  /*
   $('#chatline, #chatbtn').unbind();
 
   $('#chatline').on('keydown', (ev) => {
@@ -3550,7 +3550,7 @@ var cydj = (function (exports) {
       }
     }
   });
-
+  */
 
   const IMBA = new Audio('https://dl.dropboxusercontent.com/s/xdnpynq643ziq9o/inba.ogg');
   const FASTEST = new Audio('https://github.com/papertek/CyDJ/raw/beta/misc/fastestcrashegg.wav');
