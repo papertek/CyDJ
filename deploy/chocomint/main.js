@@ -4854,7 +4854,7 @@ var cydj = (function (exports) {
    *
    * @param {string} msg Message that was sent.
    */
-  function updateChatStats$1(msg) {
+  function updateChatStats(msg) {
     const chatStats = getChatStats();
 
     chatStats.numberOfMessages++;
@@ -7305,7 +7305,7 @@ var cydj = (function (exports) {
           meta.addClassToNameAndTimestamp = true;
         }
         socket.emit('chatMsg', {msg: msg, meta: meta});
-        updateChatStats$1(_msg);
+        updateChatStats(_msg);
         CHATHIST.push($('#chatline').val());
         CHATHISTIDX = CHATHIST.length;
         $('#chatline').val('');
@@ -7347,7 +7347,7 @@ var cydj = (function (exports) {
     if (msg.trim()) {
       msg = prepareMessage(msg.trim());
       socket.emit('chatMsg', {msg: msg});
-      updateChatStats$1(_msg);
+      updateChatStats(_msg);
       $('#chatline').val('');
     }
   });
@@ -8025,7 +8025,7 @@ var cydj = (function (exports) {
   exports.insertText = insertText;
   exports.prevVideo = prevVideo;
   exports.toggleCat = toggleCat;
-  exports.updateChatStats = updateChatStats$1;
+  exports.updateChatStats = updateChatStats;
 
   Object.defineProperty(exports, '__esModule', { value: true });
 
