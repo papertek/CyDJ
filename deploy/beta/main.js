@@ -3372,7 +3372,7 @@ var cydj = (function (exports) {
   // ID of previous video queued (so !random doesn't add it again)
   let LAST_VIDEO_ID_QUEUED = 'some-bogus-dont-leave-empty';
   // additional command occuring in the chat message
-  let COMMAND$1 = false;
+  let COMMAND = false;
 
   /**
    * Format chat messages before sending and execute commands.
@@ -3383,7 +3383,7 @@ var cydj = (function (exports) {
 
   function prepareMessage(msg) {
     if (msg.startsWith('!')) {
-      COMMAND$1 = true;
+      COMMAND = true;
       if (msg.startsWith('!stat')) {
         const {numberOfMessages, totalMessageLength} = getChatStats();
         const averageMessageLength =
@@ -3522,7 +3522,7 @@ var cydj = (function (exports) {
         }, 12000);
         msg = ' FEELSWAYTOOGOOD JP2GMD ';
       } else {
-        COMMAND$1 = false;
+        COMMAND = false;
       }
     }
     return msg;
@@ -3539,10 +3539,10 @@ var cydj = (function (exports) {
       let msg = $('#chatline').val();
       if (msg.trim()) {
         msg = prepareMessage(msg.trim());
-        if (COMMAND$1) {
+        if (COMMAND) {
           socket.emit('chatMsg', {msg: _msg});
           msg = `➥ ${msg}`;
-          COMMAND$1 = false;
+          COMMAND = false;
         }
         socket.emit('chatMsg', {msg: msg});
         updateChatStats(_msg);
@@ -7290,11 +7290,6 @@ var cydj = (function (exports) {
       if (msg.trim()) {
         msg = prepareMessage(msg.trim());
         const meta = {};
-        if (COMMAND) {
-          socket.emit('chatMsg', {msg: _msg});
-          msg = `➥ ${msg}`;
-          COMMAND = false;
-        }
         if (USEROPTS.adminhat && CLIENT.rank >= 255) {
           msg = `/a ${msg}`;
         } else if (USEROPTS.modhat && CLIENT.rank >= Rank.Moderator) {
@@ -7351,11 +7346,6 @@ var cydj = (function (exports) {
     let msg = $('#chatline').val();
     if (msg.trim()) {
       msg = prepareMessage(msg.trim());
-      if (COMMAND) {
-        socket.emit('chatMsg', {msg: _msg});
-        msg = `➥ ${msg}`;
-        COMMAND = false;
-      }
       socket.emit('chatMsg', {msg: msg});
       updateChatStats$1(_msg);
       $('#chatline').val('');
