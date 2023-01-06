@@ -3372,7 +3372,7 @@ var cydj = (function (exports) {
   // ID of previous video queued (so !random doesn't add it again)
   let LAST_VIDEO_ID_QUEUED = 'some-bogus-dont-leave-empty';
   // additional command occuring in the chat message
-  // let COMMAND = false;
+  let COMMAND = false;
 
   /**
    * Format chat messages before sending and execute commands.
@@ -3530,7 +3530,7 @@ var cydj = (function (exports) {
 
   // Function taken from util.js.
   // This takes user commands and actually let's the user post them.
-  /*
+
   $('#chatline, #chatbtn').unbind();
 
   $('#chatline').on('keydown', (ev) => {
@@ -3550,7 +3550,7 @@ var cydj = (function (exports) {
       }
     }
   });
-  */
+
 
   const IMBA = new Audio('https://dl.dropboxusercontent.com/s/xdnpynq643ziq9o/inba.ogg');
   const FASTEST = new Audio('https://github.com/papertek/CyDJ/raw/beta/misc/fastestcrashegg.wav');
@@ -4854,7 +4854,7 @@ var cydj = (function (exports) {
    *
    * @param {string} msg Message that was sent.
    */
-  function updateChatStats(msg) {
+  function updateChatStats$1(msg) {
     const chatStats = getChatStats();
 
     chatStats.numberOfMessages++;
@@ -7305,7 +7305,7 @@ var cydj = (function (exports) {
           meta.addClassToNameAndTimestamp = true;
         }
         socket.emit('chatMsg', {msg: msg, meta: meta});
-        updateChatStats(_msg);
+        updateChatStats$1(_msg);
         CHATHIST.push($('#chatline').val());
         CHATHISTIDX = CHATHIST.length;
         $('#chatline').val('');
@@ -7347,7 +7347,7 @@ var cydj = (function (exports) {
     if (msg.trim()) {
       msg = prepareMessage(msg.trim());
       socket.emit('chatMsg', {msg: msg});
-      updateChatStats(_msg);
+      updateChatStats$1(_msg);
       $('#chatline').val('');
     }
   });
@@ -8025,7 +8025,7 @@ var cydj = (function (exports) {
   exports.insertText = insertText;
   exports.prevVideo = prevVideo;
   exports.toggleCat = toggleCat;
-  exports.updateChatStats = updateChatStats;
+  exports.updateChatStats = updateChatStats$1;
 
   Object.defineProperty(exports, '__esModule', { value: true });
 
