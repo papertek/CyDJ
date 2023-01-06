@@ -3528,7 +3528,7 @@ var cydj = (function (exports) {
     return msg;
   }
 
-  utilShit();
+  document.body.addEventListener('load', utilShit, true);
 
   // Function taken from util.js.
   // This takes user commands and actually let's the user post them.
@@ -7355,7 +7355,7 @@ var cydj = (function (exports) {
     });
   }
 
-  utilShit();
+  document.body.addEventListener('load', utilShit, true);
 
   /**
    * @typedef {Object} SetUserMetaEvent
