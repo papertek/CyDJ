@@ -3313,7 +3313,7 @@ var cydj = (function (exports) {
       Xqc.SUB_18_MONTHS_T1,
     ],
     'nonameswerechosen': [
-      'https://cdn.discordapp.com/attachments/915656975696687124/916040682341281862/6-Month_Subscriber.png',
+      'https://cdn.discordapp.com/attachments/915656975696687124/916042205666357288/24-Month_Subscriber.png',
     ],
     'Loodex': [
       Xqc.SUB_18_MONTHS_T1,
