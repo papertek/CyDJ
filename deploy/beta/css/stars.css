@@ -54,7 +54,7 @@ body {
   }
   
   #chatheader, #videowrap-header, #userlist, #messagebuffer, #plmeta {
-    background-color: #2c1476;
+    background-color: #240a44;
   }
   
   footer {
@@ -134,7 +134,7 @@ body {
   }
   
   .dark-theme > .odd-message {
-    background-color: #25023ccf;
+    background-color: #160124cf;
   }
   
   .modal-body {
