@@ -1,4 +1,4 @@
-/* Star Theme by ItMePeachy, using UUFO theme as base  */
+/* Star Theme by ItMePeachy  */
 
 body {
     background: linear-gradient(to bottom, #0e0e47, #010114, rgb(54, 8, 95))!important;
@@ -54,7 +54,7 @@ body {
   }
   
   #chatheader, #videowrap-header, #userlist, #messagebuffer, #plmeta {
-    background-color: #240a44;
+    background-color: #2c1476;
   }
   
   footer {
@@ -134,7 +134,7 @@ body {
   }
   
   .dark-theme > .odd-message {
-    background-color: #160124cf;
+    background-color: #25023ccf;
   }
   
   .modal-body {
