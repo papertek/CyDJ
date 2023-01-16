@@ -4015,7 +4015,7 @@ var cydj = (function (exports) {
 
   const ChannelName_Caption = 'CyDJ';
 
-  const Version_Now$1 = 'CyDJPre1.13.23.0';
+  const Version_Now$1 = 'CyDJPre1.16.23.0';
   const HeaderDropMenu_Title = 'Information';
 
   const RulesBtn_Caption = 'Read Channel Rules';
