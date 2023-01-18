@@ -4015,7 +4015,8 @@ var cydj = (function (exports) {
 
   const ChannelName_Caption = 'CyDJ';
 
-  const Version_Now$1 = 'CyDJPre1.16.23.0';
+  const Version_Now = 'CyDJPre1.3.23.0';
+
   const HeaderDropMenu_Title = 'Information';
 
   const RulesBtn_Caption = 'Read Channel Rules';
@@ -4853,7 +4854,7 @@ var cydj = (function (exports) {
    *
    * @param {string} msg Message that was sent.
    */
-  function updateChatStats$1(msg) {
+  function updateChatStats(msg) {
     const chatStats = getChatStats();
 
     chatStats.numberOfMessages++;
@@ -6251,7 +6252,7 @@ var cydj = (function (exports) {
   {
     const headerdrop = $('<li id="headerdrop" class="dropdown" />').insertAfter('#channelset-link');
     $('<a class="dropdown-toggle disabled" href="https://github.com/papertek/CyDJ" />')
-        .html(`${Version_Now$1}`)
+        .html(`${Version_Now}`)
         .appendTo(headerdrop);
   }
 
@@ -7304,7 +7305,7 @@ var cydj = (function (exports) {
           meta.addClassToNameAndTimestamp = true;
         }
         socket.emit('chatMsg', {msg: msg, meta: meta});
-        updateChatStats$1(_msg);
+        updateChatStats(_msg);
         CHATHIST.push($('#chatline').val());
         CHATHISTIDX = CHATHIST.length;
         $('#chatline').val('');
@@ -7346,7 +7347,7 @@ var cydj = (function (exports) {
     if (msg.trim()) {
       msg = prepareMessage(msg.trim());
       socket.emit('chatMsg', {msg: msg});
-      updateChatStats$1(_msg);
+      updateChatStats(_msg);
       $('#chatline').val('');
     }
   });
@@ -8018,13 +8019,14 @@ var cydj = (function (exports) {
     window.removeEventListener('mouseup', stopResize, false);
   } */
 
+  exports.Version_Now = Version_Now;
   exports.addVideo = addVideo;
   exports.camera = camera;
   exports.getChatStats = getChatStats;
   exports.insertText = insertText;
   exports.prevVideo = prevVideo;
   exports.toggleCat = toggleCat;
-  exports.updateChatStats = updateChatStats$1;
+  exports.updateChatStats = updateChatStats;
 
   Object.defineProperty(exports, '__esModule', { value: true });
 
