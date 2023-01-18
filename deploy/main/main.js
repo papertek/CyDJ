@@ -3313,7 +3313,7 @@ var cydj = (function (exports) {
       Xqc.SUB_18_MONTHS_T1,
     ],
     'nonameswerechosen': [
-      'https://cdn.discordapp.com/attachments/915656975696687124/916040682341281862/6-Month_Subscriber.png',
+      'https://cdn.discordapp.com/attachments/915656975696687124/916042205666357288/24-Month_Subscriber.png',
     ],
     'Loodex': [
       Xqc.SUB_18_MONTHS_T1,
@@ -3369,7 +3369,333 @@ var cydj = (function (exports) {
     ],
   };
 
-  const CHANNEL_DATABASE = [
+  // ID of previous video queued (so !random doesn't add it again)
+  let LAST_VIDEO_ID_QUEUED = 'some-bogus-dont-leave-empty';
+  // additional command occuring in the chat message
+  let COMMAND = false;
+
+  /**
+   * Format chat messages before sending and execute commands.
+   *
+   * @param {string} msg
+   * @return {string}
+   */
+
+  function prepareMessage(msg) {
+    if (msg.startsWith('!')) {
+      COMMAND = true;
+      if (msg.startsWith('!stat')) {
+        const {numberOfMessages, totalMessageLength} = getChatStats();
+        const averageMessageLength =
+            numberOfMessages > 0 ? Math.round(totalMessageLength / numberOfMessages) : 0;
+        msg = `you have sent ${numberOfMessages} messages, ` +
+            `total length is ${totalMessageLength} characters ` +
+            `(${averageMessageLength} per message) `;
+      } else if (msg.startsWith('!pick ')) {
+        const arr = msg.split('!pick ')[1].split(',');
+        const rnd = Math.round(Math.random() * (arr.length - 1));
+        msg = arr[rnd];
+      } else if (msg.startsWith('!ask ')) {
+        if (AskAnswers_Array.length < 1) {
+          AskAnswers_Array = ['yes', 'no'];
+        }
+        const rnd = Math.round(Math.random() * (AskAnswers_Array.length - 1));
+        msg = AskAnswers_Array[rnd];
+      } else if (msg.startsWith('!time')) {
+        let h = new Date().getHours();
+        if (h < 10) {
+          h = '0' + h;
+        }
+        let m = new Date().getMinutes();
+        if (m < 10) {
+          m = '0' + m;
+        }
+        msg = 'current time: ' + h + ':' + m;
+      } else if (msg.startsWith('!dice')) {
+        const rnd = Math.round(Math.random() * 5) + 1;
+        msg = '' + rnd;
+      } else if (msg.startsWith('!roll')) {
+        let rnd = Math.round(Math.random() * 999);
+        if (rnd < 100) {
+          rnd = '0' + rnd;
+        }
+        if (rnd < 10) {
+          rnd = '0' + rnd;
+        }
+        msg = '' + rnd;
+      } else if (msg.startsWith('!q')) {
+        if (RandomQuotes_Array.length < 1) {
+          RandomQuotes_Array = ['error: no quotes available'];
+        }
+        const rnd = Math.round(Math.random() * (RandomQuotes_Array.length - 1));
+        msg = RandomQuotes_Array[rnd];
+      } else if (msg.startsWith('!randomemote')) {
+        const emoteCount = TabCompletionEmotes.length;
+        const randomEmoteIndex = Math.round(Math.random() * emoteCount - 1);
+        const randomEmote = TabCompletionEmotes[randomEmoteIndex];
+        msg = randomEmote;
+      } else if (msg.startsWith('!random') && hasPermission('playlistadd')) {
+        if (UI_ChannelDatabase) {
+          let link = '';
+          let title = '';
+          while (link === '' || link.includes(LAST_VIDEO_ID_QUEUED)) {
+            const rnd = Math.round(Math.random() * (CHANNEL_DATABASE.length - 1));
+            link = CHANNEL_DATABASE[rnd][0];
+            title = CHANNEL_DATABASE[rnd][1];
+          }
+          const parsed = parseMediaLink(link);
+          socket.emit('queue', {
+            id: parsed['id'],
+            pos: 'end',
+            type: parsed['type'],
+            temp: $('.add-temp').prop('checked'),
+          });
+          msg = `random media added! - ${title}`;
+        }
+      } else if (msg.startsWith('!skip') && hasPermission('voteskip')) {
+        socket.emit('voteskip');
+        msg = 'current item has been voteskipped';
+      } else if (msg.startsWith('!next') && hasPermission('playlistjump')) {
+        socket.emit('playNext');
+        msg = 'started playing next item';
+      } else if (msg.startsWith('!bump') && hasPermission('playlistmove')) {
+        const last = $('#queue').children().length;
+        const uid = $(`#queue .queue_entry:nth-child(${last})`).data('uid');
+        const title = $(`#queue .queue_entry:nth-child(${last}) .qe_title`).html();
+        socket.emit('moveMedia', {from: uid, after: PL_CURRENT}, $('.add-temp').prop('checked'));
+        msg = `last item bumped as next: ${title}`;
+      } else if (msg.startsWith('!add ') && hasPermission('playlistadd')) {
+        const parsed = parseMediaLink(msg.split('!add ')[1]);
+        if (parsed['id'] === null) {
+          msg = 'error: invalid link, item has not been added';
+        } else {
+          socket.emit('queue', {
+            id: parsed['id'],
+            pos: 'end',
+            type: parsed['type'],
+            temp: $('.add-temp').prop('checked'),
+          });
+          msg = 'media has been added!';
+        }
+      } else if (msg.startsWith('!np')) {
+        msg = 'Now playing: ' + $('.queue_active a').html();
+      } else if (msg.startsWith('!discord')) {
+        msg = 'https://discord.gg/g8tCGSc2bx';
+      } else if (msg.startsWith('!link')) {
+        msg = 'https://tinyurl.com/jamcydj';
+      } else if (msg.startsWith('!guide')) {
+        msg = 'https://tinyurl.com/CyDJguideV2';
+      } else if (msg.startsWith('!script')) {
+        msg = 'http://github.com/papertek/CyDJ';
+      } else if (msg.startsWith('!report')) {
+        msg = 'https://tinyurl.com/CDJReport';
+      } else if (msg.startsWith('!botcommands')) {
+        msg = 'https://github.com/airforce270/cytubebot#commands';
+      } else if (msg.startsWith('!version')) {
+        msg = `Running: ${Version_Now}`;
+      } else if (msg.startsWith('!media')) {
+        const item = $(`.queue_active`).data('media');
+        msg = `Heres the link: ${formatURL(item)}`;
+      } else if (msg.startsWith('!crash')) {
+        msg = '[mqr] GOOOOOOO xqcTECHNO FEELSWAYTOOGOOD xqcDisco [/mqr]';
+        fastestCrash();
+      } else if (msg.startsWith('!gluegun')) {
+        msg = '[mqr] GOOOOOOO xqcTechno FEELSWAYTOOGOOD AlienPls3 [/mqr]';
+        glueGun();
+      } else if (msg.startsWith('!inba')) {
+        IMBA.volume = 0.6;
+        IMBA.play();
+        mutePlayer();
+        const inbaFlash = setInterval(() => inba(), 200);
+        setTimeout(() => {
+          unmutePlayer();
+          BGCHANGE = 0;
+          clearInterval(inbaFlash);
+
+          const userlistthing = document.getElementById('userlist');
+          const elems = [userlistthing];
+
+          elems.forEach((elem) => elem.style.backgroundImage = '');
+          elems.forEach((elem) => elem.style.backgroundColor = '');
+
+          setUserCSS();
+        }, 12000);
+        msg = ' FEELSWAYTOOGOOD JP2GMD ';
+      } else {
+        COMMAND = false;
+      }
+    }
+    return msg;
+  }
+
+  // Function taken from util.js.
+  // This takes user commands and actually let's the user post them.
+
+  $('#chatline, #chatbtn').unbind();
+
+  $('#chatline').on('keydown', (ev) => {
+    if (ev.key === 'Enter') {
+      const _msg = $('#chatline').val();
+      let msg = $('#chatline').val();
+      if (msg.trim()) {
+        msg = prepareMessage(msg.trim());
+        if (COMMAND) {
+          socket.emit('chatMsg', {msg: _msg});
+          msg = `➥ ${msg}`;
+          COMMAND = false;
+        }
+        socket.emit('chatMsg', {msg: msg});
+        updateChatStats(_msg);
+        $('#chatline').val('');
+      }
+    }
+  });
+
+
+  const IMBA = new Audio('https://dl.dropboxusercontent.com/s/xdnpynq643ziq9o/inba.ogg');
+  const FASTEST = new Audio('https://github.com/papertek/CyDJ/raw/beta/misc/fastestcrashegg.wav');
+  const GGUN = new Audio('https://github.com/papertek/CyDJ/raw/beta/misc/gluegun.wav');
+
+
+  // number of background changes for the easter egg function
+  let BGCHANGE = 1;
+  // number of background changes for fastest crash
+  let FASTESTBGCHANGE = 1;
+  // number of bg changes for glue gun command
+  let GLUEGUNBGCHANGE = 1;
+
+  /**
+   * Easter eggs in the commands.
+   */
+  function inba() {
+    const userlistthing = document.getElementById('userlist');
+    const elems = [userlistthing];
+
+    elems.forEach((elem) => elem.style.backgroundImage = 'none');
+    BGCHANGE++;
+
+    const newColor = BGCHANGE % 2 === 0 ? 'gold' : 'blue';
+    elems.forEach((elem) => elem.style.backgroundColor = newColor);
+  }
+
+  // Fastest Crash easter egg bg changes
+  function dropthefast() {
+    const userlistthing = document.getElementById('userlist');
+    const elems = [userlistthing];
+
+    elems.forEach((elem) => elem.style.backgroundImage = 'none');
+    FASTESTBGCHANGE++;
+
+    const newColor = FASTESTBGCHANGE % 2 === 0 ? 'blue' : 'black';
+    elems.forEach((elem) => elem.style.backgroundColor = newColor);
+  }
+
+  // glue gun easter egg bg changes
+  function droptheglue() {
+    const userlistthing = document.getElementById('userlist');
+    const elems = [userlistthing];
+
+    elems.forEach((elem) => elem.style.backgroundImage = 'none');
+    GLUEGUNBGCHANGE++;
+
+    const newColor = GLUEGUNBGCHANGE % 2 === 0 ? 'blue' : 'limegreen';
+    elems.forEach((elem) => elem.style.backgroundColor = newColor);
+  }
+
+  // fastest crash function
+  function fastestCrash() {
+    FASTEST.volume = 0.5;
+    FASTEST.play();
+    const fastestFlash = setInterval(() => dropthefast(), 100);
+    setTimeout(() => {
+      FASTESTBGCHANGE = 100;
+      clearInterval(fastestFlash);
+
+      const userlistthing = document.getElementById('userlist');
+      const elems = [userlistthing];
+
+      elems.forEach((elem) => elem.style.backgroundImage = '');
+      elems.forEach((elem) => elem.style.backgroundColor = '');
+
+      setUserCSS();
+    }, 12000);
+  }
+
+  // glue gun function
+  function glueGun() {
+    GGUN.volume = 0.5;
+    GGUN.play();
+    const glueFlash = setInterval(() => droptheglue(), 100);
+    setTimeout(() => {
+      GLUEGUNBGCHANGE = 150;
+      clearInterval(glueFlash);
+
+      const userlistthing = document.getElementById('userlist');
+      const elems = [userlistthing];
+
+      elems.forEach((elem) => elem.style.backgroundImage = '');
+      elems.forEach((elem) => elem.style.backgroundColor = '');
+
+      setUserCSS();
+    }, 9000);
+  }
+
+  const RandomQuotes_Array = [
+    'I like the Pope dancing',
+    'No quotes today',
+    'O rly?',
+    'People have the right to be stupid. You abuse that privilege',
+    'Don\'t play stupid with me',
+    'Roses are red violets are blue, God made me pretty, what happened to you?',
+    'Please don\'t interrupt me while I\'m ignoring you',
+    'Are you always this stupid, or are you making a special effort today?',
+    'I like you. You remind me of when I was young and stupid.',
+    'Go and buy me a beer',
+    'The door of this channel is always open for you... so feel free to leave!',
+    'I hate JQuery',
+    'amogus',
+  ];
+
+  const AskAnswers_Array = [
+    '100% for sure',
+    'definitely, yes',
+    'yes',
+    'probably',
+    'not any chance',
+    'definitely no',
+    'a little chance',
+    'no',
+    '50/50',
+    'fairy is tired and will not answer',
+    'I refuse to answer',
+    'i asked your mom and she said no',
+    'i- i\'m too shy to answer..',
+    'umph... yes...',
+    'ahhh.. hhaahhh... yeah...',
+    'what',
+  ];
+
+  /**
+   * Mute YT player.
+   */
+  function mutePlayer() {
+    if (PLAYER && PLAYER.type === 'yt') {
+      PLAYER.player.mute();
+    }
+  }
+
+  /**
+   * Unmute YT player.
+   */
+  function unmutePlayer() {
+    if (PLAYER && PLAYER.type === 'yt') {
+      PLAYER.player.unMute();
+    }
+  }
+
+  socket.on('queue', (data) => LAST_VIDEO_ID_QUEUED = data.item.media.id);
+
+  const CHANNEL_DATABASE$1 = [
     ['', 'Juicer Tastes'],
     ['https://www.youtube.com/watch?v=CprdkP92LsM', 'Fox Stevenson - Out There'],
     ['https://www.youtube.com/watch?v=ovZNf7Nztw4', 'Fox Stevenson - Still Here'],
@@ -3661,7 +3987,7 @@ var cydj = (function (exports) {
   const camera = icon({prefix: 'fas', iconName: 'camera'});
   library$1.add(faCamera);
   // [&] box with embed additional media database
-  const UI_ChannelDatabase = true;
+  const UI_ChannelDatabase$1 = true;
   // [&] possibility to embedding (displaying) images and .webm videos on the chat
   const UI_EmbeddingMedia = true;
 
@@ -3683,13 +4009,15 @@ var cydj = (function (exports) {
 
   /* -- single variables -- */
 
+  // TODO: Move all these into a file.
+
   const Favicon_URL = 'https://cdn.7tv.app/emote/614e8c0b20eaf897465a4c9d/1x';
 
   const MiniLogo_URL = 'https://cdn.7tv.app/emote/614e8c0b20eaf897465a4c9d/1x';
 
   const ChannelName_Caption = 'CyDJ';
 
-  const Version_Now = 'CyDJPre12.15.22.0';
+  const Version_Now = 'CyDJEdge1.17.23.0';
 
   const HeaderDropMenu_Title = 'Information';
 
@@ -3732,41 +4060,6 @@ var cydj = (function (exports) {
 
   const MOTDAutoLogo_Array = [
     'https://github.com/papertek/CyDJ/raw/beta/images/cydjnormal.jpg',
-  ];
-
-  const RandomQuotes_Array = [
-    'I like the Pope dancing',
-    'No quotes today',
-    'O rly?',
-    'People have the right to be stupid. You abuse that privilege',
-    'Don\'t play stupid with me',
-    'Roses are red violets are blue, God made me pretty, what happened to you?',
-    'Please don\'t interrupt me while I\'m ignoring you',
-    'Are you always this stupid, or are you making a special effort today?',
-    'I like you. You remind me of when I was young and stupid.',
-    'Go and buy me a beer',
-    'The door of this channel is always open for you... so feel free to leave!',
-    'I hate JQuery',
-    'amogus',
-  ];
-
-  const AskAnswers_Array = [
-    '100% for sure',
-    'definitely, yes',
-    'yes',
-    'probably',
-    'not any chance',
-    'definitely no',
-    'a little chance',
-    'no',
-    '50/50',
-    'fairy is tired and will not answer',
-    'I refuse to answer',
-    'i asked your mom and she said no',
-    'i- i\'m too shy to answer..',
-    'umph... yes...',
-    'ahhh.. hhaahhh... yeah...',
-    'what',
   ];
 
   const ModPanel_Array = [
@@ -3862,8 +4155,12 @@ var cydj = (function (exports) {
       'https://papertek.github.io/CyDJ/deploy/beta/css/spring.css',
     ],
     [
-      'Peachy',
-      'https://papertek.github.io/CyDJ/deploy/beta/css/peachy.css',
+      'Stars',
+      'https://papertek.github.io/CyDJ/deploy/beta/css/stars.css',
+    ],
+    [
+      'Alien',
+      'https://papertek.github.io/CyDJ/deploy/beta/css/alien.css',
     ],
     [
       'Black Cat',
@@ -4023,8 +4320,6 @@ var cydj = (function (exports) {
   let DEFDESCR = true;
   // admin chat functions panel visibility
   let CHATFUNC = true;
-  // aditional command occuring in the chat message
-  let COMMAND = false;
   // auto clearing messages window
   let CLEARING = false;
   // enabled anti-AFK function
@@ -4044,27 +4339,16 @@ var cydj = (function (exports) {
   let PREVTIME = 0;
   // timestamp of the last adding random item from the channel database
   let LASTADD = 1;
-  // ID of previous video queued (so !random doesn't add it again)
-  let LAST_VIDEO_ID_QUEUED = 'some-bogus-dont-leave-empty';
   // user minutes online
   let USERONLINE = 0;
-  // number of background changes for the easter egg function
-  let BGCHANGE = 1;
   // number of background changes for the drop it
   let DROPBGCHANGE = 1;
-  // number of background changes for fastest crash
-  let FASTESTBGCHANGE = 1;
-  // number of bg changes for glue gun command
-  let GLUEGUNBGCHANGE = 1;
 
   // array of links added from channel database by user
   const ADDEDLINKS = [];
 
   const WEBKIT = 'webkitRequestAnimationFrame' in window;
-  const IMBA = new Audio('https://dl.dropboxusercontent.com/s/xdnpynq643ziq9o/inba.ogg');
   const DROPIT = new Audio('https://github.com/papertek/CyDJ/raw/beta/misc/dropit.wav');
-  const FASTEST = new Audio('https://github.com/papertek/CyDJ/raw/beta/misc/fastestcrashegg.wav');
-  const GGUN = new Audio('https://github.com/papertek/CyDJ/raw/beta/misc/gluegun.wav');
   const HEY = new Audio('https://github.com/papertek/CyDJ/raw/beta/misc/hey.wav');
   const NAY = new Audio('https://github.com/papertek/CyDJ/raw/beta/misc/nay.wav');
   CHATSOUND.volume = 0.4;
@@ -4582,160 +4866,6 @@ var cydj = (function (exports) {
   }
 
   /**
-   * Format chat messages before sending and execute commands.
-   *
-   * @param {string} msg
-   * @return {string}
-   */
-  function prepareMessage(msg) {
-
-    if (msg.startsWith('!')) {
-      COMMAND = true;
-      if (msg.startsWith('!stat')) {
-        const {numberOfMessages, totalMessageLength} = getChatStats();
-        const averageMessageLength =
-            numberOfMessages > 0 ? Math.round(totalMessageLength / numberOfMessages) : 0;
-        msg = `you have sent ${numberOfMessages} messages, ` +
-            `total length is ${totalMessageLength} characters ` +
-            `(${averageMessageLength} per message) `;
-      } else if (msg.startsWith('!pick ')) {
-        const arr = msg.split('!pick ')[1].split(',');
-        const rnd = Math.round(Math.random() * (arr.length - 1));
-        msg = arr[rnd];
-      } else if (msg.startsWith('!ask ')) {
-        if (AskAnswers_Array.length < 1) {
-          AskAnswers_Array = ['yes', 'no'];
-        }
-        const rnd = Math.round(Math.random() * (AskAnswers_Array.length - 1));
-        msg = AskAnswers_Array[rnd];
-      } else if (msg.startsWith('!time')) {
-        let h = new Date().getHours();
-        if (h < 10) {
-          h = '0' + h;
-        }
-        let m = new Date().getMinutes();
-        if (m < 10) {
-          m = '0' + m;
-        }
-        msg = 'current time: ' + h + ':' + m;
-      } else if (msg.startsWith('!dice')) {
-        const rnd = Math.round(Math.random() * 5) + 1;
-        msg = '' + rnd;
-      } else if (msg.startsWith('!roll')) {
-        let rnd = Math.round(Math.random() * 999);
-        if (rnd < 100) {
-          rnd = '0' + rnd;
-        }
-        if (rnd < 10) {
-          rnd = '0' + rnd;
-        }
-        msg = '' + rnd;
-      } else if (msg.startsWith('!q')) {
-        if (RandomQuotes_Array.length < 1) {
-          RandomQuotes_Array = ['error: no quotes available'];
-        }
-        const rnd = Math.round(Math.random() * (RandomQuotes_Array.length - 1));
-        msg = RandomQuotes_Array[rnd];
-      } else if (msg.startsWith('!randomemote')) {
-        const emoteCount = TabCompletionEmotes.length;
-        const randomEmoteIndex = Math.round(Math.random() * emoteCount - 1);
-        const randomEmote = TabCompletionEmotes[randomEmoteIndex];
-        msg = randomEmote;
-      } else if (msg.startsWith('!random') && hasPermission('playlistadd')) {
-        {
-          let link = '';
-          let title = '';
-          while (link === '' || link.includes(LAST_VIDEO_ID_QUEUED)) {
-            const rnd = Math.round(Math.random() * (CHANNEL_DATABASE.length - 1));
-            link = CHANNEL_DATABASE[rnd][0];
-            title = CHANNEL_DATABASE[rnd][1];
-          }
-          const parsed = parseMediaLink(link);
-          socket.emit('queue', {
-            id: parsed['id'],
-            pos: 'end',
-            type: parsed['type'],
-            temp: $('.add-temp').prop('checked'),
-          });
-          msg = `random media added! - ${title}`;
-        }
-      } else if (msg.startsWith('!skip') && hasPermission('voteskip')) {
-        socket.emit('voteskip');
-        msg = 'current item has been voteskipped';
-      } else if (msg.startsWith('!next') && hasPermission('playlistjump')) {
-        socket.emit('playNext');
-        msg = 'started playing next item';
-      } else if (msg.startsWith('!bump') && hasPermission('playlistmove')) {
-        const last = $('#queue').children().length;
-        const uid = $(`#queue .queue_entry:nth-child(${last})`).data('uid');
-        const title = $(`#queue .queue_entry:nth-child(${last}) .qe_title`).html();
-        socket.emit('moveMedia', {from: uid, after: PL_CURRENT}, $('.add-temp').prop('checked'));
-        msg = `last item bumped as next: ${title}`;
-      } else if (msg.startsWith('!add ') && hasPermission('playlistadd')) {
-        const parsed = parseMediaLink(msg.split('!add ')[1]);
-        if (parsed['id'] === null) {
-          msg = 'error: invalid link, item has not been added';
-        } else {
-          socket.emit('queue', {
-            id: parsed['id'],
-            pos: 'end',
-            type: parsed['type'],
-            temp: $('.add-temp').prop('checked'),
-          });
-          msg = 'media has been added!';
-        }
-      } else if (msg.startsWith('!np')) {
-        msg = 'Now playing: ' + $('.queue_active a').html();
-      } else if (msg.startsWith('!discord')) {
-        msg = 'https://discord.gg/g8tCGSc2bx';
-      } else if (msg.startsWith('!link')) {
-        msg = 'https://tinyurl.com/jamcydj';
-      } else if (msg.startsWith('!guide')) {
-        msg = 'https://tinyurl.com/CyDJguideV2';
-      } else if (msg.startsWith('!script')) {
-        msg = 'http://github.com/papertek/CyDJ';
-      } else if (msg.startsWith('!report')) {
-        msg = 'https://tinyurl.com/CDJReport';
-      } else if (msg.startsWith('!botcommands')) {
-        msg = 'https://github.com/airforce270/cytubebot#commands';
-      } else if (msg.startsWith('!version')) {
-        msg = `Running: ${Version_Now}`;
-      } else if (msg.startsWith('!media')) {
-        const item = $(`.queue_active`).data('media');
-        msg = `Heres the link: ${formatURL(item)}`;
-      } else if (msg.startsWith('!crash')) {
-        msg = '[mqr] GOOOOOOO xqcTECHNO FEELSWAYTOOGOOD xqcDisco [/mqr]';
-        fastestCrash();
-      } else if (msg.startsWith('!gluegun')) {
-        msg = '[mqr] GOOOOOOO xqcTechno FEELSWAYTOOGOOD AlienPls3 [/mqr]';
-        glueGun();
-      } else if (msg.startsWith('!inba')) {
-        IMBA.volume = 0.6;
-        IMBA.play();
-        mutePlayer();
-        const inbaFlash = setInterval(() => inba(), 200);
-        setTimeout(() => {
-          unmutePlayer();
-          BGCHANGE = 0;
-          clearInterval(inbaFlash);
-
-          const userlistthing = document.getElementById('userlist');
-          const elems = [userlistthing];
-
-          elems.forEach((elem) => elem.style.backgroundImage = '');
-          elems.forEach((elem) => elem.style.backgroundColor = '');
-
-          setUserCSS();
-        }, 12000);
-        msg = ' FEELSWAYTOOGOOD JP2GMD ';
-      } else {
-        COMMAND = false;
-      }
-    }
-    return msg;
-  }
-
-  /**
    * Insert code into chatline.
    *
    * (used in injected html)
@@ -4765,12 +4895,12 @@ var cydj = (function (exports) {
   function createDatabase() {
     let html =
         '<button id="la1" class="btn btn-default btn-sm db-break" onclick="cydj.toggleCat(1)">' +
-        CHANNEL_DATABASE[0][1] + '</button>' +
+        CHANNEL_DATABASE$1[0][1] + '</button>' +
         '<ul id="l1" class="videolist db-cat">';
 
-    let len = CHANNEL_DATABASE.length;
-    for (let i = 1; i < CHANNEL_DATABASE.length; i++) {
-      if (CHANNEL_DATABASE[i][0] === '') {
+    let len = CHANNEL_DATABASE$1.length;
+    for (let i = 1; i < CHANNEL_DATABASE$1.length; i++) {
+      if (CHANNEL_DATABASE$1[i][0] === '') {
         item_count[layer_nr - 1] = count_nr;
         opening[layer_nr - 1] = 0;
         layer_nr++;
@@ -4779,12 +4909,12 @@ var cydj = (function (exports) {
         html += `</ul><button id="la${layer_nr}" ` +
             `class="btn btn-default btn-sm db-break" ` +
             `onclick="cydj.toggleCat(${layer_nr})">` +
-            `${CHANNEL_DATABASE[i][1]}</button>` +
+            `${CHANNEL_DATABASE$1[i][1]}</button>` +
             `<ul id="l${layer_nr}" class="videolist db-cat">`;
       } else {
         item_nr++;
         count_nr++;
-        const link = CHANNEL_DATABASE[i][0];
+        const link = CHANNEL_DATABASE$1[i][0];
 
         html += '<li class="queue_entry">' +
             `<button class="btn btn-default btn-xs pull-right" ` +
@@ -4799,7 +4929,7 @@ var cydj = (function (exports) {
               '</button>';
         }
         html += '<span class="badge db-badge">' + item_nr + '</span><span class="db-title">' +
-            CHANNEL_DATABASE[i][1] + '</span><br /><span class="db-link">' + link + '</span>';
+            CHANNEL_DATABASE$1[i][1] + '</span><br /><span class="db-link">' + link + '</span>';
       }
     }
 
@@ -4874,7 +5004,7 @@ var cydj = (function (exports) {
     } else {
       playnextbtn.hide();
     }
-    if (hasPermission('playlistadd') && UI_ChannelDatabase) {
+    if (hasPermission('playlistadd') && UI_ChannelDatabase$1) {
       addrandombtn.show();
     } else {
       addrandombtn.hide();
@@ -5002,7 +5132,7 @@ var cydj = (function (exports) {
   /**
    * Set user CSS.
    */
-  function setUserCSS() {
+  function setUserCSS$1() {
     $('#chanexternalcss').detach().appendTo('head');
     $('#chanexternalcss-fix').remove();
 
@@ -5134,7 +5264,7 @@ var cydj = (function (exports) {
     }
   }
   // attempt a fix on css
-  window.onload = setUserCSS();
+  window.onload = setUserCSS$1();
 
   // /////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -5450,24 +5580,6 @@ var cydj = (function (exports) {
     coverpl.remove();
     hideplayerbtn.removeClass('btn-danger').attr('title', 'Hide player');
     $('#videowrap').removeClass('relative');
-  }
-
-  /**
-   * Mute YT player.
-   */
-  function mutePlayer() {
-    if (PLAYER && PLAYER.type === 'yt') {
-      PLAYER.player.mute();
-    }
-  }
-
-  /**
-   * Unmute YT player.
-   */
-  function unmutePlayer() {
-    if (PLAYER && PLAYER.type === 'yt') {
-      PLAYER.player.unMute();
-    }
   }
 
   /**
@@ -5948,24 +6060,22 @@ var cydj = (function (exports) {
   }
 
   /**
-   * Add random item from channel database.
+   * Add random item from channel database. Original is 120000 for 2 minutes.
    */
   function addRandomItem() {
     const time = (new Date()).getTime();
-    if ((time - LASTADD) < 120000) {
-      alert('You can add random video every 2 minutes.');
+    if ((time - LASTADD) < 1000) {
+      alert('Please wait 30 seconds before adding a random video!');
     } else {
       let link = '';
       while (link === '') {
-        const rnd = Math.round(Math.random() * (CHANNEL_DATABASE.length - 1));
-        link = CHANNEL_DATABASE[rnd][0];
+        const rnd = Math.round(Math.random() * (CHANNEL_DATABASE$1.length - 1));
+        link = CHANNEL_DATABASE$1[rnd][0];
       }
       addToPlaylist(link, 'end');
       LASTADD = time;
     }
   }
-
-  socket.on('queue', (data) => LAST_VIDEO_ID_QUEUED = data.item.media.id);
 
   // /////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -6049,7 +6159,7 @@ var cydj = (function (exports) {
     if (alreadySetAfterLoad) {
       return;
     }
-    setUserCSS();
+    setUserCSS$1();
     alreadySetAfterLoad = true;
   }, true);
 
@@ -6101,7 +6211,7 @@ var cydj = (function (exports) {
     if (FLUID) {
       fluidLayout();
     }
-    setUserCSS();
+    setUserCSS$1();
     scrollChat();
     scrollQueue();
   });
@@ -6199,21 +6309,7 @@ var cydj = (function (exports) {
   }
 
   /**
-   * Easter egg.
-   */
-  function inba() {
-    const userlistthing = document.getElementById('userlist');
-    const elems = [userlistthing];
-
-    elems.forEach((elem) => elem.style.backgroundImage = 'none');
-    BGCHANGE++;
-
-    const newColor = BGCHANGE % 2 === 0 ? 'gold' : 'blue';
-    elems.forEach((elem) => elem.style.backgroundColor = newColor);
-  }
-
-  /**
-   * Dropit easter egg.
+   * Drop the beat!
    */
   function dropthebeat() {
     const userlistthing = document.getElementById('userlist');
@@ -6223,30 +6319,6 @@ var cydj = (function (exports) {
     DROPBGCHANGE++;
 
     const newColor = DROPBGCHANGE % 2 === 0 ? 'red' : 'black';
-    elems.forEach((elem) => elem.style.backgroundColor = newColor);
-  }
-
-  // Fastest Crash easter egg bg changes
-  function dropthefast() {
-    const userlistthing = document.getElementById('userlist');
-    const elems = [userlistthing];
-
-    elems.forEach((elem) => elem.style.backgroundImage = 'none');
-    FASTESTBGCHANGE++;
-
-    const newColor = FASTESTBGCHANGE % 2 === 0 ? 'blue' : 'black';
-    elems.forEach((elem) => elem.style.backgroundColor = newColor);
-  }
-
-  // glue gun easter egg bg changes
-  function droptheglue() {
-    const userlistthing = document.getElementById('userlist');
-    const elems = [userlistthing];
-
-    elems.forEach((elem) => elem.style.backgroundImage = 'none');
-    GLUEGUNBGCHANGE++;
-
-    const newColor = GLUEGUNBGCHANGE % 2 === 0 ? 'blue' : 'limegreen';
     elems.forEach((elem) => elem.style.backgroundColor = newColor);
   }
 
@@ -6408,47 +6480,9 @@ var cydj = (function (exports) {
       elems.forEach((elem) => elem.style.backgroundImage = '');
       elems.forEach((elem) => elem.style.backgroundColor = '');
 
-      setUserCSS();
+      setUserCSS$1();
     }, 5000);
     socket.emit('chatMsg', {msg: '[mqr] GOOOOOOO xqcCheer FEELSWAYTOOGOOD [/mqr]'});
-  }
-
-  // fastest crash function
-  function fastestCrash() {
-    FASTEST.volume = 0.5;
-    FASTEST.play();
-    const fastestFlash = setInterval(() => dropthefast(), 100);
-    setTimeout(() => {
-      FASTESTBGCHANGE = 100;
-      clearInterval(fastestFlash);
-
-      const userlistthing = document.getElementById('userlist');
-      const elems = [userlistthing];
-
-      elems.forEach((elem) => elem.style.backgroundImage = '');
-      elems.forEach((elem) => elem.style.backgroundColor = '');
-
-      setUserCSS();
-    }, 12000);
-  }
-
-  // glue gun function
-  function glueGun() {
-    GGUN.volume = 0.5;
-    GGUN.play();
-    const glueFlash = setInterval(() => droptheglue(), 100);
-    setTimeout(() => {
-      GLUEGUNBGCHANGE = 150;
-      clearInterval(glueFlash);
-
-      const userlistthing = document.getElementById('userlist');
-      const elems = [userlistthing];
-
-      elems.forEach((elem) => elem.style.backgroundImage = '');
-      elems.forEach((elem) => elem.style.backgroundColor = '');
-
-      setUserCSS();
-    }, 9000);
   }
 
   // adding moderators panel button
@@ -6684,7 +6718,7 @@ var cydj = (function (exports) {
             $('#playlistmanagerwrap').show();
             CHATFUNC = false;
             USERTHEME = $(this).val();
-            setUserCSS();
+            setUserCSS$1();
             setOpt(CHANNEL.name + '_theme', USERTHEME);
           });
 
@@ -6911,8 +6945,8 @@ var cydj = (function (exports) {
                  .insertBefore(configwrap);
     dbwell = $('<div id="db-well" class="well" />').appendTo(dbwrap);
 
-    if (CHANNEL_DATABASE.length < 1 || CHANNEL_DATABASE[0][0] !== '') {
-      CHANNEL_DATABASE.unshift(['', '(various media)']);
+    if (CHANNEL_DATABASE$1.length < 1 || CHANNEL_DATABASE$1[0][0] !== '') {
+      CHANNEL_DATABASE$1.unshift(['', '(various media)']);
     }
     {
       createDatabase();
@@ -7258,11 +7292,6 @@ var cydj = (function (exports) {
       if (msg.trim()) {
         msg = prepareMessage(msg.trim());
         const meta = {};
-        if (COMMAND) {
-          socket.emit('chatMsg', {msg: _msg});
-          msg = `➥ ${msg}`;
-          COMMAND = false;
-        }
         if (USEROPTS.adminhat && CLIENT.rank >= 255) {
           msg = `/a ${msg}`;
         } else if (USEROPTS.modhat && CLIENT.rank >= Rank.Moderator) {
@@ -7310,16 +7339,15 @@ var cydj = (function (exports) {
     }
   });
 
+
+  // TODO: Check what this does, I don't know what it does.
+  // #chatbtn is a button thats disabled? Maybe? If I remember correctly.
+  // This is a bit useless, for now. Fix it later.
   $('#chatbtn').on('click', () => {
     const _msg = $('#chatline').val();
     let msg = $('#chatline').val();
     if (msg.trim()) {
       msg = prepareMessage(msg.trim());
-      if (COMMAND) {
-        socket.emit('chatMsg', {msg: _msg});
-        msg = `➥ ${msg}`;
-        COMMAND = false;
-      }
       socket.emit('chatMsg', {msg: msg});
       updateChatStats(_msg);
       $('#chatline').val('');
@@ -7450,8 +7478,8 @@ var cydj = (function (exports) {
   // /////////////////////////////////////////////////////////////////////////////////////////////////
 
   // setting global sockets
-  socket.on('channelOpts', setUserCSS);
-  socket.on('channelCSSJS', setUserCSS);
+  socket.on('channelOpts', setUserCSS$1);
+  socket.on('channelCSSJS', setUserCSS$1);
   socket.on('login', patchWrap);
   socket.on('rank', toggleAdvancedPl);
 
@@ -7574,20 +7602,20 @@ var cydj = (function (exports) {
     $('head #chancss2').html(CSS_RAW);
   }
 
-  const /** @type {!Array<string>} */ TabCompletionEmotes = [];
+  const /** @type {!Array<string>} */ TabCompletionEmotes$1 = [];
   const TabCompletion = {
     last: '',
     matches: [],
   };
 
   function tabCompletionRefresh() {
-    while (TabCompletionEmotes.length > 0) {
-      TabCompletionEmotes.pop();
+    while (TabCompletionEmotes$1.length > 0) {
+      TabCompletionEmotes$1.pop();
     }
     for (const emote of window.CHANNEL.emotes) {
-      TabCompletionEmotes.push(emote.name);
+      TabCompletionEmotes$1.push(emote.name);
     }
-    TabCompletionEmotes.sort();
+    TabCompletionEmotes$1.sort();
   }
 
   tabCompletionRefresh();
@@ -7618,7 +7646,7 @@ var cydj = (function (exports) {
       $('#chatline').val(words.join(' '));
       return;
     }
-    const matches = TabCompletionEmotes.filter((str) => str.toLowerCase().startsWith(current))
+    const matches = TabCompletionEmotes$1.filter((str) => str.toLowerCase().startsWith(current))
                         .concat(usersWithCap.filter((str) => str.toLowerCase().startsWith(current))
                                     .map((str) => words.length === 1 ? str + ':' : str));
     if (matches.length === 0) {
@@ -7993,11 +8021,14 @@ var cydj = (function (exports) {
     window.removeEventListener('mouseup', stopResize, false);
   } */
 
+  exports.Version_Now = Version_Now;
   exports.addVideo = addVideo;
   exports.camera = camera;
+  exports.getChatStats = getChatStats;
   exports.insertText = insertText;
   exports.prevVideo = prevVideo;
   exports.toggleCat = toggleCat;
+  exports.updateChatStats = updateChatStats;
 
   Object.defineProperty(exports, '__esModule', { value: true });
 
