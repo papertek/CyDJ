@@ -3435,7 +3435,7 @@ var cydj = (function (exports) {
         const randomEmote = TabCompletionEmotes[randomEmoteIndex];
         msg = randomEmote;
       } else if (msg.startsWith('!random') && hasPermission('playlistadd')) {
-        if (UI_ChannelDatabase) {
+        {
           let link = '';
           let title = '';
           while (link === '' || link.includes(LAST_VIDEO_ID_QUEUED)) {
@@ -3526,6 +3526,12 @@ var cydj = (function (exports) {
       }
     }
     return msg;
+  }
+
+  if (COMMAND) {
+    socket.emit('chatMsg', {msg: _msg});
+    msg = `➥ ${msg}`;
+    COMMAND = false;
   }
 
   // Function taken from util.js.
@@ -3987,7 +3993,7 @@ var cydj = (function (exports) {
   const camera = icon({prefix: 'fas', iconName: 'camera'});
   library$1.add(faCamera);
   // [&] box with embed additional media database
-  const UI_ChannelDatabase$1 = true;
+  const UI_ChannelDatabase = true;
   // [&] possibility to embedding (displaying) images and .webm videos on the chat
   const UI_EmbeddingMedia = true;
 
@@ -5004,7 +5010,7 @@ var cydj = (function (exports) {
     } else {
       playnextbtn.hide();
     }
-    if (hasPermission('playlistadd') && UI_ChannelDatabase$1) {
+    if (hasPermission('playlistadd') && UI_ChannelDatabase) {
       addrandombtn.show();
     } else {
       addrandombtn.hide();
@@ -8021,6 +8027,7 @@ var cydj = (function (exports) {
     window.removeEventListener('mouseup', stopResize, false);
   } */
 
+  exports.UI_ChannelDatabase = UI_ChannelDatabase;
   exports.Version_Now = Version_Now;
   exports.addVideo = addVideo;
   exports.camera = camera;
