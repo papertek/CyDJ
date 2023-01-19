@@ -4860,6 +4860,10 @@ var cydj = (function (exports) {
     window.localStorage[ChatStats.getLocalStorageKey()] = JSON.stringify(chatStats);
   }
 
+  // if (UI_UserCommands) {
+  // getChatCommands;
+  // }
+
   /**
    * Insert code into chatline.
    *
