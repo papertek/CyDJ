@@ -3005,6 +3005,8 @@ var cydj = (function (exports) {
         'https://cdn.discordapp.com/attachments/915656975696687124/915713189109444718/100_Bits.png';
     static BITS_1000 =
         'https://cdn.discordapp.com/attachments/915656975696687124/915713247716442182/1000_Bits.png';
+     static BITS_25000 =
+        'https://cdn.discordapp.com/attachments/915656975696687124/915713360920739860/25000_Bits.png';
     static BITS_100000 =
         'https://cdn.discordapp.com/attachments/915656975696687124/915713532006375464/100000_Bits.png';
   }
@@ -3348,8 +3350,8 @@ var cydj = (function (exports) {
       Xqc.SUB_18_MONTHS_T3,
     ],
     'dea9h': [
-      Xqc.SUB_12_MONTHS_T1,
-      Xqc.BITS_1000,
+      Xqc.SUB_18_MONTHS_T1,
+      Xqc.BITS_25000,
     ],
     'mmmmmmeat': [
       Xqc.SUB_18_MONTHS_T1,
@@ -3366,6 +3368,9 @@ var cydj = (function (exports) {
     'CherryBun': [
       'https://cdn.discordapp.com/attachments/904501042148958219/1052090998005710868/ch1.gif',
       'https://cdn.discordapp.com/attachments/904501042148958219/1052090998408359997/ch2.gif',
+    ],
+    'MUDBOYYYYY': [
+      Xqc.SUB_18_MONTHS_T1,
     ],
   };
 
