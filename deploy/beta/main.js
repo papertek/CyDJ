@@ -4017,7 +4017,7 @@ var cydj = (function (exports) {
 
   const ChannelName_Caption = 'CyDJ';
 
-  const Version_Now = 'CyDJEdge1.25.23.test';
+  const Version_Now = 'CyDJEdge2.18.23.0';
 
   const HeaderDropMenu_Title = 'Information';
 
