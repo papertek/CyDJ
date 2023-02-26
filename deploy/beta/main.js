@@ -4151,10 +4151,6 @@ var cydj = (function (exports) {
       'https://papertek.github.io/CyDJ/deploy/beta/css/DJDefault.css',
     ],
     [
-      'Spring',
-      'https://papertek.github.io/CyDJ/deploy/beta/css/spring.css',
-    ],
-    [
       'Stars',
       'https://papertek.github.io/CyDJ/deploy/beta/css/stars.css',
     ],
