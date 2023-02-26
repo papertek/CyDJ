@@ -4017,7 +4017,7 @@ var cydj = (function (exports) {
 
   const ChannelName_Caption = 'CyDJ';
 
-  const Version_Now = 'CyDJEdge2.18.23.0';
+  const Version_Now = 'CyDJEdge2.26.23.0';
 
   const HeaderDropMenu_Title = 'Information';
 
@@ -4149,10 +4149,6 @@ var cydj = (function (exports) {
     [
       'Old DJ',
       'https://papertek.github.io/CyDJ/deploy/beta/css/DJDefault.css',
-    ],
-    [
-      'Spring',
-      'https://papertek.github.io/CyDJ/deploy/beta/css/spring.css',
     ],
     [
       'Stars',
