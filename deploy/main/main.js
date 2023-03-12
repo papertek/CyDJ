@@ -3005,6 +3005,8 @@ var cydj = (function (exports) {
         'https://cdn.discordapp.com/attachments/915656975696687124/915713189109444718/100_Bits.png';
     static BITS_1000 =
         'https://cdn.discordapp.com/attachments/915656975696687124/915713247716442182/1000_Bits.png';
+     static BITS_25000 =
+        'https://cdn.discordapp.com/attachments/915656975696687124/915713360920739860/25000_Bits.png';
     static BITS_100000 =
         'https://cdn.discordapp.com/attachments/915656975696687124/915713532006375464/100000_Bits.png';
   }
@@ -3073,7 +3075,7 @@ var cydj = (function (exports) {
       'https://cdn.discordapp.com/attachments/915656975696687124/916100799233425548/VIP.png',
     ],
     'n3r1': [
-      Xqc.SUB_30_MONTHS_T1,
+      Xqc.SUB_36_MONTHS_T1,
       'https://cdn.discordapp.com/attachments/915650094697693184/931998299181949029/ezgif.com-gif-maker_1.gif',
     ],
     'notjuham': [
@@ -3348,8 +3350,8 @@ var cydj = (function (exports) {
       Xqc.SUB_18_MONTHS_T3,
     ],
     'dea9h': [
-      Xqc.SUB_12_MONTHS_T1,
-      Xqc.BITS_1000,
+      Xqc.SUB_18_MONTHS_T1,
+      Xqc.BITS_25000,
     ],
     'mmmmmmeat': [
       Xqc.SUB_18_MONTHS_T1,
@@ -3366,6 +3368,9 @@ var cydj = (function (exports) {
     'CherryBun': [
       'https://cdn.discordapp.com/attachments/904501042148958219/1052090998005710868/ch1.gif',
       'https://cdn.discordapp.com/attachments/904501042148958219/1052090998408359997/ch2.gif',
+    ],
+    'MUDBOYYYYY': [
+      Xqc.SUB_18_MONTHS_T1,
     ],
   };
 
@@ -3435,7 +3440,7 @@ var cydj = (function (exports) {
         const randomEmote = TabCompletionEmotes[randomEmoteIndex];
         msg = randomEmote;
       } else if (msg.startsWith('!random') && hasPermission('playlistadd')) {
-        if (UI_ChannelDatabase) {
+        {
           let link = '';
           let title = '';
           while (link === '' || link.includes(LAST_VIDEO_ID_QUEUED)) {
@@ -3533,24 +3538,19 @@ var cydj = (function (exports) {
 
   $('#chatline, #chatbtn').unbind();
 
-  $('#chatline').on('keydown', (ev) => {
-    if (ev.key === 'Enter') {
-      const _msg = $('#chatline').val();
-      let msg = $('#chatline').val();
-      if (msg.trim()) {
-        msg = prepareMessage(msg.trim());
-        if (COMMAND) {
-          socket.emit('chatMsg', {msg: _msg});
-          msg = `➥ ${msg}`;
-          COMMAND = false;
-        }
-        socket.emit('chatMsg', {msg: msg});
-        updateChatStats(_msg);
-        $('#chatline').val('');
-      }
+  const _msg = $('#chatline').val();
+  let msg = $('#chatline').val();
+  if (msg.trim()) {
+    msg = prepareMessage(msg.trim());
+    if (COMMAND) {
+      socket.emit('chatMsg', {msg: _msg});
+      msg = `➥ ${msg}`;
+      COMMAND = false;
     }
-  });
-
+    socket.emit('chatMsg', {msg: msg});
+    updateChatStats(_msg);
+    $('#chatline').val('');
+  }
 
   const IMBA = new Audio('https://dl.dropboxusercontent.com/s/xdnpynq643ziq9o/inba.ogg');
   const FASTEST = new Audio('https://github.com/papertek/CyDJ/raw/beta/misc/fastestcrashegg.wav');
@@ -3987,7 +3987,7 @@ var cydj = (function (exports) {
   const camera = icon({prefix: 'fas', iconName: 'camera'});
   library$1.add(faCamera);
   // [&] box with embed additional media database
-  const UI_ChannelDatabase$1 = true;
+  const UI_ChannelDatabase = true;
   // [&] possibility to embedding (displaying) images and .webm videos on the chat
   const UI_EmbeddingMedia = true;
 
@@ -4011,13 +4011,13 @@ var cydj = (function (exports) {
 
   // TODO: Move all these into a file.
 
-  const Favicon_URL = 'https://cdn.7tv.app/emote/614e8c0b20eaf897465a4c9d/1x';
+  const Favicon_URL = 'https://cdn.7tv.app/emote/614e8c0b20eaf897465a4c9d/1x.webp';
 
-  const MiniLogo_URL = 'https://cdn.7tv.app/emote/614e8c0b20eaf897465a4c9d/1x';
+  const MiniLogo_URL = 'https://cdn.7tv.app/emote/614e8c0b20eaf897465a4c9d/1x.webp';
 
   const ChannelName_Caption = 'CyDJ';
 
-  const Version_Now = 'CyDJEdge1.17.23.0';
+  const Version_Now = 'CyDJEdge3.12.23.0';
 
   const HeaderDropMenu_Title = 'Information';
 
@@ -4149,10 +4149,6 @@ var cydj = (function (exports) {
     [
       'Old DJ',
       'https://papertek.github.io/CyDJ/deploy/beta/css/DJDefault.css',
-    ],
-    [
-      'Spring',
-      'https://papertek.github.io/CyDJ/deploy/beta/css/spring.css',
     ],
     [
       'Stars',
@@ -5004,7 +5000,7 @@ var cydj = (function (exports) {
     } else {
       playnextbtn.hide();
     }
-    if (hasPermission('playlistadd') && UI_ChannelDatabase$1) {
+    if (hasPermission('playlistadd') && UI_ChannelDatabase) {
       addrandombtn.show();
     } else {
       addrandombtn.hide();
@@ -8021,6 +8017,7 @@ var cydj = (function (exports) {
     window.removeEventListener('mouseup', stopResize, false);
   } */
 
+  exports.UI_ChannelDatabase = UI_ChannelDatabase;
   exports.Version_Now = Version_Now;
   exports.addVideo = addVideo;
   exports.camera = camera;
