@@ -27,6 +27,7 @@ import {faCamera} from '@fortawesome/free-solid-svg-icons';
 import {intAnal} from './lib/analytics';
 import {formatBadgeToHtml, USER_BADGES} from './lib/badges';
 import {prepareMessage} from './lib/commands';
+import {getChatCommands} from './lib/commandsV2';
 import {CHANNEL_DATABASE} from './lib/database';
 import {LOGOS} from './lib/logos';
 import {initTwemoji} from './lib/twemoji';
@@ -133,7 +134,7 @@ const UI_PlayerOptions = true;
 // player transformation buttons
 const UI_TransformationBtns = false;
 // [&] box with embed additional media database
-const UI_ChannelDatabase = true;
+export const UI_ChannelDatabase = true;
 // [&] box with embed galleries
 const UI_ChannelGalleries = false;
 // selector with player display modes
@@ -202,13 +203,13 @@ const twemojiStuff = false;
 
 // TODO: Move all these into a file.
 
-const Favicon_URL = 'https://cdn.7tv.app/emote/614e8c0b20eaf897465a4c9d/1x';
+const Favicon_URL = 'https://cdn.7tv.app/emote/614e8c0b20eaf897465a4c9d/1x.webp';
 
-const MiniLogo_URL = 'https://cdn.7tv.app/emote/614e8c0b20eaf897465a4c9d/1x';
+const MiniLogo_URL = 'https://cdn.7tv.app/emote/614e8c0b20eaf897465a4c9d/1x.webp';
 
 const ChannelName_Caption = 'CyDJ';
 
-export const Version_Now = 'CyDJEdge1.17.23.0';
+export const Version_Now = 'CyDJEdge3.12.23.0';
 
 const HeaderDropMenu_Title = 'Information';
 
@@ -405,10 +406,6 @@ const ThemesCSS = [
   [
     'Old DJ',
     'https://papertek.github.io/CyDJ/deploy/beta/css/DJDefault.css',
-  ],
-  [
-    'Spring',
-    'https://papertek.github.io/CyDJ/deploy/beta/css/spring.css',
   ],
   [
     'Stars',
@@ -1224,6 +1221,10 @@ if (UI_MessagesSuffix) {
 
 if (UI_UserCommands) {
   prepareMessage;
+}
+
+if (UI_UserCommands) {
+  getChatCommands;
 }
 
 /**
