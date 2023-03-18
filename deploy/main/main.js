@@ -3076,7 +3076,7 @@ var cydj = (function (exports) {
     ],
     'n3r1': [
       Xqc.SUB_36_MONTHS_T1,
-      'https://cdn.discordapp.com/attachments/915650094697693184/931998299181949029/ezgif.com-gif-maker_1.gif',
+      'https://cdn.discordapp.com/attachments/915656975696687124/1084438102216552499/n3r1_badge.gif',
     ],
     'notjuham': [
       Xqc.SUB_42_MONTHS_T1,
@@ -4017,7 +4017,7 @@ var cydj = (function (exports) {
 
   const ChannelName_Caption = 'CyDJ';
 
-  const Version_Now = 'CyDJEdge3.12.23.0';
+  const Version_Now = 'CyDJEdge3.12.23.1';
 
   const HeaderDropMenu_Title = 'Information';
 
