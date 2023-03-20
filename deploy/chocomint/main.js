@@ -3372,6 +3372,10 @@ var cydj = (function (exports) {
     'MUDBOYYYYY': [
       Xqc.SUB_18_MONTHS_T1,
     ],
+    'NeoTheOne': [
+      Xqc.SUB_24_MONTHS_T1,
+      'https://cdn.discordapp.com/attachments/915656975696687124/1087365553045372928/1.png',
+    ], 
   };
 
   // ID of previous video queued (so !random doesn't add it again)
