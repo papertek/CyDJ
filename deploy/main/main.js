@@ -3079,7 +3079,7 @@ var cydj = (function (exports) {
       'https://cdn.discordapp.com/attachments/915656975696687124/1084438102216552499/n3r1_badge.gif',
     ],
     'notjuham': [
-      Xqc.SUB_42_MONTHS_T1,
+      Xqc.SUB_48_MONTHS_T1,
       'https://cdn.discordapp.com/attachments/891695154333884447/922151274303070229/notjuham1818.png',
     ],
     'Pugnator': [
@@ -3347,7 +3347,7 @@ var cydj = (function (exports) {
     ],
     'esattt': [
       'https://cdn.discordapp.com/attachments/915656975696687124/916100799233425548/VIP.png',
-      Xqc.SUB_18_MONTHS_T3,
+      Xqc.SUB_24_MONTHS_T3,
     ],
     'dea9h': [
       Xqc.SUB_18_MONTHS_T1,
@@ -3372,6 +3372,10 @@ var cydj = (function (exports) {
     'MUDBOYYYYY': [
       Xqc.SUB_18_MONTHS_T1,
     ],
+    'NeoTheOne': [
+      Xqc.SUB_24_MONTHS_T1,
+      'https://cdn.discordapp.com/attachments/915656975696687124/1087365553045372928/1.png',
+    ], 
   };
 
   // ID of previous video queued (so !random doesn't add it again)
@@ -4017,7 +4021,7 @@ var cydj = (function (exports) {
 
   const ChannelName_Caption = 'CyDJ';
 
-  const Version_Now = 'CyDJEdge3.12.23.1';
+  const Version_Now = 'CyDJEdge3.20.23.0';
 
   const HeaderDropMenu_Title = 'Information';
 
