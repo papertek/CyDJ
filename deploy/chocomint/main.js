@@ -3047,7 +3047,7 @@ var cydj = (function (exports) {
       'https://cdn.discordapp.com/attachments/907369587979460720/917657328013176833/dankspin3.gif',
     ],
     'Xsogon': [
-      Xqc.SUB_30_MONTHS_T1,
+      Xqc.SUB_36_MONTHS_T1,
       'https://cdn.discordapp.com/attachments/905159869626187817/920394576999637042/Porcellio_Expansus_PFP.png',
     ],
     'spintto': [
