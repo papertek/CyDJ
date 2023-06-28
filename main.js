@@ -209,7 +209,7 @@ const MiniLogo_URL = 'https://cdn.7tv.app/emote/614e8c0b20eaf897465a4c9d/1x.webp
 
 const ChannelName_Caption = 'CyDJ';
 
-export const Version_Now = 'CyDJEdge3.20.23.0';
+export const Version_Now = 'CyDJEdge6.27.23.0';
 
 const HeaderDropMenu_Title = 'Information';
 
@@ -248,7 +248,7 @@ const HeaderDropMenu_Array = [
   ['CyDJ Rooms', ''],
   ['Main Room', 'https://cytu.be/r/cydj'],
   ['Second Room', 'https://cytu.be/r/secretfbimeeting'],
-  //  ['Watch Party', 'https://beta.synchtube.me/r/SecretTwitchRoom'],
+  ['Baked Live Room', 'https://baked.live/tv/cydj'],
   ['Test Room', 'https://cytu.be/r/testplacelilroc'],
   ['Test Room 2', 'https://cytu.be/r/emptyroomtestplace'],
   ['Test Room 3', 'https://cytu.be/r/xqcPeepo'],
@@ -4871,26 +4871,3 @@ socket.on('mediaUpdate', fixRawVideoControls);
 document.body.addEventListener('load', resizeStuff, true);
 socket.on('changeMedia', resizeStuff);
 setInterval(() => resizeStuff(), 1000);
-
-/* const element = document.getElementById('well');
-const resizer = document.createElement('div');
-resizer.className = 'resizer';
-resizer.style.position = 'absolute';
-resizer.style.right = 0;
-resizer.style.bottom = 0;
-resizer.style.cursor = 'se-resize';
-element.appendChild(resizer);
-resizer.addEventListener('mousedown', initResize, false);
-
-function initResize(e) {
-  window.addEventListener('mousemove', Resize, false);
-  window.addEventListener('mouseup', stopResize, false);
-}
-function Resize(e) {
-  element.style.width = (e.clientX - element.offsetLeft) + 'px';
-  element.style.height = (e.clientY - element.offsetTop) + 'px';
-}
-function stopResize(e) {
-  window.removeEventListener('mousemove', Resize, false);
-  window.removeEventListener('mouseup', stopResize, false);
-} */
