@@ -3285,7 +3285,7 @@ var cydj = (function (exports) {
     'Lango': [
       Xqc.SUB_24_MONTHS_T1,
     ],
-    'ItMePeachy': [
+    'peachy': [
       'https://cdn.discordapp.com/attachments/986926739190063114/1037712558183960716/NoOneIsAroundToHelp.gif',
       'https://cdn.discordapp.com/attachments/986926739190063114/1037701659494723636/Cat.gif',
     ],
