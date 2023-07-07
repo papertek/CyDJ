@@ -3285,7 +3285,7 @@ var cydj = (function (exports) {
     'Lango': [
       Xqc.SUB_24_MONTHS_T1,
     ],
-    'peachy': [
+    'ItMePeachy': [
       'https://cdn.discordapp.com/attachments/986926739190063114/1037712558183960716/NoOneIsAroundToHelp.gif',
       'https://cdn.discordapp.com/attachments/986926739190063114/1037701659494723636/Cat.gif',
     ],
@@ -4021,7 +4021,7 @@ var cydj = (function (exports) {
 
   const ChannelName_Caption = 'CyDJ';
 
-  const Version_Now = 'CyDJEdge6.27.23.0';
+  const Version_Now = 'CyDJEdge6.27.23.1';
 
   const HeaderDropMenu_Title = 'Information';
 
