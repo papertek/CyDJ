@@ -4021,7 +4021,7 @@ var cydj = (function (exports) {
 
   const ChannelName_Caption = 'CyDJ';
 
-  const Version_Now = 'CyDJEdge7.7.23.0';
+  const Version_Now = 'CyDJEdge7.13.23.0';
 
   const HeaderDropMenu_Title = 'Information';
 
@@ -4029,7 +4029,7 @@ var cydj = (function (exports) {
 
   const ChannelAnnouncement_Title = 'CyDJ Alert';
 
-  const TitleIcon_URL = 'https://cdn.7tv.app/emote/6040a8bccf6746000db10348/2x';
+  const TitleIcon_URL = 'https://cdn.7tv.app/emote/6040a8bccf6746000db10348/2x.webp';
 
   const TitleBarDescription_Caption = 'Now Playing:';
 
@@ -4177,7 +4177,7 @@ var cydj = (function (exports) {
     'https://cdn.betterttv.net/emote/5dfc5d868608fb0da4120b59/2x',
     'https://images-ext-1.discordapp.net/external/1guxWfPcmO5XSXYMjKO79mRQ3UORmbKBZsVYyg4Cr-M/%3Fv%3D1/https/cdn.discordapp.com/emojis/891194776798498826.gif',
     'https://cdn.discordapp.com/attachments/899888900611375184/901313787951480862/small.png',
-    'https://cdn.7tv.app/emote/60d2c62291b6751bc1e05add/4x',
+    'https://cdn.7tv.app/emote/60d2c62291b6751bc1e05add/4x.webp',
     'https://media.discordapp.net/attachments/904501042148958219/914300481633914970/JohnJamSmall.gif',
     'https://media.discordapp.net/attachments/828331546658340905/914594224614277212/unknown.png',
     'https://media.discordapp.net/attachments/904501042148958219/914593675445690468/unknown.png',
