@@ -1582,11 +1582,11 @@ function setUserCSS() {
   }
 
   .qe_title {
-      color: #ff66ab
+      color: white;
   }
 
   .queue_entry {
-      background-color: #293d36bd;
+      background-color: #111;
   }
 
   .dropdown-menu {
@@ -1623,7 +1623,7 @@ function setUserCSS() {
   }
 
   #motdwrap {
-      background-color: #293d36bd
+      background-color: rgba(222, 77, 134, 0.400);
   }
 
   #userlist {
