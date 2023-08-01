@@ -65,6 +65,8 @@ strong {
 /* MAIN */
 #mainpage {
   padding-top: 1%
+      border: 0px solid!important;
+    background-color: #b711b400!important;
 }
 
 .container .container-fluid {
@@ -314,6 +316,12 @@ table {
   border-top-right-radius: 4px
 }
 
+.queue_active.queue_temp {
+    background-color: #70787d;
+    background-image: url(/img/stripe-diagonal-black.png);
+    background-repeat: repeat;
+}
+
 #plmeta {
   border-top: rgba(64, 64, 64, 0.30) 1px solid;
   border-bottom: rgba(0, 0, 0, 0.5) 1px solid;
@@ -448,6 +456,14 @@ span:not(.userlist_op):not(.userlist_owner)>strong.username {
 
 div.userlist_item>span:not(.userlist_op):not(.userlist_owner) {
   color: #6A5ACD !important;
+}
+
+#userlist {
+    background-color: #222a27!important;
+}
+
+.dark-theme > .odd-message {
+    background-color: #141f1b!important;
 }
 
 /* ItMePeachy was here :tf: */
