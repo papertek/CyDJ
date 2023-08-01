@@ -40,6 +40,11 @@ html, body {
   color: #fff;
 }
 
+.nick-highlight {
+    background-color: #5068ad!important;
+    color: #ffd966;
+}
+
 .glyphicon {
   font-weight: 500;
 }
@@ -57,12 +62,17 @@ html, body {
   background-size: auto;
 }*/
 
+#mainpage {
+    border: 0px solid!important;
+    background-color: #b711b400!important;
+}
+
 #ytapiplayer {
   background-color: #000000;
 }
 
 #chatheader, #videowrap-header, #userlist, #messagebuffer, #plmeta {
-  background-color: #891787;
+  background-color: #891787!important;
 }
 
 footer {
@@ -71,6 +81,10 @@ footer {
 
 .text-muted, .text-primary {
   color: #78be86;
+}
+
+input.form-control[type="text"]{
+    background-color: #891787!important;
 }
 
 .profile-box, .user-dropdown {
@@ -87,8 +101,8 @@ footer {
 }
 
 #drinkcount {
-  background-color: #000000;
-  color: #ffffff;
+    background-color: #4663cb!important;
+    border: 2px solid #efe1e4!important;
 }
 
 #plmeta {
@@ -137,7 +151,7 @@ footer {
 }
 
 .dark-theme > .odd-message {
-  background-color: #890727bb;
+  background-color: rgb(0 0 0 / 15%);
 }
 
 .modal-body {
@@ -186,6 +200,7 @@ div.userlist_item > span:not(.userlist_op):not(.userlist_owner) {
 span:not(.userlist_op):not(.userlist_owner) > strong.username {
   color: #ffffff;
 }
+
 
 /* ItMePeachy was here :tf: */
     .chat-msg-Xsogon .userlist_owner {
