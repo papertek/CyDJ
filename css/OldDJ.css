@@ -89,8 +89,9 @@ body {
 #drinkcount {margin:0px}
 */
 #mainpage {
-border: none;
-background-color: transparent!important;
+  padding-top: 1%;
+  border: none;
+  background-color: #b711b400!important;
 }
 
 
