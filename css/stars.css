@@ -319,6 +319,10 @@
     background-color: #160124cf!important;
     }
 
+    .dark-theme > .even-message {
+    background-color: #00000026;
+    }
+
     /*230b49*/
     .modal-body {
     padding: 30px;
