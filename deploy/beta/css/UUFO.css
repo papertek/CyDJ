@@ -151,7 +151,7 @@ input.form-control[type="text"]{
 }
 
 .dark-theme > .odd-message {
-  background-color: rgb(0 0 0 / 15%);
+  background-color: rgb(0 0 0 / 15%)!important;
 }
 
 .modal-body {
