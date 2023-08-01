@@ -27,6 +27,13 @@
     color: #f5c1ff !important;
     }
 
+    #mainpage {
+    border: 0px solid!important;
+    border-radius: 10px;
+    background-color: #24322d00!important;
+    color: white;
+    }
+
     .nick-highlight {
     background-color: #4f4c74bd!important;
     color: #ffd966;
@@ -309,7 +316,7 @@
     }
 
     .dark-theme>.odd-message {
-    background-color: #160124cf;
+    background-color: #160124cf!important;
     }
 
     /*230b49*/
