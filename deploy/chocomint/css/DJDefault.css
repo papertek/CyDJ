@@ -120,7 +120,10 @@ input#logout[type="submit"] {
 #announcements .alert {margin:0px -10px 5px}
 #drinkcount {margin:0px}
 */
-
+#mainpage {
+    border: none;
+    background-color: #b711b400!important;
+}
 
 /* ----- CyTube Plus created elements CSS ----- */
 
