@@ -3375,7 +3375,7 @@ var cydj = (function (exports) {
     'NeoTheOne': [
       Xqc.SUB_24_MONTHS_T1,
       'https://cdn.discordapp.com/attachments/915656975696687124/1087365553045372928/1.png',
-    ], 
+    ],
   };
 
   // ID of previous video queued (so !random doesn't add it again)
@@ -4021,7 +4021,7 @@ var cydj = (function (exports) {
 
   const ChannelName_Caption = 'CyDJ';
 
-  const Version_Now = 'CyDJEdge7.13.23.0';
+  const Version_Now = 'CyDJEdge7.31.23.0';
 
   const HeaderDropMenu_Title = 'Information';
 
@@ -4139,14 +4139,6 @@ var cydj = (function (exports) {
 
   const ThemesCSS = [
     [
-      'Plus Red',
-      'https://dl.dropboxusercontent.com/s/th8i1sj332wi0x9/plusred.css',
-    ],
-    [
-      'Celadon',
-      'https://dl.dropboxusercontent.com/s/iwarwhhph1ti2ek/celadon.css',
-    ],
-    [
       'Classic',
       'https://papertek.github.io/CyDJ/deploy/beta/css/twitchclassic.css',
     ],
@@ -4157,10 +4149,6 @@ var cydj = (function (exports) {
     [
       'Stars',
       'https://papertek.github.io/CyDJ/deploy/beta/css/stars.css',
-    ],
-    [
-      'Alien',
-      'https://papertek.github.io/CyDJ/deploy/beta/css/alien.css',
     ],
     [
       'Black Cat',
@@ -5184,11 +5172,11 @@ var cydj = (function (exports) {
   }
 
   .qe_title {
-      color: #ff66ab
+      color: white;
   }
 
   .queue_entry {
-      background-color: #293d36bd;
+      background-color: #111;
   }
 
   .dropdown-menu {
@@ -5225,7 +5213,7 @@ var cydj = (function (exports) {
   }
 
   #motdwrap {
-      background-color: #293d36bd
+      background-color: rgba(222, 77, 134, 0.400);
   }
 
   #userlist {
