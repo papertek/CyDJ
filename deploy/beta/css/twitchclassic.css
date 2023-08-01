@@ -65,8 +65,8 @@ strong {
 /* MAIN */
 #mainpage {
   padding-top: 1%
-      border: 0px solid!important;
-    background-color: #b711b400!important;
+  border: 0px solid!important;
+  background-color: #b711b400!important;
 }
 
 .container .container-fluid {
