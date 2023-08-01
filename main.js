@@ -2095,15 +2095,13 @@ function coverPlayer() {
     PlayerHiding_URL = 'https://dl.dropboxusercontent.com/s/xz2o99scw5i7aai/stop.png';
   }
   $('#videowrap').addClass('relative');
-  /* const w = $('#ytapiplayer').css('width');
-  const h = $('#videowrap').css('height').replace('px', '') - 30;*/
+  const w = $('#ytapiplayer').css('width');
+  const h = $('#videowrap').css('height').replace('px', '') - 30;
   coverpl = $('<div id="coverpl" />')
                 .css({
-                  /* 'width': w,
+                  'width': w,
                   'height': h + 'px',
-                  'background-image': `url(${PlayerHiding_URL})`,*/
                   'background-image': `url(${PlayerHiding_URL})`,
-
                 })
                 .appendTo($('#videowrap'));
   hideplayerbtn.addClass('btn-danger').attr('title', 'Show player');
