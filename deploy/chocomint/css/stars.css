@@ -28,11 +28,10 @@
     }
 
     #mainpage {
-    border: 0px solid!important;
-    border-radius: 10px;
-    background-color: #24322d00!important;
-    color: white;
+    border: none;
+    background-color: transparent!important;
     }
+
 
     .nick-highlight {
     background-color: #4f4c74bd!important;
