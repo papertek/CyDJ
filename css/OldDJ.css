@@ -78,6 +78,7 @@ body {
 
 
 /*
+
 #mainpage {padding-top:52px}
 #motdrow, #announcements, #main, #playlistrow {border:solid 2px transparent; margin-bottom:5px}
 #main > div, #playlistrow > div {
@@ -87,6 +88,11 @@ body {
 #announcements .alert {margin:0px -10px 5px}
 #drinkcount {margin:0px}
 */
+#mainpage {
+  padding-top: 1%;
+  border: none;
+  background-color: #b711b400!important;
+}
 
 
 /* ----- CyTube Plus created elements CSS ----- */

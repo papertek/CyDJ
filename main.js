@@ -209,7 +209,7 @@ const MiniLogo_URL = 'https://cdn.7tv.app/emote/614e8c0b20eaf897465a4c9d/1x.webp
 
 const ChannelName_Caption = 'CyDJ';
 
-export const Version_Now = 'CyDJEdge7.13.23.0';
+export const Version_Now = 'CyDJEdge7.31.23.0';
 
 const HeaderDropMenu_Title = 'Information';
 
@@ -392,14 +392,6 @@ const ChannelThemeURL = 'https://papertek.github.io/CyDJ/deploy/beta/css/DJDefau
 
 const ThemesCSS = [
   [
-    'Plus Red',
-    'https://dl.dropboxusercontent.com/s/th8i1sj332wi0x9/plusred.css',
-  ],
-  [
-    'Celadon',
-    'https://dl.dropboxusercontent.com/s/iwarwhhph1ti2ek/celadon.css',
-  ],
-  [
     'Classic',
     'https://papertek.github.io/CyDJ/deploy/beta/css/twitchclassic.css',
   ],
@@ -410,10 +402,6 @@ const ThemesCSS = [
   [
     'Stars',
     'https://papertek.github.io/CyDJ/deploy/beta/css/stars.css',
-  ],
-  [
-    'Alien',
-    'https://papertek.github.io/CyDJ/deploy/beta/css/alien.css',
   ],
   [
     'Black Cat',
@@ -1582,11 +1570,11 @@ function setUserCSS() {
   }
 
   .qe_title {
-      color: #ff66ab
+      color: white;
   }
 
   .queue_entry {
-      background-color: #293d36bd;
+      background-color: #111;
   }
 
   .dropdown-menu {
@@ -1623,7 +1611,7 @@ function setUserCSS() {
   }
 
   #motdwrap {
-      background-color: #293d36bd
+      background-color: rgba(222, 77, 134, 0.400);
   }
 
   #userlist {
