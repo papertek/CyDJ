@@ -5552,15 +5552,13 @@ var cydj = (function (exports) {
    */
   function coverPlayer() {
     $('#videowrap').addClass('relative');
-    /* const w = $('#ytapiplayer').css('width');
-    const h = $('#videowrap').css('height').replace('px', '') - 30;*/
+    const w = $('#ytapiplayer').css('width');
+    const h = $('#videowrap').css('height').replace('px', '') - 30;
     coverpl = $('<div id="coverpl" />')
                   .css({
-                    /* 'width': w,
+                    'width': w,
                     'height': h + 'px',
-                    'background-image': `url(${PlayerHiding_URL})`,*/
                     'background-image': `url(${PlayerHiding_URL})`,
-
                   })
                   .appendTo($('#videowrap'));
     hideplayerbtn.addClass('btn-danger').attr('title', 'Show player');
