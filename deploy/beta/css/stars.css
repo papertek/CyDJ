@@ -35,7 +35,7 @@
 
     .nick-highlight {
         background-color: #4f4c74bd!important;
-        color: #ffd966;
+        color: #ffd966!important;
     }
 
     .server-msg-disconnect {
