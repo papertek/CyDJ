@@ -315,6 +315,10 @@
     border-color: #4c4b9f !important;
     }
 
+    .label-success {
+    background-color: #e459ed!important;
+    }
+
     .dark-theme>.odd-message {
     background-color: #160124cf!important;
     }
