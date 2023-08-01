@@ -4139,14 +4139,6 @@ var cydj = (function (exports) {
 
   const ThemesCSS = [
     [
-      'Plus Red',
-      'https://dl.dropboxusercontent.com/s/th8i1sj332wi0x9/plusred.css',
-    ],
-    [
-      'Celadon',
-      'https://dl.dropboxusercontent.com/s/iwarwhhph1ti2ek/celadon.css',
-    ],
-    [
       'Classic',
       'https://papertek.github.io/CyDJ/deploy/beta/css/twitchclassic.css',
     ],
