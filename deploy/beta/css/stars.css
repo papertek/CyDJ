@@ -217,7 +217,8 @@
     #videowrap-header,
     #userlist,
     #messagebuffer,
-    #plmeta {
+    #plmeta 
+    #mediainfo {  
     background-color: #240a44!important;
     }
 
