@@ -33,11 +33,6 @@
     }
 
 
-    .nick-highlight {
-        background-color: #4f4c74bd!important;
-        color: #ffd966!important;
-    }
-
     .server-msg-disconnect {
         font-family: 'Quicksand', sans-serif;
         border: 3px solid #f97896 !important;
@@ -333,6 +328,11 @@
 
     .dark-theme > .even-message {
         background-color: #00000026;
+    }
+
+    .nick-highlight {
+        background-color: #4f4c74bd!important;
+        color: #ffd966!important;
     }
 
     /*230b49*/
