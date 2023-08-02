@@ -161,11 +161,11 @@ input.form-control[type="text"]{
 }
 
 .dark-theme > .even-message {
-    background-color: #00000026!important;
+    background-color: #00000026;
 }
 
 .dark-theme > .odd-message {
-    background-color: #890727bb!important;
+    background-color: #890727bb;
 }
 
 .modal-body {
