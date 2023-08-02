@@ -161,6 +161,8 @@
         border-color: white;
         box-shadow: none;
         background-color: #a277d180!important;
+        border: 1px solid rgb(0 97 243)!important;
+
     }
 
     #motdlogo {
@@ -221,7 +223,9 @@
     }
 
     #plmeta {
-        background-color: #6637b3;
+        background-color: #332274!important;
+        border: 1px solid #111156!important;
+
     }
 
     footer {
@@ -242,6 +246,7 @@
     .chat-shadow {
         color: #c2c0c0;
     }
+
 
     #coverpl {
         background-image: url(https://cdn.discordapp.com/attachments/986926739190063114/1063350244529676369/Totoro.gif) !important;
@@ -273,10 +278,6 @@
         text-shadow: 1px 0 10px #ffffff9d!important;
     }
 
-    #plmeta {
-        border: 1px solid #451395!important;
-    }
-
     #userlist,
     #messagebuffer {
         border: 1px solid #aaaaaa;
@@ -302,6 +303,10 @@
         background-repeat: no-repeat;
     }
 
+    .glyphicon-star-empty:before {
+        content: "\e005";
+        color: #df7de1!important;
+    }
 
     .btn-default {
         background-image: linear-gradient(#a069db, #a069db) !important;
@@ -323,7 +328,7 @@
     }
 
     .dark-theme>.odd-message {
-        background-color: #160124cf!important;
+        background-color: transparent!important;
     }
 
     .dark-theme > .even-message {
@@ -365,6 +370,10 @@
     .qe_title {
         margin-left: 4px;
         letter-spacing: .6px;
+    }
+
+    .btn {
+        box-shadow: inset 0 0 0 0 #ff91f6b3!important;
     }
 
     ::-webkit-scrollbar {
