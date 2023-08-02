@@ -258,15 +258,17 @@
         text-shadow: 1px 0 10px #ffb7f9;
     }
 
+    /* pink to light blue name color 
     .chat-msg-ItMePeachy .userlist_owner {
         background: linear-gradient(to right, #ff70f8, #ff68f7, #cb76ff, #b682ff, #a28bff, #8f93ff, #7d99ff, #6f9fff, #65a3ff);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         text-shadow: 1px 0 10px #ffffff9d!important;
     }
+*/
 
-
-    .chat-msg-RottenSpaceMan .userlist_op {
+ /* rainbow name color */
+    .chat-msg-ItMePeachy .userlist_owner {
         background: linear-gradient(to right, #ff5451, #ff9267, #ffe868, #93ff7d, #48ebff, #484bff, #8441ff, #df3fff, #ff3ef5);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
