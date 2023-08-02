@@ -324,8 +324,8 @@
         background-color: #e459ed!important;
     }
 
-    .dark-theme>.odd-message {
-        background-color: transparent!important;
+    .dark-theme > .odd-message {
+        background-color: transparent;
     }
 
     .dark-theme > .even-message {
@@ -378,21 +378,6 @@
         box-shadow: inset 0 0 0 0 #ff91f6b3!important;
     }
 
-    .g-background-default {
-        background-color: #6860b3!important;
-    }
-
-    .g-shadow-inset {
-        box-shadow: inset 0 0 0 1px #09054080!important;
-    }
-
-    a.sc-link-dark, a:hover {
-        color: #ffffff!important;
-    }
-
-    a.sc-link-medium {
-        color: #fff!important;
-    }
 
     ::-webkit-scrollbar {
         min-height: 10px;
