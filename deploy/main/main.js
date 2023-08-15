@@ -4021,7 +4021,7 @@ var cydj = (function (exports) {
 
   const ChannelName_Caption = 'CyDJ';
 
-  const Version_Now = 'CyDJEdge7.31.23.1';
+  const Version_Now = 'CyDJEdge8.15.23.0';
 
   const HeaderDropMenu_Title = 'Information';
 
@@ -6241,7 +6241,7 @@ var cydj = (function (exports) {
   // adding version to the tab
   {
     const headerdrop = $('<li id="headerdrop" class="dropdown" />').insertAfter('#channelset-link');
-    $('<a class="dropdown-toggle disabled" href="https://github.com/papertek/CyDJ" />')
+    $('<a class="dropdown-toggle disabled" href="https://github.com/papertek/CyDJ" target="_blank" />')
         .html(`${Version_Now}`)
         .appendTo(headerdrop);
   }
