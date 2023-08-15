@@ -33,11 +33,6 @@
     }
 
 
-    .nick-highlight {
-        background-color: #4f4c74bd!important;
-        color: #ffd966!important;
-    }
-
     .server-msg-disconnect {
         font-family: 'Quicksand', sans-serif;
         border: 3px solid #f97896 !important;
@@ -161,6 +156,8 @@
         border-color: white;
         box-shadow: none;
         background-color: #a277d180!important;
+        border: 1px solid rgb(0 97 243)!important;
+
     }
 
     #motdlogo {
@@ -221,7 +218,9 @@
     }
 
     #plmeta {
-        background-color: #6637b3;
+        background-color: #332274!important;
+        border: 1px solid #111156!important;
+
     }
 
     footer {
@@ -243,6 +242,7 @@
         color: #c2c0c0;
     }
 
+
     #coverpl {
         background-image: url(https://cdn.discordapp.com/attachments/986926739190063114/1063350244529676369/Totoro.gif) !important;
         background-color: #000000 !important;
@@ -258,23 +258,21 @@
         text-shadow: 1px 0 10px #ffb7f9;
     }
 
+    /* pink to light blue name color 
     .chat-msg-ItMePeachy .userlist_owner {
         background: linear-gradient(to right, #ff70f8, #ff68f7, #cb76ff, #b682ff, #a28bff, #8f93ff, #7d99ff, #6f9fff, #65a3ff);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         text-shadow: 1px 0 10px #ffffff9d!important;
     }
+*/
 
-
-    .chat-msg-RottenSpaceMan .userlist_op {
+ /* rainbow name color */
+    .chat-msg-ItMePeachy .userlist_owner {
         background: linear-gradient(to right, #ff5451, #ff9267, #ffe868, #93ff7d, #48ebff, #484bff, #8441ff, #df3fff, #ff3ef5);
         -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+        -webkit-text-fill-color: #ffffff61;
         text-shadow: 1px 0 10px #ffffff9d!important;
-    }
-
-    #plmeta {
-        border: 1px solid #451395!important;
     }
 
     #userlist,
@@ -302,6 +300,10 @@
         background-repeat: no-repeat;
     }
 
+    .glyphicon-star-empty:before {
+        content: "\e005";
+        color: #df7de1!important;
+    }
 
     .btn-default {
         background-image: linear-gradient(#a069db, #a069db) !important;
@@ -322,12 +324,17 @@
         background-color: #e459ed!important;
     }
 
-    .dark-theme>.odd-message {
-        background-color: #160124cf!important;
+    .dark-theme > .odd-message {
+        background-color: transparent;
     }
 
     .dark-theme > .even-message {
         background-color: #00000026;
+    }
+
+    .nick-highlight {
+        background-color: #4f4c74bd!important;
+        color: #ffd966!important;
     }
 
     /*230b49*/
@@ -365,6 +372,10 @@
     .qe_title {
         margin-left: 4px;
         letter-spacing: .6px;
+    }
+
+    .btn {
+        box-shadow: inset 0 0 0 0 #ff91f6b3!important;
     }
 
     ::-webkit-scrollbar {
