@@ -209,7 +209,7 @@ const MiniLogo_URL = 'https://cdn.7tv.app/emote/614e8c0b20eaf897465a4c9d/1x.webp
 
 const ChannelName_Caption = 'CyDJ';
 
-export const Version_Now = 'CyDJEdge9.9.23.0';
+export const Version_Now = 'CyDJEdge9.9.23.1';
 
 const HeaderDropMenu_Title = 'Information';
 
