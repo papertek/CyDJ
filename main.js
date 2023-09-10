@@ -209,7 +209,7 @@ const MiniLogo_URL = 'https://cdn.7tv.app/emote/614e8c0b20eaf897465a4c9d/1x.webp
 
 const ChannelName_Caption = 'CyDJ';
 
-export const Version_Now = 'CyDJEdge8.1.23.0';
+export const Version_Now = 'CyDJEdge8.15.23.0';
 
 const HeaderDropMenu_Title = 'Information';
 
@@ -2790,7 +2790,7 @@ if (UI_Version) {
     Version_Now = 'UNDEF';
   }
   const headerdrop = $('<li id="headerdrop" class="dropdown" />').insertAfter('#channelset-link');
-  $('<a class="dropdown-toggle disabled" href="https://github.com/papertek/CyDJ" />')
+  $('<a class="dropdown-toggle disabled" href="https://github.com/papertek/CyDJ" target="_blank" />')
       .html(`${Version_Now}`)
       .appendTo(headerdrop);
 }
