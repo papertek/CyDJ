@@ -300,7 +300,7 @@
         border-color: #671e9b;
         background-color: #282a9bbb;
         margin: 1px;
-
+        border: 1px solid;
     }
 
     .queue_entry.queue_active {
