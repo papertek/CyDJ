@@ -218,9 +218,16 @@
     }
 
     #plmeta {
+        background-color: #141f1b;
+        padding: 3px;
+        margin: 0px;
+        border: none;
+    }
+
+    #plmeta {
         background-color: #332274!important;
         border: 1px solid #111156!important;
-
+        margin: 0px;
     }
 
     footer {
@@ -292,6 +299,8 @@
     .queue_entry {
         border-color: #671e9b;
         background-color: #282a9bbb;
+        margin: 1px;
+
     }
 
     .queue_entry.queue_active {
@@ -392,4 +401,12 @@
 
     ::-webkit-scrollbar-corner {
         background: rgb(255, 255, 255)
+    }
+
+    .videolist {
+        padding: 0px;
+        margin: 0px;
+        background-color: #ffffff00;
+        border: 0px solid #ffffff00;
+        border-radius: 0px;
     }
