@@ -218,16 +218,10 @@
     }
 
     #plmeta {
-        background-color: #141f1b;
-        padding: 3px;
-        margin: 0px;
-        border: none;
-    }
-
-    #plmeta {
         background-color: #332274!important;
         border: 1px solid #111156!important;
         margin: 0px;
+        padding: 3px;
     }
 
     footer {
@@ -297,7 +291,7 @@
     }
 
     .queue_entry {
-        border-color: #671e9b;
+        border-color: #621dc9!important;
         background-color: #282a9bbb;
         margin: 1px;
         border: 1px solid;
