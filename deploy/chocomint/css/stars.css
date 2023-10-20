@@ -135,7 +135,7 @@
         border: 2px solid #dc7afa !important;
         border-radius: 10px !important;
         color: #fff;
-        background-image: url(https://raw.githubusercontent.com/papertek/CyDJ/beta/images/themes/stars/stars.png) !important;
+        background-image: url(https://raw.githubusercontent.com/papertek/CyDJ/beta/images/themes/stars/galaxy%20dm.gif) !important;
         background-size: contain !important;
         background: scroll;
         text-shadow: 0px 0px 10px #000000, 0px 0px 10px #000 !important;
@@ -177,7 +177,7 @@
     }
 
     #wrap {
-        background-image: url(https://raw.githubusercontent.com/papertek/CyDJ/beta/images/themes/stars/galaxy%20dm.gif);
+        background-image: url(https://raw.githubusercontent.com/papertek/CyDJ/beta/images/themes/stars/stars.png);
         background-repeat: repeat;
         background-position: 100% 0%;
         background-size: 40%;
