@@ -86,7 +86,7 @@
     }
 
     #currenttitle {
-    background-image: url(https://cdn.discordapp.com/attachments/986926739190063114/1063346242572259358/moon.gif) !important;
+    background-image: url(https://raw.githubusercontent.com/papertek/CyDJ/beta/images/themes/stars/moon.gif) !important;
         background-repeat: no-repeat !important;
         background-position: left center !important;
     }
@@ -135,7 +135,7 @@
         border: 2px solid #dc7afa !important;
         border-radius: 10px !important;
         color: #fff;
-        background-image: url(https://cdn.discordapp.com/attachments/986926739190063114/1064248330198188042/ezgif-3-4324ad53e1.gif) !important;
+        background-image: url(https://raw.githubusercontent.com/papertek/CyDJ/beta/images/themes/stars/stars.png) !important;
         background-size: contain !important;
         background: scroll;
         text-shadow: 0px 0px 10px #000000, 0px 0px 10px #000 !important;
@@ -177,7 +177,7 @@
     }
 
     #wrap {
-        background-image: url(https://cdn.discordapp.com/attachments/986926739190063114/1063346243088166942/stars.png);
+        background-image: url(https://raw.githubusercontent.com/papertek/CyDJ/beta/images/themes/stars/galaxy%20dm.gif);
         background-repeat: repeat;
         background-position: 100% 0%;
         background-size: 40%;
@@ -245,7 +245,7 @@
 
 
     #coverpl {
-        background-image: url(https://cdn.discordapp.com/attachments/986926739190063114/1063350244529676369/Totoro.gif) !important;
+        background-image: url(https://raw.githubusercontent.com/papertek/CyDJ/beta/images/themes/stars/Totoro.gif) !important;
         background-color: #000000 !important;
     }
 
