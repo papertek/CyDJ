@@ -416,14 +416,14 @@ const ThemesCSS = [
 const EmptyCornerBackground = [
   'https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_a054f4001b6d4f098e7969c988debd18/default/light/2.0',
   'https://cdn.betterttv.net/emote/5dfc5d868608fb0da4120b59/2x',
-  'https://images-ext-1.discordapp.net/external/1guxWfPcmO5XSXYMjKO79mRQ3UORmbKBZsVYyg4Cr-M/%3Fv%3D1/https/cdn.discordapp.com/emojis/891194776798498826.gif',
-  'https://cdn.discordapp.com/attachments/899888900611375184/901313787951480862/small.png',
+  'https://raw.githubusercontent.com/papertek/CyDJ/beta/images/main/891194776798498826%20(1).gif',
+  'https://raw.githubusercontent.com/papertek/CyDJ/beta/images/main/small.png',
   'https://cdn.7tv.app/emote/60d2c62291b6751bc1e05add/4x.webp',
-  'https://media.discordapp.net/attachments/904501042148958219/914300481633914970/JohnJamSmall.gif',
-  'https://media.discordapp.net/attachments/828331546658340905/914594224614277212/unknown.png',
-  'https://media.discordapp.net/attachments/904501042148958219/914593675445690468/unknown.png',
-  'https://media.discordapp.net/attachments/904501042148958219/914594852182831165/pacific.gif',
-  'https://media.discordapp.net/attachments/915415328496951316/925616111242842122/unknown.png',
+  'https://raw.githubusercontent.com/papertek/CyDJ/beta/images/main/JohnJamSmall.gif',
+  'https://raw.githubusercontent.com/papertek/CyDJ/beta/images/main/mud.png',
+  'https://raw.githubusercontent.com/papertek/CyDJ/beta/images/main/xso.png',
+  'https://raw.githubusercontent.com/papertek/CyDJ/beta/images/main/pacific.gif',
+  'https://raw.githubusercontent.com/papertek/CyDJ/beta/images/main/pushing%20ass.png',
 ];
 
 // /////////////////////////////////////////////////////////////////////////////////////////////////
@@ -450,7 +450,7 @@ const IndependentEmotes = [
   ],
   [
     ':skeet:',
-    'https://images-ext-1.discordapp.net/external/10FMCcqjoR5dnswPRzi5sHHS7FjgVsMDfNi4yvklbac/%3Fsize%3D44/https/cdn.discordapp.com/emojis/873855067306999808.gif',
+    'https://raw.githubusercontent.com/papertek/CyDJ/beta/images/main/skeet.gif',
     35,
     35,
   ],
