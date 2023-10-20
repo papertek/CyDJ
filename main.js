@@ -220,7 +220,7 @@ const MOTDAutoLogo_Interval = 20;
 const RulesBtn_Caption = 'Read Channel Rules';
 
 const AttentionBar_URL =
-    'https://media.discordapp.net/attachments/899888900611375184/901603644502331412/unknown.png';
+    'https://raw.githubusercontent.com/papertek/CyDJ/beta/images/letmedofuck.png';
 
 const ChannelAnnouncement_Title = 'CyDJ Alert';
 
