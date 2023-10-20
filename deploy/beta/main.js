@@ -3134,10 +3134,6 @@ var cydj = (function (exports) {
       Xqc.SUB_36_MONTHS_T1,
       'https://cdn.discordapp.com/attachments/915656975696687124/916100799233425548/VIP.png',
     ],
-    'LEBB': [
-      Xqc.SUB_12_MONTHS_T1,
-      'https://cdn.discordapp.com/attachments/915650094697693184/954252288539627520/POKIBRUH.gif',
-    ],
     'feelssunnyman': [
       Xqc.SUB_9_MONTHS_T3,
       'https://cdn.discordapp.com/attachments/915656975696687124/916100799233425548/VIP.png',
@@ -3286,8 +3282,8 @@ var cydj = (function (exports) {
       Xqc.SUB_24_MONTHS_T1,
     ],
     'ItMePeachy': [
-      'https://cdn.discordapp.com/attachments/986926739190063114/1037712558183960716/NoOneIsAroundToHelp.gif',
-      'https://cdn.discordapp.com/attachments/986926739190063114/1037701659494723636/Cat.gif',
+      'https://raw.githubusercontent.com/papertek/CyDJ/beta/images/badges/boy%20kisser.png',
+      'https://raw.githubusercontent.com/papertek/CyDJ/beta/images/badges/guitar%20time.gif',
     ],
     'deblankyy': [
       Xqc.SUB_9_MONTHS_T1,
