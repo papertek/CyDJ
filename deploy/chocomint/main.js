@@ -4153,7 +4153,7 @@ var cydj = (function (exports) {
     ],
     [
       'Old DJ',
-      'https://papertek.github.io/CyDJ/deploy/beta/css/DJDefault.css',
+      'https://papertek.github.io/CyDJ/deploy/beta/css/oldDJ.css',
     ],
     [
       'Stars',
