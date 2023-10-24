@@ -74,7 +74,7 @@ html, body {
 
 #mainpage {
     border: 0px solid!important;
-    background-color: #b711b400!important;
+    background-color: #00000000!important;
 }
 
 #ytapiplayer {
@@ -82,7 +82,7 @@ html, body {
 }
 
 #chatheader, #videowrap-header, #userlist, #messagebuffer, #plmeta {
-  background-color: #891787!important;
+  background-color: #68267f!important;
 }
 
 footer {
@@ -199,13 +199,14 @@ input.form-control[type="text"]{
   letter-spacing: .6px;
 }
 
-::-webkit-scrollbar{min-height:10px;width:6px;background:transparent}
-::-webkit-scrollbar-thumb {
-  background: rgb(59 75 160);
-  opacity: 7;
-  border-radius: 1ex;
+.videolist {
+  padding: 10px;
+  margin: 0px;
+  background-color: #68267f;
+  border: 2px solid #40326b;
+  border-radius: 10px;
 }
-::-webkit-scrollbar-corner{background:rgb(255, 255, 255)}
+
 
 div.userlist_item > span:not(.userlist_op):not(.userlist_owner) {
   color: #ffffff;
@@ -216,8 +217,3 @@ span:not(.userlist_op):not(.userlist_owner) > strong.username {
 }
 
 
-/* ItMePeachy was here :tf: */
-    .chat-msg-Xsogon .userlist_owner {
-        color: #00FFFF!important;
-        text-shadow: 1px 0 10px #00FFFF;
-    }
