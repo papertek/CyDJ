@@ -43,10 +43,11 @@ html, body {
 }
 
 .videolist {
-    padding: 0px;
-    margin: 0px;
-    background-color: none;
-    border: 2px solid none;
+        padding: 0px;
+        margin: 0px;
+        background-color: #ffffff00;
+        border: 0px solid #ffffff00;
+        border-radius: 0px;
 }
 
 .alert-info {
