@@ -65,7 +65,8 @@ input#logout[type="submit"] {
 #motdwrap {
     padding: 10px;
     border-color: white;
-    box-shadow: none
+    box-shadow: none;
+    border: 1px solid rgb(62 62 62)!important;
 }
 
 #togglemotd {
@@ -829,7 +830,13 @@ div.userlist_item>span:not(.userlist_op):not(.userlist_owner) {
 }
 
 /* ItMePeachy was here :tf: */
-    .chat-msg-Xsogon .userlist_owner {
-        color: #00FFFF!important;
-        text-shadow: 1px 0 10px #00FFFF;
-    }
+.chat-msg-Xsogon .userlist_owner {
+    color: #00FFFF!important;
+    text-shadow: 1px 0 10px #00FFFF;
+}
+
+/* videolist */
+.videolist {
+    border-color: #312851 !important;
+    background-color: #6700c51c;
+}
