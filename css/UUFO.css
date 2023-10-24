@@ -74,7 +74,7 @@ html, body {
 
 #mainpage {
     border: 0px solid!important;
-    background-color: #b711b400!important;
+    background-color: #00000000!important;
 }
 
 #ytapiplayer {
@@ -217,8 +217,3 @@ span:not(.userlist_op):not(.userlist_owner) > strong.username {
 }
 
 
-/* ItMePeachy was here :tf: */
-    .chat-msg-Xsogon .userlist_owner {
-        color: #00FFFF!important;
-        text-shadow: 1px 0 10px #00FFFF;
-    }

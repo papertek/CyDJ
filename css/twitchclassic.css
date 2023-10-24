@@ -460,8 +460,3 @@ div.userlist_item>span:not(.userlist_op):not(.userlist_owner) {
     background-color: #141f1b!important;
 }
 
-/* ItMePeachy was here :tf: */
-    .chat-msg-Xsogon .userlist_owner {
-        color: #00FFFF!important;
-        text-shadow: 1px 0 10px #00FFFF;
-    }
