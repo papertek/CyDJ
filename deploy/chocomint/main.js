@@ -2885,14 +2885,27 @@ var cydj = (function (exports) {
   }
 
   class Twitch {
-    static OWL =
-        'https://raw.githubusercontent.com/papertek/CyDJ/beta/images/badges/OWL.png';
+    static OWL = 'https://raw.githubusercontent.com/papertek/CyDJ/beta/images/badges/OWL.png';
   }
   // pls note this is placeholder
   class VIP {
     static VIPBADGE =
         'https://raw.githubusercontent.com/papertek/CyDJ/beta/images/badges/placeholder.png';
   }
+
+
+  // const applyVipColor = `
+  // chat-msg-${username} {
+  //   color: orange;
+  // }`;
+
+  // if (document.getElementById('apply-vip') == null) {
+  //   const style = document.createElement('style');
+  //   style.id = 'apply-vip';
+  //   style.textContent = applyVipColor;
+  //   document.getElementsByTagName('head')[0].appendChild(style);
+  // }
+
 
   //  function GiveVIPColor() {}
 
@@ -3005,7 +3018,7 @@ var cydj = (function (exports) {
         'https://raw.githubusercontent.com/papertek/CyDJ/beta/images/badges/100_Bits.png';
     static BITS_1000 =
         'https://raw.githubusercontent.com/papertek/CyDJ/beta/images/badges/1000_Bits.png';
-     static BITS_25000 =
+    static BITS_25000 =
         'https://raw.githubusercontent.com/papertek/CyDJ/beta/images/badges/25000_Bits.png';
     static BITS_100000 =
         'https://raw.githubusercontent.com/papertek/CyDJ/beta/images/badges/100000_Bits.png';
