@@ -19,6 +19,11 @@ html, body {
   background-color: #01e6b326;
 }
 
+  #mainpage {
+        border: none;
+        background-color: transparent!important;
+}
+
 #currenttitle {
   background-image: url(https://cdn.7tv.app/emote/60bfb67aa2610d253072f14a/2x)!important;
   background-repeat: no-repeat!important;
@@ -26,7 +31,7 @@ html, body {
 }
 
 #wrap {
-  background-image: url(https://cdn.discordapp.com/attachments/939718499419431002/953686644408606720/yoo.png);
+  background-image: url(https://raw.githubusercontent.com/papertek/CyDJ/beta/images/themes/blackcat/yoo.png);
   background-repeat: repeat-y;
   background-position: 100% 10%;
   background-size: inherit;
@@ -35,6 +40,14 @@ html, body {
   margin: 0 auto -60px;
   padding: 0 0 60px;
   background-blend-mode: soft-light;
+}
+
+.videolist {
+        padding: 0px;
+        margin: 0px;
+        background-color: #ffffff00;
+        border: 0px solid #ffffff00;
+        border-radius: 0px;
 }
 
 .alert-info {
@@ -169,8 +182,3 @@ span:not(.userlist_op):not(.userlist_owner) > strong.username {
   color: #ffffff;
 }
 
-/* ItMePeachy was here :tf: */
-    .chat-msg-Xsogon .userlist_owner {
-        color: #00FFFF!important;
-        text-shadow: 1px 0 10px #00FFFF;
-    }
