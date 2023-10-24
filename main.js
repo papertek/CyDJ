@@ -397,7 +397,7 @@ const ThemesCSS = [
   ],
   [
     'Old DJ',
-    'https://papertek.github.io/CyDJ/deploy/beta/css/oldDJ.css',
+    'https://papertek.github.io/CyDJ/deploy/beta/css/OldDJ.css',
   ],
   [
     'Stars',
