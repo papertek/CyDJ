@@ -252,6 +252,7 @@ const HeaderDropMenu_Array = [
   ['Test Room', 'https://cytu.be/r/testplacelilroc'],
   ['Test Room 2', 'https://cytu.be/r/emptyroomtestplace'],
   ['Test Room 3', 'https://cytu.be/r/xqcPeepo'],
+  ['Experiments', 'https://cytu.be/r/cydjrewrite'],
   ['Community Related', ''],
   ['CyDJ Discord', 'https://discord.gg/g8tCGSc2bx'],
   ['Camellia Discord', 'https://discord.gg/camellia'],
