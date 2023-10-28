@@ -1,8 +1,8 @@
-name: Deploy Chocomint
+name: Deploy Experimental
 
 on:
   push:
-    branches: [beta]
+    branches: [experimental]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -39,5 +39,5 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@v4.2.3
         with:
           branch: deploy
-          target-folder: deploy/chocomint
+          target-folder: deploy/experimental
           folder: build

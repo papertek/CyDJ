@@ -1,7 +1,7 @@
 /*
 The MIT License (MIT)
 //
-Copyright (c) 2013-2014 Zimny Lech, 2022 CyDJ developers
+Copyright (c) 2013-2014 Zimny Lech, 2022-2023 CyDJ developers
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
 this software and associated documentation files (the "Software"), to deal in
@@ -209,7 +209,7 @@ const MiniLogo_URL = 'https://cdn.7tv.app/emote/614e8c0b20eaf897465a4c9d/1x.webp
 
 const ChannelName_Caption = 'CyDJ';
 
-export const Version_Now = 'CyDJEdge12.20.23.0';
+export const Version_Now = 'CyDJEdge12.28.23.0';
 
 const HeaderDropMenu_Title = 'Information';
 
@@ -252,6 +252,7 @@ const HeaderDropMenu_Array = [
   ['Test Room', 'https://cytu.be/r/testplacelilroc'],
   ['Test Room 2', 'https://cytu.be/r/emptyroomtestplace'],
   ['Test Room 3', 'https://cytu.be/r/xqcPeepo'],
+  ['Experiments', 'https://cytu.be/r/cydjrewrite'],
   ['Community Related', ''],
   ['CyDJ Discord', 'https://discord.gg/g8tCGSc2bx'],
   ['Camellia Discord', 'https://discord.gg/camellia'],
