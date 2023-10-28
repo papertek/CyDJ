@@ -1,0 +1,219 @@
+/* UUFO by John, using light theme as base lol */
+/* Credit to Camellia and various others for the colors, ideas and images!! */
+
+body {
+  background: linear-gradient(to bottom, #3b4ba0, #891787 50%, #ebb345)!important;
+  color:white;
+  overflow-x:hidden;
+  background-repeat: no-repeat;
+}
+
+.qe_title {
+  color: white!important;
+}
+
+html, body {
+  height: unset;
+}
+
+#motdwrap {
+  padding: 10px;
+  border-color: white;
+  box-shadow: none;
+  background-color: #78be864d;
+}
+
+#wrap {
+  background-image: url(https://cametek.jp/uufo/img/bg-intro.jpg);
+  background-repeat: no-repeat;
+  background-position: 100% 0%;
+  background-size: auto;
+  min-height: 100%;
+  height: auto;
+  margin: 0 auto -60px;
+  padding: 0 0 60px;
+}
+
+.alert-info {
+  background-color: #3b4ba0;
+  border-color: #3b4ba09e;
+  color: #fff;
+}
+
+.nick-highlight {
+    background-color: #5068ad!important;
+    color: #ffd966;
+}
+
+.glyphicon {
+  font-weight: 500;
+}
+
+#nav-collapsible {
+    background-image: linear-gradient(#45539b, #891787)!important;
+}
+
+.navbar-header {
+    background-image: linear-gradient(#45539b, #891787) !important;
+    }
+
+
+/*#mainpage{
+  background-image: url(https://cametek.jp/uufo/img/bg-intro.jpg);
+  background-repeat: no-repeat;
+  background-position: 100% 0%;
+  background-size: auto;
+}
+
+#azukirow{
+  background-image: url(https://cametek.jp/uufo/img/bg-intro.jpg);
+  background-repeat: no-repeat;
+  background-position: 100% 0%;
+  background-size: auto;
+}*/
+
+#mainpage {
+    border: 0px solid!important;
+    background-color: #00000000!important;
+}
+
+#ytapiplayer {
+  background-color: #000000;
+}
+
+#chatheader, #videowrap-header, #userlist, #messagebuffer, #plmeta {
+  background-color: #68267f!important;
+}
+
+footer {
+  background-color: #3b4ba0 !important;
+}
+
+.text-muted, .text-primary {
+  color: #78be86;
+}
+
+input.form-control[type="text"]{
+    background-color: #891787!important;
+}
+
+.profile-box, .user-dropdown {
+  background-color: #f4bb1b;
+  color:white;
+}
+
+.chat-shadow {
+  color: #aaaaaa;
+}
+
+.drink {
+  border: 2px solid #0000cc;
+}
+
+#drinkcount {
+    background-color: #4663cb!important;
+    border: 2px solid #efe1e4!important;
+}
+
+#plmeta {
+  border: 1px solid #aaaaaa;
+}
+
+#userlist, #messagebuffer {
+  border: 1px solid #aaaaaa;
+}
+
+#chatheader, #videowrap-header {
+  border: 1px solid #cccccc;
+  border-bottom-width: 0;
+  border-radius: 5px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.queue_entry {
+  border-color: #f4bb1b;
+  background-color: #890727bb;
+}
+
+.queue_entry.queue_active {
+  background-color: #891787;
+  background-image: linear-gradient(#3b4ba0, #3b4ba0, #3b4ba0);
+  background-repeat:no-repeat;
+}
+
+.navbar-inverse .navbar-text-nofloat {
+  color: #9d9d9d;
+}
+
+.btn-default {
+  background-image: linear-gradient(#f4bb1b, #f4bb1b 60%, #f4bb1b)!important;
+  font-weight: 500;
+  color: #000000;
+}
+
+.btn {
+  border-color: #000!important;
+}
+
+.well {
+  background-color:#6700c51c!important;
+}
+
+.dark-theme > .even-message {
+    background-color: #00000026;
+}
+
+.dark-theme > .odd-message {
+    background-color: #890727bb;
+}
+
+.modal-body {
+  padding: 30px;
+  background-color: #3b4ba0!important;
+}
+
+.modal-header {
+  background-color: #3b4ba0;
+}
+
+.modal-footer {
+  background-color: #3b4ba0;
+}
+
+.emote-preview-container {
+  margin: 3px
+}
+
+.emotelist-table td {
+  background-color: #161a20;
+}
+
+#titlerow-outer {
+  letter-spacing:2px;
+  background-color: #890b41;
+}
+
+.qe_title {
+  margin-left: 4px;
+  letter-spacing: .6px;
+}
+
+.videolist {
+  padding: 10px;
+  margin: 0px;
+  background-color: #68267f;
+  border: 2px solid #40326b;
+  border-radius: 10px;
+}
+
+
+div.userlist_item > span:not(.userlist_op):not(.userlist_owner) {
+  color: #ffffff;
+}
+
+span:not(.userlist_op):not(.userlist_owner) > strong.username {
+  color: #ffffff;
+}
+
+
