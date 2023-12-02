@@ -4087,766 +4087,773 @@ function addChatMessage(data) {
     const msg = getText(data.msg);
     if (msg.indexOf('!mow ') >= 0) {
       const str = msg.split('!mow ');
+      const aud = new Audio(SPEAKLINK + '?lang=polish&text=' + encodeURI(str[1]));
+      aud.volume = SOUNDSVALUES[SOUNDSLVL];
+      aud.play();
+    } else if (msg.indexOf('!say ') >= 0) {
+      const str = msg.split('!say ');
+      const aud = new Audio(SPEAKLINK + '?lang=english&text=' + encodeURI(str[1]));
+      aud.volume = SOUNDSVALUES[SOUNDSLVL];
+      aud.play();
+    }
+  }
+  _chatBuffer(data);
+}
 
-
-      $('#chatline, #chatbtn').off();
-
-      let /** @type {string} */ unsentMsg = null;
-
-      $('#chatline').on('keydown', (ev) => {
-        if (ev.key === 'Enter') {
-          if (CHATTHROTTLE) {
-            return;
-          }
-          const _msg = $('#chatline').val();
-          let msg = $('#chatline').val();
-          if (msg.trim()) {
-            msg = prepareMessage(msg.trim());
-            const meta = {};
-            if (COMMAND) {
-              socket.emit('chatMsg', {msg: _msg});
-              msg = `➥ ${msg}`;
-              COMMAND = false;
-            }
-            if (USEROPTS.adminhat && CLIENT.rank >= 255) {
-              msg = `/a ${msg}`;
-            } else if (USEROPTS.modhat && CLIENT.rank >= Rank.Moderator) {
-              meta.modflair = CLIENT.rank;
-            }
-            if (CLIENT.rank >= 2 && msg.startsWith('/m ')) {
-              meta.modflair = CLIENT.rank;
-              msg = msg.substring(3);
-            }
-            if (msg.startsWith('/say')) {
-              meta.addClass = 'shout';
-              meta.forceShowName = true;
-              meta.addClassToNameAndTimestamp = true;
-            }
-            socket.emit('chatMsg', {msg: msg, meta: meta});
-            updateChatStats(_msg);
-            CHATHIST.push($('#chatline').val());
-            CHATHISTIDX = CHATHIST.length;
-            $('#chatline').val('');
-          }
-          return;
-        } else if (ev.key === 'Tab') {
-          chatTabComplete();
-          ev.preventDefault();
-          return false;
-        } else if (ev.key === 'ArrowUp') {
-          unsentMsg = $('#chatline').val();
-          if (CHATHISTIDX > 0) {
-            CHATHISTIDX--;
-            $('#chatline').val(CHATHIST[CHATHISTIDX]);
-          }
-          ev.preventDefault();
-          return false;
-        } else if (ev.key === 'ArrowDown') {
-          if (CHATHISTIDX === CHATHIST.length - 1 && unsentMsg !== null) {
-            CHATHISTIDX++;
-            $('#chatline').val(unsentMsg);
-            unsentMsg = null;
-          } else if (CHATHISTIDX < CHATHIST.length - 1) {
-            CHATHISTIDX++;
-            $('#chatline').val(CHATHIST[CHATHISTIDX]);
-          }
-          ev.preventDefault();
-          return false;
-        }
-      });
-
-
-      // TODO: Check what this does, I don't know what it does.
-      // #chatbtn is a button thats disabled? Maybe? If I remember correctly.
-      // This is a bit useless, for now. Fix it later.
-      $('#chatbtn').on('click', () => {
-        const _msg = $('#chatline').val();
-        let msg = $('#chatline').val();
-        if (msg.trim()) {
-          msg = prepareMessage(msg.trim());
-          if (COMMAND) {
-            socket.emit('chatMsg', {msg: _msg});
-            msg = `➥ ${msg}`;
-            COMMAND = false;
-          }
-          socket.emit('chatMsg', {msg: msg});
-          updateChatStats(_msg);
-          $('#chatline').val('');
-        }
-      });
-
-      /**
-       * @typedef {Object} SetUserMetaEvent
-       * @property {string} name Name of the user
-       * @property {Object} meta Metadata
-       * @property {boolean} meta.afk Whether the user is AFK
-       * @property {boolean} meta.muted Whether the user is muted
-       * @property {boolean} meta.smuted Whether the user is shadow muted
-       * @property {!Array<string>} meta.aliases User's aliases
-       * @property {string} meta.ip User's obfuscated IP
-       */
-
-      /**
-       * For a setUserMeta event, if this muted someone, clear their messages.
-       *
-       * @param {SetUserMetaEvent} event
-       */
-      function clearMessagesOfMutedUser(event) {
-        if (!event.meta.muted) {
-          return;
-        }
-        deleteMsgByUsername(event.name);
+// fix formatting and sending chat messages
+// DEV NOTE: this are extended events from CyTube "util.js" file
+$('#chatline, #chatbtn').off();
+let /** @type {string} */ unsentMsg = null;
+$('#chatline').on('keydown', (ev) => {
+  if (ev.key === 'Enter') {
+    if (CHATTHROTTLE) {
+      return;
+    }
+    const _msg = $('#chatline').val();
+    let msg = $('#chatline').val();
+    if (msg.trim()) {
+      msg = prepareMessage(msg.trim());
+      const meta = {};
+      if (COMMAND) {
+        socket.emit('chatMsg', {msg: _msg});
+        msg = `➥ ${msg}`;
+        COMMAND = false;
       }
-
-      socket.on('setUserMeta', clearMessagesOfMutedUser);
-
-      /**
-       * @typedef {Object} UserListUser
-       * @property {string} name Name of the user
-       * @property {number} rank Rank of the user (???)
-       * @property {Object} meta Metadata
-       * @property {boolean} meta.afk Whether the user is AFK
-       * @property {boolean} meta.muted Whether the user is muted
-       * @property {boolean} meta.smuted Whether the user is shadow muted
-       * @property {!Array<string>} meta.aliases User's aliases
-       * @property {string} meta.ip User's obfuscated IP
-       */
-
-      /**
-       * @typedef {Object} ChatMsgEvent
-       * @property {string} username Name of the user
-       * @property {string} msg Message the user sent
-       * @property {number} time Unix timestamp (?) of the message
-       * @property {Object} meta Metadata
-       * @property {boolean=} meta.addClass Whether the user is AFK
-       * @property {boolean=} meta.addClassToNameAndTimestamp Whether to add the class
-       *   to the name and timestamp. true for /say and /shout messages.
-       * @property {boolean=} meta.forceShowName Whether to force show the name.
-       *   true for /say and shout messages
-       */
-
-      /**
-       * Fix a /say or /shout message to correctly apply the "shout" class to the
-       * message text span, which makes it big and red.
-       *
-       * This function shouldn't need to exist. Something elsewhere in the script
-       * is breaking this functionality but I (airforce2700) can't figure out what it
-       * is.
-       *
-       * @param {ChatMsgEvent} event
-       */
-      function fixSayMsg(event) {
-        if (event.meta.addClass !== 'shout') {
-          return;
-        }
-
-        const messageBuffer = document.getElementById('messagebuffer');
-        if (!messageBuffer || !messageBuffer.lastChild) {
-          return;
-        }
-
-        const /** @type {HTMLElement} */ newestMessageRow = messageBuffer.lastChild;
-        if (Array.from(newestMessageRow.classList)
-                .filter((className) => className.startsWith('chat-msg-'))
-                .length < 1) {
-          return;
-        }
-
-        const messageSpan = newestMessageRow.lastChild;
-        if (!messageSpan) {
-          return;
-        }
-        messageSpan.classList.add('shout');
+      if (USEROPTS.adminhat && CLIENT.rank >= 255) {
+        msg = `/a ${msg}`;
+      } else if (USEROPTS.modhat && CLIENT.rank >= Rank.Moderator) {
+        meta.modflair = CLIENT.rank;
       }
-
-      socket.on('chatMsg', fixSayMsg);
-
-      /**
-       * Fix layout behaviour after resizing.
-       *
-       * DEV NOTE: this is extended function from CyTube "util.js" file
-       */
-      function resizeStuff() {
-        const videoWidth = $('#videowrap .embed-responsive').width();
-        const videoHeight = Math.floor(parseInt(videoWidth) * 9 / 16 + 1);
-        $('#ytapiplayer').width(videoWidth).height(videoHeight);
-
-        const h = videoHeight - $('#chatline').outerHeight() - 1;
-        $('#messagebuffer').height(h);
-        $('#userlist').height(h);
-
-        if (UI_DisplayModeSel) {
-          const m = modesel.val();
-          // patches for various display modes
-          if (m === 'chMode' || m === 'rMode') {
-            if (WEBKIT) {
-              $('#videowrap').hide();
-            } else {
-              $('#videowrap div, #videowrap p').hide();
-              $('#ytapiplayer').width(1).height(1);
-            }
-            fitChat('auto');
-          } else if (m === 'syMode' && USERCONFIG.player === 'center') {
-            fitChat('auto');  // it could've been this all along lmao
-          }
-        }
+      if (CLIENT.rank >= 2 && msg.startsWith('/m ')) {
+        meta.modflair = CLIENT.rank;
+        msg = msg.substring(3);
       }
-
-      // bind new resizing function
-      $(window).off('resize', '**');
-      $(window).on('resize', resizeStuff);
-
-      // /////////////////////////////////////////////////////////////////////////////////////////////////
-
-      // setting global sockets
-      socket.on('channelOpts', setUserCSS);
-      socket.on('channelCSSJS', setUserCSS);
-      socket.on('login', patchWrap);
-      socket.on('rank', toggleAdvancedPl);
-
-      // setting final layout after loading
-      setLayout();
-      scrollChat();
-      scrollQueue();
-
-      if (FLUID) {
-        $('.container').removeClass('container').addClass('container-fluid');
-        $('footer .container-fluid').removeClass('container-fluid').addClass('container');
-        $('#fluid-layout').prop('checked', 'true');
-        $('#fontspanel, #emotespanel').addClass('fluidpanel');
+      if (msg.startsWith('/say')) {
+        meta.addClass = 'shout';
+        meta.forceShowName = true;
+        meta.addClassToNameAndTimestamp = true;
       }
+      socket.emit('chatMsg', {msg: msg, meta: meta});
+      updateChatStats(_msg);
+      CHATHIST.push($('#chatline').val());
+      CHATHISTIDX = CHATHIST.length;
+      $('#chatline').val('');
+    }
+    return;
+  } else if (ev.key === 'Tab') {
+    chatTabComplete();
+    ev.preventDefault();
+    return false;
+  } else if (ev.key === 'ArrowUp') {
+    unsentMsg = $('#chatline').val();
+    if (CHATHISTIDX > 0) {
+      CHATHISTIDX--;
+      $('#chatline').val(CHATHIST[CHATHISTIDX]);
+    }
+    ev.preventDefault();
+    return false;
+  } else if (ev.key === 'ArrowDown') {
+    if (CHATHISTIDX === CHATHIST.length - 1 && unsentMsg !== null) {
+      CHATHISTIDX++;
+      $('#chatline').val(unsentMsg);
+      unsentMsg = null;
+    } else if (CHATHISTIDX < CHATHIST.length - 1) {
+      CHATHISTIDX++;
+      $('#chatline').val(CHATHIST[CHATHISTIDX]);
+    }
+    ev.preventDefault();
+    return false;
+  }
+});
 
-      // finishing variable
-      LOADED = true;
 
-      if (GAnalytics) {
-        intAnal();
+// TODO: Check what this does, I don't know what it does.
+// #chatbtn is a button thats disabled? Maybe? If I remember correctly.
+// This is a bit useless, for now. Fix it later.
+$('#chatbtn').on('click', () => {
+  const _msg = $('#chatline').val();
+  let msg = $('#chatline').val();
+  if (msg.trim()) {
+    msg = prepareMessage(msg.trim());
+    if (COMMAND) {
+      socket.emit('chatMsg', {msg: _msg});
+      msg = `➥ ${msg}`;
+      COMMAND = false;
+    }
+    socket.emit('chatMsg', {msg: msg});
+    updateChatStats(_msg);
+    $('#chatline').val('');
+  }
+});
+
+/**
+ * @typedef {Object} SetUserMetaEvent
+ * @property {string} name Name of the user
+ * @property {Object} meta Metadata
+ * @property {boolean} meta.afk Whether the user is AFK
+ * @property {boolean} meta.muted Whether the user is muted
+ * @property {boolean} meta.smuted Whether the user is shadow muted
+ * @property {!Array<string>} meta.aliases User's aliases
+ * @property {string} meta.ip User's obfuscated IP
+ */
+
+/**
+ * For a setUserMeta event, if this muted someone, clear their messages.
+ *
+ * @param {SetUserMetaEvent} event
+ */
+function clearMessagesOfMutedUser(event) {
+  if (!event.meta.muted) {
+    return;
+  }
+  deleteMsgByUsername(event.name);
+}
+
+socket.on('setUserMeta', clearMessagesOfMutedUser);
+
+/**
+ * @typedef {Object} UserListUser
+ * @property {string} name Name of the user
+ * @property {number} rank Rank of the user (???)
+ * @property {Object} meta Metadata
+ * @property {boolean} meta.afk Whether the user is AFK
+ * @property {boolean} meta.muted Whether the user is muted
+ * @property {boolean} meta.smuted Whether the user is shadow muted
+ * @property {!Array<string>} meta.aliases User's aliases
+ * @property {string} meta.ip User's obfuscated IP
+ */
+
+/**
+ * @typedef {Object} ChatMsgEvent
+ * @property {string} username Name of the user
+ * @property {string} msg Message the user sent
+ * @property {number} time Unix timestamp (?) of the message
+ * @property {Object} meta Metadata
+ * @property {boolean=} meta.addClass Whether the user is AFK
+ * @property {boolean=} meta.addClassToNameAndTimestamp Whether to add the class
+ *   to the name and timestamp. true for /say and /shout messages.
+ * @property {boolean=} meta.forceShowName Whether to force show the name.
+ *   true for /say and shout messages
+ */
+
+/**
+ * Fix a /say or /shout message to correctly apply the "shout" class to the
+ * message text span, which makes it big and red.
+ *
+ * This function shouldn't need to exist. Something elsewhere in the script
+ * is breaking this functionality but I (airforce2700) can't figure out what it
+ * is.
+ *
+ * @param {ChatMsgEvent} event
+ */
+function fixSayMsg(event) {
+  if (event.meta.addClass !== 'shout') {
+    return;
+  }
+
+  const messageBuffer = document.getElementById('messagebuffer');
+  if (!messageBuffer || !messageBuffer.lastChild) {
+    return;
+  }
+
+  const /** @type {HTMLElement} */ newestMessageRow = messageBuffer.lastChild;
+  if (Array.from(newestMessageRow.classList)
+          .filter((className) => className.startsWith('chat-msg-'))
+          .length < 1) {
+    return;
+  }
+
+  const messageSpan = newestMessageRow.lastChild;
+  if (!messageSpan) {
+    return;
+  }
+  messageSpan.classList.add('shout');
+}
+
+socket.on('chatMsg', fixSayMsg);
+
+/**
+ * Fix layout behaviour after resizing.
+ *
+ * DEV NOTE: this is extended function from CyTube "util.js" file
+ */
+function resizeStuff() {
+  const videoWidth = $('#videowrap .embed-responsive').width();
+  const videoHeight = Math.floor(parseInt(videoWidth) * 9 / 16 + 1);
+  $('#ytapiplayer').width(videoWidth).height(videoHeight);
+
+  const h = videoHeight - $('#chatline').outerHeight() - 1;
+  $('#messagebuffer').height(h);
+  $('#userlist').height(h);
+
+  if (UI_DisplayModeSel) {
+    const m = modesel.val();
+    // patches for various display modes
+    if (m === 'chMode' || m === 'rMode') {
+      if (WEBKIT) {
+        $('#videowrap').hide();
+      } else {
+        $('#videowrap div, #videowrap p').hide();
+        $('#ytapiplayer').width(1).height(1);
       }
+      fitChat('auto');
+    } else if (m === 'syMode' && USERCONFIG.player === 'center') {
+      fitChat('auto');  // it could've been this all along lmao
+    }
+  }
+}
 
-      /* Google Analytics code for Main Room ONLY
-      (function(i, s, o, g, r, a, m) {
-      i['GoogleAnalyticsObject'] = r;
-      i[r] = i[r] || function() {
-        // eslint-disable-next-line prefer-rest-params
-        (i[r].q = i[r].q || []).push(arguments);
-      }, i[r].l = 1 * new Date();
-      a = s.createElement(o), m = s.getElementsByTagName(o)[0];
-      a.async = 1;
-      a.src = g;
-      m.parentNode.insertBefore(a, m);
-      })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-      ga('create', 'G-GGK9WFE72W', 'auto');
-      ga('send', 'pageview');
-      */
+// bind new resizing function
+$(window).off('resize', '**');
+$(window).on('resize', resizeStuff);
 
-      if (UI_Snow && Snow_URL !== '') {
-        $.getScript(Snow_URL);
+// /////////////////////////////////////////////////////////////////////////////////////////////////
+
+// setting global sockets
+socket.on('channelOpts', setUserCSS);
+socket.on('channelCSSJS', setUserCSS);
+socket.on('login', patchWrap);
+socket.on('rank', toggleAdvancedPl);
+
+// setting final layout after loading
+setLayout();
+scrollChat();
+scrollQueue();
+
+if (FLUID) {
+  $('.container').removeClass('container').addClass('container-fluid');
+  $('footer .container-fluid').removeClass('container-fluid').addClass('container');
+  $('#fluid-layout').prop('checked', 'true');
+  $('#fontspanel, #emotespanel').addClass('fluidpanel');
+}
+
+// finishing variable
+LOADED = true;
+
+if (GAnalytics) {
+  intAnal();
+}
+
+/* Google Analytics code for Main Room ONLY
+(function(i, s, o, g, r, a, m) {
+i['GoogleAnalyticsObject'] = r;
+i[r] = i[r] || function() {
+  // eslint-disable-next-line prefer-rest-params
+  (i[r].q = i[r].q || []).push(arguments);
+}, i[r].l = 1 * new Date();
+a = s.createElement(o), m = s.getElementsByTagName(o)[0];
+a.async = 1;
+a.src = g;
+m.parentNode.insertBefore(a, m);
+})(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+ga('create', 'G-GGK9WFE72W', 'auto');
+ga('send', 'pageview');
+*/
+
+if (UI_Snow && Snow_URL !== '') {
+  $.getScript(Snow_URL);
+}
+
+/* ----- END OF LIBRARY ----- */
+
+/* -----CONFIG----- */
+/*
+  usertype:
+  'owner' for admins
+  'op' for mods
+  'guest' for unregistered accounts
+  ''   for normal users
+  */
+const USERLIST_COLORS = {
+  'pokegaard': {usertype: 'owner', css: 'color: #00FF7F !important;'},
+  'Amberainbow': {usertype: '', css: 'color: #FF69B4 !important;'},
+};
+
+/* -----CONFIG----- */
+
+for (const [name, color] of Object.entries(USERLIST_COLORS)) {
+  const userType = color.usertype ? `.userlist_${color.usertype}` : '';
+  $(`div.userlist_item span${userType}:contains("${name}")`).css('cssText', color.css);
+}
+
+const ODD_MESSAGE_CLASS = 'odd-message';
+const EVEN_MESSAGE_CLASS = 'even-message';
+let lastMessageOdd = false;
+
+let CHAT_INIT = false;
+if (!CHAT_INIT) {
+  CHAT_INIT = true;
+
+  if (twemojiStuff) {
+    initTwemoji();
+  }
+
+  socket.on('chatMsg', (obj) => {
+    const mb = document.getElementById('messagebuffer');
+    if (mb && mb.lastChild && $(mb.lastChild).attr('class').startsWith('chat-msg-') &&
+        !obj.meta.shadow) {
+      mb.lastChild.classList.add(lastMessageOdd ? ODD_MESSAGE_CLASS : EVEN_MESSAGE_CLASS);
+      lastMessageOdd = !lastMessageOdd;
+    }
+    setTimeout(() => {
+      const mb = document.getElementById('messagebuffer');
+      if (mb !== null && mb.scrollHeight - (mb.clientHeight + mb.scrollTop) < 50) {
+        mb.scrollTop = mb.scrollHeight - mb.clientHeight;
       }
-
-      /* ----- END OF LIBRARY ----- */
-
-      /* -----CONFIG----- */
-      /*
-        usertype:
-        'owner' for admins
-        'op' for mods
-        'guest' for unregistered accounts
-        ''   for normal users
-        */
-      const USERLIST_COLORS = {
-        'pokegaard': {usertype: 'owner', css: 'color: #00FF7F !important;'},
-        'Amberainbow': {usertype: '', css: 'color: #FF69B4 !important;'},
-      };
-
-      /* -----CONFIG----- */
-
-      for (const [name, color] of Object.entries(USERLIST_COLORS)) {
-        const userType = color.usertype ? `.userlist_${color.usertype}` : '';
-        $(`div.userlist_item span${userType}:contains("${name}")`).css('cssText', color.css);
+    }, 250);
+    emoteHoverAll();
+    if (CLIENT.name && obj.username !== CLIENT.name &&
+        obj.msg.toLowerCase().includes(CLIENT.name.toLowerCase()) && !obj.meta.shadow &&
+        obj.username !== '[server]') {
+      audioFeedback();
+    }
+    if (obj.msg.startsWith('!poof') || obj.msg.includes('do poof')) {
+      deleteMsgByUsername(obj.username);
+    }
+  });
+  socket.on('addUser', (obj) => {
+    if (USERLIST_COLORS[obj.name]) {
+      const userType = USERLIST_COLORS[obj.name].usertype ?
+          `.userlist_${USERLIST_COLORS[obj.name].usertype}` :
+          '';
+      $(`div.userlist_item span${userType}:contains("${obj.name}")`)
+          .css('cssText', USERLIST_COLORS[obj.name].css);
+      /* not sure if DOM is guaranteed to be updated yet when emit occurs, so
+       * try again in 0.25 seconds for good measure */
+      setTimeout(() => {
+        const userType = USERLIST_COLORS[obj.name].usertype ?
+            `.userlist_${USERLIST_COLORS[obj.name].usertype}` :
+            '';
+        $(`div.userlist_item span${userType}:contains("${obj.name}")`)
+            .css('cssText', USERLIST_COLORS[obj.name].css);
+      }, 250);
+    }
+  });
+  socket.on('newPoll', (obj) => newPoll());
+  socket.on('pm', (obj) => {
+    if (obj.username !== CLIENT.name) {
+      audioFeedback();
+    }
+  });
+  (() => {
+    const mbDiv = $('#messagebuffer div');
+    let line;
+    for (let i = 0; i < mbDiv.length; i++) {
+      if (mbDiv && (line = $(mbDiv[i]))[0] && line.attr('class').startsWith('chat-msg-')) {
+        mbDiv[i].classList.add(lastMessageOdd ? ODD_MESSAGE_CLASS : EVEN_MESSAGE_CLASS);
+        lastMessageOdd = !lastMessageOdd;
       }
-
-      const ODD_MESSAGE_CLASS = 'odd-message';
-      const EVEN_MESSAGE_CLASS = 'even-message';
-      let lastMessageOdd = false;
-
-      let CHAT_INIT = false;
-      if (!CHAT_INIT) {
-        CHAT_INIT = true;
-
-        if (twemojiStuff) {
-          initTwemoji();
-        }
-
-        socket.on('chatMsg', (obj) => {
-          const mb = document.getElementById('messagebuffer');
-          if (mb && mb.lastChild && $(mb.lastChild).attr('class').startsWith('chat-msg-') &&
-              !obj.meta.shadow) {
-            mb.lastChild.classList.add(lastMessageOdd ? ODD_MESSAGE_CLASS : EVEN_MESSAGE_CLASS);
-            lastMessageOdd = !lastMessageOdd;
-          }
-          setTimeout(() => {
-            const mb = document.getElementById('messagebuffer');
-            if (mb !== null && mb.scrollHeight - (mb.clientHeight + mb.scrollTop) < 50) {
-              mb.scrollTop = mb.scrollHeight - mb.clientHeight;
-            }
-          }, 250);
-          emoteHoverAll();
-          if (CLIENT.name && obj.username !== CLIENT.name &&
-              obj.msg.toLowerCase().includes(CLIENT.name.toLowerCase()) && !obj.meta.shadow &&
-              obj.username !== '[server]') {
-            audioFeedback();
-          }
-          if (obj.msg.startsWith('!poof') || obj.msg.includes('do poof')) {
-            deleteMsgByUsername(obj.username);
-          }
-        });
-        socket.on('addUser', (obj) => {
-          if (USERLIST_COLORS[obj.name]) {
-            const userType = USERLIST_COLORS[obj.name].usertype ?
-                `.userlist_${USERLIST_COLORS[obj.name].usertype}` :
-                '';
-            $(`div.userlist_item span${userType}:contains("${obj.name}")`)
-                .css('cssText', USERLIST_COLORS[obj.name].css);
-            /* not sure if DOM is guaranteed to be updated yet when emit occurs, so
-             * try again in 0.25 seconds for good measure */
-            setTimeout(() => {
-              const userType = USERLIST_COLORS[obj.name].usertype ?
-                  `.userlist_${USERLIST_COLORS[obj.name].usertype}` :
-                  '';
-              $(`div.userlist_item span${userType}:contains("${obj.name}")`)
-                  .css('cssText', USERLIST_COLORS[obj.name].css);
-            }, 250);
-          }
-        });
-        socket.on('newPoll', (obj) => newPoll());
-        socket.on('pm', (obj) => {
-          if (obj.username !== CLIENT.name) {
-            audioFeedback();
-          }
-        });
-        (() => {
-          const mbDiv = $('#messagebuffer div');
-          let line;
-          for (let i = 0; i < mbDiv.length; i++) {
-            if (mbDiv && (line = $(mbDiv[i]))[0] && line.attr('class').startsWith('chat-msg-')) {
-              mbDiv[i].classList.add(lastMessageOdd ? ODD_MESSAGE_CLASS : EVEN_MESSAGE_CLASS);
-              lastMessageOdd = !lastMessageOdd;
-            }
-          }
-        })();
-        $('#guestlogin')[0].onclick = (e) => {
+    }
+  })();
+  $('#guestlogin')[0].onclick = (e) => {
     e.target === document.querySelector('#guestlogin span') && socket.emit('login', {
       name: $('#guestname').val(),
     });
   };
-        document.querySelector('#guestlogin span').style = 'top:92%!important;left:84%!important;';
-      }
+  document.querySelector('#guestlogin span').style = 'top:92%!important;left:84%!important;';
+}
 
-      let CSS_INIT = false;
-      const CSS_RAW = '';
-      if (!CSS_INIT) {
-        CSS_INIT = true;
-        $('head').append(`<style id="chancss2" type="text/css">${CSS_RAW}</style>`);
-      } else {
-        $('head #chancss2').html(CSS_RAW);
-      }
+let CSS_INIT = false;
+const CSS_RAW = '';
+if (!CSS_INIT) {
+  CSS_INIT = true;
+  $('head').append(`<style id="chancss2" type="text/css">${CSS_RAW}</style>`);
+} else {
+  $('head #chancss2').html(CSS_RAW);
+}
 
-      const /** @type {!Array<string>} */ TabCompletionEmotes = [];
-      const TabCompletion = {
-        last: '',
-        matches: [],
-      };
+const /** @type {!Array<string>} */ TabCompletionEmotes = [];
+const TabCompletion = {
+  last: '',
+  matches: [],
+};
 
-      function tabCompletionRefresh() {
-        while (TabCompletionEmotes.length > 0) {
-          TabCompletionEmotes.pop();
-        }
-        for (const emote of window.CHANNEL.emotes) {
-          TabCompletionEmotes.push(emote.name);
-        }
-        TabCompletionEmotes.sort();
-      }
+function tabCompletionRefresh() {
+  while (TabCompletionEmotes.length > 0) {
+    TabCompletionEmotes.pop();
+  }
+  for (const emote of window.CHANNEL.emotes) {
+    TabCompletionEmotes.push(emote.name);
+  }
+  TabCompletionEmotes.sort();
+}
 
-      tabCompletionRefresh();
-      socket.on('emoteList', tabCompletionRefresh);
-      socket.on('updateEmote', tabCompletionRefresh);
-      socket.on('removeEmote', tabCompletionRefresh);
+tabCompletionRefresh();
+socket.on('emoteList', tabCompletionRefresh);
+socket.on('updateEmote', tabCompletionRefresh);
+socket.on('removeEmote', tabCompletionRefresh);
 
-      function chatTabComplete() {
-        const match = /(.*?) *$/.exec($('#chatline').val());
-        if (match === null || match[1] === '') {
-          return;
-        }
-        const chatline = match[1];
-        const words = chatline.split(' ');
-        const currentWithCap = words[words.length - 1];
-        let current = currentWithCap.toLowerCase();
-        if (!current.match(/^[\w-():]{1,20}:?$/)) {
-          return;
-        }
-        const usersWithCap = Array.prototype.slice.call($('#userlist').children())
-                                 .map((elem) => elem.children[1].innerHTML);
-        if (currentWithCap === TabCompletion.last) {
-          TabCompletion.last = current =
+function chatTabComplete() {
+  const match = /(.*?) *$/.exec($('#chatline').val());
+  if (match === null || match[1] === '') {
+    return;
+  }
+  const chatline = match[1];
+  const words = chatline.split(' ');
+  const currentWithCap = words[words.length - 1];
+  let current = currentWithCap.toLowerCase();
+  if (!current.match(/^[\w-():]{1,20}:?$/)) {
+    return;
+  }
+  const usersWithCap = Array.prototype.slice.call($('#userlist').children())
+                           .map((elem) => elem.children[1].innerHTML);
+  if (currentWithCap === TabCompletion.last) {
+    TabCompletion.last = current =
         TabCompletion
             .matches[(TabCompletion.matches.indexOf(currentWithCap) + 1) % TabCompletion.matches.length];
-          current += ' ';
-          words[words.length - 1] = current;
-          $('#chatline').val(words.join(' '));
-          return;
-        }
-        const matches =
-            TabCompletionEmotes.filter((str) => str.toLowerCase().startsWith(current))
-                .concat(usersWithCap.filter((str) => str.toLowerCase().startsWith(current))
-                            .map((str) => words.length === 1 ? str + ':' : str));
-        if (matches.length === 0) {
-          return;
-        }
-        TabCompletion.matches = matches;
-        TabCompletion.last = current = TabCompletion.matches[0];
-        current += ' ';
-        words[words.length - 1] = current;
-        $('#chatline').val(words.join(' '));
-        return;
-      }
+    current += ' ';
+    words[words.length - 1] = current;
+    $('#chatline').val(words.join(' '));
+    return;
+  }
+  const matches = TabCompletionEmotes.filter((str) => str.toLowerCase().startsWith(current))
+                      .concat(usersWithCap.filter((str) => str.toLowerCase().startsWith(current))
+                                  .map((str) => words.length === 1 ? str + ':' : str));
+  if (matches.length === 0) {
+    return;
+  }
+  TabCompletion.matches = matches;
+  TabCompletion.last = current = TabCompletion.matches[0];
+  current += ' ';
+  words[words.length - 1] = current;
+  $('#chatline').val(words.join(' '));
+  return;
+}
 
-      const emoteHover = document.createElement('div');
-      emoteHover.id = 'emote-hover';
-      emoteHover.setAttribute(
-          'style',
-          'visibility: hidden; top: 0px;left: 0px;box-sizing: border-box;display: block;position: absolute;padding: 5px;margin: 0px;color: #D3D3D3;line-height: 60px;text-align: center;z-index: 9999;');
-      emoteHover.innerHTML =
-          '<div id="emote-hover-inner" style="box-sizing: border-box;background-color: #000;color: #fff;max-width: 200px;padding: 5px 8px 4px;margin: 0px;text-align: center;font-family: Helvetica Neue,Helvetica,sans-serif;font-size: 1.2rem;line-height: 2rem;"></div>';
-      document.querySelector('body').appendChild(emoteHover);
-      const emoteHoverInner = emoteHover.firstChild;
+const emoteHover = document.createElement('div');
+emoteHover.id = 'emote-hover';
+emoteHover.setAttribute(
+    'style',
+    'visibility: hidden; top: 0px;left: 0px;box-sizing: border-box;display: block;position: absolute;padding: 5px;margin: 0px;color: #D3D3D3;line-height: 60px;text-align: center;z-index: 9999;');
+emoteHover.innerHTML =
+    '<div id="emote-hover-inner" style="box-sizing: border-box;background-color: #000;color: #fff;max-width: 200px;padding: 5px 8px 4px;margin: 0px;text-align: center;font-family: Helvetica Neue,Helvetica,sans-serif;font-size: 1.2rem;line-height: 2rem;"></div>';
+document.querySelector('body').appendChild(emoteHover);
+const emoteHoverInner = emoteHover.firstChild;
 
-      const xOffset = 0;
-      const yOffset = -23;
-      function setHover(obj) {
-        if (typeof obj !== 'object' || obj === null) {
-          return;
-        }
-        obj.onmouseenter = function(e) {
-          emoteHoverInner.innerHTML = this.getAttribute('hover') || this.title;
-          emoteHover.style.visibility = 'visible';
-          emoteHover.style.top = (e.pageY - yOffset) + 'px';
-          emoteHover.style.left = (e.pageX - xOffset) + 'px';
-        };
-        obj.onmouseleave = (e) => {
-          emoteHover.style.visibility = 'hidden';
-        };
-        obj.onmousemove = (e) => {
-          emoteHover.style.top = (e.pageY - yOffset) + 'px';
-          emoteHover.style.left = (e.pageX - xOffset) + 'px';  // 47
-        };
-      }
+const xOffset = 0;
+const yOffset = -23;
+function setHover(obj) {
+  if (typeof obj !== 'object' || obj === null) {
+    return;
+  }
+  obj.onmouseenter = function(e) {
+    emoteHoverInner.innerHTML = this.getAttribute('hover') || this.title;
+    emoteHover.style.visibility = 'visible';
+    emoteHover.style.top = (e.pageY - yOffset) + 'px';
+    emoteHover.style.left = (e.pageX - xOffset) + 'px';
+  };
+  obj.onmouseleave = (e) => {
+    emoteHover.style.visibility = 'hidden';
+  };
+  obj.onmousemove = (e) => {
+    emoteHover.style.top = (e.pageY - yOffset) + 'px';
+    emoteHover.style.left = (e.pageX - xOffset) + 'px';  // 47
+  };
+}
 
-      function emoteHoverAll() {
-        const emotes = document.querySelectorAll('img.channel-emote');
-        for (let i = 0; i < emotes.length; i++) {
-          if (emotes[i].onmouseenter === null) {
-            setHover(emotes[i]);
-          }
-        }
-      }
-      emoteHoverAll();
+function emoteHoverAll() {
+  const emotes = document.querySelectorAll('img.channel-emote');
+  for (let i = 0; i < emotes.length; i++) {
+    if (emotes[i].onmouseenter === null) {
+      setHover(emotes[i]);
+    }
+  }
+}
+emoteHoverAll();
 
-      function newPoll() {
-        $('#pollwrap div.well').draggable();
-      }
-      const newpollbtn = document.getElementById('newpollbtn');
-      newpollbtn !== null && (newpollbtn.onclick = newPoll);
-      $('#emotelist > div.modal-dialog > div.modal-content').draggable();
+function newPoll() {
+  $('#pollwrap div.well').draggable();
+}
+const newpollbtn = document.getElementById('newpollbtn');
+newpollbtn !== null && (newpollbtn.onclick = newPoll);
+$('#emotelist > div.modal-dialog > div.modal-content').draggable();
 
-      const togglesCSS_Compact =
-          '#queue .queue_entry{padding: 0px;line-height: 10px;}#queue .queue_entry .btn-group button {padding-top: 0px;padding-bottom: 0px;line-height: 14px;}#rightcontrols button {padding-top: 0px;padding-bottom: 0px;}#mediaurl {padding: 0px 3px;height: 20px;}#addfromurl .input-group button {padding-top: 0px;padding-bottom: 0px;}#rightcontrols{margin-top: 0px !important;}#playlistmanagerwrap{margin-top: 0px;}#videowrap{margin-bottom: 0px !important;}#queuefail .vertical-spacer{margin-top: 0px;}#addfromurl .vertical-spacer{margin-top: 0px;}#addfromurl .checkbox{margin: 0px;}#mainpage{padding-top: 25px !important;}';
-      const togglesCSS_Title =
-          '#currenttitle{display: block !important; font-size: 16px !important; margin-top: -30px !important; margin-bottom: -5px;}#mainpage{/*padding-top: 45px !important;*/}';
-      const togglesCSS_Timestamp = '#messagebuffer>div>span.timestamp{display:none;}';
-      const userlistToggle = document.querySelector('#userlisttoggle');
-      let userlistSizeToggleInner;
-      function userlistSizeToggleFn() {
-        $('#userlist').toggleClass('userlist-large', !!cookie.userlistLarge);
-        $('#messagebuffer')
-            .toggleClass('userlist-hidden', !!cookie.userlistHidden || !!cookie.userlistLarge);
-        $('#chatline')
-            .toggleClass('userlist-hidden', !!cookie.userlistHidden || !!cookie.userlistLarge);
-        $('#leftcontrols')
-            .toggleClass('userlist-hidden', !!cookie.userlistHidden || !!cookie.userlistLarge);
-        $('#videowrap')
-            .toggleClass('userlist-hidden', !!cookie.userlistHidden || !!cookie.userlistLarge);
-        $('#rightcontrols')
-            .toggleClass('userlist-hidden', !!cookie.userlistHidden || !!cookie.userlistLarge);
-        $('#rightpane')
-            .toggleClass('userlist-hidden', !!cookie.userlistHidden || !!cookie.userlistLarge);
-        userlistSizeToggleInner.style.width = !!cookie.userlistLarge ? '100%' : '50%';
-      }
-      let cookie;
-      function cookieLoad() {
-        const regex = /.*(?:(\{.*\})).*/.exec(document.cookie);
-        let cookieJSON;
-        if (regex && typeof regex !== null && regex[1] && regex[1] !== '') {
-          try {
-            cookieJSON = JSON.parse(regex[1]);
-          } catch (e) {
-          }
-        }
-        cookie = (cookieJSON && typeof cookieJSON === 'object') ? cookieJSON : {
-          userlistHidden: userlist.style.display === 'none',
-          userlistLarge: false,
-          audioFeedback: false,
-          playlistStyle: 0,
-          compact: false,
-          title: false,
-          timestamp: false,
-        };
-        if (cookie.userlistLarge) {
-          cookie.userlistHidden = true;
-          cookieSave();
-        }
-        userlistSizeToggleFn();
-        if (cookie.userlistHidden) {
-          userlistSizeToggleFn();
-          cookie.userlistHidden = !cookie.userlistHidden;
-          userlistToggle.click();
-        }
-        audioFeedbackToggleFn();
-        cookie.playlistStyle = typeof cookie.playlistStyle === 'number' ? cookie.playlistStyle : 0;
-        playlistStyleToggleFn();
-        compactToggleFn();
-        titleToggleFn();
-      }
-      const cookieSaveHooks = {};
-      function cookieSave() {
-        document.cookie = JSON.stringify(cookie);
-        for (const hook of cookieSaveHooks) {
-          if (typeof hook === 'function') {
-            hook();
-          }
-        }
-      }
-      function cookieUserlistToggle() {
-        cookie.userlistHidden = !cookie.userlistHidden;
-        cookieSave();
-        userlistSizeToggleFn();
-      }
-      function cookieUserlistSizeToggle() {
-        cookie.userlistLarge = !cookie.userlistLarge;
-        if (!!cookie.userlistHidden) {
-          userlistToggle.click();
-        }
-        cookieSave();
-        userlistSizeToggleFn();
-      }
-      userlistToggle.onclick = cookieUserlistToggle;
+const togglesCSS_Compact =
+    '#queue .queue_entry{padding: 0px;line-height: 10px;}#queue .queue_entry .btn-group button {padding-top: 0px;padding-bottom: 0px;line-height: 14px;}#rightcontrols button {padding-top: 0px;padding-bottom: 0px;}#mediaurl {padding: 0px 3px;height: 20px;}#addfromurl .input-group button {padding-top: 0px;padding-bottom: 0px;}#rightcontrols{margin-top: 0px !important;}#playlistmanagerwrap{margin-top: 0px;}#videowrap{margin-bottom: 0px !important;}#queuefail .vertical-spacer{margin-top: 0px;}#addfromurl .vertical-spacer{margin-top: 0px;}#addfromurl .checkbox{margin: 0px;}#mainpage{padding-top: 25px !important;}';
+const togglesCSS_Title =
+    '#currenttitle{display: block !important; font-size: 16px !important; margin-top: -30px !important; margin-bottom: -5px;}#mainpage{/*padding-top: 45px !important;*/}';
+const togglesCSS_Timestamp = '#messagebuffer>div>span.timestamp{display:none;}';
+const userlistToggle = document.querySelector('#userlisttoggle');
+let userlistSizeToggleInner;
+function userlistSizeToggleFn() {
+  $('#userlist').toggleClass('userlist-large', !!cookie.userlistLarge);
+  $('#messagebuffer')
+      .toggleClass('userlist-hidden', !!cookie.userlistHidden || !!cookie.userlistLarge);
+  $('#chatline').toggleClass('userlist-hidden', !!cookie.userlistHidden || !!cookie.userlistLarge);
+  $('#leftcontrols')
+      .toggleClass('userlist-hidden', !!cookie.userlistHidden || !!cookie.userlistLarge);
+  $('#videowrap').toggleClass('userlist-hidden', !!cookie.userlistHidden || !!cookie.userlistLarge);
+  $('#rightcontrols')
+      .toggleClass('userlist-hidden', !!cookie.userlistHidden || !!cookie.userlistLarge);
+  $('#rightpane').toggleClass('userlist-hidden', !!cookie.userlistHidden || !!cookie.userlistLarge);
+  userlistSizeToggleInner.style.width = !!cookie.userlistLarge ? '100%' : '50%';
+}
+let cookie;
+function cookieLoad() {
+  const regex = /.*(?:(\{.*\})).*/.exec(document.cookie);
+  let cookieJSON;
+  if (regex && typeof regex !== null && regex[1] && regex[1] !== '') {
+    try {
+      cookieJSON = JSON.parse(regex[1]);
+    } catch (e) {
+    }
+  }
+  cookie = (cookieJSON && typeof cookieJSON === 'object') ? cookieJSON : {
+    userlistHidden: userlist.style.display === 'none',
+    userlistLarge: false,
+    audioFeedback: false,
+    playlistStyle: 0,
+    compact: false,
+    title: false,
+    timestamp: false,
+  };
+  if (cookie.userlistLarge) {
+    cookie.userlistHidden = true;
+    cookieSave();
+  }
+  userlistSizeToggleFn();
+  if (cookie.userlistHidden) {
+    userlistSizeToggleFn();
+    cookie.userlistHidden = !cookie.userlistHidden;
+    userlistToggle.click();
+  }
+  audioFeedbackToggleFn();
+  cookie.playlistStyle = typeof cookie.playlistStyle === 'number' ? cookie.playlistStyle : 0;
+  playlistStyleToggleFn();
+  compactToggleFn();
+  titleToggleFn();
+}
+const cookieSaveHooks = {};
+function cookieSave() {
+  document.cookie = JSON.stringify(cookie);
+  for (const hook of cookieSaveHooks) {
+    if (typeof hook === 'function') {
+      hook();
+    }
+  }
+}
+function cookieUserlistToggle() {
+  cookie.userlistHidden = !cookie.userlistHidden;
+  cookieSave();
+  userlistSizeToggleFn();
+}
+function cookieUserlistSizeToggle() {
+  cookie.userlistLarge = !cookie.userlistLarge;
+  if (!!cookie.userlistHidden) {
+    userlistToggle.click();
+  }
+  cookieSave();
+  userlistSizeToggleFn();
+}
+userlistToggle.onclick = cookieUserlistToggle;
 
-      const audioFeedbackSound = new Audio('https://cdn.betterttv.net/assets/sounds/ts-tink.ogg');
-      function audioFeedback() {
-        if (cookie.audioFeedback) {
-          audioFeedbackSound.pause();
-          audioFeedbackSound.currentTime = 0;
-          audioFeedbackSound.play();
-        }
-      }
+const audioFeedbackSound = new Audio('https://cdn.betterttv.net/assets/sounds/ts-tink.ogg');
+function audioFeedback() {
+  if (cookie.audioFeedback) {
+    audioFeedbackSound.pause();
+    audioFeedbackSound.currentTime = 0;
+    audioFeedbackSound.play();
+  }
+}
 
-      function audioFeedbackToggle() {
-        cookie.audioFeedback = !cookie.audioFeedback;
-        cookieSave();
-        audioFeedbackToggleFn();
-      }
+function audioFeedbackToggle() {
+  cookie.audioFeedback = !cookie.audioFeedback;
+  cookieSave();
+  audioFeedbackToggleFn();
+}
 
-      function audioFeedbackToggleFn() {
-        $('#audiofeedbacktoggle').toggleClass('audio-feedback-on', !!cookie.audioFeedback);
-      }
+function audioFeedbackToggleFn() {
+  $('#audiofeedbacktoggle').toggleClass('audio-feedback-on', !!cookie.audioFeedback);
+}
 
-      function playlistStyleToggle() {
-        cookie.playlistStyle = (cookie.playlistStyle + 1) % 3;
-        cookieSave();
-        playlistStyleToggleFn();
-      }
+function playlistStyleToggle() {
+  cookie.playlistStyle = (cookie.playlistStyle + 1) % 3;
+  cookieSave();
+  playlistStyleToggleFn();
+}
 
-      function compactToggle() {
-        cookie.compact = !cookie.compact;
-        cookieSave();
-        compactToggleFn();
-      }
+function compactToggle() {
+  cookie.compact = !cookie.compact;
+  cookieSave();
+  compactToggleFn();
+}
 
-      let compactToggleBtn;
-      let compactToggleCss;
-      function compactToggleFn() {
-        compactToggleBtn.style.backgroundColor = !!cookie.compact ? '#CCFFCC' : '#FFCCCC';
-        compactToggleCss.innerHTML = !!cookie.compact ? togglesCSS_Compact : '';
-      }
+let compactToggleBtn;
+let compactToggleCss;
+function compactToggleFn() {
+  compactToggleBtn.style.backgroundColor = !!cookie.compact ? '#CCFFCC' : '#FFCCCC';
+  compactToggleCss.innerHTML = !!cookie.compact ? togglesCSS_Compact : '';
+}
 
-      function titleToggle() {
-        cookie.title = !cookie.title;
-        cookieSave();
-        titleToggleFn();
-      }
+function titleToggle() {
+  cookie.title = !cookie.title;
+  cookieSave();
+  titleToggleFn();
+}
 
-      const mainpage = document.querySelector('#mainpage');
-      let titleToggleBtn;
-      let titleToggleCss;
-      function titleToggleFn() {
-        titleToggleBtn.style.backgroundColor = !!cookie.title ? '#CCFFCC' : '#FFCCCC';
-        titleToggleCss.innerHTML = !!cookie.title ? togglesCSS_Title : '';
-        mainpage.setAttribute('style', !!cookie.title ? 'padding-top: 45px !important;' : '');
-      }
+const mainpage = document.querySelector('#mainpage');
+let titleToggleBtn;
+let titleToggleCss;
+function titleToggleFn() {
+  titleToggleBtn.style.backgroundColor = !!cookie.title ? '#CCFFCC' : '#FFCCCC';
+  titleToggleCss.innerHTML = !!cookie.title ? togglesCSS_Title : '';
+  mainpage.setAttribute('style', !!cookie.title ? 'padding-top: 45px !important;' : '');
+}
 
-      function playlistStyleToggleFn() {
-        $('#queue').toggleClass('playlist-style-1', cookie.playlistStyle === 1);
-        $('#queue').toggleClass('playlist-style-2', cookie.playlistStyle === 2);
-        document.querySelector('#playliststyletoggle').innerHTML = cookie.playlistStyle || '';
-      }
+function playlistStyleToggleFn() {
+  $('#queue').toggleClass('playlist-style-1', cookie.playlistStyle === 1);
+  $('#queue').toggleClass('playlist-style-2', cookie.playlistStyle === 2);
+  document.querySelector('#playliststyletoggle').innerHTML = cookie.playlistStyle || '';
+}
 
-      function timestampToggle() {
-        cookie.timestamp = !cookie.timestamp;
-        cookieSave();
-        timestampToggleFn();
-      }
+function timestampToggle() {
+  cookie.timestamp = !cookie.timestamp;
+  cookieSave();
+  timestampToggleFn();
+}
 
-      let timestampToggleCss;
-      function timestampToggleFn() {
-        $('#timestamptoggle').toggleClass('timestamp-off', !!cookie.timestamp);
-        timestampToggleCss.innerHTML = !!cookie.timestamp ? togglesCSS_Timestamp : '';
-      }
+let timestampToggleCss;
+function timestampToggleFn() {
+  $('#timestamptoggle').toggleClass('timestamp-off', !!cookie.timestamp);
+  timestampToggleCss.innerHTML = !!cookie.timestamp ? togglesCSS_Timestamp : '';
+}
 
-      let COOKIE_INIT = false;
-      if (!COOKIE_INIT) {
-        COOKIE_INIT = true;
-        setHover(document.querySelector('#userlisttoggle'));
-        const userlistSizeToggle = document.createElement('i');
-        userlistSizeToggle.id = 'userlistsizetoggle';
-        userlistSizeToggle.setAttribute('class', 'glyphicon pull-left pointer unselectable');
-        userlistSizeToggle.setAttribute('title', 'Toggle Userlist Size');
-        userlistSizeToggle.innerHTML = '<div id="userlistsizetoggle-inner"></div>';
-        document.querySelector('#usercount')
-            .parentNode.insertBefore(userlistSizeToggle, document.querySelector('#usercount'));
-        userlistSizeToggle.onclick = cookieUserlistSizeToggle;
-        setHover(userlistSizeToggle);
-        userlistSizeToggleInner = document.querySelector('#userlistsizetoggle-inner');
-        const audioFeedbackToggleBtn = document.createElement('i');
-        audioFeedbackToggleBtn.id = 'audiofeedbacktoggle';
-        audioFeedbackToggleBtn.setAttribute('class', 'glyphicon pull-left pointer unselectable');
-        audioFeedbackToggleBtn.setAttribute('title', 'Toggle Audio Feedback');
-        audioFeedbackToggleBtn.innerHTML = '\uD83D\uDCE2';
-        document.querySelector('#usercount')
-            .parentNode.insertBefore(audioFeedbackToggleBtn, document.querySelector('#usercount'));
-        audioFeedbackToggleBtn.onclick = audioFeedbackToggle;
-        setHover(audioFeedbackToggleBtn);
-        const playlistStyleToggleBtn = document.createElement('i');
-        playlistStyleToggleBtn.id = 'playliststyletoggle';
-        playlistStyleToggleBtn.setAttribute('class', 'glyphicon pull-right pointer unselectable');
-        playlistStyleToggleBtn.setAttribute('title', 'Toggle Playlist Style');
-        playlistStyleToggleBtn.innerHTML = '';
-        document.querySelector('#usercount')
-            .parentNode.insertBefore(playlistStyleToggleBtn, document.querySelector('#usercount'));
-        playlistStyleToggleBtn.onclick = playlistStyleToggle;
-        setHover(playlistStyleToggleBtn);
-        compactToggleBtn = document.createElement('i');
-        compactToggleBtn.id = 'compacttoggle';
-        compactToggleBtn.setAttribute('class', 'glyphicon pull-right pointer unselectable');
-        compactToggleBtn.setAttribute('title', 'Toggle Compact Layout');
-        compactToggleBtn.innerHTML = 'C';
-        document.querySelector('#usercount')
-            .parentNode.insertBefore(compactToggleBtn, document.querySelector('#usercount'));
-        compactToggleBtn.onclick = compactToggle;
-        setHover(compactToggleBtn);
-        titleToggleBtn = document.createElement('i');
-        titleToggleBtn.id = 'titletoggle';
-        titleToggleBtn.setAttribute('class', 'glyphicon pull-right pointer unselectable');
-        titleToggleBtn.setAttribute('title', 'Toggle Video Title');
-        titleToggleBtn.innerHTML = 'T';
-        document.querySelector('#usercount')
-            .parentNode.insertBefore(titleToggleBtn, document.querySelector('#usercount'));
-        titleToggleBtn.onclick = titleToggle;
-        setHover(titleToggleBtn);
-        const timestampToggleBtn = document.createElement('i');
-        timestampToggleBtn.id = 'timestamptoggle';
-        timestampToggleBtn.setAttribute('class', 'glyphicon pull-right pointer unselectable');
-        timestampToggleBtn.setAttribute('title', 'Toggle Timestamp');
-        timestampToggleBtn.innerHTML = '\uD83D\uDD51';
-        document.querySelector('#usercount')
-            .parentNode.insertBefore(timestampToggleBtn, document.querySelector('#usercount'));
-        timestampToggleBtn.onclick = timestampToggle;
-        setHover(timestampToggleBtn);
-        compactToggleCss = document.createElement('style');
-        compactToggleCss.id = 'togglescss-compact';
-        compactToggleCss.setAttribute('type', 'text/css');
-        document.querySelector('head').appendChild(compactToggleCss);
-        titleToggleCss = document.createElement('style');
-        titleToggleCss.id = 'togglescss-title';
-        titleToggleCss.setAttribute('type', 'text/css');
-        document.querySelector('head').appendChild(titleToggleCss);
-        timestampToggleCss = document.createElement('style');
-        timestampToggleCss.id = 'togglescss-timestamp';
-        timestampToggleCss.setAttribute('type', 'text/css');
-        document.querySelector('head').appendChild(timestampToggleCss);
-        cookieLoad();
-      }
+let COOKIE_INIT = false;
+if (!COOKIE_INIT) {
+  COOKIE_INIT = true;
+  setHover(document.querySelector('#userlisttoggle'));
+  const userlistSizeToggle = document.createElement('i');
+  userlistSizeToggle.id = 'userlistsizetoggle';
+  userlistSizeToggle.setAttribute('class', 'glyphicon pull-left pointer unselectable');
+  userlistSizeToggle.setAttribute('title', 'Toggle Userlist Size');
+  userlistSizeToggle.innerHTML = '<div id="userlistsizetoggle-inner"></div>';
+  document.querySelector('#usercount')
+      .parentNode.insertBefore(userlistSizeToggle, document.querySelector('#usercount'));
+  userlistSizeToggle.onclick = cookieUserlistSizeToggle;
+  setHover(userlistSizeToggle);
+  userlistSizeToggleInner = document.querySelector('#userlistsizetoggle-inner');
+  const audioFeedbackToggleBtn = document.createElement('i');
+  audioFeedbackToggleBtn.id = 'audiofeedbacktoggle';
+  audioFeedbackToggleBtn.setAttribute('class', 'glyphicon pull-left pointer unselectable');
+  audioFeedbackToggleBtn.setAttribute('title', 'Toggle Audio Feedback');
+  audioFeedbackToggleBtn.innerHTML = '\uD83D\uDCE2';
+  document.querySelector('#usercount')
+      .parentNode.insertBefore(audioFeedbackToggleBtn, document.querySelector('#usercount'));
+  audioFeedbackToggleBtn.onclick = audioFeedbackToggle;
+  setHover(audioFeedbackToggleBtn);
+  const playlistStyleToggleBtn = document.createElement('i');
+  playlistStyleToggleBtn.id = 'playliststyletoggle';
+  playlistStyleToggleBtn.setAttribute('class', 'glyphicon pull-right pointer unselectable');
+  playlistStyleToggleBtn.setAttribute('title', 'Toggle Playlist Style');
+  playlistStyleToggleBtn.innerHTML = '';
+  document.querySelector('#usercount')
+      .parentNode.insertBefore(playlistStyleToggleBtn, document.querySelector('#usercount'));
+  playlistStyleToggleBtn.onclick = playlistStyleToggle;
+  setHover(playlistStyleToggleBtn);
+  compactToggleBtn = document.createElement('i');
+  compactToggleBtn.id = 'compacttoggle';
+  compactToggleBtn.setAttribute('class', 'glyphicon pull-right pointer unselectable');
+  compactToggleBtn.setAttribute('title', 'Toggle Compact Layout');
+  compactToggleBtn.innerHTML = 'C';
+  document.querySelector('#usercount')
+      .parentNode.insertBefore(compactToggleBtn, document.querySelector('#usercount'));
+  compactToggleBtn.onclick = compactToggle;
+  setHover(compactToggleBtn);
+  titleToggleBtn = document.createElement('i');
+  titleToggleBtn.id = 'titletoggle';
+  titleToggleBtn.setAttribute('class', 'glyphicon pull-right pointer unselectable');
+  titleToggleBtn.setAttribute('title', 'Toggle Video Title');
+  titleToggleBtn.innerHTML = 'T';
+  document.querySelector('#usercount')
+      .parentNode.insertBefore(titleToggleBtn, document.querySelector('#usercount'));
+  titleToggleBtn.onclick = titleToggle;
+  setHover(titleToggleBtn);
+  const timestampToggleBtn = document.createElement('i');
+  timestampToggleBtn.id = 'timestamptoggle';
+  timestampToggleBtn.setAttribute('class', 'glyphicon pull-right pointer unselectable');
+  timestampToggleBtn.setAttribute('title', 'Toggle Timestamp');
+  timestampToggleBtn.innerHTML = '\uD83D\uDD51';
+  document.querySelector('#usercount')
+      .parentNode.insertBefore(timestampToggleBtn, document.querySelector('#usercount'));
+  timestampToggleBtn.onclick = timestampToggle;
+  setHover(timestampToggleBtn);
+  compactToggleCss = document.createElement('style');
+  compactToggleCss.id = 'togglescss-compact';
+  compactToggleCss.setAttribute('type', 'text/css');
+  document.querySelector('head').appendChild(compactToggleCss);
+  titleToggleCss = document.createElement('style');
+  titleToggleCss.id = 'togglescss-title';
+  titleToggleCss.setAttribute('type', 'text/css');
+  document.querySelector('head').appendChild(titleToggleCss);
+  timestampToggleCss = document.createElement('style');
+  timestampToggleCss.id = 'togglescss-timestamp';
+  timestampToggleCss.setAttribute('type', 'text/css');
+  document.querySelector('head').appendChild(timestampToggleCss);
+  cookieLoad();
+}
 
-      const messagebuffer = document.querySelector('#messagebuffer');
-      /**
-       * @param {HTMLElement} messageDiv message <div> - the one with
-       *     class="chat-msg-{username}"
-       */
-      function deleteMsg(messageDiv) {
-        const secondToLastChild = messageDiv.children.item(messageDiv.children.length - 2);
-        if (!secondToLastChild.classList.contains('timestamp') &&
-            secondToLastChild.style.display === 'none') {
-          // Message is already deleted.
-          return;
-        }
+const messagebuffer = document.querySelector('#messagebuffer');
+/**
+ * @param {HTMLElement} messageDiv message <div> - the one with
+ *     class="chat-msg-{username}"
+ */
+function deleteMsg(messageDiv) {
+  const secondToLastChild = messageDiv.children.item(messageDiv.children.length - 2);
+  if (!secondToLastChild.classList.contains('timestamp') &&
+      secondToLastChild.style.display === 'none') {
+    // Message is already deleted.
+    return;
+  }
 
-        const messageSpan = messageDiv.lastChild;
-        messageSpan.style.display = 'none';
+  const messageSpan = messageDiv.lastChild;
+  messageSpan.style.display = 'none';
 
-        const deletedMessageSpan = document.createElement('span');
-        deletedMessageSpan.style.color = '#999';
-        deletedMessageSpan.innerHTML = '&lt;message deleted&gt;';
-        deletedMessageSpan.onclick = () => {
-          if (CLIENT.rank < 2) {
-            return;
-          }
-          messageSpan.style.display = '';
-          deletedMessageSpan.style.display = 'none';
-        };
-        messageDiv.appendChild(deletedMessageSpan);
-      }
+  const deletedMessageSpan = document.createElement('span');
+  deletedMessageSpan.style.color = '#999';
+  deletedMessageSpan.innerHTML = '&lt;message deleted&gt;';
+  deletedMessageSpan.onclick = () => {
+    if (CLIENT.rank < 2) {
+      return;
+    }
+    messageSpan.style.display = '';
+    deletedMessageSpan.style.display = 'none';
+  };
+  messageDiv.appendChild(deletedMessageSpan);
+}
 
-      function deleteMsgByUsername(username) {
-        for (let i = 0; i < messagebuffer.children.length; i++) {
-          if (messagebuffer.children[i].classList[0] === `chat-msg-${username}`) {
-            deleteMsg(messagebuffer.children[i]);
-          }
-        }
-      }
+function deleteMsgByUsername(username) {
+  for (let i = 0; i < messagebuffer.children.length; i++) {
+    if (messagebuffer.children[i].classList[0] === `chat-msg-${username}`) {
+      deleteMsg(messagebuffer.children[i]);
+    }
+  }
+}
 
-      /**
-       * Fix raw video controls being hidden.
-       *
-       * Something else in this script is adding display: block
-       * (probably fucking jquery)
-       * but it's not clear which call's doing it.
-       *
-       * So just remove it every time the media changes, as well as
-       * a couple seconds after. Just in case it takes a bit to load.
-       */
-      function fixRawVideoControls() {
-        const spinner = document.getElementsByClassName('vjs-loading-spinner').item(0);
-        const controlBar = document.getElementsByClassName('vjs-control-bar').item(0);
+/**
+ * Fix raw video controls being hidden.
+ *
+ * Something else in this script is adding display: block
+ * (probably fucking jquery)
+ * but it's not clear which call's doing it.
+ *
+ * So just remove it every time the media changes, as well as
+ * a couple seconds after. Just in case it takes a bit to load.
+ */
+function fixRawVideoControls() {
+  const spinner = document.getElementsByClassName('vjs-loading-spinner').item(0);
+  const controlBar = document.getElementsByClassName('vjs-control-bar').item(0);
 
-        for (const elem of [spinner, controlBar]) {
-          if (elem == null) {
-            continue;
-          }
-          elem.style.removeProperty('display');
-        }
-      }
-      socket.on('changeMedia', fixRawVideoControls);
-      socket.on('mediaUpdate', fixRawVideoControls);
+  for (const elem of [spinner, controlBar]) {
+    if (elem == null) {
+      continue;
+    }
+    elem.style.removeProperty('display');
+  }
+}
+socket.on('changeMedia', fixRawVideoControls);
+socket.on('mediaUpdate', fixRawVideoControls);
 
-      // hacky fix for broken layout elements :/
-      document.body.addEventListener('load', resizeStuff, true);
-      socket.on('changeMedia', resizeStuff);
-      setInterval(() => resizeStuff(), 1000);
+// hacky fix for broken layout elements :/
+document.body.addEventListener('load', resizeStuff, true);
+socket.on('changeMedia', resizeStuff);
+setInterval(() => resizeStuff(), 1000);
