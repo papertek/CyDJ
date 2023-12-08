@@ -4102,8 +4102,11 @@ function addChatMessage(data) {
 
 // fix formatting and sending chat messages
 // DEV NOTE: this are extended events from CyTube "util.js" file
+
 $('#chatline, #chatbtn').off();
+
 let /** @type {string} */ unsentMsg = null;
+
 $('#chatline').on('keydown', (ev) => {
   if (ev.key === 'Enter') {
     if (CHATTHROTTLE) {
