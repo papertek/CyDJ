@@ -3295,7 +3295,7 @@ var cydj = (function (exports) {
       Xqc.SUB_24_MONTHS_T1,
     ],
     'ItMePeachy': [
-      'https://raw.githubusercontent.com/papertek/CyDJ/beta/images/badges/boy%20kisser.png',
+      'https://raw.githubusercontent.com/papertek/CyDJ/beta/images/badges/peachy.gif',
       'https://raw.githubusercontent.com/papertek/CyDJ/beta/images/badges/guitar%20time.gif',
     ],
     'deblankyy': [
@@ -4030,7 +4030,7 @@ var cydj = (function (exports) {
 
   const ChannelName_Caption = 'CyDJ';
 
-  const Version_Now = 'CyDJEdge12.28.23.0';
+  const Version_Now = 'CyDJEdge12.2.23.0';
 
   const HeaderDropMenu_Title = 'Information';
 
