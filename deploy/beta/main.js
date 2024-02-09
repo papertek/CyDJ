@@ -3060,8 +3060,8 @@ var cydj = (function (exports) {
       'https://raw.githubusercontent.com/papertek/CyDJ/beta/images/badges/dankspin3.gif',
     ],
     'Xsogon': [
-      Xqc.SUB_36_MONTHS_T1,
       'https://raw.githubusercontent.com/papertek/CyDJ/beta/images/badges/danse.gif',
+      'https://raw.githubusercontent.com/papertek/CyDJ/beta/images/badges/Porcellio_Expansus_PFP.png',
     ],
     'spintto': [
       'https://raw.githubusercontent.com/papertek/CyDJ/beta/images/badges/thegif.gif',
