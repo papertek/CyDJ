@@ -3060,7 +3060,7 @@ var cydj = (function (exports) {
       'https://raw.githubusercontent.com/papertek/CyDJ/beta/images/badges/dankspin3.gif',
     ],
     'Xsogon': [
-      Xqc.SUB_36_MONTHS_T1,
+      'https://raw.githubusercontent.com/papertek/CyDJ/beta/images/badges/danse.gif',
       'https://raw.githubusercontent.com/papertek/CyDJ/beta/images/badges/Porcellio_Expansus_PFP.png',
     ],
     'spintto': [
@@ -4030,7 +4030,7 @@ var cydj = (function (exports) {
 
   const ChannelName_Caption = 'CyDJ';
 
-  const Version_Now = 'CyDJEdge12.2.23.0';
+  const Version_Now = 'CyDJEdge2.9.24.0';
 
   const HeaderDropMenu_Title = 'Information';
 
