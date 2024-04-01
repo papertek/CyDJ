@@ -236,7 +236,7 @@ const MessagesSuffix_Text = '~xD';
 
 const MessagesSuffix_Percentage = 10;
 
-const CustomPingSound_URL = 'https://github.com/papertek/CyDJ/raw/beta/misc/pingsound.wav';
+const CustomPingSound_URL = 'https://github.com/ItMePeachy/PeachyRoom/raw/master/misc/squeak.mp3';
 
 const PlayerHiding_URL = 'https://c.tenor.com/Q6UjBrnSzvQAAAAC/anime-uh.gif';
 
