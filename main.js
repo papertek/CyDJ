@@ -78,7 +78,7 @@ const UI_RulesBtn = true;
 // [&] imageboard-style attention bar (requires external application)
 const UI_AttentionBar = false;
 // [&] additional custom channel announcement
-const UI_ChannelAnnouncement = true;
+const UI_ChannelAnnouncement = false;
 // full-width video title bar
 const UI_FullTitleBar = true;
 // YouTube/Dailymotion progress bar
