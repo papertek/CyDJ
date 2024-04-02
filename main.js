@@ -1,7 +1,7 @@
 /*
 The MIT License (MIT)
 //
-Copyright (c) 2013-2014 Zimny Lech, 2022 CyDJ developers
+Copyright (c) 2013-2014 Zimny Lech, 2022-2023 CyDJ developers
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
 this software and associated documentation files (the "Software"), to deal in
@@ -209,7 +209,7 @@ const MiniLogo_URL = 'https://cdn.7tv.app/emote/614e8c0b20eaf897465a4c9d/1x.webp
 
 const ChannelName_Caption = 'CyDJ';
 
-export const Version_Now = 'CyDJEdge3.20.23.0';
+export const Version_Now = 'CyDJEdge4.2.24.0';
 
 const HeaderDropMenu_Title = 'Information';
 
@@ -220,11 +220,11 @@ const MOTDAutoLogo_Interval = 20;
 const RulesBtn_Caption = 'Read Channel Rules';
 
 const AttentionBar_URL =
-    'https://media.discordapp.net/attachments/899888900611375184/901603644502331412/unknown.png';
+    'https://raw.githubusercontent.com/papertek/CyDJ/beta/images/letmedofuck.png';
 
 const ChannelAnnouncement_Title = 'CyDJ Alert';
 
-const TitleIcon_URL = 'https://cdn.7tv.app/emote/6040a8bccf6746000db10348/2x';
+const TitleIcon_URL = 'https://cdn.7tv.app/emote/6040a8bccf6746000db10348/2x.webp';
 
 const TitleBarDescription_Caption = 'Now Playing:';
 
@@ -236,7 +236,7 @@ const MessagesSuffix_Text = '~xD';
 
 const MessagesSuffix_Percentage = 10;
 
-const CustomPingSound_URL = 'https://github.com/papertek/CyDJ/raw/beta/misc/pingsound.wav';
+const CustomPingSound_URL = 'https://github.com/ItMePeachy/PeachyRoom/raw/master/misc/squeak.mp3';
 
 const PlayerHiding_URL = 'https://c.tenor.com/Q6UjBrnSzvQAAAAC/anime-uh.gif';
 
@@ -248,10 +248,11 @@ const HeaderDropMenu_Array = [
   ['CyDJ Rooms', ''],
   ['Main Room', 'https://cytu.be/r/cydj'],
   ['Second Room', 'https://cytu.be/r/secretfbimeeting'],
-  //  ['Watch Party', 'https://beta.synchtube.me/r/SecretTwitchRoom'],
+  ['Baked Live Room', 'https://baked.live/tv/cydj'],
   ['Test Room', 'https://cytu.be/r/testplacelilroc'],
   ['Test Room 2', 'https://cytu.be/r/emptyroomtestplace'],
   ['Test Room 3', 'https://cytu.be/r/xqcPeepo'],
+  ['Experiments', 'https://cytu.be/r/cydjrewrite'],
   ['Community Related', ''],
   ['CyDJ Discord', 'https://discord.gg/g8tCGSc2bx'],
   ['Camellia Discord', 'https://discord.gg/camellia'],
@@ -392,28 +393,16 @@ const ChannelThemeURL = 'https://papertek.github.io/CyDJ/deploy/beta/css/DJDefau
 
 const ThemesCSS = [
   [
-    'Plus Red',
-    'https://dl.dropboxusercontent.com/s/th8i1sj332wi0x9/plusred.css',
-  ],
-  [
-    'Celadon',
-    'https://dl.dropboxusercontent.com/s/iwarwhhph1ti2ek/celadon.css',
-  ],
-  [
     'Classic',
     'https://papertek.github.io/CyDJ/deploy/beta/css/twitchclassic.css',
   ],
   [
     'Old DJ',
-    'https://papertek.github.io/CyDJ/deploy/beta/css/DJDefault.css',
+    'https://papertek.github.io/CyDJ/deploy/beta/css/OldDJ.css',
   ],
   [
     'Stars',
     'https://papertek.github.io/CyDJ/deploy/beta/css/stars.css',
-  ],
-  [
-    'Alien',
-    'https://papertek.github.io/CyDJ/deploy/beta/css/alien.css',
   ],
   [
     'Black Cat',
@@ -428,14 +417,14 @@ const ThemesCSS = [
 const EmptyCornerBackground = [
   'https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_a054f4001b6d4f098e7969c988debd18/default/light/2.0',
   'https://cdn.betterttv.net/emote/5dfc5d868608fb0da4120b59/2x',
-  'https://images-ext-1.discordapp.net/external/1guxWfPcmO5XSXYMjKO79mRQ3UORmbKBZsVYyg4Cr-M/%3Fv%3D1/https/cdn.discordapp.com/emojis/891194776798498826.gif',
-  'https://cdn.discordapp.com/attachments/899888900611375184/901313787951480862/small.png',
-  'https://cdn.7tv.app/emote/60d2c62291b6751bc1e05add/4x',
-  'https://media.discordapp.net/attachments/904501042148958219/914300481633914970/JohnJamSmall.gif',
-  'https://media.discordapp.net/attachments/828331546658340905/914594224614277212/unknown.png',
-  'https://media.discordapp.net/attachments/904501042148958219/914593675445690468/unknown.png',
-  'https://media.discordapp.net/attachments/904501042148958219/914594852182831165/pacific.gif',
-  'https://media.discordapp.net/attachments/915415328496951316/925616111242842122/unknown.png',
+  'https://raw.githubusercontent.com/papertek/CyDJ/beta/images/main/891194776798498826%20(1).gif',
+  'https://raw.githubusercontent.com/papertek/CyDJ/beta/images/main/small.png',
+  'https://cdn.7tv.app/emote/60d2c62291b6751bc1e05add/4x.webp',
+  'https://raw.githubusercontent.com/papertek/CyDJ/beta/images/main/JohnJamSmall.gif',
+  'https://raw.githubusercontent.com/papertek/CyDJ/beta/images/main/mud.png',
+  'https://raw.githubusercontent.com/papertek/CyDJ/beta/images/main/xso.png',
+  'https://raw.githubusercontent.com/papertek/CyDJ/beta/images/main/pacific.gif',
+  'https://raw.githubusercontent.com/papertek/CyDJ/beta/images/main/pushing%20ass.png',
 ];
 
 // /////////////////////////////////////////////////////////////////////////////////////////////////
@@ -462,7 +451,7 @@ const IndependentEmotes = [
   ],
   [
     ':skeet:',
-    'https://images-ext-1.discordapp.net/external/10FMCcqjoR5dnswPRzi5sHHS7FjgVsMDfNi4yvklbac/%3Fsize%3D44/https/cdn.discordapp.com/emojis/873855067306999808.gif',
+    'https://raw.githubusercontent.com/papertek/CyDJ/beta/images/main/skeet.gif',
     35,
     35,
   ],
@@ -1582,11 +1571,11 @@ function setUserCSS() {
   }
 
   .qe_title {
-      color: #ff66ab
+      color: white;
   }
 
   .queue_entry {
-      background-color: #293d36bd;
+      background-color: #111;
   }
 
   .dropdown-menu {
@@ -1623,7 +1612,7 @@ function setUserCSS() {
   }
 
   #motdwrap {
-      background-color: #293d36bd
+      background-color: rgba(222, 77, 134, 0.400);
   }
 
   #userlist {
@@ -2802,7 +2791,7 @@ if (UI_Version) {
     Version_Now = 'UNDEF';
   }
   const headerdrop = $('<li id="headerdrop" class="dropdown" />').insertAfter('#channelset-link');
-  $('<a class="dropdown-toggle disabled" href="https://github.com/papertek/CyDJ" />')
+  $('<a class="dropdown-toggle disabled" href="https://github.com/papertek/CyDJ" target="_blank" />')
       .html(`${Version_Now}`)
       .appendTo(headerdrop);
 }
@@ -4871,26 +4860,3 @@ socket.on('mediaUpdate', fixRawVideoControls);
 document.body.addEventListener('load', resizeStuff, true);
 socket.on('changeMedia', resizeStuff);
 setInterval(() => resizeStuff(), 1000);
-
-/* const element = document.getElementById('well');
-const resizer = document.createElement('div');
-resizer.className = 'resizer';
-resizer.style.position = 'absolute';
-resizer.style.right = 0;
-resizer.style.bottom = 0;
-resizer.style.cursor = 'se-resize';
-element.appendChild(resizer);
-resizer.addEventListener('mousedown', initResize, false);
-
-function initResize(e) {
-  window.addEventListener('mousemove', Resize, false);
-  window.addEventListener('mouseup', stopResize, false);
-}
-function Resize(e) {
-  element.style.width = (e.clientX - element.offsetLeft) + 'px';
-  element.style.height = (e.clientY - element.offsetTop) + 'px';
-}
-function stopResize(e) {
-  window.removeEventListener('mousemove', Resize, false);
-  window.removeEventListener('mouseup', stopResize, false);
-} */
