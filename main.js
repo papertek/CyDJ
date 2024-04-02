@@ -203,13 +203,13 @@ const twemojiStuff = false;
 
 // TODO: Move all these into a file.
 
-const Favicon_URL = 'https://cdn.7tv.app/emote/614e8c0b20eaf897465a4c9d/1x.webp';
+const Favicon_URL = 'https://raw.githubusercontent.com/ItMePeachy/PeachyRoom/master/images/PeachyRoom.gif';
 
-const MiniLogo_URL = 'https://cdn.7tv.app/emote/614e8c0b20eaf897465a4c9d/1x.webp';
+const MiniLogo_URL = 'https://raw.githubusercontent.com/ItMePeachy/PeachyRoom/master/images/PeachyRoom.gif';
 
-const ChannelName_Caption = 'CyDJ';
+const ChannelName_Caption = 'PeachyRoom';
 
-export const Version_Now = 'CyDJEdge4.2.24.0';
+export const Version_Now = 'PeachyRoomEdge4.2.24.0';
 
 const HeaderDropMenu_Title = 'Information';
 
@@ -228,7 +228,7 @@ const TitleIcon_URL = 'https://cdn.7tv.app/emote/6040a8bccf6746000db10348/2x.web
 
 const TitleBarDescription_Caption = 'Now Playing:';
 
-const JoinText_Message = 'hello!';
+const JoinText_Message = 'howdy!';
 
 const UsernameMark_Char = '‎';
 
