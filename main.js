@@ -167,7 +167,7 @@ const UI_ChannelCache = true;
 // adds context menu with links
 const UI_ContextMenu = true;
 // adds easter egg
-const UI_PartyButton = true;
+const UI_PartyButton = false;
 // adds version
 const UI_Version = true;
 // adds hey and nay
@@ -604,7 +604,6 @@ const ADDEDLINKS = [];
 const WEBKIT = 'webkitRequestAnimationFrame' in window;
 const SOUNDSVALUES = [0, 0.1, 0.2, 0.4, 0.7, 1];
 const SPEAKLINK = 'http://webanywhere.cs.washington.edu/cgi-bin/espeak/getsound.pl';
-const DROPIT = new Audio('https://github.com/papertek/CyDJ/raw/beta/misc/dropit.wav');
 const HEY = new Audio('https://github.com/papertek/CyDJ/raw/beta/misc/hey.wav');
 const NAY = new Audio('https://github.com/papertek/CyDJ/raw/beta/misc/nay.wav');
 CHATSOUND.volume = 0.4;
@@ -3093,7 +3092,7 @@ function showDebugging() {
   }
 }
 */
-/* adding easter egg button
+// adding easter egg button
 if (UI_PartyButton) {
   $('<button id="party-btn" class="btn btn-sm btn-default" title="Party! DO NOT USE IF YOU ARE SUBJECT TO EPILEPSY!!!" />')
       .text('Party!')
@@ -3101,9 +3100,9 @@ if (UI_PartyButton) {
       .on('click', () => showDrop());
 }
 
-/* 
- // Easter egg drop button function.
- 
+/**
+ * Easter egg drop button function.
+ */
 function showDrop() {
   DROPIT.volume = 0.4;
   DROPIT.play();
@@ -3141,7 +3140,7 @@ if (UI_SoundFilters || UI_ChatSpeak) {
             }
           });
   VOICES = true;
-} */ 
+}
 
 // adding moderators panel button
 if (UI_ModPanel) {
