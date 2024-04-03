@@ -397,7 +397,6 @@ const ThemesCSS = [
     'https://papertek.github.io/CyDJ/deploy/beta/css/stars.css',
   ],
   [
-    
     'Classic',
     'https://papertek.github.io/CyDJ/deploy/beta/css/twitchclassic.css',
   ],
