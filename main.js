@@ -393,20 +393,17 @@ const ChannelThemeURL = 'https://papertek.github.io/CyDJ/deploy/beta/css/DJDefau
 
 const ThemesCSS = [
   [
+    'Stars',
+    'https://papertek.github.io/CyDJ/deploy/beta/css/stars.css',
+  ],
+  [
+    
     'Classic',
     'https://papertek.github.io/CyDJ/deploy/beta/css/twitchclassic.css',
   ],
   [
     'Old DJ',
     'https://papertek.github.io/CyDJ/deploy/beta/css/OldDJ.css',
-  ],
-  [
-    'Stars',
-    'https://papertek.github.io/CyDJ/deploy/beta/css/stars.css',
-  ],
-  [
-    'Black Cat',
-    'https://papertek.github.io/CyDJ/deploy/beta/css/blackcat.css',
   ],
   [
     'U.U.F.O',
@@ -3096,7 +3093,7 @@ function showDebugging() {
   }
 }
 */
-// adding easter egg button
+/* adding easter egg button
 if (UI_PartyButton) {
   $('<button id="party-btn" class="btn btn-sm btn-default" title="Party! DO NOT USE IF YOU ARE SUBJECT TO EPILEPSY!!!" />')
       .text('Party!')
@@ -3104,9 +3101,9 @@ if (UI_PartyButton) {
       .on('click', () => showDrop());
 }
 
-/**
- * Easter egg drop button function.
- */
+/* 
+ // Easter egg drop button function.
+ 
 function showDrop() {
   DROPIT.volume = 0.4;
   DROPIT.play();
@@ -3144,7 +3141,7 @@ if (UI_SoundFilters || UI_ChatSpeak) {
             }
           });
   VOICES = true;
-}
+} */ 
 
 // adding moderators panel button
 if (UI_ModPanel) {
