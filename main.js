@@ -151,7 +151,7 @@ const UI_QuickCommandsBtns = true;
 // additional volume buttons for YouTube player
 const UI_VolumeBtns = true;
 // [&] random background image for empty playlist row corner
-const UI_EmptyCornerBackground = true;
+const UI_EmptyCornerBackground = false;
 // extended 'Get URLs' function
 const UI_ExtendedGetURLs = true;
 // default unchecking "Add as temporary" checkbox after loading for registered users
@@ -220,11 +220,11 @@ const MOTDAutoLogo_Interval = 20;
 const RulesBtn_Caption = 'Read Channel Rules';
 
 const AttentionBar_URL =
-    'https://raw.githubusercontent.com/papertek/CyDJ/beta/images/letmedofuck.png';
+    'https://media1.tenor.com/m/M_IykJsvFQMAAAAd/hes-waiting-by-the-microwave-cat.gif';
 
-const ChannelAnnouncement_Title = 'CyDJ Alert';
+const ChannelAnnouncement_Title = 'PeachyRoom Alert';
 
-const TitleIcon_URL = 'https://cdn.7tv.app/emote/6040a8bccf6746000db10348/2x.webp';
+const TitleIcon_URL = 'https://cdn.7tv.app/emote/64115dcabdbc1698547639ac/2x.webp';
 
 const TitleBarDescription_Caption = 'Now Playing:';
 
@@ -238,24 +238,19 @@ const MessagesSuffix_Percentage = 10;
 
 const CustomPingSound_URL = 'https://github.com/ItMePeachy/PeachyRoom/raw/master/misc/squeak.mp3';
 
-const PlayerHiding_URL = 'https://c.tenor.com/Q6UjBrnSzvQAAAAC/anime-uh.gif';
+const PlayerHiding_URL = 'https://media1.tenor.com/m/hrIx2VHU5CAAAAAC/kitty-cat.gif';
 
 const GroupEmotes_Number = 100;
 
 const Snow_URL = 'https://dl.dropboxusercontent.com/s/cvxizo3lax3xlrg/snowcss.css';
 
 const HeaderDropMenu_Array = [
-  ['CyDJ Rooms', ''],
-  ['Main Room', 'https://cytu.be/r/cydj'],
-  ['Second Room', 'https://cytu.be/r/secretfbimeeting'],
-  ['Baked Live Room', 'https://baked.live/tv/cydj'],
-  ['Test Room', 'https://cytu.be/r/testplacelilroc'],
-  ['Test Room 2', 'https://cytu.be/r/emptyroomtestplace'],
-  ['Test Room 3', 'https://cytu.be/r/xqcPeepo'],
-  ['Experiments', 'https://cytu.be/r/cydjrewrite'],
+  [`Peachy's Rooms`, ''],
+  ['Main Room', 'https://cytu.be/r/peachyroom'],
+  ['Beta Room', 'https://cytu.be/r/peachyBeta'],
   ['Community Related', ''],
-  ['CyDJ Discord', 'https://discord.gg/g8tCGSc2bx'],
-  ['Camellia Discord', 'https://discord.gg/camellia'],
+  [`Peachy's Discord', 'https://discord.gg/cMUXkDcX6C`],
+  ['CyDJ Room', 'https://cytu.be/r/CyDJ'],
   ['Credits', ''],
   [
     'CyTube FAQ',
@@ -263,15 +258,16 @@ const HeaderDropMenu_Array = [
   ],
   ['CyTube Source', 'https://github.com/calzoneman/sync'],
   ['CyDJ Source', 'https://github.com/papertek/CyDJ'],
-  ['CyDJ Bot Source', 'https://github.com/airforce270/CytubeBot'],
+  ['PeachyRoom Source', 'https://github.com/ItMePeachy/PeachyRoom'],
+  ['CyDJ Old MrDestrucoid Bot Source', 'https://github.com/airforce270/CytubeBot'],
 ];
 
 const MOTDAutoLogo_Array = [
-  'https://github.com/papertek/CyDJ/raw/beta/images/cydjnormal.jpg',
+  'https://tenor.com/view/dance-happy-mlp-my-little-gif-22730945.gif',
 ];
 
 const MOTDTabs_Array = [
-  ['Home', 'Welcome to CyDJ!'],
+  ['Home', 'Welcome to PeachyRoom!'],
   ['Playlist', 'Playlist tab.<br /><br />We watched this, that and this.'],
   [
     'Schedule',
@@ -373,7 +369,7 @@ const RulesBtn_HTML =
     '<ol><li>You want to write on the chat? Enter temporary nickname into <b>Guest Login</b> input and click enter.</li><li>You want to register a nick? Click <b>Account -> Profile</b> on the top of the channel, and fill the registration form. You don\'t need an email to register.</li><li>Troll skipping = immediate kick.</li><li>Don\'t be annoying.</li><li>Do not one man spam.</li><li>Do not encourage chat wars or harass/target people.</li><li>Queueing blatant NSFW videos such as porn/hentai/gore is strictly not allowed, doing so will result in an ip ban.</li><li>Queuing the same video but in different link variants is not allowed.</li><li>Mods have the right to skip a video if its overplayed.</li><li><b>These rules are subject to common sense.</b></li></ol>';
 
 const ChannelAnnouncement_HTML =
-    'Please join the <a href="https://discord.gg/g8tCGSc2bx" target="_blank">Discord</a> for news regarding CyDJ.';
+    'fuh?';
 
 const EmbeddingMedia_Images =
     'a[href$=".jpg"], a[href$=".jpg:large"], a[href$=".jpeg"], a[href$=".JPEG"], a[href$=".JPG"], a[href$=".png"], a[href$=".PNG"], a[href$=".tiff"], a[href$=".TIFF"], a[href$=".webp"], a[href$=".WEBP"], a[href$=".gif"], a[href$=".GIF"]';
@@ -411,16 +407,7 @@ const ThemesCSS = [
 ];
 
 const EmptyCornerBackground = [
-  'https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_a054f4001b6d4f098e7969c988debd18/default/light/2.0',
-  'https://cdn.betterttv.net/emote/5dfc5d868608fb0da4120b59/2x',
-  'https://raw.githubusercontent.com/papertek/CyDJ/beta/images/main/891194776798498826%20(1).gif',
-  'https://raw.githubusercontent.com/papertek/CyDJ/beta/images/main/small.png',
-  'https://cdn.7tv.app/emote/60d2c62291b6751bc1e05add/4x.webp',
-  'https://raw.githubusercontent.com/papertek/CyDJ/beta/images/main/JohnJamSmall.gif',
-  'https://raw.githubusercontent.com/papertek/CyDJ/beta/images/main/mud.png',
-  'https://raw.githubusercontent.com/papertek/CyDJ/beta/images/main/xso.png',
-  'https://raw.githubusercontent.com/papertek/CyDJ/beta/images/main/pacific.gif',
-  'https://raw.githubusercontent.com/papertek/CyDJ/beta/images/main/pushing%20ass.png',
+  'https://cdn.7tv.app/emote/64e23ebf58f8abcb32f90f51/2x.webp',
 ];
 
 // /////////////////////////////////////////////////////////////////////////////////////////////////
@@ -446,10 +433,10 @@ const IndependentEmotes = [
     35,
   ],
   [
-    ':skeet:',
-    'https://raw.githubusercontent.com/papertek/CyDJ/beta/images/main/skeet.gif',
-    35,
-    35,
+    ':blahaj:',
+    'https://cdn.7tv.app/emote/62740ee56fc5e131afe3d18e/1x.webp',
+    57,
+    32,
   ],
 ];
 
