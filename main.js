@@ -433,7 +433,7 @@ const IndependentEmotes = [
     35,
   ],
   [
-    ':blahaj:',
+    ':skeet:',
     'https://cdn.7tv.app/emote/62740ee56fc5e131afe3d18e/1x.webp',
     57,
     32,
