@@ -1565,8 +1565,8 @@ function setUserCSS() {
   }
 
   .btn {
-      background-image: linear-gradient(#4c333e00,#4c333e00 60%,#4c333e00)!important;
-      border-color: #4cb290!important
+      background-image: linear-gradient(#bc52bf,#bc52bf 60%,#bc52bf)!important;
+      border-color: #bc52bf!important
   }
 
   .btn-default:hover {
@@ -1590,7 +1590,7 @@ function setUserCSS() {
   }
 
   #motd {
-      background-color: #fff0
+      background-color: #1cb0ff
   }
 
   #motdwrap {
