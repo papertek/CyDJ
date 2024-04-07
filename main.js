@@ -224,7 +224,7 @@ const AttentionBar_URL =
 
 const ChannelAnnouncement_Title = 'PeachyRoom Alert';
 
-const TitleIcon_URL = 'https://cdn.7tv.app/emote/64115dcabdbc1698547639ac/2x.webp';
+const TitleIcon_URL = 'https://cdn.7tv.app/emote/62740ee56fc5e131afe3d18e/1x.webp';
 
 const TitleBarDescription_Caption = 'Now Playing:';
 
@@ -433,8 +433,8 @@ const IndependentEmotes = [
     35,
   ],
   [
-    ':skeet:',
-    'https://cdn.7tv.app/emote/62740ee56fc5e131afe3d18e/1x.webp',
+    ':blahaj:',
+    'https://cdn.7tv.app/emote/64115dcabdbc1698547639ac/1x.webp',
     57,
     32,
   ],
