@@ -1,7 +1,7 @@
 /*
 The MIT License (MIT)
 //
-Copyright (c) 2013-2014 Zimny Lech, 2022-2023 CyDJ developers
+Copyright (c) 2013-2014 Zimny Lech, 2022-2023 CyDJ developers, 2024 ItMePeachy
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
 this software and associated documentation files (the "Software"), to deal in
@@ -209,7 +209,7 @@ const MiniLogo_URL = 'https://raw.githubusercontent.com/ItMePeachy/PeachyRoom/ma
 
 const ChannelName_Caption = 'PeachyRoom';
 
-export const Version_Now = 'PeachyRoomEdge4.2.24.0';
+export const Version_Now = 'PeachyRoom-4/7/24';
 
 const HeaderDropMenu_Title = 'Information';
 
@@ -1119,7 +1119,7 @@ class ChatStats {
   }
 
   static getLocalStorageKey() {
-    return `cydj_${CHANNEL.name}_chat_stats`;
+    return `peachyroom_${CHANNEL.name}_chat_stats`;
   }
 }
 
@@ -1564,13 +1564,13 @@ function setUserCSS() {
       background-color: #383E40;
   }
 
-  .btn {
-      background-image: linear-gradient(#bc52bf,#bc52bf 60%,#bc52bf)!important;
-      border-color: #bc52bf!important
+ .btn {
+      background-image: linear-gradient(#4c333e00,#4c333e00 60%,#4c333e00)!important;
+      border-color: #4cb290!important
   }
 
   .btn-default:hover {
-      background-color: #4c9ab2
+    background-color: #4cb290
   }
 
   .modal-body {
@@ -2773,7 +2773,7 @@ if (UI_Version) {
     Version_Now = 'UNDEF';
   }
   const headerdrop = $('<li id="headerdrop" class="dropdown" />').insertAfter('#channelset-link');
-  $('<a class="dropdown-toggle disabled" href="https://github.com/papertek/CyDJ" target="_blank" />')
+  $('<a class="dropdown-toggle disabled" href="https://github.com/ItMePeachy/PeachyRoom" target="_blank" />')
       .html(`${Version_Now}`)
       .appendTo(headerdrop);
 }
