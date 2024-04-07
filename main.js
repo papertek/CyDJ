@@ -66,9 +66,9 @@ const UI_ChannelName = true;
 // [&] additional header dropdown menu
 const UI_HeaderDropMenu = true;
 // removing 'Layout' menu from the header
-const UI_RemoveLayoutMenu = true;
+const UI_RemoveLayoutMenu = false;
 // [&] big channel logo inserted into MOTD
-const UI_MOTDAutoLogo = true;
+const UI_MOTDAutoLogo = false;
 // [&] switchable MOTD tabs application for homepage-like channel header
 const UI_MOTDTabs = false;
 // deleting previous MOTD after accepting/loading script
