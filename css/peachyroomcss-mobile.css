@@ -945,10 +945,19 @@ and (max-device-width: 600px)
     }
 
     #main > div, #playlistrow > div {
-        margin-top: 20px;
+        margin-bottom: 20px;
     }
 
     #messagebuffer, #userlist {
         height: 700px;
     }
+
+    .videolist {
+        padding: 5px;
+    }
+
+    ::-webkit-scrollbar {
+        width: 0px;
+    }
+    
 }
