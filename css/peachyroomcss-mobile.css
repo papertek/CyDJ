@@ -4,6 +4,7 @@
     @import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
     
+     /* desktop layout */
     @media only screen 
 and (max-device-width: 1000px)
  {
@@ -933,6 +934,7 @@ and (max-device-width: 1000px)
     }
  }
 
+ /* mobile layout */
  @media only screen 
 and (max-device-width: 600px)
 {
