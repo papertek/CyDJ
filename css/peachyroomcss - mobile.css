@@ -1,0 +1,947 @@
+/* ----- Smoothing default CyTube CSS (works without JS) ----- */
+
+	/* -- body -- */
+    @import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
+    
+    @media only screen 
+and (max-device-width: 600px)
+ {
+    body {
+        font-family: 'Varela Round', sans-serif;
+        font-size:14px;
+        font-weight:lighter;
+        color:white;
+    }
+    
+    #mainpage {
+        font-family: 'Varela Round', sans-serif;
+        max-width: 1224px;
+        margin-left: auto;
+        margin-right: auto;
+        padding-top: 5px!important;
+        border: 0px solid;
+        border-radius: 10px;
+        background-color:none;
+        color: white;
+    }
+    
+    [class="compact fullscreen modal-open"] #mainpage {
+        max-width: inherit;
+    }
+    
+    [class="compact fullscreen"] #mainpage {
+        max-width: inherit;
+    }
+    
+    #footer {
+       margin-top: 20px;
+       background-color: #14181f!important;
+    }
+    
+    b, strong {
+        font-weight: 400;
+    }
+    
+    h2, h5, h6, h5 {
+        font-family: 'Varela Round', sans-serif;
+        font-size: 20px;
+    }
+    
+    h1, h4, h3 {
+        font-family: 'Quicksand', sans-serif;
+        font-size: 24px;
+    }
+    
+    .poll-notify {
+        font-weight:normal;
+    }
+    
+    .userlist_owner{
+        font-weight:lighter!important;
+    }
+    
+    .label {
+        font-weight:lighter
+    }
+    
+    label {
+        font-weight:lighter
+    }
+    
+        /* -- buttons -- */
+    
+    .btn {text-shadow:none}
+    
+        /* -- modal windows -- */
+    
+    @media screen and (min-width: 768px) {
+        .modal-dialog {max-width:950px !important; margin-top:10px}
+    }
+    
+        /* -- brand -- */
+    
+    .navbar-brand {cursor:pointer}
+    
+    .navbar-brand, .navbar-inverse {
+        /*original #ccc */
+        color: white!important;
+        text-shadow: 0px 0px 10px black, 0px 0px 10px black !important;
+    }
+    
+    input#logout[type="submit"]:hover {
+        border-radius: 4px;
+        background: #ffffff1f!important;
+    }
+
+        /* -- MOTD -- */
+    
+    #motdwrap {padding:10px; border:1px solid #ffbbf9!important; box-shadow:none}
+    #togglemotd {margin-top:-5px}
+    
+        /* -- superadmin icon -- */
+    
+    .glyphicon-globe {margin-right:3px}
+    
+        /* -- playlist row panes -- */
+    
+    #rightpane, #leftpane {margin-top:5px !important; margin-bottom:5px !important}
+    
+        /* -- left pane wells -- */
+    
+    #leftpane .well {margin-bottom:5px}
+    
+        /* -- queue titles -- */
+    
+    .qe_title, .db-title {
+        font-family: 'Quicksand', sans-serif;
+        margin-left:4px;
+        letter-spacing:.6px;
+    }
+    
+    .db-title {
+        color: #ff66ab;
+    }
+    
+        /* -- footer -- */
+    
+    #footer {padding-bottom:5px; height:auto}
+    
+    
+    /* ----- Patching CSS after loading JS (actual patches in the JS) ----- */
+    
+    
+    /* ----- CyTube Plus created elements CSS ----- */
+    
+    
+        /* -- channel avatar -- */
+    
+    #chanavatar {margin-right:10px}
+    
+        /* -- azuki row (user top logo) -- */
+    
+    #azukirow {
+        padding-left:5px; padding-right:5px; border-left:solid 2px transparent; border-right:solid 2px transparent;
+        background:transparent; background-repeat:no-repeat !important; background-position:center center !important;
+        margin:0px -8px; min-height:5px;
+    }
+    
+        /* -- MOTD elements -- */
+    
+    #motdlogo {
+        max-width: -webkit-fill-available;
+        max-height: 279px;
+        float: left;
+        border-radius: 20px;
+        padding:10px;
+    }
+    
+    #motdtabswrap {margin-top:8px}
+    .motdtabs-btn {margin-right:5px}
+    #motdtabscontent {padding:10px 5px}
+    
+        /* -- rules button and panel -- */
+    
+    #rulesbtnwrap {text-align:center}
+    #rules-btn {margin-top:10px; margin-bottom:5px}
+    #rulespanel-outer {width:100%; padding:0px}
+    #rulespanel {
+        max-width:700px; margin:0 auto; margin-top:0px; padding:4px; border:solid 2px white; text-align:left;
+        border-radius:8px; -moz-border-radius:8px; -webkit-border-radius:8px; float:left;
+    }
+    
+        /* -- attention bar -- */
+    
+    #attbarrow-outer {padding:0px 5px}
+    #attbar {height:22px; background-color:white}
+    
+        /* -- full-sized title row -- */
+    
+    #titlerow {
+        background-color:#ffffff00!important;
+        background-image:linear-gradient(to right, #cccccc, #cccccc);
+        background-position:0px center;
+        background-size:0% 100%; background-repeat:no-repeat;
+        margin:-5px -8px 5px;
+        border-radius:4px;
+    }
+    
+    #titlerow-outer {
+        padding: 3px 5px;
+        text-align: center;
+        font-size: 16pt;
+        color: #ffbbf9!important;
+        background-color: #111;
+        letter-spacing: 2px;
+        border-radius: 10px;
+        border: 2px solid;
+    }
+    
+    #titlerow #currenttitle {
+        font-family: 'Quicksand', sans-serif;
+        border:none; 
+        background:transparent;
+        text-shadow: none!important;
+    }
+    
+    #currenttitle{
+        max-width:calc(100% - 0px);
+        display:block;
+        white-space:nowrap;
+        overflow:hidden;
+        text-overflow:ellipsis;
+        line-height:45px;
+        background-color: #272b30;
+    }
+        /* -- media info bar -- */
+    
+    #mediainfo {
+        background:transparent; margin-bottom:0px; border-width: 1px 1px 0px; border-style:solid solid none;
+        border-color:#CCC #CCC -moz-use-text-color; border-radius:5px 5px 0px 0px; height:21px;
+    }
+    
+        /* -- player alert (if hidden video after loading) -- */
+    
+    #ytapiplayer .alert {text-align:left; margin:0px -15px}
+    #announcements .alert {
+        margin: -2px -10px 11px!important;
+    }
+    
+        /* -- player covering layer -- */
+    
+    #coverpl {
+        position:absolute; left:5px; top:0px; background-color:#141414!important;
+        background-repeat:no-repeat; background-position:center center;
+            max-width:100%!important; max-height:100%!important;
+    }
+    
+        /* -- sounds and admin panels GUI layers -- */
+    
+    #sounds-dropdown, #chatfunc-dropdown {
+        position:absolute; top:22px; display:block; z-index:10000; padding:5px;
+        overflow:auto; margin-right:5px;
+    }
+    #muteall-btn, #spamclear-btn, #antiafk-btn {width:100%}
+    
+        /* -- chat controls buttons group -- */
+    
+    #chatcontrols {margin-top:4px}
+    
+        /* -- chat elements -- */
+    
+    .squavatar {width:24px; height:24px; margin-right:3px; border:solid 6px; vertical-align:middle; display:inline-block}
+    .avatar {margin-right:3px}
+    .server-whisper + .squavatar {display:none}
+    .globalmod {margin-right:2px}
+    .embedimg {max-width:200px; max-height:300px}
+    .embedvid {max-width:200px; max-height:300px; border:0px; vertical-align:middle}
+    
+        /* -- main fonts and emotes GUI layer -- */
+    
+    #chatpanel {
+        margin-top:0px; 
+        margin-bottom:0px;
+    }
+    
+    #fontspanel, #emotespanel {
+        text-align:center; max-width:700px; margin:0px auto 5px auto; border:solid 2px white; border-radius:6px
+    }
+    
+    .fluidpanel {max-width:1200px !important}
+    
+        /* -- fonts panel -- */
+    
+    #fontsbtnwrap {margin-top:5px; margin-bottom:5px}
+    #unibtnwrap {margin:5px 45px 2px}
+    @media (max-width:767px) {
+        #unibtnwrap {margin:5px 25px 2px}
+    }
+    #fontsbtnwrap .btn, #unibtnwrap .btn {margin:0px 3px 3px 3px}
+    
+        /* -- emotes panel -- */
+    
+    #emotespanel img {margin:5px; max-height:35px; cursor:pointer}
+    #emotesbtnwrap {text-align:center; margin:5px}
+    #emotespanel .alert {text-align:left; margin:5px -10px}
+    
+        /* -- advanced playlist controls -- */
+    
+    #advplcontrols {width:100%; padding-top:10px}
+    #advplcontrols button {width:25%}
+    
+        /* -- database and galleries buttons gruoup -- */
+    
+    #leftpanecontrols {margin-right:5px}
+    
+        /* -- layout configuration box toggling button -- */
+    
+    #layout-btn {margin-left:5px}
+    
+        /* -- various configuration box elements -- */
+    
+    #configbtnwrap, #modewrap, #themewrap, #funcbtnwrap, #cleardbwrap, #gallery-well, #hidewrap, #embedwrap {
+        text-align:center;
+    }
+    .conf-cap {padding-top:9px}
+    #mode-sel, #theme-sel, #gal-sel {width:80%; margin:0px auto}
+    .theme-header {text-align:center; font-size:9pt; font-style:italic}
+    #embed-help {cursor:pointer; margin-left:7px}
+    
+        /* -- channel database -- */
+    
+    .db-cat {overflow:auto; max-height:400px}
+    .db-break {width:100%}
+    .db-title {margin-left:4px}
+    .db-link {margin-left:5px}
+    #previewFrame {margin:0 auto; display:block}
+    
+        /* -- channel galleries -- */
+    
+    #galleryFrame {margin-bottom:10px}
+    #gal-sel {margin-bottom:20px}
+    
+        /* -- custom footer -- */
+    
+    #leftfooter {font-size:10pt}
+    div[id="leftfooter"] {text-align:center; margin-bottom:5px}
+    #rightfooter {float:right; margin:0px 0px 15px 15px}
+    
+    
+    /* ----- Additional JS classes ----- */
+    
+    
+    .relative {position:relative}
+    
+    .covered {visibility:hidden; opacity:0}
+    
+    .dist {background-color:gold; color:red; font-size:12pt; font-family:times new roman; padding:3px}
+    
+    .mX {
+        -webkit-transform:scaleX(-1); -moz-transform:scaleX(-1); transform:scaleX(-1);
+        -ms-transform:scaleX(-1); -o-transform:scaleX(-1);
+    }
+    
+    .mY {
+        -webkit-transform:scaleY(-1); -moz-transform:scaleY(-1); transform:scaleY(-1);
+        -ms-transform:scaleY(-1); -o-transform:scaleY(-1);
+    }
+    
+    .rotate {
+        -webkit-transform:rotate(180deg); -moz-transform:rotate(180deg); transform:rotate(180deg);
+        -ms-transform:rotate(180deg); -o-transform:rotate(180deg);
+    }
+    
+    .vertical {
+        -webkit-transform:rotate(270deg); -moz-transform:rotate(270deg); transform:rotate(270deg);
+        -ms-transform:rotate(270deg); -o-transform:rotate(270deg);
+    }
+    
+    #messagebuffer div {
+        border-top: #ccc0 1px solid!important;
+        border-bottom: #ccc0 1px solid!important;
+        border-right: #ccc0 1px solid!important;
+        margin-top: 1px;
+        padding: 5px;
+        margin-left: -5px;
+        margin-right: -5px;
+    }
+    
+    .nick-highlight {
+        background-color: #293d36!important;
+        color: #ffd966;
+    }
+    
+    .navbar-brand {
+        float: left;
+        padding: 10px;
+        font-size: 18px;
+        line-height: 32px;
+        height: 50px;
+    }
+    
+    .dropdown-menu {
+        animation: animateDropdown 200ms ease-out forwards;
+        transform-origin: top center;
+        background-color:#3f2831!important
+    }
+    
+    @keyframes animateDropdown {
+        0% {
+            transform: rotateX(90deg)
+        }
+        70% {
+            transform: rotateX(20deg) 
+        }
+        100% {
+            transform: rotateX(0deg) 
+        }
+    }
+    
+    #chanavatar {
+        float: left;
+        padding: 0px;
+    }
+    
+    #resize-video-smaller {
+    display: none;
+    }
+    
+    #resize-video-larger {
+    display: none;
+    }
+    
+    .shout {
+        color: #ff0000;
+        font-weight: lighter!important;
+        font-size: 18pt!important;
+    }
+    
+    #audiofeedbacktoggle {
+    display:none;
+    }
+    
+    #compacttoggle {
+    display:none;
+    }
+    
+    #titletoggle {
+    display:none;
+    }
+    
+    #timestamptoggle {
+    display:none;
+    }
+    
+    #newmessages-indicator-bghack {
+        background: #62c462;
+        background-color: #84003c;
+        border-radius: 10px;
+    }
+    
+    #newmessages-indicator {
+       font-style:italic;
+       font-weight: initial;
+    }
+    
+    .panel-primary>.panel-heading {
+        background-color: #94d1bd;
+        border: 2px solid #94d1bd!important;
+        border-radius: 10px!important;
+        color: #fff;
+      background-image: url(https://raw.githubusercontent.com/papertek/CyDJ/beta/images/trig.gif)!important;
+        background-size: contain!important;
+        background: scroll;
+        text-shadow: 0px 0px 10px #000000, 0px 0px 10px #000 !important;
+    }
+    
+    .pm-panel > .panel-body > .pm-buffer {
+        background-color: #141f1b;
+    }
+    
+    .panel-default>.panel-heading {
+        background-color: #293d36bd;
+        color:#94d1bd;
+        border-radius:10px!important
+    }
+    
+    .pm-panel {
+        border-radius:10px!important
+    }
+    
+    .profile-box {
+        top: 234px;
+    }
+    
+    .server-msg-disconnect {
+        font-family: 'Quicksand', sans-serif;
+        border: 2px solid #e96969!important;
+        background-color:#313539!important;
+        background: scroll;
+        color: #e96969;
+        border-radius: 15px;
+        font-size: 20px;
+        transition: all .7s!important;
+        line-height: 1.5!important;
+        text-align: left;
+    }
+    
+    .server-msg-disconnect:hover {
+        transform: scale(1.03);
+        transition: all .4s!important;
+    }
+    
+    .server-msg-reconnect {
+        font-family: 'Quicksand', sans-serif;
+        border: 2px solid #94d1bd!important;
+        background-color:#313539!important;
+        background-size: contain!important;
+        background: scroll;
+        color: #94d1bd;
+        border-radius: 15px;
+        font-size: 20px;
+        transition: all .7s!important;
+        line-height: 1.5!important;
+        text-align: left;
+    }
+    
+    .server-msg-reconnect:hover {
+        transform: scale(1.03);
+        transition: all .5s!important;
+    }
+    
+    #cs-chanlog-filter{height:150px!important;margin-bottom:10px!important}
+    #cs-chanlog-text{background-color:#141414!important;color:red;border:0 solid}
+    
+    .form-control{color:#c8c8c8;width:100%;border-top:0;background-color:#141414;border:solid 1px #ccc}
+    
+    #messagebuffer{
+      transition: all 0.5s !important;
+      background-color: #111;
+    }
+    
+    #messagebuffer div.nick-hover{
+        border-left: #FF0000 solid 1px;
+        padding-left: 4px;
+    }
+    
+    .form-group{
+      transition: all 0.5s !important;
+    }
+    
+    .navbar-inverse .navbar-nav>li>a, .navbar-inverse .navbar-text {
+      color:#ccc!important;
+      border-right: 0px;
+      border-left: 0px;
+    }
+    
+    .navbar-nav>li>a:hover, .navbar-nav>li>a:focus {
+        background: #ffffff1f!important;
+        border-radius:20px;
+        text-decoration:underline!important
+    }
+    
+    .nav-tabs>li>a {
+      transition: all 0.1s;
+    }
+    
+    .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
+      background-color:#5c7069;
+    }
+    
+    .nav>li>a:focus, .nav>li>a:hover {
+        text-decoration: none;
+        background-color: #1c1e22;
+    }
+    
+    .dropdown-menu>li>a {
+        color: #ccc!important;
+    }
+    
+    .row{
+      transition: all 0.5s;
+    }
+    
+    .btn, .btn-default, .btn-group .btn+.btn, .btn-group .btn+.btn-group, .btn-group .btn-group+.btn, .btn-group .btn-group+.btn-group {
+      transition: all 0.2s;
+      border-radius:20px;
+    }
+    
+    .btn {
+      box-shadow: inset 0 0 0 0 rgba(105, 175, 240, 0.702);
+      -webkit-transition: ease-out 0.3s;
+      -moz-transition: ease-out 0.3s;
+      transition: ease-out 0.3s;
+    }
+    
+    .well {
+        background-color: #283544;
+        color: white;
+        margin: auto;
+        overflow: hidden;
+        border: 2px solid #425871;
+        border-radius: 10px;
+    }
+    
+    .alert-danger {
+        background-color: #ee5f5b33;
+        border-radius: 10px;
+        border-color: #ed4d63!important;
+        border: 1px solid;
+    }
+    
+    #motd {
+        font-family: 'Quicksand', sans-serif;
+        text-align: center;
+        font-size: larger;
+    }
+    
+    #plmeta {
+        background-color:#14181f;
+        padding:3px;
+        margin:7px;
+        border:none;
+    }
+    
+    .alert-info {
+        background-color: #45544f;
+        border-color: #ff4949;
+        color: white;
+        border-radius: 10px;
+        border: 2px solid #394642;
+        font-size:larger;
+    }
+    
+    .alert a {
+        color: #b9e0d3;
+    }
+    
+    .alert a:hover {
+        color: rgba(185 224 211 / 60%);
+    }
+    
+    #nav-collapsible {
+        background-image: linear-gradient(#3f2831,#3f2831);
+    }
+    
+    .server-whisper {
+        color: #66ccff;
+    }
+    
+    .action {
+        font-style: italic;
+        color: #fff1a1;
+    }
+    
+    .label-success {
+        background-color: #4cb290;
+        border-radius: 1px 8px 1px 1px;
+    }
+    
+    .userlist_item {
+        padding-left:2.2px;
+    }
+    
+    .glyphicon-time:before {
+        content: "\e023";
+        color: #ccc!important;
+    }
+    
+    .glyphicon-star-empty:before {
+        content: "\e007";
+        color: #ebd047!important;
+    }
+    
+    .glyphicon-volume-off:before {
+        content: "\e036";
+        color: #ec4d49!important;
+    }
+    
+    .userlist_op {
+        color: #43dbe6!important;
+    }
+    
+    .userlist_owner {
+        color: #ffbbf9!important;
+    }
+    
+    span:not(.userlist_op):not(.userlist_owner) > strong.username {
+      color: #ffbbbb;
+    }
+    
+    div.userlist_item > span:not(.userlist_op):not(.userlist_owner) {
+      color: #ffbbbb;
+    }
+    
+    .dark-theme > .odd-message {
+      background-color: #111;
+    }
+    
+    .dark-theme > .even-message {
+      background-color: #1c1c1c;
+    }
+    
+    .light-theme > .odd-message {
+      background-color: #ffffff;
+    }
+    
+    .light-theme > .even-message {
+      background-color: #f5f5f5;
+    }
+    
+    .glyphicon {
+        font-weight: 500;
+    }
+    
+    .btn {
+        letter-spacing: .2px
+    }
+    
+    #plmeta {
+        border-radius:4px
+    }
+    
+    .queue_entry {
+        background-color: #111;
+        border-radius:10px;
+        border: none;
+        margin: 3px;
+        transition: all .7s!important;
+    }
+    
+    .videolist {
+        padding: 10px;
+        margin: 0px;
+        background-color: #283544;
+        border: 2px solid #425871;
+        border-radius: 10px;
+    }
+    
+    .modal-header, .modal-footer, .modal-content {
+        border-radius: 20px
+    }
+    
+    .modal-body {
+        font-size:16px;
+    }
+    
+    .btn {
+        background-image: linear-gradient(#fff0, #fff0, #fff0)!important;
+        background-color: #fff0;
+        border-color: #ffbbf9!important;
+    }
+    
+    .btn-default:hover {
+        background-color: rgba(255, 156, 239, 0.702);
+        transition: all 0.3s;
+        box-shadow: inset 0 0 0 50px rgba(255, 156, 239, 0.702), 0px 0px 10px rgba(255, 156, 239, 0.702);
+    }
+    
+    .btn-default:active {
+      transform: translate(0px, 2px);
+      -webkit-transform: translate(0px, 2px);
+    }
+    
+    .queue_active {
+        background-image: linear-gradient(#8a919600, #7a828800, #70787d00);
+        padding: 4px;
+        transition: ease-out .7s!important;
+        border-left: solid 5px #fb85ff;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        font-size: 12pt;
+    }
+    
+    #queue .queue_entry {
+        padding: px!important;
+        line-height: px!important;
+    }
+    
+    .queue_entry:hover {
+        transition: all .4s!important;
+        padding-left:6px;
+    }
+    
+    .close {
+        padding-left:10px!important;
+    }
+    
+    .profile-box, .user-dropdown, .emotelist-table td {
+        border-radius:10px;
+    }
+    
+    .queue_active.queue_temp {
+        background-color: #111;
+    }
+    
+    .channel-emote:hover {
+        transform: scale(1.4);
+        transition: all .4s!important;
+    }
+    
+    .channel-emote {
+        transition: all .7s!important;
+    }
+    
+    .embedimg:hover {
+        transform: scale(1.2);
+        transition: all .4s!important;
+    }
+    
+    .embedimg {
+        transition: all .7s!important;
+    }
+    
+    img:hover {
+        transform: scale(1.4);
+        transition: all .4s!important;
+    }
+    
+    img {
+        transition: all .7s!important;
+    }
+    
+    #motdlogo:hover {
+        transform: scale(1.0)!important;
+    }
+    
+    .navbar-header, #nav-collapsible{
+        background-image: linear-gradient(#6a91b1,#693763)
+    }
+    
+    #drinkcount {
+        background-color: #111!important;
+        border: 2px solid #94bbd1!important;
+        font-weight: lighter;
+        font-size: 30px;
+        background-size: contain!important;
+        border-radius: 10px;
+        line-height: 45px;
+    }
+    
+    .drink {
+        border: none;
+        font-style:italic;
+    }
+    
+    ::selection {
+        color: #d194c7;
+        background-color: #f4438961;
+    }
+    
+    ::-moz-selection {
+        color: #d194c7;
+        background-color: #f4438961;
+    }
+    
+    ::-webkit-scrollbar{width:17px;}
+    ::-webkit-scrollbar-thumb {background:#d6dee1;border-radius:20px;border:6px solid transparent;background-clip:content-box;}
+    ::-webkit-scrollbar-track {background-color: transparent;}
+    ::-webkit-scrollbar-thumb:hover {background-color: #a8bbbf;}
+    
+    #coverpl {
+        background-color:black!important;
+    }
+    
+    input.form-control[type="text"], input.form-control[type="password"], input.form-control[type="email"], textarea.form-control {
+        background-color: #492b47!important;
+        color:white;
+        border-radius: 10px;
+    }
+    
+    #chatheader, #videowrap-header, #mediainfo {
+        border-radius: 10px 10px 0px 0px;
+        background-color:#111!important;
+    }
+    
+    .btn-danger:hover {
+        border-color:#e7201a!important;
+        box-shadow: 0px 0px 5px #e7201a, 0px 0px 10px #e7201a !important;
+    }
+    
+    .btn-success:hover {
+        border-color:#42b142!important;
+        box-shadow: 0px 0px 5px #42b142, 0px 0px 10px #42b142 !important;
+    }
+    
+    .btn-group>.btn:first-child:not(:last-child):not(.dropdown-toggle) {
+        border-bottom-left-radius: 4px;
+    }
+    
+    .btn-group>.btn:last-child:not(:first-child):not(.dropdown-toggle) {
+        border-top-right-radius: 4px;
+    }
+    
+    .btn-group-xs > .btn, .btn-xs:first-child {
+        padding-left: 11px;
+    }
+    
+    .btn-group-xs > .btn, .btn-xs:last-child {
+        padding-right: 11px;
+    }
+    
+    #usercount {
+        text-align:center;
+    }
+    
+    .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+        padding: 8px;
+        line-height: 1.42857143;
+        vertical-align: top;
+        border-top: 1px solid #ccc;
+        background-color: #412844;
+    }
+    
+    .table>thead>tr>th {
+        font-family: 'Quicksand', sans-serif;
+        vertical-align: bottom;
+        border-bottom: 2px solid #ccc;
+        font-weight: lighter;
+        font-size: 16px;
+    }
+
+    table {
+        background-color: #412844;
+    }
+    
+    .chat-msg-JohnRG123 .userlist_op {
+        color: #87dac1!important;
+        text-shadow: 1px 0 10px #87dac1;
+    }
+    
+    .chat-msg-ItMePeachy .userlist_owner {
+        background: linear-gradient(to right, #ff5451, #ff9267, #ffe868, #93ff7d, #48ebff, #484bff, #8441ff, #df3fff, #ff3ef5);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: #ffffff61;
+        text-shadow: 1px 0 10px #ffffff9d!important;
+    }
+    
+    .modal-backdrop.in {
+        position: fixed;
+    }
+    
+    .g-background-default {
+        background-color: #141f1b!important
+    }    
+
+    .modal-backdrop.in {
+        position: fixed;
+    }
+    
+    .g-background-default {
+        background-color: #141f1b!important
+    }
+ }
+
+ @media only screen 
+and (max-device-width: 1000px)
+{
+
+    .chat-msg-ItMePeachy .userlist_owner {
+        background: linear-gradient(to right, #51d6ff, #51d6ff, #51d6ff, #51d6ff, #dc51ff, #51d6ff, #51d6ff, #51d6ff, #51d6ff);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: #ffffff61;
+        text-shadow: 1px 0 10px #ffffff9d!important;
+    }
+}
