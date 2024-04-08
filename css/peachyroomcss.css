@@ -801,8 +801,8 @@
         transform: scale(1.0)!important;
     }
     
-    .navbar-header {
-        background-image: linear-gradient(#28353f,#3f2839)
+    .navbar-header, #nav-collapsible{
+        background-image: linear-gradient(#6a91b1,#693763)
     }
     
     #drinkcount {
@@ -840,7 +840,7 @@
     }
     
     input.form-control[type="text"], input.form-control[type="password"], input.form-control[type="email"], textarea.form-control {
-        background-color: #141f1b!important;
+        background-color: #283544!important;
         color:white;
         border-radius: 10px;
     }
