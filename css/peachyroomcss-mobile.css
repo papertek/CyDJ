@@ -948,7 +948,7 @@ and (max-device-width: 600px)
         margin-top: 20px;
     }
 
-    #messagebuffer, #userlist{
+    #messagebuffer, #userlist {
         height: 700px !important;
     }
 }
