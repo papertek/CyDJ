@@ -1561,7 +1561,7 @@ function setUserCSS() {
   }
 
   .dropdown-menu {
-      background-color: #283544;
+      background-color: #17202b;
   }
 
   .btn {
