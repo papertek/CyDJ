@@ -6,7 +6,7 @@
     
      /* desktop layout */
     @media only screen 
-and (max-device-width: 1000px)
+and (min-device-width: 600px)
  {
     body {
         font-family: 'Varela Round', sans-serif;
