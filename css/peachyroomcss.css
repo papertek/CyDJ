@@ -802,12 +802,12 @@
     }
     
     .navbar-header {
-        background-image: linear-gradient(#3f2831,#3f2831)
+        background-image: linear-gradient(#28353f,#3f2839)
     }
     
     #drinkcount {
         background-color: #111!important;
-        border: 2px solid #94d1bd!important;
+        border: 2px solid #94bbd1!important;
         font-weight: lighter;
         font-size: 30px;
         background-size: contain!important;
@@ -821,12 +821,12 @@
     }
     
     ::selection {
-        color: #94d1bd;
+        color: #d194c7;
         background-color: #f4438961;
     }
     
     ::-moz-selection {
-        color: #94d1bd;
+        color: #d194c7;
         background-color: #f4438961;
     }
     
@@ -902,8 +902,11 @@
     }
     
     .chat-msg-ItMePeachy .userlist_owner {
-        color: #ffbcf1!important;
-        text-shadow: 1px 0 10px #ffbcf1;
+        background: linear-gradient(to right, #ff5451, #ff9267, #ffe868, #93ff7d, #48ebff, #484bff, #8441ff, #df3fff, #ff3ef5);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: #ffffff61;
+        text-shadow: 1px 0 10px #ffffff9d!important;
     }
     
     .modal-backdrop.in {
@@ -913,12 +916,6 @@
     .g-background-default {
         background-color: #141f1b!important
     }    
-    }
-
-    .chat-msg-JohnRG123 .userlist_op {
-        color: #85ffe5!important;
-        text-shadow: 1px 0 10px #85ffe5;
-    }
 
     .modal-backdrop.in {
         position: fixed;
