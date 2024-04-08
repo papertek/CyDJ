@@ -840,7 +840,7 @@
     }
     
     input.form-control[type="text"], input.form-control[type="password"], input.form-control[type="email"], textarea.form-control {
-        background-color: #283544!important;
+        background-color: #492b47!important;
         color:white;
         border-radius: 10px;
     }
@@ -885,7 +885,7 @@
         line-height: 1.42857143;
         vertical-align: top;
         border-top: 1px solid #ccc;
-        background-color: #141f1b;
+        background-color: #412844;
     }
     
     .table>thead>tr>th {
@@ -894,6 +894,10 @@
         border-bottom: 2px solid #ccc;
         font-weight: lighter;
         font-size: 16px;
+    }
+
+    table {
+        background-color: #412844;
     }
     
     .chat-msg-JohnRG123 .userlist_op {

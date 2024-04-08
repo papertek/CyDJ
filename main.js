@@ -1594,7 +1594,7 @@ function setUserCSS() {
   }
 
   #motdwrap {
-      background-color: #ffbbf9;
+      background-color: #283544;
   }
 
   #userlist {
