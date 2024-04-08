@@ -5,9 +5,7 @@
     @import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
     
      /* desktop layout */
-    @media only screen 
-and (min-device-width: 600px)
- {
+
     body {
         font-family: 'Varela Round', sans-serif;
         font-size:14px;
@@ -932,7 +930,6 @@ and (min-device-width: 600px)
     .g-background-default {
         background-color: #141f1b!important
     }
- }
 
  /* mobile layout */
  @media only screen 
