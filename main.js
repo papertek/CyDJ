@@ -905,12 +905,6 @@ function setMode(a) {
     const VW = $('#messagebuffer').width();
     const VH = Math.floor(parseInt(VW) * 9 / 16 + 1);
     const H = parseInt(VH) - $('#chatline').outerHeight() - 1;
-    //test
-    if ($(window).width() < 480 || $(window).height() < 480) {
-      $('#messagebuffer').height(700);
-      $('#userlist').height(700);
-    }
-      else;
     $('#messagebuffer').height(H);
     $('#userlist').height(H);
 
@@ -4169,7 +4163,7 @@ $('#chatbtn').on('click', () => {
     if (COMMAND) {
       socket.emit('chatMsg', {msg: _msg});
       msg = `➥ ${msg}`;
-      COMMAND = false;
+      COMMAND = true;
     }
     socket.emit('chatMsg', {msg: msg});
     updateChatStats(_msg);
