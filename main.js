@@ -3103,7 +3103,7 @@ function showDrop() {
 
     setUserCSS();
   }, 5000);
-  socket.emit('chatMsg', {msg: '[mqr] GOOOOOOO xqcCheer FEELSWAYTOOGOOD [/mqr]'});
+  socket.emit('chatMsg', {msg: 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'});
 }
 
 // adding chat sounds toggle button and control panel
