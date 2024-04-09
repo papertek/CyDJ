@@ -3078,7 +3078,7 @@ function showDebugging() {
 */
 // adding easter egg button
 if (UI_PartyButton) {
-  $('<button id="party-btn" class="btn btn-sm btn-default" title="Party! DO NOT USE IF YOU ARE SUBJECT TO EPILEPSY!!!" />')
+  $('<button id="party-btn" class="btn btn-sm btn-default" title="DO NOT CLICK IF YOU ARE EPILEPTIC DO NOT CLICK THIS BUTTON IF YOU SEE THIS NOTIFY PEACHY" />')
       .text('Party!')
       .appendTo(chatcontrols)
       .on('click', () => showDrop());
