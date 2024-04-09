@@ -446,19 +446,19 @@
         border: 2px solid #94d1bd!important;
         border-radius: 10px!important;
         color: #fff;
-      background-image: url(https://raw.githubusercontent.com/papertek/CyDJ/beta/images/trig.gif)!important;
+      background-image: url(https://raw.githubusercontent.com/papertek/CyDJ/beta/images/themes/stars/galaxy%20dm.gif)!important;
         background-size: contain!important;
         background: scroll;
         text-shadow: 0px 0px 10px #000000, 0px 0px 10px #000 !important;
     }
     
     .pm-panel > .panel-body > .pm-buffer {
-        background-color: #141f1b;
+        background-color: #283544;
     }
     
     .panel-default>.panel-heading {
-        background-color: #293d36bd;
-        color:#94d1bd;
+        background-color: #425871;
+        color:#ffffff;
         border-radius:10px!important
     }
     
@@ -469,18 +469,20 @@
     .profile-box {
         top: 234px;
     }
-    
     .server-msg-disconnect {
         font-family: 'Quicksand', sans-serif;
-        border: 2px solid #e96969!important;
-        background-color:#313539!important;
+        border: 3px solid #f97896 !important;
+        background-color: #88384b !important;
+        background-image: url() !important;
+        background-size: contain !important;
         background: scroll;
-        color: #e96969;
+        color: #fff;
         border-radius: 15px;
-        font-size: 20px;
-        transition: all .7s!important;
-        line-height: 1.5!important;
-        text-align: left;
+        font-size: 18px;
+        font-style: italic;
+        text-align: center;
+        text-shadow: 10px 0px 10px #000000, 10px 0px 10px #000000 !important;
+        transition: all .7s !important;
     }
     
     .server-msg-disconnect:hover {
@@ -490,16 +492,19 @@
     
     .server-msg-reconnect {
         font-family: 'Quicksand', sans-serif;
-        border: 2px solid #94d1bd!important;
-        background-color:#313539!important;
-        background-size: contain!important;
+        border: 3px solid #95c9ff !important;
+        background-color: #557aa1 !important;
+        background-image: url() !important;
+        background-size: contain !important;
         background: scroll;
-        color: #94d1bd;
+        color: #fff;
         border-radius: 15px;
-        font-size: 20px;
-        transition: all .7s!important;
-        line-height: 1.5!important;
-        text-align: left;
+        font-size: 18px;
+        font-style: italic;
+        text-align: center;
+        text-shadow: 10px 0px 10px #000000, 10px 0px 10px #000000 !important;
+        transition: all .7s !important;
+        text-align: center;
     }
     
     .server-msg-reconnect:hover {
