@@ -4046,7 +4046,7 @@ var cydj = (function (exports) {
 
   const UsernameMark_Char = '‎';
 
-  const CustomPingSound_URL = 'https://github.com/papertek/CyDJ/raw/beta/misc/pingsound.wav';
+  const CustomPingSound_URL = 'https://github.com/ItMePeachy/PeachyRoom/raw/master/misc/squeak.mp3';
 
   const PlayerHiding_URL = 'https://c.tenor.com/Q6UjBrnSzvQAAAAC/anime-uh.gif';
 
@@ -4339,16 +4339,14 @@ var cydj = (function (exports) {
   let LASTADD = 1;
   // user minutes online
   let USERONLINE = 0;
-  // number of background changes for the drop it
-  let DROPBGCHANGE = 1;
 
   // array of links added from channel database by user
   const ADDEDLINKS = [];
 
   const WEBKIT = 'webkitRequestAnimationFrame' in window;
-  const DROPIT = new Audio('https://github.com/papertek/CyDJ/raw/beta/misc/dropit.wav');
-  const HEY = new Audio('https://github.com/papertek/CyDJ/raw/beta/misc/hey.wav');
-  const NAY = new Audio('https://github.com/papertek/CyDJ/raw/beta/misc/nay.wav');
+  new Audio('https://github.com/papertek/CyDJ/raw/beta/misc/dropit.wav');
+  const HEY = new Audio('https://github.com/ItMePeachy/PeachyRoom/raw/beta/misc/yippee.mp3');
+  const NAY = new Audio('https://github.com/ItMePeachy/PeachyRoom/raw/beta/misc/scream.mp3');
   CHATSOUND.volume = 0.4;
 
   function preloadAudio() {
@@ -6306,20 +6304,6 @@ var cydj = (function (exports) {
     changeTitle();
   }
 
-  /**
-   * Drop the beat!
-   */
-  function dropthebeat() {
-    const userlistthing = document.getElementById('userlist');
-    const elems = [userlistthing];
-
-    elems.forEach((elem) => elem.style.backgroundImage = 'none');
-    DROPBGCHANGE++;
-
-    const newColor = DROPBGCHANGE % 2 === 0 ? 'red' : 'black';
-    elems.forEach((elem) => elem.style.backgroundColor = newColor);
-  }
-
   // customizing chat notifications sound
   {
     CHATSOUND = new Audio(CustomPingSound_URL);
@@ -6330,7 +6314,7 @@ var cydj = (function (exports) {
   // THIS ONLY ADDS A MESSAGE, the function itself is in ui.js from cytube
   {
     $('#voteskip').on('click', function() {
-      socket.emit('chatMsg', {msg: '[red]Meh..[/] ResidentSleeper'});
+      socket.emit('chatMsg', {msg: '[red]Meh..[/] OtterSleep'});
       $('#voteskip').attr('disabled', true);
       NAY.volume = 0.4;
       NAY.play();
@@ -6440,48 +6424,6 @@ var cydj = (function (exports) {
       $('<ul />').html(html).appendTo(modalBody);
     }
   }
-  /*
-  function showDebugging() {
-    createModal('Debug stuff');
-    if (UI_DEBUG) {
-      modalBody.append('<strong>Buttons that do stuff</strong><br /><br />');
-      for (let i = 0; i < 4; i++) {
-        const debugbotan =
-            $('<button class="btn btn-default btn-success"><br />').appendTo(modalBody);
-        debugbotan.text(`${i}test`) + i;
-      }
-    }
-  }
-  */
-  // adding easter egg button
-  {
-    $('<button id="party-btn" class="btn btn-sm btn-default" title="Party! DO NOT USE IF YOU ARE SUBJECT TO EPILEPSY!!!" />')
-        .text('Party!')
-        .appendTo(chatcontrols)
-        .on('click', () => showDrop());
-  }
-
-  /**
-   * Easter egg drop button function.
-   */
-  function showDrop() {
-    DROPIT.volume = 0.4;
-    DROPIT.play();
-    const partyFlash = setInterval(() => dropthebeat(), 100);
-    setTimeout(() => {
-      DROPBGCHANGE = 0;
-      clearInterval(partyFlash);
-
-      const userlistthing = document.getElementById('userlist');
-      const elems = [userlistthing];
-
-      elems.forEach((elem) => elem.style.backgroundImage = '');
-      elems.forEach((elem) => elem.style.backgroundColor = '');
-
-      setUserCSS$1();
-    }, 5000);
-    socket.emit('chatMsg', {msg: '[mqr] GOOOOOOO xqcCheer FEELSWAYTOOGOOD [/mqr]'});
-  }
 
   // adding moderators panel button
   {
@@ -6512,7 +6454,7 @@ var cydj = (function (exports) {
         .html('<i class="glyphicon glyphicon-thumbs-down"></i>')
         .appendTo(transcontrols)
         .on('click', () => {
-          socket.emit('chatMsg', {msg: '[red]Meh..[/] ResidentSleeper'});
+          socket.emit('chatMsg', {msg: '[red]Meh..[/] OtterSleep'});
           socket.emit('voteskip');
           NAY.volume = 0.4;
           NAY.play();
