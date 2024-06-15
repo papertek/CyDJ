@@ -78,7 +78,7 @@ const UI_RulesBtn = true;
 // [&] imageboard-style attention bar (requires external application)
 const UI_AttentionBar = false;
 // [&] additional custom channel announcement
-const UI_ChannelAnnouncement = true;
+const UI_ChannelAnnouncement = false;
 // full-width video title bar
 const UI_FullTitleBar = true;
 // YouTube/Dailymotion progress bar
@@ -167,7 +167,7 @@ const UI_ChannelCache = true;
 // adds context menu with links
 const UI_ContextMenu = true;
 // adds easter egg
-const UI_PartyButton = true;
+const UI_PartyButton = false;
 // adds version
 const UI_Version = true;
 // adds hey and nay
@@ -236,7 +236,7 @@ const MessagesSuffix_Text = '~xD';
 
 const MessagesSuffix_Percentage = 10;
 
-const CustomPingSound_URL = 'https://github.com/papertek/CyDJ/raw/beta/misc/pingsound.wav';
+const CustomPingSound_URL = 'https://github.com/ItMePeachy/PeachyRoom/raw/master/misc/squeak.mp3';
 
 const PlayerHiding_URL = 'https://c.tenor.com/Q6UjBrnSzvQAAAAC/anime-uh.gif';
 
@@ -608,8 +608,8 @@ const WEBKIT = 'webkitRequestAnimationFrame' in window;
 const SOUNDSVALUES = [0, 0.1, 0.2, 0.4, 0.7, 1];
 const SPEAKLINK = 'http://webanywhere.cs.washington.edu/cgi-bin/espeak/getsound.pl';
 const DROPIT = new Audio('https://github.com/papertek/CyDJ/raw/beta/misc/dropit.wav');
-const HEY = new Audio('https://github.com/papertek/CyDJ/raw/beta/misc/hey.wav');
-const NAY = new Audio('https://github.com/papertek/CyDJ/raw/beta/misc/nay.wav');
+const HEY = new Audio('https://github.com/ItMePeachy/PeachyRoom/raw/beta/misc/yippee.mp3');
+const NAY = new Audio('https://github.com/ItMePeachy/PeachyRoom/raw/beta/misc/scream.mp3');
 CHATSOUND.volume = 0.4;
 
 function preloadAudio() {
@@ -2929,7 +2929,7 @@ if (UI_CustomPingSound && CustomPingSound_URL !== '') {
 // THIS ONLY ADDS A MESSAGE, the function itself is in ui.js from cytube
 if (UI_PublicSkip) {
   $('#voteskip').on('click', function() {
-    socket.emit('chatMsg', {msg: '[red]Meh..[/] ResidentSleeper'});
+    socket.emit('chatMsg', {msg: '[red]Meh..[/] OtterSleep'});
     $('#voteskip').attr('disabled', true);
     NAY.volume = 0.4;
     NAY.play();
@@ -3175,7 +3175,7 @@ if (UI_RateButtons) {
       .html('<i class="glyphicon glyphicon-thumbs-down"></i>')
       .appendTo(transcontrols)
       .on('click', () => {
-        socket.emit('chatMsg', {msg: '[red]Meh..[/] ResidentSleeper'});
+        socket.emit('chatMsg', {msg: '[red]Meh..[/] OtterSleep'});
         socket.emit('voteskip');
         NAY.volume = 0.4;
         NAY.play();
