@@ -4036,8 +4036,6 @@ var cydj = (function (exports) {
 
   const RulesBtn_Caption = 'Read Channel Rules';
 
-  const ChannelAnnouncement_Title = 'CyDJ Alert';
-
   const TitleIcon_URL = 'https://cdn.7tv.app/emote/6040a8bccf6746000db10348/2x.webp';
 
   const TitleBarDescription_Caption = 'Now Playing:';
@@ -4046,7 +4044,7 @@ var cydj = (function (exports) {
 
   const UsernameMark_Char = '‎';
 
-  const CustomPingSound_URL = 'https://github.com/papertek/CyDJ/raw/beta/misc/pingsound.wav';
+  const CustomPingSound_URL = 'https://github.com/ItMePeachy/PeachyRoom/raw/master/misc/squeak.mp3';
 
   const PlayerHiding_URL = 'https://c.tenor.com/Q6UjBrnSzvQAAAAC/anime-uh.gif';
 
@@ -4137,9 +4135,6 @@ var cydj = (function (exports) {
 
   const RulesBtn_HTML =
       '<ol><li>You want to write on the chat? Enter temporary nickname into <b>Guest Login</b> input and click enter.</li><li>You want to register a nick? Click <b>Account -> Profile</b> on the top of the channel, and fill the registration form. You don\'t need an email to register.</li><li>Troll skipping = immediate kick.</li><li>Don\'t be annoying.</li><li>Do not one man spam.</li><li>Do not encourage chat wars or harass/target people.</li><li>Queueing blatant NSFW videos such as porn/hentai/gore is strictly not allowed, doing so will result in an ip ban.</li><li>Queuing the same video but in different link variants is not allowed.</li><li>Mods have the right to skip a video if its overplayed.</li><li><b>These rules are subject to common sense.</b></li></ol>';
-
-  const ChannelAnnouncement_HTML =
-      'Please join the <a href="https://discord.gg/g8tCGSc2bx" target="_blank">Discord</a> for news regarding CyDJ.';
 
   const EmbeddingMedia_Images =
       'a[href$=".jpg"], a[href$=".jpg:large"], a[href$=".jpeg"], a[href$=".JPEG"], a[href$=".JPG"], a[href$=".png"], a[href$=".PNG"], a[href$=".tiff"], a[href$=".TIFF"], a[href$=".webp"], a[href$=".WEBP"], a[href$=".gif"], a[href$=".GIF"]';
@@ -4339,16 +4334,14 @@ var cydj = (function (exports) {
   let LASTADD = 1;
   // user minutes online
   let USERONLINE = 0;
-  // number of background changes for the drop it
-  let DROPBGCHANGE = 1;
 
   // array of links added from channel database by user
   const ADDEDLINKS = [];
 
   const WEBKIT = 'webkitRequestAnimationFrame' in window;
-  const DROPIT = new Audio('https://github.com/papertek/CyDJ/raw/beta/misc/dropit.wav');
-  const HEY = new Audio('https://github.com/papertek/CyDJ/raw/beta/misc/hey.wav');
-  const NAY = new Audio('https://github.com/papertek/CyDJ/raw/beta/misc/nay.wav');
+  new Audio('https://github.com/papertek/CyDJ/raw/beta/misc/dropit.wav');
+  const HEY = new Audio('https://github.com/ItMePeachy/PeachyRoom/raw/beta/misc/yippee.mp3');
+  const NAY = new Audio('https://github.com/ItMePeachy/PeachyRoom/raw/beta/misc/scream.mp3');
   CHATSOUND.volume = 0.4;
 
   function preloadAudio() {
@@ -6271,11 +6264,6 @@ var cydj = (function (exports) {
     changeMOTD();
   }
 
-  // adding custom channel announcement
-  {
-    makeAlert(ChannelAnnouncement_Title, ChannelAnnouncement_HTML).appendTo('#announcements');
-  }
-
   // adding full-width title bar and progress bar
   {
     titlerow = $('<div id="titlerow" class="row" />').insertBefore('#main');
@@ -6306,20 +6294,6 @@ var cydj = (function (exports) {
     changeTitle();
   }
 
-  /**
-   * Drop the beat!
-   */
-  function dropthebeat() {
-    const userlistthing = document.getElementById('userlist');
-    const elems = [userlistthing];
-
-    elems.forEach((elem) => elem.style.backgroundImage = 'none');
-    DROPBGCHANGE++;
-
-    const newColor = DROPBGCHANGE % 2 === 0 ? 'red' : 'black';
-    elems.forEach((elem) => elem.style.backgroundColor = newColor);
-  }
-
   // customizing chat notifications sound
   {
     CHATSOUND = new Audio(CustomPingSound_URL);
@@ -6330,7 +6304,7 @@ var cydj = (function (exports) {
   // THIS ONLY ADDS A MESSAGE, the function itself is in ui.js from cytube
   {
     $('#voteskip').on('click', function() {
-      socket.emit('chatMsg', {msg: '[red]Meh..[/] ResidentSleeper'});
+      socket.emit('chatMsg', {msg: '[red]Meh..[/] OtterSleep'});
       $('#voteskip').attr('disabled', true);
       NAY.volume = 0.4;
       NAY.play();
@@ -6440,48 +6414,6 @@ var cydj = (function (exports) {
       $('<ul />').html(html).appendTo(modalBody);
     }
   }
-  /*
-  function showDebugging() {
-    createModal('Debug stuff');
-    if (UI_DEBUG) {
-      modalBody.append('<strong>Buttons that do stuff</strong><br /><br />');
-      for (let i = 0; i < 4; i++) {
-        const debugbotan =
-            $('<button class="btn btn-default btn-success"><br />').appendTo(modalBody);
-        debugbotan.text(`${i}test`) + i;
-      }
-    }
-  }
-  */
-  // adding easter egg button
-  {
-    $('<button id="party-btn" class="btn btn-sm btn-default" title="Party! DO NOT USE IF YOU ARE SUBJECT TO EPILEPSY!!!" />')
-        .text('Party!')
-        .appendTo(chatcontrols)
-        .on('click', () => showDrop());
-  }
-
-  /**
-   * Easter egg drop button function.
-   */
-  function showDrop() {
-    DROPIT.volume = 0.4;
-    DROPIT.play();
-    const partyFlash = setInterval(() => dropthebeat(), 100);
-    setTimeout(() => {
-      DROPBGCHANGE = 0;
-      clearInterval(partyFlash);
-
-      const userlistthing = document.getElementById('userlist');
-      const elems = [userlistthing];
-
-      elems.forEach((elem) => elem.style.backgroundImage = '');
-      elems.forEach((elem) => elem.style.backgroundColor = '');
-
-      setUserCSS$1();
-    }, 5000);
-    socket.emit('chatMsg', {msg: '[mqr] GOOOOOOO xqcCheer FEELSWAYTOOGOOD [/mqr]'});
-  }
 
   // adding moderators panel button
   {
@@ -6512,7 +6444,7 @@ var cydj = (function (exports) {
         .html('<i class="glyphicon glyphicon-thumbs-down"></i>')
         .appendTo(transcontrols)
         .on('click', () => {
-          socket.emit('chatMsg', {msg: '[red]Meh..[/] ResidentSleeper'});
+          socket.emit('chatMsg', {msg: '[red]Meh..[/] OtterSleep'});
           socket.emit('voteskip');
           NAY.volume = 0.4;
           NAY.play();
