@@ -922,8 +922,13 @@
     }
     
     .chat-msg-RottenSpaceMan .userlist_op {
-        color: #800080!important;
-        text-shadow: 1px 0 10px #ACABF8;
+        color: #990a99!important;
+        text-shadow: 1px 0 10px #a047a0;
+    }
+
+    .chat-msg-fuzzybrain.userlist_op {
+        color: #990a99!important;
+        text-shadow: 1px 0 10px #a047a0;
     }
 
     .chat-msg-PeachyBot .userlist_op {
