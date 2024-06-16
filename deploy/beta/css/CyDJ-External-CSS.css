@@ -68,17 +68,7 @@
     
         /* -- buttons -- */
     
-    .btn {
-        text-shadow:none;
-        background-image: linear-gradient(#fff0, #fff0, #fff0)!important;
-        background-color: #fff0;
-        border-color: #4cb290!important;
-        box-shadow: inset 0 0 0 0 rgba(127, 204, 65, 0.702);
-        -webkit-transition: ease-out 0.3s;
-        -moz-transition: ease-out 0.3s;
-        transition: ease-out 0.3s;
-        letter-spacing: .2px
-    }
+    .btn {text-shadow:none}
     
         /* -- modal windows -- */
     
@@ -94,11 +84,6 @@
         /*original #ccc */
         color: white!important;
         text-shadow: 0px 0px 10px black, 0px 0px 10px black !important;
-        float: left;
-        padding: 10px;
-        font-size: 18px;
-        line-height: 32px;
-        height: 50px;
     }
     
     input#logout[type="submit"]:hover {
@@ -148,11 +133,7 @@
     
         /* -- channel avatar -- */
     
-    #chanavatar {
-        margin-right:10px;
-        float: left;
-        padding: 0px;
-    }
+    #chanavatar {margin-right:10px}
     
         /* -- azuki row (user top logo) -- */
     
@@ -246,11 +227,9 @@
         /* -- player covering layer -- */
     
     #coverpl {
-        background-color:black!important;
         position:absolute; left:5px; top:0px; background-color:white;
         background-repeat:no-repeat; background-position:center center;
             max-width:100%!important; max-height:100%!important;
-            
     }
     
         /* -- sounds and admin panels GUI layers -- */
@@ -271,7 +250,7 @@
     .avatar {margin-right:3px}
     .server-whisper + .squavatar {display:none}
     .globalmod {margin-right:2px}
-    .embedimg {max-width:200px; max-height:300px; transition: all .7s!important}
+    .embedimg {max-width:200px; max-height:300px}
     .embedvid {max-width:200px; max-height:300px; border:0px; vertical-align:middle}
     
         /* -- main fonts and emotes GUI layer -- */
@@ -389,6 +368,14 @@
         color: #ffd966;
     }
     
+    .navbar-brand {
+        float: left;
+        padding: 10px;
+        font-size: 18px;
+        line-height: 32px;
+        height: 50px;
+    }
+    
     .dropdown-menu {
         animation: animateDropdown 200ms ease-out forwards;
         transform-origin: top center;
@@ -405,6 +392,11 @@
         100% {
             transform: rotateX(0deg) 
         }
+    }
+    
+    #chanavatar {
+        float: left;
+        padding: 0px;
     }
     
     #resize-video-smaller {
@@ -449,13 +441,13 @@
     }
     
     .panel-primary>.panel-heading {
-        background: scroll;
         background-color: #94d1bd;
         border: 2px solid #94d1bd!important;
         border-radius: 10px!important;
         color: #fff;
       background-image: url(https://raw.githubusercontent.com/papertek/CyDJ/beta/images/trig.gif)!important;
         background-size: contain!important;
+        background: scroll;
         text-shadow: 0px 0px 10px #000000, 0px 0px 10px #000 !important;
     }
     
@@ -498,9 +490,9 @@
     .server-msg-reconnect {
         font-family: 'Quicksand', sans-serif;
         border: 2px solid #94d1bd!important;
-        background: scroll;
         background-color:#313539!important;
         background-size: contain!important;
+        background: scroll;
         color: #94d1bd;
         border-radius: 15px;
         font-size: 20px;
@@ -571,6 +563,13 @@
       border-radius:20px;
     }
     
+    .btn {
+      box-shadow: inset 0 0 0 0 rgba(127, 204, 65, 0.702);
+      -webkit-transition: ease-out 0.3s;
+      -moz-transition: ease-out 0.3s;
+      transition: ease-out 0.3s;
+    }
+    
     .well {
         background-color: #45544f;
         color: white;
@@ -594,18 +593,18 @@
     }
     
     #plmeta {
-        border:none;
         background-color:#141f1b;
         padding:3px;
         margin:7px;
+        border:none;
     }
     
     .alert-info {
         background-color: #45544f;
-        border: 2px solid #394642;
         border-color: #ff4949;
         color: white;
         border-radius: 10px;
+        border: 2px solid #394642;
         font-size:larger;
     }
     
@@ -690,6 +689,10 @@
         font-weight: 500;
     }
     
+    .btn {
+        letter-spacing: .2px
+    }
+    
     #plmeta {
         border-radius:4px
     }
@@ -717,6 +720,12 @@
     
     .modal-body {
         font-size:16px;
+    }
+    
+    .btn {
+        background-image: linear-gradient(#fff0, #fff0, #fff0)!important;
+        background-color: #fff0;
+        border-color: #4cb290!important;
     }
     
     .btn-default:hover {
@@ -776,6 +785,10 @@
         transition: all .4s!important;
     }
     
+    .embedimg {
+        transition: all .7s!important;
+    }
+    
     img:hover {
         transform: scale(1.4);
         transition: all .4s!important;
@@ -822,7 +835,10 @@
     ::-webkit-scrollbar-thumb {background:#d6dee1;border-radius:20px;border:6px solid transparent;background-clip:content-box;}
     ::-webkit-scrollbar-track {background-color: transparent;}
     ::-webkit-scrollbar-thumb:hover {background-color: #a8bbbf;}
-
+    
+    #coverpl {
+        background-color:black!important;
+    }
     
     input.form-control[type="text"], input.form-control[type="password"], input.form-control[type="email"], textarea.form-control {
         background-color: #141f1b!important;
