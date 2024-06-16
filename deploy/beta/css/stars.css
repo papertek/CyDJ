@@ -153,11 +153,10 @@
 
     #motdwrap {
         padding: 10px;
+        border: 1px solid rgb(0 97 243)!important;
         border-color: white;
         box-shadow: none;
         background-color: #a277d180!important;
-        border: 1px solid rgb(0 97 243)!important;
-
     }
 
     #motdlogo {
@@ -282,10 +281,10 @@
     }
 
     .queue_entry {
+        border: 1px solid;
         border-color: #621dc9!important;
         background-color: #282a9bbb;
         margin: 1px;
-        border: 1px solid;
     }
 
     .queue_entry.queue_active {
