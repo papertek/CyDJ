@@ -203,13 +203,13 @@ const twemojiStuff = false;
 
 // TODO: Move all these into a file.
 
-const Favicon_URL = 'https://cdn.7tv.app/emote/614e8c0b20eaf897465a4c9d/1x.webp';
+const Favicon_URL = 'https://cdn.7tv.app/emote/60b8287355c320f0e8e92f64/1x.webp';
 
-const MiniLogo_URL = 'https://cdn.7tv.app/emote/614e8c0b20eaf897465a4c9d/1x.webp';
+const MiniLogo_URL = 'https://cdn.7tv.app/emote/60b8287355c320f0e8e92f64/1x.webp';
 
 const ChannelName_Caption = 'CyDJ';
 
-export const Version_Now = 'CyDJEdge2.9.24.0';
+export const Version_Now = 'CyDJEdge6.16.24.0';
 
 const HeaderDropMenu_Title = 'Information';
 
@@ -224,7 +224,7 @@ const AttentionBar_URL =
 
 const ChannelAnnouncement_Title = 'CyDJ Alert';
 
-const TitleIcon_URL = 'https://cdn.7tv.app/emote/6040a8bccf6746000db10348/2x.webp';
+const TitleIcon_URL = 'https://cdn.7tv.app/emote/62740ee56fc5e131afe3d18e/1x.webp';
 
 const TitleBarDescription_Caption = 'Now Playing:';
 
@@ -415,7 +415,7 @@ const ThemesCSS = [
 ];
 
 const EmptyCornerBackground = [
-  'https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_a054f4001b6d4f098e7969c988debd18/default/light/2.0',
+  /* 'https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_a054f4001b6d4f098e7969c988debd18/default/light/2.0',
   'https://cdn.betterttv.net/emote/5dfc5d868608fb0da4120b59/2x',
   'https://raw.githubusercontent.com/papertek/CyDJ/beta/images/main/891194776798498826%20(1).gif',
   'https://raw.githubusercontent.com/papertek/CyDJ/beta/images/main/small.png',
@@ -424,7 +424,7 @@ const EmptyCornerBackground = [
   'https://raw.githubusercontent.com/papertek/CyDJ/beta/images/main/mud.png',
   'https://raw.githubusercontent.com/papertek/CyDJ/beta/images/main/xso.png',
   'https://raw.githubusercontent.com/papertek/CyDJ/beta/images/main/pacific.gif',
-  'https://raw.githubusercontent.com/papertek/CyDJ/beta/images/main/pushing%20ass.png',
+  'https://raw.githubusercontent.com/papertek/CyDJ/beta/images/main/pushing%20ass.png', */
 ];
 
 // /////////////////////////////////////////////////////////////////////////////////////////////////
@@ -608,7 +608,7 @@ const WEBKIT = 'webkitRequestAnimationFrame' in window;
 const SOUNDSVALUES = [0, 0.1, 0.2, 0.4, 0.7, 1];
 const SPEAKLINK = 'http://webanywhere.cs.washington.edu/cgi-bin/espeak/getsound.pl';
 const DROPIT = new Audio('https://github.com/papertek/CyDJ/raw/beta/misc/dropit.wav');
-const HEY = new Audio('https://github.com/ItMePeachy/PeachyRoom/raw/beta/misc/yippee.mp3');
+const HEY = new Audio('https://github.com/papertek/CyDJ/raw/master/misc/hey.wav');
 const NAY = new Audio('https://github.com/ItMePeachy/PeachyRoom/raw/beta/misc/scream.mp3');
 CHATSOUND.volume = 0.4;
 
