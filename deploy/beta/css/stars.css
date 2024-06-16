@@ -249,15 +249,6 @@
         background-color: #000000 !important;
     }
 
-    .chat-msg-Xsogon .userlist_owner {
-        color: #00FFFF!important;
-        text-shadow: 1px 0 10px #00FFFF;
-    }
-
-    .chat-msg-PeachyBot .userlist_op {
-        color: #ffb7f9!important;
-        text-shadow: 1px 0 10px #ffb7f9;
-    }
 
     /* pink to light blue name color 
     .chat-msg-ItMePeachy .userlist_owner {
@@ -266,16 +257,15 @@
         -webkit-text-fill-color: transparent;
         text-shadow: 1px 0 10px #ffffff9d!important;
     }
-*/
 
- /* rainbow name color */
+     rainbow name color 
     .chat-msg-ItMePeachy .userlist_owner {
         background: linear-gradient(to right, #ff5451, #ff9267, #ffe868, #93ff7d, #48ebff, #484bff, #8441ff, #df3fff, #ff3ef5);
         -webkit-background-clip: text;
         background-clip: text;
         -webkit-text-fill-color: #ffffff61;
         text-shadow: 1px 0 10px #ffffff9d!important;
-    }
+    } */
 
     #userlist,
     #messagebuffer {
