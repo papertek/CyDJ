@@ -926,6 +926,11 @@
         text-shadow: 1px 0 10px #ACABF8;
     }
 
+    .chat-msg-PeachyBot .userlist_op {
+        color: #ffb7f9!important;
+        text-shadow: 1px 0 10px #ffb7f9;
+    }
+
     .modal-backdrop.in {
         position: fixed;
     }
