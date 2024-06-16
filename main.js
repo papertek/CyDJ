@@ -209,7 +209,7 @@ const MiniLogo_URL = 'https://cdn.7tv.app/emote/614e8c0b20eaf897465a4c9d/1x.webp
 
 const ChannelName_Caption = 'CyDJ';
 
-export const Version_Now = 'CyDJEdge2.9.24.0';
+export const Version_Now = 'CyDJEdge6.16.24.0';
 
 const HeaderDropMenu_Title = 'Information';
 
@@ -608,7 +608,7 @@ const WEBKIT = 'webkitRequestAnimationFrame' in window;
 const SOUNDSVALUES = [0, 0.1, 0.2, 0.4, 0.7, 1];
 const SPEAKLINK = 'http://webanywhere.cs.washington.edu/cgi-bin/espeak/getsound.pl';
 const DROPIT = new Audio('https://github.com/papertek/CyDJ/raw/beta/misc/dropit.wav');
-const HEY = new Audio('https://github.com/papertek/CyDJ/raw/master/misc/hey.wav3');
+const HEY = new Audio('https://github.com/papertek/CyDJ/raw/master/misc/hey.wav');
 const NAY = new Audio('https://github.com/ItMePeachy/PeachyRoom/raw/beta/misc/scream.mp3');
 CHATSOUND.volume = 0.4;
 
