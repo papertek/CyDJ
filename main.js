@@ -425,7 +425,7 @@ const EmptyCornerBackground = [
   'https://raw.githubusercontent.com/papertek/CyDJ/beta/images/main/xso.png',
   'https://raw.githubusercontent.com/papertek/CyDJ/beta/images/main/pacific.gif',
   'https://raw.githubusercontent.com/papertek/CyDJ/beta/images/main/pushing%20ass.png', */
-]; 
+];
 
 // /////////////////////////////////////////////////////////////////////////////////////////////////
 
