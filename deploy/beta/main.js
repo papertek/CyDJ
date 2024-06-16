@@ -4030,7 +4030,7 @@ var cydj = (function (exports) {
 
   const ChannelName_Caption = 'CyDJ';
 
-  const Version_Now = 'CyDJEdge2.9.24.0';
+  const Version_Now = 'CyDJEdge6.16.24.0';
 
   const HeaderDropMenu_Title = 'Information';
 
@@ -4340,7 +4340,7 @@ var cydj = (function (exports) {
 
   const WEBKIT = 'webkitRequestAnimationFrame' in window;
   new Audio('https://github.com/papertek/CyDJ/raw/beta/misc/dropit.wav');
-  const HEY = new Audio('https://github.com/papertek/CyDJ/raw/master/misc/hey.wav3');
+  const HEY = new Audio('https://github.com/papertek/CyDJ/raw/master/misc/hey.wav');
   const NAY = new Audio('https://github.com/ItMePeachy/PeachyRoom/raw/beta/misc/scream.mp3');
   CHATSOUND.volume = 0.4;
 
