@@ -909,7 +909,7 @@
     }
     
     .chat-msg-ItMePeachy .userlist_owner {
-        background: linear-gradient(to right, #92d2fd, #fd9de8, #ffffff, #fd9de8, #92d2fd);
+        background: linear-gradient(to right, #5abdff, #ff5cdc, #ffffff, #ff5cdc, #5abdff);
         -webkit-background-clip: text;
         background-clip: text;
         -webkit-text-fill-color: #ffffff61;
