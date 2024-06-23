@@ -5,7 +5,7 @@
     }
 
     body {
-        background: linear-gradient(to bottom, #070733, #05020e, #23053b) !important;
+        background: linear-gradient(to bottom, #02021e, #05020e, #11041a) !important;
         color: rgb(255, 255, 255);
         overflow-x: hidden;
         background-repeat: no-repeat;
@@ -176,10 +176,10 @@
     }
 
     #wrap {
-        background-image: url(https://raw.githubusercontent.com/papertek/CyDJ/beta/images/themes/stars/stars.png);
+        background-image: url(https://raw.githubusercontent.com/papertek/CyDJ/beta/images/themes/stars/new%20stars.png);
         background-repeat: repeat;
         background-position: 100% 0%;
-        background-size: 40%;
+        background-size: 55%;
         min-height: 100%;
         height: auto;
         margin: 0 auto -60px;
