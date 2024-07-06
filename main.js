@@ -203,13 +203,13 @@ const twemojiStuff = false;
 
 // TODO: Move all these into a file.
 
-const Favicon_URL = 'https://cdn.7tv.app/emote/60b8287355c320f0e8e92f64/1x.webp';
+const Favicon_URL = 'https://cdn.7tv.app/emote/63997f8225d903e933e7b93b/1x.webp';
 
-const MiniLogo_URL = 'https://cdn.7tv.app/emote/60b8287355c320f0e8e92f64/1x.webp';
+const MiniLogo_URL = 'https://cdn.7tv.app/emote/63997f8225d903e933e7b93b/1x.webp';
 
 const ChannelName_Caption = 'CyDJ';
 
-export const Version_Now = 'CyDJEdge6.16.24.0';
+export const Version_Now = 'CyDJEdge7.6.24.0';
 
 const HeaderDropMenu_Title = 'Information';
 
@@ -224,7 +224,7 @@ const AttentionBar_URL =
 
 const ChannelAnnouncement_Title = 'CyDJ Alert';
 
-const TitleIcon_URL = 'https://cdn.7tv.app/emote/62740ee56fc5e131afe3d18e/1x.webp';
+const TitleIcon_URL = 'https://cdn.7tv.app/emote/62881948adc5e81118c9c42e/2x.webp';
 
 const TitleBarDescription_Caption = 'Now Playing:';
 
