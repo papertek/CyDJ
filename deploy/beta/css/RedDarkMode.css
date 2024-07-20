@@ -128,6 +128,8 @@
 
     .qe_title {
         color: white !important;
+        margin-left: 4px;
+        letter-spacing: .6px;
     }
 
     .qe_time {
@@ -365,15 +367,6 @@
 
     #titlerow #currenttitle {
         color: white;
-    }
-
-    .qe_title {
-        margin-left: 4px;
-        letter-spacing: .6px;
-    }
-
-    .btn {
-        box-shadow: inset 0 0 0 0 #ff91f6b3!important;
     }
 
     ::-webkit-scrollbar {
