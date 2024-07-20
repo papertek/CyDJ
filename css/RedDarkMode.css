@@ -34,12 +34,12 @@
 
 
     .server-msg-disconnect {
+        background: scroll;
         font-family: 'Quicksand', sans-serif;
         border: 3px solid #f97896 !important;
         background-color: #88384b !important;
         background-image: url() !important;
         background-size: contain !important;
-        background: scroll;
         color: #fff;
         border-radius: 15px;
         font-size: 18px;
@@ -50,12 +50,12 @@
     }
 
     .server-msg-reconnect {
+        background: scroll;
         font-family: 'Quicksand', sans-serif;
         border: 3px solid #95c9ff !important;
         background-color: #557aa1 !important;
         background-image: url() !important;
         background-size: contain !important;
-        background: scroll;
         color: #fff;
         border-radius: 15px;
         font-size: 18px;
@@ -67,6 +67,7 @@
     }
 
     #drinkcount {
+        background: scroll;
         background-color: #f35e5e  !important;
         color: #ffffff;
         border: 2px solid #f35e5e  !important;
@@ -74,7 +75,6 @@
         font-style: italic;
         background-image: url() !important;
         background-size: contain !important;
-        background: scroll;
         border-radius: 10px;
     }
 
@@ -137,13 +137,13 @@
     }
 
     .panel-primary>.panel-heading {
+        background: scroll;
         background-color: #8f2727 !important;
         border: 2px solid #f35e5e  !important;
         border-radius: 10px !important;
         color: #fff;
         background-image: url() !important;
         background-size: contain !important;
-        background: scroll;
         text-shadow: 0px 0px 10px #000000, 0px 0px 10px #000 !important;
     }
 
