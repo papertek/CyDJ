@@ -4030,7 +4030,7 @@ var cydj = (function (exports) {
 
   const ChannelName_Caption = 'CyDJ';
 
-  const Version_Now = 'CyDJEdge7.6.24.0';
+  const Version_Now = 'CyDJEdge7.20.24.0';
 
   const HeaderDropMenu_Title = 'Information';
 
@@ -4143,6 +4143,10 @@ var cydj = (function (exports) {
       'a[href$=".webm"], a[href$=".mp4"], a[href$=".MP4"], a[href$=".mov"], a[href$=".MOV"], a[href$=".mp3"], a[href$=".MP3"], a[href$=".wav"], a[href$=".WAV"], a[href$=".ogg"], a[href$=".OGG"], a[href$=".m4a"], a[href$=".M4A"]';
 
   const ThemesCSS = [
+    [
+      'Dark Mode (red)',
+      'https://papertek.github.io/CyDJ/deploy/beta/css/RedDarkMode.css',
+    ],
     [
       'Classic',
       'https://papertek.github.io/CyDJ/deploy/beta/css/twitchclassic.css',
