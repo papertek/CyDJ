@@ -209,7 +209,7 @@ const MiniLogo_URL = 'https://cdn.7tv.app/emote/63997f8225d903e933e7b93b/1x.webp
 
 const ChannelName_Caption = 'CyDJ';
 
-export const Version_Now = 'CyDJEdge7.6.24.0';
+export const Version_Now = 'CyDJEdge7.20.24.0';
 
 const HeaderDropMenu_Title = 'Information';
 
@@ -392,6 +392,10 @@ const CustomRightFooter_HTML = '';
 const ChannelThemeURL = 'https://papertek.github.io/CyDJ/deploy/beta/css/DJDefault.css';
 
 const ThemesCSS = [
+  [
+    'Dark Mode (red)',
+    'https://papertek.github.io/CyDJ/deploy/beta/css/RedDarkMode.css',
+  ],
   [
     'Classic',
     'https://papertek.github.io/CyDJ/deploy/beta/css/twitchclassic.css',
