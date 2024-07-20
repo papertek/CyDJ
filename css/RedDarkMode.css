@@ -308,6 +308,17 @@
 
     .btn {
         border-color: #000 !important;
+        box-shadow: inset 0 0 0 0 #f35e5e;
+    }
+
+    .btn-success:hover {
+        border-color: #f35e5e !important;
+        box-shadow: 0px 0px 5px #f35e5e, 0px 0px 10px #f35e5e !important;
+    }
+
+    .btn-default:hover {
+        background-color: #f35e5e;
+        box-shadow: inset 0 0 0 50px #f35e5e, 0px 0px 10px #f35e5e;
     }
 
     .well {
